@@ -47,7 +47,7 @@ namespace ScorchApi.Controllers
         }
 
         [HttpPost]
-        public async Task PostCharacter(Character character)
+        public async Task PostCharacter([FromBody]Character character)
         {
             var document = character.ToDocument();
 

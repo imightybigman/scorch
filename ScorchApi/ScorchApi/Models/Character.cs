@@ -57,8 +57,8 @@ namespace ScorchApi.Models
                 ["MaxHp"]       = MaxHp,
                 ["Gold"]        = Gold,
                 ["Exp"]         = Exp,
-                ["Stats"]       = Stats.ToDocument(),
-                ["Inventory"]   = Inventory.ToDocument(),
+                ["Stats"]       = Stats.ToDocument()
+//                ["Inventory"]   = Inventory.ToDocument(),
             };
             return doc;
         }
