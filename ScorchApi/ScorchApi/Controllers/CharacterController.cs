@@ -56,6 +56,6 @@ namespace ScorchApi.Controllers
 
             await table.PutItemAsync(document);
         }
-
+        
     }
 }
