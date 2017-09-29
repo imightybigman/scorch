@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Amazon.DynamoDBv2.DocumentModel;
-using Amazon.S3.Model;
 
 namespace ScorchApi.Models
 {
@@ -18,13 +17,12 @@ namespace ScorchApi.Models
         public int Gold             { get; set; }
         public int Exp              { get; set; }
         public Stats Stats          { get; set; }
-        public Inventory Inventory  { get; set; }
+        public Equipment Inventory  { get; set; }
         public List<Trait> Traits   { get; set; }
         public List<Skill> Skills   { get; set; }
         public List<Spell> Spells   { get; set; }
         public List<string> Notes   { get; set; }
         
-
         public Character() { }
 
         public Character(Document doc)
@@ -41,13 +39,28 @@ namespace ScorchApi.Models
             Gold        = doc["Gold"].AsInt();
             Exp         = doc["Exp"].AsInt();
             Stats       = new Stats(doc["Stats"]);
+            Inventory   = new Equipment(doc["Inventory"]);
         }
 
         public Document ToDocument()
         {
-            var document = new Document();
-
-            return document;
+            var doc = new Document
+            {
+                ["Firstname"]   = Firstname,
+                ["Lastname"]    = Lastname,
+                ["Race"]        = Race,
+                ["Class"]       = Class,
+                ["Sex"]         = Sex,
+                ["Age"]         = Age,
+                ["Align"]       = Align,
+                ["Hp"]          = Hp,
+                ["MaxHp"]       = MaxHp,
+                ["Gold"]        = Gold,
+                ["Exp"]         = Exp,
+                ["Stats"]       = Stats.ToDocument(),
+                ["Inventory"]   = Inventory.ToDocument(),
+            };
+            return doc;
         }
 
     }

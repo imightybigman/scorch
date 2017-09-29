@@ -23,5 +23,20 @@ namespace ScorchApi.Models
             Wisdom          = doc["Wisdom"].AsInt();
             Charisma        = doc["Charisma"].AsInt();
         }
+
+        public Document ToDocument()
+        {
+            var doc = new Document
+            {
+                ["Strength"]        = Strength,
+                ["Dexterity"]       = Dexterity,
+                ["Constitution"]    = Constitution,
+                ["Intelligence"]    = Intelligence,
+                ["Wisdom"]          = Wisdom,
+                ["Charisma"]        = Charisma
+            };
+
+            return doc;
+        }
     }
 }

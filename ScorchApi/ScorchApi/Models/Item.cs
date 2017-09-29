@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Amazon.DynamoDBv2.DocumentModel;
-using Amazon.S3.Model;
+﻿using Amazon.DynamoDBv2.DocumentModel;
 
 namespace ScorchApi.Models
 {
@@ -10,7 +6,7 @@ namespace ScorchApi.Models
     {
         public string Name          { get; set; }
         public string Description   { get; set; }
-        public string Attribute     { get; set; }
+        public string Cost          { get; set; }
 
         public Item() { }
 
@@ -19,7 +15,19 @@ namespace ScorchApi.Models
             var doc         = entry.AsDocument();
             Name            = doc["Name"].AsString();
             Description     = doc["Description"].AsString();
-            Attribute       = doc["Attribute"].AsString();
+            Cost            = doc["Cost"].AsString();
+        }
+
+        public Document ToDocument()
+        {
+            var doc = new Document
+            {
+                ["Name"]        = Name,
+                ["Description"] = Description,
+                ["Cost"]        = Cost
+            };
+
+            return doc;
         }
     }
 }

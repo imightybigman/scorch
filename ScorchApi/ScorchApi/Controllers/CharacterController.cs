@@ -1,12 +1,9 @@
 ﻿using Amazon.DynamoDBv2;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2.DocumentModel;
-using Amazon.DynamoDBv2.Model;
-using Amazon.S3.Model;
 using ScorchApi.Models;
 
 namespace ScorchApi.Controllers
