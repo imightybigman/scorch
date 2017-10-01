@@ -1,12 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
-namespace ScorchApi
+namespace ScorchApiV2
 {
-    /// <summary>
-    /// The Main function can be used to run the ASP.NET Core application locally using the Kestrel webserver.
-    /// </summary>
-    public class LocalEntryPoint
+    public class Program
     {
         public static void Main(string[] args)
         {
@@ -15,6 +17,7 @@ namespace ScorchApi
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
+                .UseApplicationInsights()
                 .Build();
 
             host.Run();

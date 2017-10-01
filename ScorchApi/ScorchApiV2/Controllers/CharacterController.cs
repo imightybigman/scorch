@@ -1,12 +1,13 @@
-﻿using Amazon.DynamoDBv2;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Amazon;
+using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
-using ScorchApi.Models;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using ScorchApiV2.Models;
 
-namespace ScorchApi.Controllers
+namespace ScorchApiV2.Controllers
 {
     [Route("api/[controller]")]
     public class CharacterController : Controller
@@ -25,14 +26,14 @@ namespace ScorchApi.Controllers
         {
             var scanFilter = new ScanFilter();
             var search = table.Scan(scanFilter);
-            var documentList = new List<Document>();
             var characterList = new List<Character>();
             do
             {
-                documentList = await search.GetNextSetAsync();
+                var documentList = await search.GetNextSetAsync();
                 foreach (var document in documentList)
                 {
-                    characterList.Add(new Character(document));
+                    var json = document.ToJson();
+                    characterList.Add(JsonConvert.DeserializeObject<Character>(json));
                 }
             } while (!search.IsDone);
 
@@ -43,15 +44,18 @@ namespace ScorchApi.Controllers
         public async Task<Character> GetCharacter(string name)
         {
             var document = await table.GetItemAsync(name);
-            return new Character(document);
+
+            return JsonConvert.DeserializeObject<Character>(document.ToJson());
         }
 
         [HttpPost]
-        public async Task PostCharacter([FromBody]Character character)
+        public async Task<Character> PostCharacter([FromBody]Character character)
         {
-            var document = character.ToDocument();
+            var document = Document.FromJson(JsonConvert.SerializeObject(character));
 
             await table.PutItemAsync(document);
+
+            return character;
         }
         
     }

@@ -1,4 +1,4 @@
-﻿namespace ScorchApi.Models
+﻿namespace ScorchApiV2.Models
 {
     public class Trait
     {

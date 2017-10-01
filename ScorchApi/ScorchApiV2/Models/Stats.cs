@@ -1,6 +1,6 @@
 ﻿using Amazon.DynamoDBv2.DocumentModel;
 
-namespace ScorchApi.Models
+namespace ScorchApiV2.Models
 {
     public class Stats
     {
