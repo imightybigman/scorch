@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2;
@@ -23,8 +24,8 @@ namespace ScorchApiV2.Controllers
             itemTable = Table.LoadTable(client, itemTableName);
         }
 
-        [HttpGet("{name}")]
-        public async Task<IList<IItem>> Get(string name)
+        [HttpGet]
+        public async Task<IList<IItem>> Get()
         {
             var scanFilter      = new ScanFilter();
             var search          = itemTable.Scan(scanFilter);
@@ -60,23 +61,7 @@ namespace ScorchApiV2.Controllers
         [HttpPost]
         public async Task<IItem> PostItem([FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))]IItem item)
         {
-            Document doc = null;
-            if (item.ItemClass == typeof(AdventurerGear).Name)
-            {
-                doc = Document.FromJson(JsonConvert.SerializeObject((AdventurerGear)item));
-            }
-            else if (item.ItemClass == typeof(Weapon).Name)
-            {
-                doc = Document.FromJson(JsonConvert.SerializeObject((Weapon)item));
-            }
-            else if (item.ItemClass == typeof(Armor).Name)
-            {
-                doc = Document.FromJson(JsonConvert.SerializeObject((Armor)item));
-            }
-            else if (item.ItemClass == typeof(Quiver).Name)
-            {
-                doc = Document.FromJson(JsonConvert.SerializeObject((Quiver)item));
-            }
+            Document doc = Document.FromJson(JsonConvert.SerializeObject(item));
 
             await itemTable.PutItemAsync(doc);
 

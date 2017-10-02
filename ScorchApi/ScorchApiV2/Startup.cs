@@ -38,10 +38,10 @@ namespace ScorchApiV2
             {
                 c.SwaggerDoc("v1", new Info { Title = "Scorch API", Version = "v2" });
 
-                // Set the comments path for the Swagger JSON and UI.
-                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
-                var xmlPath = Path.Combine(basePath, "ScorchApi.xml");
-                c.IncludeXmlComments(xmlPath);
+//                // Set the comments path for the Swagger JSON and UI.
+//                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+//                var xmlPath = Path.Combine(basePath, "ScorchApi.xml");
+//                c.IncludeXmlComments(xmlPath);
             });
         }
 
