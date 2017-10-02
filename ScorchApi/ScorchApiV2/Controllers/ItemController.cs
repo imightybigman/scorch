@@ -58,6 +58,11 @@ namespace ScorchApiV2.Controllers
             return itemList;
         }
 
+        /// <summary>
+        /// Create a DnD Item
+        /// </summary>
+        /// <param name="item">Item thingy</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IItem> PostItem([FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))]IItem item)
         {
