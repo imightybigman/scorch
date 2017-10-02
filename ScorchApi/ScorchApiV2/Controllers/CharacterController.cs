@@ -16,19 +16,19 @@ namespace ScorchApiV2.Controllers
     public class CharacterController : Controller
     {
         private static AmazonDynamoDBClient client = new AmazonDynamoDBClient(RegionEndpoint.USEast1);
-        private static string tableName = "DnD-Characters";
-        private static Table table;
+        private static string characterTableName = "DnD-Characters";
+        private static Table characterTable;
 
         public CharacterController()
         {
-            table = Table.LoadTable(client, tableName);
+            characterTable = Table.LoadTable(client, characterTableName);
         }
 
         [HttpGet]
         public async Task<IList<Character>> Get()
         {
             var scanFilter = new ScanFilter();
-            var search = table.Scan(scanFilter);
+            var search = characterTable.Scan(scanFilter);
             var characterList = new List<Character>();
             do
             {
@@ -46,7 +46,7 @@ namespace ScorchApiV2.Controllers
         [HttpGet("{name}")]
         public async Task<Character> GetCharacter(string name)
         {
-            var document = await table.GetItemAsync(name);
+            var document = await characterTable.GetItemAsync(name);
 
             return JsonConvert.DeserializeObject<Character>(document.ToJson());
         }
@@ -56,7 +56,7 @@ namespace ScorchApiV2.Controllers
         {
             var document = Document.FromJson(JsonConvert.SerializeObject(character));
 
-            await table.PutItemAsync(document);
+            await characterTable.PutItemAsync(document);
 
             return character;
         }
@@ -67,7 +67,7 @@ namespace ScorchApiV2.Controllers
             var document = Document.FromJson(JsonConvert.SerializeObject(character));
             document["Firstname"] = name;
 
-            await table.PutItemAsync(document);
+            await characterTable.PutItemAsync(document);
 
             return character;
         }
@@ -75,7 +75,7 @@ namespace ScorchApiV2.Controllers
         [HttpDelete("{name}")]
         public async Task DeleteCharacter(string name)
         {
-            await table.DeleteItemAsync(name);
+            await characterTable.DeleteItemAsync(name);
         }
     }
 }

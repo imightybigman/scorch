@@ -6,6 +6,7 @@ using Amazon.DynamoDBv2.DocumentModel;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ScorchApiV2.Interfaces;
+using ScorchApiV2.ModelBinders;
 using ScorchApiV2.Models;
 
 namespace ScorchApiV2.Controllers
@@ -54,6 +55,32 @@ namespace ScorchApiV2.Controllers
             } while (!search.IsDone);
 
             return itemList;
+        }
+
+        [HttpPost]
+        public async Task<IItem> PostItem([FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))]IItem item)
+        {
+            Document doc = null;
+            if (item.ItemClass == typeof(AdventurerGear).Name)
+            {
+                doc = Document.FromJson(JsonConvert.SerializeObject((AdventurerGear)item));
+            }
+            else if (item.ItemClass == typeof(Weapon).Name)
+            {
+                doc = Document.FromJson(JsonConvert.SerializeObject((Weapon)item));
+            }
+            else if (item.ItemClass == typeof(Armor).Name)
+            {
+                doc = Document.FromJson(JsonConvert.SerializeObject((Armor)item));
+            }
+            else if (item.ItemClass == typeof(Quiver).Name)
+            {
+                doc = Document.FromJson(JsonConvert.SerializeObject((Quiver)item));
+            }
+
+            await itemTable.PutItemAsync(doc);
+
+            return item;
         }
 
     }
