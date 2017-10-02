@@ -13,8 +13,6 @@ namespace ScorchApiV2.ModelBinders
 {
     public class ItemModelBinder : IModelBinder
     {
-        readonly JsonSerializerSettings settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
-
         public Task BindModelAsync(ModelBindingContext bindingContext)
         {
             var content = bindingContext.HttpContext.Request;
