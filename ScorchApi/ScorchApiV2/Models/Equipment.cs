@@ -14,20 +14,7 @@
         public Weapon OffHand               { get; set; }
         public Quiver Quiver                { get; set; }
 
-        public Equipment()
-        {
-            Helm        = new Armor();
-            Necklace    = new AdventurerGear();
-            Chest       = new Armor();
-            Legs        = new Armor();
-            Gauntlets   = new Armor();
-            Boots       = new Armor();
-            LeftRing    = new AdventurerGear();
-            RightRing   = new AdventurerGear();
-            MainHand    = new Weapon();
-            OffHand     = new Weapon();
-            Quiver      = new Quiver();
-        }
+        public Equipment() { }
 
     }
 }

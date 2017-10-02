@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Text;
 using Newtonsoft.Json;
 using ScorchApiV2.Models;
 
@@ -57,6 +60,22 @@ namespace ScorchApiV2.Controllers
 
             return character;
         }
-        
+
+        [HttpPut("{name}")]
+        public async Task<Character> PutCharacter(string name, [FromBody] Character character)
+        {
+            var document = Document.FromJson(JsonConvert.SerializeObject(character));
+            document["Firstname"] = name;
+
+            await table.PutItemAsync(document);
+
+            return character;
+        }
+
+        [HttpDelete("{name}")]
+        public async Task DeleteCharacter(string name)
+        {
+            await table.DeleteItemAsync(name);
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace ScorchApiV2.Models
         public int Gold             { get; set; }
         public int Exp              { get; set; }
         public Stats Stats          { get; set; }
-        public Equipment Equipment  { get; set; } = new Equipment();
+        public Equipment Equipment  { get; set; } 
         public List<Trait> Traits   { get; set; } = new List<Trait>();
         public List<Skill> Skills   { get; set; } = new List<Skill>();
         public List<Spell> Spells   { get; set; } = new List<Spell>();
