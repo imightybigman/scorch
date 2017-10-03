@@ -12,31 +12,5 @@ namespace ScorchApiV2.Models
         public int Charisma     { get; set; }
 
         public Stats() { }
-
-        public Stats(DynamoDBEntry entry)
-        {
-            var doc         = entry.AsDocument();
-            Strength        = doc["Strength"].AsInt();
-            Dexterity       = doc["Dexterity"].AsInt();
-            Constitution    = doc["Constitution"].AsInt();
-            Intelligence    = doc["Intelligence"].AsInt();
-            Wisdom          = doc["Wisdom"].AsInt();
-            Charisma        = doc["Charisma"].AsInt();
-        }
-
-        public Document ToDocument()
-        {
-            var doc = new Document
-            {
-                ["Strength"]        = Strength,
-                ["Dexterity"]       = Dexterity,
-                ["Constitution"]    = Constitution,
-                ["Intelligence"]    = Intelligence,
-                ["Wisdom"]          = Wisdom,
-                ["Charisma"]        = Charisma
-            };
-
-            return doc;
-        }
     }
 }

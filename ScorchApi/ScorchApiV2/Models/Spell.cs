@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ScorchApiV2.Models
 {
     public class Spell
     {
+        public Guid SpellId         { get; set; }
         public string CastTime      { get; set; }
         public List<string> Classes { get; set; }
         public string Damage        { get; set; }  

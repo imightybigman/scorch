@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ScorchApiV2.Interfaces;
 
 namespace ScorchApiV2.Models
 {
     public class Character
     {
+        public Guid CharacterId         { get; set; }
         public string Firstname         { get; set; }
         public string Lastname          { get; set; }
         public string Race              { get; set; }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Amazon;
@@ -41,10 +42,10 @@ namespace ScorchApiV2.Controllers
         }
 
 
-        [HttpGet("{name}")]
-        public async Task<Spell> GetSpell(string name)
+        [HttpGet("{spellId}")]
+        public async Task<Spell> GetSpell(Guid spellId)
         {
-            var document = await spellsTable.GetItemAsync(name);
+            var document = await spellsTable.GetItemAsync(spellId);
 
             return JsonConvert.DeserializeObject<Spell>(document.ToJson());
         }
@@ -52,28 +53,27 @@ namespace ScorchApiV2.Controllers
         [HttpPost]
         public async Task<Spell> PostSpell([FromBody]Spell spell)
         {
+            spell.SpellId = Guid.NewGuid();
             var document = Document.FromJson(JsonConvert.SerializeObject(spell));
-
             await spellsTable.PutItemAsync(document);
 
             return spell;
         }
 
-        [HttpPut("{name}")]
-        public async Task<Spell> PutSpell(string name, [FromBody] Spell spell)
+        [HttpPut("{spellId}")]
+        public async Task<Spell> PutSpell(Guid spellId, [FromBody] Spell spell)
         {
+            spell.SpellId = spellId;
             var document = Document.FromJson(JsonConvert.SerializeObject(spell));
-            document["Name"] = name;
-
             await spellsTable.PutItemAsync(document);
 
             return spell;
         }
 
-        [HttpDelete("{name}")]
-        public async Task DeleteSpell(string name)
+        [HttpDelete("{spellId}")]
+        public async Task DeleteSpell(Guid spellId)
         {
-            await spellsTable.DeleteItemAsync(name);
+            await spellsTable.DeleteItemAsync(spellId);
         }
     }
 }

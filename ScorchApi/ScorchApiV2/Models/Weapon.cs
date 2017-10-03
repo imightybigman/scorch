@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ScorchApiV2.Interfaces;
 
 namespace ScorchApiV2.Models
 {
     public class Weapon : IItem
     {
+        public Guid ItemId          { get; set; }
         public string Name          { get; set; }
         public string Description   { get; set; }
         public string ItemClass     { get; set; } = typeof(Weapon).Name;

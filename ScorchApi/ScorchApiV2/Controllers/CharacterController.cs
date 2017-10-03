@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
+using Amazon.DynamoDBv2.Model;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using ScorchApiV2.Interfaces;
+using ScorchApiV2.ModelBinders;
 using ScorchApiV2.Models;
 
 namespace ScorchApiV2.Controllers
@@ -40,10 +44,10 @@ namespace ScorchApiV2.Controllers
             return characterList;
         }
 
-        [HttpGet("{name}")]
-        public async Task<Character> GetCharacter(string name)
+        [HttpGet("{characterId}")]
+        public async Task<Character> GetCharacter(Guid characterId)
         {
-            var document = await characterTable.GetItemAsync(name);
+            var document = await characterTable.GetItemAsync(characterId);
 
             return JsonConvert.DeserializeObject<Character>(document.ToJson());
         }
@@ -51,6 +55,7 @@ namespace ScorchApiV2.Controllers
         [HttpPost]
         public async Task<Character> PostCharacter([FromBody]Character character)
         {
+            character.CharacterId = Guid.NewGuid();
             var document = Document.FromJson(JsonConvert.SerializeObject(character));
 
             await characterTable.PutItemAsync(document);
@@ -58,21 +63,38 @@ namespace ScorchApiV2.Controllers
             return character;
         }
 
-        [HttpPut("{name}")]
-        public async Task<Character> PutCharacter(string name, [FromBody] Character character)
+        [HttpPut("{characterId}")]
+        public async Task<Character> PutCharacter(Guid characterId, [FromBody] Character character)
         {
             var document = Document.FromJson(JsonConvert.SerializeObject(character));
-            document["Firstname"] = name;
+            document["CharacterId"] = characterId.ToString();
 
             await characterTable.PutItemAsync(document);
 
             return character;
         }
 
-        [HttpDelete("{name}")]
-        public async Task DeleteCharacter(string name)
+        [HttpDelete("{characterId}")]
+        public async Task DeleteCharacter(Guid characterId)
         {
-            await characterTable.DeleteItemAsync(name);
+            await characterTable.DeleteItemAsync(characterId);
+        }
+
+        [HttpPut("{characterId}/inventory")]
+        public async Task PutItemInInventory(Guid characterId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))] IItem item)
+        {
+            var character = await GetCharacter(characterId);
+            character.Inventory.Add(item);
+            var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
+
+            await characterTable.UpdateItemAsync(updateDocument);
+        }
+
+        [HttpDelete("{characterId}/inventory/{itemId}")]
+        public async Task DeleteItemFromInventory(Guid characterId, Guid itemId)
+        {
+            var character = await GetCharacter(characterId);
+            character.Inventory.RemoveAll(x => x.ItemId == itemId);
         }
     }
 }

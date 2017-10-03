@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2;
@@ -65,28 +66,27 @@ namespace ScorchApiV2.Controllers
         [HttpPost]
         public async Task<IItem> PostItem([FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))]IItem item)
         {
+            item.ItemId = Guid.NewGuid();
             Document doc = Document.FromJson(JsonConvert.SerializeObject(item));
-
             await itemTable.PutItemAsync(doc);
 
             return item;
         }
 
-        [HttpPut("{name}")]
-        public async Task<IItem> PutItem(string name, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))]IItem item)
+        [HttpPut("{itemId}")]
+        public async Task<IItem> PutItem(Guid itemId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))]IItem item)
         {
+            item.ItemId = itemId;
             Document doc = Document.FromJson(JsonConvert.SerializeObject(item));
-            doc["Name"] = name;
-
             await itemTable.PutItemAsync(doc);
 
             return item;
         }
 
-        [HttpDelete("{name}")]
-        public async Task DeleteItem(string name)
+        [HttpDelete("{itemId}")]
+        public async Task DeleteItem(Guid itemId)
         {
-            await itemTable.DeleteItemAsync(name);
+            await itemTable.DeleteItemAsync(itemId);
         }
  
     }

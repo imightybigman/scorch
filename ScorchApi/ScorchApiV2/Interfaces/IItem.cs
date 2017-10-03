@@ -1,7 +1,10 @@
-﻿namespace ScorchApiV2.Interfaces
+﻿using System;
+
+namespace ScorchApiV2.Interfaces
 {
     public interface IItem
     {
+        Guid ItemId         { get; set; }
         string Name         { get; set; }
         string Description  { get; set; }
         string ItemClass    { get; set; }
