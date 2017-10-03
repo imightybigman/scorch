@@ -2,17 +2,17 @@
 {
     public static class DamageTypes
     {
-        public static string Acid = "Acid";
-        public static string Bludgeoning = "Bludgeoning";
-        public static string Cold = "Cold";
-        public static string Fire = "Fire";
-        public static string Force = "Force";
-        public static string Lightning = "Lightning";
-        public static string Necrotic = "Necrotic";
-        public static string Piercing = "Piercing";
-        public static string Poison = "Poison";
-        public static string Psychic = "Psychic";
-        public static string Radiant = "Radiant";
-        public static string Slashing = "Slashing";
+        public static readonly string Acid          = "Acid";
+        public static readonly string Bludgeoning   = "Bludgeoning";
+        public static readonly string Cold          = "Cold";
+        public static readonly string Fire          = "Fire";
+        public static readonly string Force         = "Force";
+        public static readonly string Lightning     = "Lightning";
+        public static readonly string Necrotic      = "Necrotic";
+        public static readonly string Piercing      = "Piercing";
+        public static readonly string Poison        = "Poison";
+        public static readonly string Psychic       = "Psychic";
+        public static readonly string Radiant       = "Radiant";
+        public static readonly string Slashing      = "Slashing";
     }
 }
