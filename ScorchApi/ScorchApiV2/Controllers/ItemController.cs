@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2;
@@ -73,5 +72,22 @@ namespace ScorchApiV2.Controllers
             return item;
         }
 
+        [HttpPut("{name}")]
+        public async Task<IItem> PutItem(string name, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))]IItem item)
+        {
+            Document doc = Document.FromJson(JsonConvert.SerializeObject(item));
+            doc["Name"] = name;
+
+            await itemTable.PutItemAsync(doc);
+
+            return item;
+        }
+
+        [HttpDelete("{name}")]
+        public async Task DeleteItem(string name)
+        {
+            await itemTable.DeleteItemAsync(name);
+        }
+ 
     }
 }
