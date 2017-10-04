@@ -35,27 +35,20 @@ namespace ScorchApiV2.Controllers
                 var documentList = await search.GetNextSetAsync();
                 foreach (var document in documentList)
                 {
-                    var itemJson = document.ToJson();
-                    if (document["ItemClass"] == "Quiver")
-                    {
-                        itemList.Add(JsonConvert.DeserializeObject<Quiver>(itemJson));
-                    }
-                    else if (document["ItemClass"] == "Weapon")
-                    {
-                        itemList.Add(JsonConvert.DeserializeObject<Weapon>(itemJson));
-                    }
-                    else if (document["ItemClass"] == "Armor")
-                    {
-                        itemList.Add(JsonConvert.DeserializeObject<Armor>(itemJson));
-                    }
-                    else 
-                    {
-                        itemList.Add(JsonConvert.DeserializeObject<AdventurerGear>(itemJson));
-                    }
+                    itemList.Add(ParseItem(document));
                 }
             } while (!search.IsDone);
 
             return itemList;
+        }
+
+
+        [HttpGet("{itemId}")]
+        public async Task<IItem> GetItem(Guid itemId)
+        {
+            var document = await itemTable.GetItemAsync(itemId);
+            
+            return document != null ? ParseItem(document) : null;
         }
 
         /// <summary>
@@ -88,6 +81,24 @@ namespace ScorchApiV2.Controllers
         {
             await itemTable.DeleteItemAsync(itemId);
         }
- 
+
+        private IItem ParseItem(Document document)
+        {
+            var itemJson = document.ToJson();
+            if (document["ItemClass"] == "Quiver")
+            {
+                return JsonConvert.DeserializeObject<Quiver>(itemJson);
+            }
+            if (document["ItemClass"] == "Weapon")
+            {
+                return JsonConvert.DeserializeObject<Weapon>(itemJson);
+            }
+            if (document["ItemClass"] == "Armor")
+            {
+                return JsonConvert.DeserializeObject<Armor>(itemJson);
+            }
+
+            return JsonConvert.DeserializeObject<AdventurerGear>(itemJson);
+        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace ScorchApiV2.Interfaces
 {
+    [JsonConverter(typeof(IItemConverter))]
     public interface IItem
     {
         Guid ItemId         { get; set; }

@@ -49,7 +49,7 @@ namespace ScorchApiV2.Controllers
         {
             var document = await characterTable.GetItemAsync(characterId);
 
-            return JsonConvert.DeserializeObject<Character>(document.ToJson());
+            return document != null ? JsonConvert.DeserializeObject<Character>(document.ToJson()) : null;
         }
 
         [HttpPost]
@@ -83,6 +83,13 @@ namespace ScorchApiV2.Controllers
         [HttpPut("{characterId}/inventory")]
         public async Task PutItemInInventory(Guid characterId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))] IItem item)
         {
+            // if no item id was passed in , assume it is a new item
+            if (item.ItemId == Guid.Empty)
+            {
+                var itemController = new ItemController();
+                item = await itemController.PostItem(item);
+            }
+
             var character = await GetCharacter(characterId);
             character.Inventory.Add(item);
             var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
@@ -95,6 +102,9 @@ namespace ScorchApiV2.Controllers
         {
             var character = await GetCharacter(characterId);
             character.Inventory.RemoveAll(x => x.ItemId == itemId);
+
+            var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
+            await characterTable.UpdateItemAsync(updateDocument);
         }
     }
 }

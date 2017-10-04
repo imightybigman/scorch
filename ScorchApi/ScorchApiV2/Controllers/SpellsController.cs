@@ -47,7 +47,7 @@ namespace ScorchApiV2.Controllers
         {
             var document = await spellsTable.GetItemAsync(spellId);
 
-            return JsonConvert.DeserializeObject<Spell>(document.ToJson());
+            return document != null ? JsonConvert.DeserializeObject<Spell>(document.ToJson()) : null;
         }
 
         [HttpPost]
