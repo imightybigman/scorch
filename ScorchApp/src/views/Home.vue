@@ -1,7 +1,28 @@
 <template>
-  <div class="home">
-    <h1>{{ msg }}</h1>
-    <character-panel :info="stuff"></character-panel>
+  <div class="home container">
+    <div class="home-message">
+      <h1>{{ msg }}</h1>
+    </div>
+    <div class="character-panel-container">
+      <div class="flex-test">
+        <character-panel></character-panel>
+      </div>
+      <div class="flex-test">
+        <character-panel></character-panel>        
+      </div>
+      <div class="flex-test">
+        <character-panel></character-panel>        
+      </div>
+      <div class="flex-test">
+        <character-panel></character-panel>        
+      </div>
+      <div class="flex-test">
+        <character-panel></character-panel>        
+      </div>
+      <div class="flex-test">
+        <character-panel></character-panel>        
+      </div>
+    </div>
   </div>
 </template>
 
@@ -26,5 +47,20 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .home-message {
+    text-align: center;
+  }
+  .flex-test {
+    width: 45%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    margin: 1%;
+  }
+  .character-panel-container {
+    margin: 0 auto;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 </style>
