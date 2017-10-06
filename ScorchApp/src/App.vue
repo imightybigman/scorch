@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/DnD_transparent.png">
+    <img id="home-logo" src="./assets/DnD_transparent.png">
     <router-view></router-view>
   </div>
 </template>
@@ -18,5 +18,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+#home-logo {
+  max-width: 100%;
+  max-height: 100%;
 }
 </style>
