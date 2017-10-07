@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
+using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace ScorchApiV2
@@ -28,7 +29,9 @@ namespace ScorchApiV2
         {
             services.AddCors();
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc()
+                    .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -58,6 +61,7 @@ namespace ScorchApiV2
 
             app.UseDeveloperExceptionPage();
             app.UseMvc();
+
         }
     }
 }

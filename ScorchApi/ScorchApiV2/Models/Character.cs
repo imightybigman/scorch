@@ -18,6 +18,8 @@ namespace ScorchApiV2.Models
         public int MaxHp                { get; set; }
         public int Gold                 { get; set; }
         public int Exp                  { get; set; }
+        public int Level                { get; set; }
+        public int Proficiency          { get; set; }
         public Stats Stats              { get; set; }
         public Equipment Equipment      { get; set; } 
         public List<Trait> Traits       { get; set; } = new List<Trait>();

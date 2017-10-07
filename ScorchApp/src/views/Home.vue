@@ -4,23 +4,8 @@
       <h1>{{ msg }}</h1>
     </div>
     <div class="character-panel-container">
-      <div class="flex-test">
-        <character-panel></character-panel>
-      </div>
-      <div class="flex-test">
-        <character-panel></character-panel>        
-      </div>
-      <div class="flex-test">
-        <character-panel></character-panel>        
-      </div>
-      <div class="flex-test">
-        <character-panel></character-panel>        
-      </div>
-      <div class="flex-test">
-        <character-panel></character-panel>        
-      </div>
-      <div class="flex-test">
-        <character-panel></character-panel>        
+      <div class="panel" v-for="(char, index) in characters" :key="index">
+        <character-panel :characterInfo="char"></character-panel>
       </div>
     </div>
   </div>
@@ -35,18 +20,14 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your DnD App',
-      stuff: {
-        moreStuff : 'asfasf'
-      }
+      characters: []
     }
   },
   async beforeMount() {
     const characterSvc = new CharacterService();
-    console.log('before');
-    let stuff = await characterSvc.getCharacters();
-        console.log('after');
-
-    console.log(stuff);
+    let response = await characterSvc.getCharacters();
+    console.log(response);
+    this.characters = response.body;
   },
   components : {
     CharacterPanel
@@ -59,9 +40,8 @@ export default {
   .home-message {
     text-align: center;
   }
-  .flex-test {
+  .panel {
     width: 45%;
-    box-sizing: border-box;
     margin: 1%;
   }
   .character-panel-container {
