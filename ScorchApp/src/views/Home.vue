@@ -28,6 +28,7 @@
 
 <script>
 import CharacterPanel from '@/components/CharacterPanel.vue'
+import CharacterService from '../services/CharacterService'
 
 export default {
   name: 'home',
@@ -39,6 +40,11 @@ export default {
       }
     }
   },
+  beforeMount() {
+    const characterSvc = new CharacterService();
+        this.$http.get('https://dnd-api.imightybigman.com/api/character').then(response => {
+            console.log(response);
+        })  },
   components : {
     CharacterPanel
   }
@@ -52,13 +58,12 @@ export default {
   }
   .flex-test {
     width: 45%;
-    border: 1px solid black;
     box-sizing: border-box;
     margin: 1%;
   }
   .character-panel-container {
     margin: 0 auto;
-    width: 50%;
+    width: 70%;
     display: flex;
     align-items: center;
     flex-wrap: wrap;

@@ -1,6 +1,8 @@
 <template>
-  <div id="app">
-    <img id="home-logo" src="./assets/DnD_transparent.png">
+  <div class="app">
+    <div class="home-logo-container">
+      <img class="home-logo" src="./assets/DnD_transparent.png">
+    </div>
     <router-view></router-view>
   </div>
 </template>
@@ -11,14 +13,20 @@ export default {
 }
 </script>
 
-<style>
-#app {
+<style lang="scss" scoped>
+.app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+
 }
-#home-logo {
+
+.home-logo-container {
+  text-align: center;
+}
+
+.home-logo {
   max-width: 100%;
   max-height: 100%;
 }
