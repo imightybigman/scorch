@@ -6,6 +6,11 @@
         <div class="stats-card-container">
             <stats-card :stats="character.Stats"></stats-card>
         </div>
+
+        <div class="spell-card-container card">
+            <h4>Spells</h4>
+            <spell-card v-for="(spell, index) in character.Spells" :spell="spell" :key="index"></spell-card>
+        </div>
     </div>
 </template>
 
@@ -33,7 +38,7 @@ export default {
         this.dataDone = true;
     },
     components : {
-        StatsCard, CharacterDetailCard
+        StatsCard, CharacterDetailCard, SpellCard
     }
 }
 </script>
@@ -51,6 +56,10 @@ export default {
     width: 15%;
 }
 .stats-card-container {
+    width: 15%;
+}
+
+.spell-card-container {
     width: 15%;
 }
 </style>

@@ -1,10 +1,19 @@
 <template>
-  <div class="spell-detail">
-  <div class="card">
-    <img class="card-img-top" src="../assets/blank-background.jpg" alt="Card image cap">
+  <div class="spell-detail" v-on:click="toggleShow">
+  <div class="card" v-if="!show">
     <div class="card-body">
       <h4 class="card-title">{{ spell.Name }}</h4>
-      <p class="card-text">{{ spell.Description }}</p>
+    </div>
+  </div>
+    <div class="card" v-else>
+      <div class="card-body" >
+      <h4 class="card-title">{{ spell.Name }}</h4>
+      <p class="card-text">{{ Description }}</p>
+      <p class="card-text">{{ CastTime }}</p>
+      <p class="card-text">{{ Damage }}</p>
+      <p class="card-text">{{ Duration }}</p>
+      <p class="card-text">{{ Range }}</p>
+      <p class="card-text">{{ SpellType  }}</p>
     </div>
 </div>
   </div>
@@ -13,7 +22,37 @@
 <script>
 export default {
   name: 'spell-detail-card',
-  props: ['spell']
+  props: ['spell'],
+  data() {
+    return {
+      show: false
+    }
+  },
+  computed: {
+    Description() {
+      return `Description: ${this.spell.Description}`;
+    }, 
+    CastTime() {
+      return `CastTime: ${this.spell.CastTime}`;
+    },
+    Damage() {
+      return `Damage: ${this.spell.Damage}`;
+    },
+    Duration() {
+      return `Duration: ${this.spell.Duration}`;
+    },
+    Range() {
+      return `Range: ${this.spell.Range}`;
+    },
+    SpellType() {
+      return `SpellType: ${this.spell.SpellType}`;
+    }   
+  },
+  methods :{
+    toggleShow: function(event) {
+      this.show = !this.show;
+    }
+  }
 }
 </script>
 

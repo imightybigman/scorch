@@ -7,8 +7,8 @@ import Character from '@/views/Character'
 
 Vue.use(Router)
 Vue.use(VueResource);
-Vue.url.options.root = "https://dnd-api.imightybigman.com/api"
-//Vue.url.options.root = "http://localhost:5000/api"
+//Vue.url.options.root = "https://dnd-api.imightybigman.com/api"
+Vue.url.options.root = "http://localhost:5000/api"
 
 export default new Router({
   routes: [
