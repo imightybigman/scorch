@@ -6,6 +6,8 @@ namespace ScorchApiV2.Models
     public class Spell
     {
         public Guid SpellId         { get; set; }
+        public string Name          { get; set; }
+        public string Description   { get; set; }
         public string CastTime      { get; set; }
         public List<string> Classes { get; set; }
         public string Damage        { get; set; }  

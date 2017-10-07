@@ -3,16 +3,16 @@
     <div class="home-message">
       <h1>{{ msg }}</h1>
     </div>
-    <div class="character-panel-container">
-      <div class="panel" v-for="(char, index) in characters" :key="index">
-        <character-panel :characterInfo="char"></character-panel>
+    <div class="character-card-container">
+      <div class="card" v-for="(char, index) in characters" :key="index">
+        <character-card :characterInfo="char"></character-card>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import CharacterPanel from '@/components/CharacterPanel.vue'
+import CharacterCard from '@/components/CharacterCard.vue'
 import CharacterService from '../services/CharacterService'
 
 export default {
@@ -26,11 +26,10 @@ export default {
   async beforeMount() {
     const characterSvc = new CharacterService();
     let response = await characterSvc.getCharacters();
-    console.log(response);
     this.characters = response.body;
   },
   components : {
-    CharacterPanel
+    CharacterCard
   }
 }
 </script>
@@ -40,11 +39,11 @@ export default {
   .home-message {
     text-align: center;
   }
-  .panel {
+  .card {
     width: 45%;
     margin: 1%;
   }
-  .character-panel-container {
+  .character-card-container {
     margin: 0 auto;
     width: 70%;
     display: flex;

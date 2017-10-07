@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
-using Amazon.DynamoDBv2.Model;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ScorchApiV2.Interfaces;
@@ -102,6 +101,33 @@ namespace ScorchApiV2.Controllers
         {
             var character = await GetCharacter(characterId);
             character.Inventory.RemoveAll(x => x.ItemId == itemId);
+
+            var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
+            await characterTable.UpdateItemAsync(updateDocument);
+        }
+
+        [HttpPut("{characterId}/spells")]
+        public async Task PutSpell(Guid characterId, [FromBody] Spell spell)
+        {
+            // if no item id was passed in , assume it is a new item
+            if (spell.SpellId == Guid.Empty)
+            {
+                var spellsController = new SpellsController();
+                spell = await spellsController.PostSpell(spell);
+            }
+
+            var character = await GetCharacter(characterId);
+            character.Spells.Add(spell);
+            var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
+
+            await characterTable.UpdateItemAsync(updateDocument);
+        }
+
+        [HttpDelete("{characterId}/spells/{spellId}")]
+        public async Task DeleteSpell(Guid characterId, Guid spellId)
+        {
+            var character = await GetCharacter(characterId);
+            character.Spells.RemoveAll(x => x.SpellId == spellId);
 
             var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
             await characterTable.UpdateItemAsync(updateDocument);
