@@ -40,11 +40,14 @@ export default {
       }
     }
   },
-  beforeMount() {
+  async beforeMount() {
     const characterSvc = new CharacterService();
-        this.$http.get('https://dnd-api.imightybigman.com/api/character').then(response => {
-            console.log(response);
-        })  },
+    console.log('before');
+    let stuff = await characterSvc.getCharacters();
+        console.log('after');
+
+    console.log(stuff);
+  },
   components : {
     CharacterPanel
   }

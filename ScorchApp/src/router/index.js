@@ -7,6 +7,7 @@ import Character from '@/views/Character'
 
 Vue.use(Router)
 Vue.use(VueResource);
+Vue.url.options.root = "https://dnd-api.imightybigman.com/api"
 
 export default new Router({
   routes: [
