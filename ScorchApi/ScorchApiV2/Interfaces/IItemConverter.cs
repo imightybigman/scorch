@@ -8,7 +8,6 @@ namespace ScorchApiV2.Interfaces
 {
     public class IItemConverter : JsonCreationConverter<IItem>
     {
-
         protected override IItem Create(Type objectType, JObject jObject)
         {
             var itemClass = jObject["ItemClass"].ToString();

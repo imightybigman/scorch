@@ -34,7 +34,6 @@ export default {
         const characterSvc = new CharacterService();
         let response = await characterSvc.getCharacterById(this.characterId);
         this.character = response.body;
-
         this.dataDone = true;
     },
     components : {
