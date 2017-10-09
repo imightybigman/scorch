@@ -1,5 +1,5 @@
 <template>
-    <div class="dm-component">
+    <div class="dm-view">
         <vue-tabs>
             <v-tab title="DM Main">
                 <dungeon-master-main></dungeon-master-main>
@@ -31,6 +31,9 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.dm-view {
+    margin: 0 auto;
+    width: 90%;
+}
 </style>
