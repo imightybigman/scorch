@@ -11,6 +11,12 @@
             <h4>Spells</h4>
             <spell-card v-for="(spell, index) in character.Spells" :spell="spell" :key="index"></spell-card>
         </div>
+        <div class="character-equipment">
+            <female-character-equipment></female-character-equipment>
+        </div>
+        <div class="character-equipment">
+            <male-character-equipment></male-character-equipment>
+        </div>
     </div>
 </template>
 
@@ -18,6 +24,8 @@
 import StatsCard from '@/components/StatsCard.vue'
 import CharacterDetailCard from '@/components/CharacterDetailCard.vue'
 import SpellCard from '@/components/SpellCard.vue'
+import MaleCharacterEquipment from '@/components/MaleCharacterEquipment.vue'
+import FemaleCharacterEquipment from '@/components/FemaleCharacterEquipment.vue'
 
 import CharacterService from '../services/CharacterService'
 
@@ -37,7 +45,11 @@ export default {
         this.dataDone = true;
     },
     components : {
-        StatsCard, CharacterDetailCard, SpellCard
+        StatsCard, 
+        CharacterDetailCard, 
+        SpellCard, 
+        MaleCharacterEquipment,
+        FemaleCharacterEquipment
     }
 }
 </script>
@@ -60,5 +72,8 @@ export default {
 
 .spell-card-container {
     width: 15%;
+}
+.character-equipment {
+    width: 40%;
 }
 </style>
