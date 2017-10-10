@@ -27,7 +27,7 @@ export default {
 }
 
 .home-logo {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 50%;
+  max-height: 50%;
 }
 </style>

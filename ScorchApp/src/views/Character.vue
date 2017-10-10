@@ -1,12 +1,10 @@
 <template>
   <div>
-    <modal v-if="showModal" @close="showModal = false">
-      <h2 slot="header">FUck</h2>
-      <stats-card slot="body" :stats="character.Stats"></stats-card>
-    </modal>
     <div class="character-view" v-if="dataDone">
 
-      <div class="character-detail-container">
+
+  </div>
+      <!-- <div class="character-detail-container">
         <character-detail-card :characterInfo="character"></character-detail-card>
       </div>
 
@@ -23,11 +21,10 @@
       </div>
       <div class="character-equipment">
         <male-character-equipment></male-character-equipment>
-      </div>
+      </div> -->
     </div>
-  </div>
-
 </template>
+
 
 <script>
 
@@ -70,6 +67,7 @@
   .character-view {
     border: 1px solid black;
     box-sizing: border-box;
+    margin: 1%;
     div {
         margin: 1%;
     }
