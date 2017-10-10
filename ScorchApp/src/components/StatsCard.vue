@@ -1,11 +1,14 @@
 <template>
   <div class="stats-panel">
   <div class="card">
+    <div class="card-header">
+      Stats
+    </div>
     <div class="card-body">
-      <h4 class="card-title" v-for="(statValue, stat, index) in stats" :key="index">
+      <p v-for="(statValue, stat, index) in stats" :key="index">
         <span>{{ stat }}:</span>
-        <span class="stat">{{ statValue }}</span>
-      </h4>
+        <span class="stat"><strong>{{ statValue }}</strong></span>
+      </p>
     </div>
 </div>
   </div>
