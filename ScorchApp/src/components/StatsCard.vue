@@ -2,12 +2,10 @@
   <div class="stats-panel">
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title">{{ strength }}</h4>
-      <h4 class="card-title">{{ dexterity }}</h4>
-      <h4 class="card-title">{{ constitution }}</h4>
-      <h4 class="card-title">{{ intelligence }}</h4>
-      <h4 class="card-title">{{ wisdom }}</h4>
-      <h4 class="card-title">{{ charisma }}</h4>
+      <h4 class="card-title" v-for="(statValue, stat, index) in stats" :key="index">
+        <span>{{ stat }}:</span>
+        <span class="stat">{{ statValue }}</span>
+      </h4>
     </div>
 </div>
   </div>
@@ -41,6 +39,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.stat {
+  float: right;
+}
 
 </style>
