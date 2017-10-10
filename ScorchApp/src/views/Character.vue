@@ -1,5 +1,10 @@
 <template>
     <div class="character-view" v-if="dataDone">
+            <modal v-if="showModal" @close="showModal = false">
+                <h2 slot="header">Fuck</h2>
+                <h2 slot="body">Yes</h2>
+            </modal>
+        <button @click="showModal = true">Show Modal</button>
         <div class="character-detail-container">
             <character-detail-card :characterInfo="character"></character-detail-card>
         </div>
@@ -26,7 +31,7 @@ import CharacterDetailCard from '@/components/CharacterDetailCard.vue'
 import SpellCard from '@/components/SpellCard.vue'
 import MaleCharacterEquipment from '@/components/MaleCharacterEquipment.vue'
 import FemaleCharacterEquipment from '@/components/FemaleCharacterEquipment.vue'
-
+import Modal from '@/components/Modal.vue'
 import CharacterService from '../services/CharacterService'
 
 export default {
@@ -34,6 +39,7 @@ export default {
     data() {
         return {
             character: {},
+            showModal: false,
             dataDone: false
         }
     },
@@ -44,12 +50,15 @@ export default {
         this.character = response.body;
         this.dataDone = true;
     },
+    methods: {
+    },
     components : {
         StatsCard, 
         CharacterDetailCard, 
         SpellCard, 
         MaleCharacterEquipment,
-        FemaleCharacterEquipment
+        FemaleCharacterEquipment,
+        Modal
     }
 }
 </script>
@@ -59,9 +68,6 @@ export default {
     border: 1px solid black;
     box-sizing: border-box;
 
-    div {
-        margin: 1%;
-    }
 }
 .character-detail-container {
     width: 15%;
@@ -74,6 +80,10 @@ export default {
     width: 15%;
 }
 .character-equipment {
-    width: 40%;
+    width: 25%;
+}
+
+.modal-component-container {
+    width: 50%;
 }
 </style>
