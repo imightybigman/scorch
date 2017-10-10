@@ -24,7 +24,7 @@
 <script>
 export default {
   name: 'spell-detail-card',
-  props: ['spells'],
+  props: ['spells', 'listHeight'],
   data() {
     return {
     }
@@ -38,7 +38,7 @@ export default {
 <style lang="scss" scoped>
 
 .spell-list {
-  max-height: inherit;
+  max-height: 300px;
   overflow-y: scroll;
 }
 

@@ -11,7 +11,7 @@
       </div>
 
       <div class="stats-card-container">
-        <stats-card :stats="character.Stats"></stats-card>
+        <character-stats-card :stats="character.Stats"></character-stats-card>
       </div>
 
       <div class="spell-card-container">
@@ -30,12 +30,12 @@
 </template>
 
 <script>
-  import StatsCard from '@/components/StatsCard.vue'
-  import CharacterDetailCard from '@/components/CharacterDetailCard.vue'
-  import { SpellCard } from '@/components/spells'
-  import { MaleCharacterEquipment, FemaleCharacterEquipment } from '@/components/equipment'
-  import Modal from '@/components/Modal.vue'
-  import CharacterService from '@/services/CharacterService'
+
+  import { SpellCard } from 'components/spells'
+  import { MaleCharacterEquipment, FemaleCharacterEquipment } from 'components/equipment'
+  import { Modal } from 'components/util'
+  import { CharacterStatsCard, CharacterDetailCard } from 'components/character'
+  import { CharacterService } from 'services'
 
   export default {
     name: 'character-view',
@@ -55,7 +55,7 @@
     },
     methods: {},
     components: {
-      StatsCard,
+      CharacterStatsCard,
       CharacterDetailCard,
       SpellCard,
       MaleCharacterEquipment,

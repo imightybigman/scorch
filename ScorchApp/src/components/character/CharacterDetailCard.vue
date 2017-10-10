@@ -1,11 +1,10 @@
 <template>
-  <div class="character-card">
+  <div class="character-detail">
   <div class="card">
-    <img class="card-img-top" src="../assets/blank-background.jpg" alt="Card image cap">
+    <img class="card-img-top" src="~assets/blank-background.jpg" alt="Card image cap">
     <div class="card-body">
       <h4 class="card-title">{{ characterInfo.Firstname }}</h4>
       <p class="card-text">{{ description }}</p>
-      <router-link class="btn btn-primary" :to="'/character/' + characterInfo.CharacterId">This is me!!</router-link>
     </div>
 </div>
   </div>
@@ -13,7 +12,7 @@
 
 <script>
 export default {
-  name: 'character-card',
+  name: 'character-detail-card',
   props: ['characterInfo'],
   computed: {
     description: function() {

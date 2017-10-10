@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import CharacterCard from '@/components/CharacterCard.vue'
-import CharacterService from '../services/CharacterService'
+import { CharacterCard } from 'components/character'
+import { CharacterService } from 'services'
 
 export default {
   name: 'home',

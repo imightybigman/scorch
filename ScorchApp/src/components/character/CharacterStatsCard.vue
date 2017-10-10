@@ -1,5 +1,5 @@
 <template>
-  <div class="stats-panel">
+  <div class="character-stat-card">
   <div class="card">
     <div class="card-header">
       Stats
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'stats-panel',
+  name: 'character-stat-card',
   props: ['stats'], 
   computed: {
     strength: function() {
