@@ -9,15 +9,15 @@
       <div class="character-detail-container">
         <character-detail-card :characterInfo="character"></character-detail-card>
       </div>
-      
+
       <div class="stats-card-container">
         <stats-card :stats="character.Stats"></stats-card>
       </div>
 
-      <div class="spell-card-container card">
-        <h4>Spells</h4>
-        <spell-card v-for="(spell, index) in character.Spells" :spell="spell" :key="index"></spell-card>
+      <div class="spell-card-container">
+        <spell-card :spells="character.Spells"></spell-card>
       </div>
+
       <div class="character-equipment">
         <female-character-equipment></female-character-equipment>
       </div>
@@ -32,11 +32,10 @@
 <script>
   import StatsCard from '@/components/StatsCard.vue'
   import CharacterDetailCard from '@/components/CharacterDetailCard.vue'
-  import SpellCard from '@/components/SpellCard.vue'
-  import MaleCharacterEquipment from '@/components/MaleCharacterEquipment.vue'
-  import FemaleCharacterEquipment from '@/components/FemaleCharacterEquipment.vue'
+  import { SpellCard } from '@/components/spells'
+  import { MaleCharacterEquipment, FemaleCharacterEquipment } from '@/components/equipment'
   import Modal from '@/components/Modal.vue'
-  import CharacterService from '../services/CharacterService'
+  import CharacterService from '@/services/CharacterService'
 
   export default {
     name: 'character-view',
@@ -85,7 +84,7 @@
   }
 
   .spell-card-container {
-    width: 15%;
+    width: 25%;
   }
 
   .character-equipment {

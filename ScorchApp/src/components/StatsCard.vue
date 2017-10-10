@@ -5,10 +5,10 @@
       Stats
     </div>
     <div class="card-body">
-      <p v-for="(statValue, stat, index) in stats" :key="index">
-        <span>{{ stat }}:</span>
-        <span class="stat"><strong>{{ statValue }}</strong></span>
-      </p>
+      <div v-for="(statValue, stat, index) in stats" :key="index">
+        <strong>{{ stat }}:</strong>
+        <span class="stat">{{ statValue }}</span>
+      </div>
     </div>
 </div>
   </div>

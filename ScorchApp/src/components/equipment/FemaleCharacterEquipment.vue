@@ -1,7 +1,7 @@
 <template>
-  <div class="male-character-equipment">
+  <div class="female-character-equipment">
   <div class="card">
-    <img class="card-img-top" src="../assets/dnd-male.jpg" alt="Card image cap">
+    <img class="card-img-top" src="~assets/dnd-female.jpg" alt="Card image cap">
     <div class="equipment helm"></div>
     <div class="equipment necklace"></div>
     <div class="equipment chest"></div>
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'male-character-equipment-card'
+  name: 'female-character-equipment-card'
 }
 </script>
 
