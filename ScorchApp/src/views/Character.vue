@@ -1,8 +1,9 @@
 <template>
     <div class="character-view" v-if="dataDone">
             <modal v-if="showModal" @close="showModal = false">
-                <h2 slot="header">Fuck</h2>
-                <h2 slot="body">Yes</h2>
+                <h2 slot="header">FUck</h2>
+                            <stats-card slot="body" :stats="character.Stats"></stats-card>
+
             </modal>
         <button @click="showModal = true">Show Modal</button>
         <div class="character-detail-container">

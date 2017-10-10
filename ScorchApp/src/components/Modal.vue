@@ -18,8 +18,8 @@
 
           <div class="modal-footer">
             <slot name="footer">
-              <button class="btn btn-primary" @click="$emit('close')">
-                OK
+              <button class="btn btn-primary" @click="close">
+                Close
               </button>
             </slot>
           </div>
@@ -32,7 +32,19 @@
 
 <script>
 export default {
-    name: 'modal'
+    name: 'modal',
+    methods: {
+        close: function() {
+            this.$emit('close');
+        }
+    },
+    mounted: function () {
+        document.addEventListener("keydown", (e) => {
+        if (e.keyCode === 27) {
+            this.close();
+        }
+    });
+  }
 }
 </script>
 
