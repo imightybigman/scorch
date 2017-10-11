@@ -5,7 +5,7 @@
     <div class="card-body">
       <h4 class="card-title">{{ characterInfo.Firstname }}</h4>
       <p class="card-text">{{ description }}</p>
-      <router-link class="btn btn-primary" :to="'/character/' + characterInfo.CharacterId">This is me!!</router-link>
+      <router-link class="btn btn-primary" :to="'/character/' + characterInfo.CharacterId">Select</router-link>
     </div>
 </div>
   </div>

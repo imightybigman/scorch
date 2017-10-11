@@ -1,9 +1,19 @@
 <template>
-  <div>
-    <div class="character-view" v-if="dataDone">
-
-
-  </div>
+    <div class="character-view d-flex flex-wrap" v-if="dataDone">
+        <div class="d-flex flex-column party-navigation">
+          <div class="character-cards-container" v-for="(char, index) in party" :key="index">
+            <character-tile :character="char"></character-tile>
+          </div>
+        </div>
+        <div class="d-flex flex-column character-info">
+          <div class="d-flex character-equip"></div>
+          <div class="d-flex notes"></div>
+          
+        </div>
+        <div class="d-flex flex-column character-abilities">
+          
+        </div>
+      </div>
       <!-- <div class="character-detail-container">
         <character-detail-card :characterInfo="character"></character-detail-card>
       </div>
@@ -22,7 +32,6 @@
       <div class="character-equipment">
         <male-character-equipment></male-character-equipment>
       </div> -->
-    </div>
 </template>
 
 
@@ -31,14 +40,16 @@
   import { SpellCard } from 'components/spells'
   import { MaleCharacterEquipment, FemaleCharacterEquipment } from 'components/equipment'
   import { Modal } from 'components/util'
-  import { CharacterStatsCard, CharacterDetailCard } from 'components/character'
+  import { CharacterTile, CharacterStatsCard, CharacterDetailCard } from 'components/character'
   import { CharacterService } from 'services'
-
+  import sortBy from 'lodash/sortBy'
+  
   export default {
     name: 'character-view',
     data() {
       return {
         character: {},
+        party: [],
         showModal: false,
         dataDone: false
       }
@@ -46,12 +57,15 @@
     props: ['characterId'],
     async beforeMount() {
       const characterSvc = new CharacterService();
-      let response = await characterSvc.getCharacterById(this.characterId);
-      this.character = response.body;
+      let myCharacter = await characterSvc.getCharacterById(this.characterId);
+      let myParty = await characterSvc.getCharacters();
+      this.character = myCharacter.body;
+      this.party = sortBy(myParty.body, (x) => x.Firstname);
       this.dataDone = true;
     },
     methods: {},
     components: {
+      CharacterTile,
       CharacterStatsCard,
       CharacterDetailCard,
       SpellCard,
@@ -64,33 +78,44 @@
 </script>
 
 <style lang="scss" scoped>
-  .character-view {
-    border: 1px solid black;
+  div {
     box-sizing: border-box;
+  }
+
+  .character-view {
     margin: 1%;
-    div {
-        margin: 1%;
+    height: 750px;
+  }
+
+  .party-navigation {
+    padding: 1%;
+    flex: 1;
+    flex-grow: 1;
+    overflow-y: scroll;
+
+    .character-cards-container {
+      margin-bottom: 1%;
+      border-radius: 10px;
     }
   }
 
-  .character-detail-container {
-    width: 15%;
+  .character-info {
+    flex: 1;
+    flex-grow: 3;
   }
 
-  .stats-card-container {
-    width: 15%;
+  .character-abilities {
+    flex: 1;
+    flex-grow: 1;
   }
 
-  .spell-card-container {
-    width: 25%;
+  .character-equip {
+    flex: 1;
+    flex-grow: 5;
   }
-
-  .character-equipment {
-    width: 25%;
-  }
-
-  .modal-component-container {
-    width: 50%;
+  .notes {
+    flex: 1;
+    flex-grow: 2;
   }
 
 </style>
