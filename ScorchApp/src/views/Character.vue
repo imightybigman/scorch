@@ -6,7 +6,9 @@
           </div>
         </div>
         <div class="d-flex flex-column character-info">
-          <div class="d-flex character-equip"></div>
+          <div class="d-flex character-equip">
+            <character-equip :character="character"></character-equip>
+          </div>
           <div class="d-flex notes"></div>
           
         </div>
@@ -38,12 +40,11 @@
 <script>
 
   import { SpellCard } from 'components/spells'
-  import { MaleCharacterEquipment, FemaleCharacterEquipment } from 'components/equipment'
   import { Modal } from 'components/util'
-  import { CharacterTile, CharacterStatsCard, CharacterDetailCard } from 'components/character'
+  import { CharacterTile, CharacterEquip, CharacterStatsCard, CharacterDetailCard } from 'components/character'
   import { CharacterService } from 'services'
   import sortBy from 'lodash/sortBy'
-  
+
   export default {
     name: 'character-view',
     data() {
@@ -54,23 +55,30 @@
         dataDone: false
       }
     },
+    async beforeRouteUpdate (to, from, next) {
+      await this.loadData(to.params.characterId);
+      next();
+    },
     props: ['characterId'],
     async beforeMount() {
-      const characterSvc = new CharacterService();
-      let myCharacter = await characterSvc.getCharacterById(this.characterId);
-      let myParty = await characterSvc.getCharacters();
-      this.character = myCharacter.body;
-      this.party = sortBy(myParty.body, (x) => x.Firstname);
-      this.dataDone = true;
+      await this.loadData(this.characterId);
     },
-    methods: {},
+    methods: {
+      async loadData(characterId) {
+        const characterSvc = new CharacterService();
+        let myCharacter = await characterSvc.getCharacterById(characterId);
+        let myParty = await characterSvc.getCharacters();
+        this.character = myCharacter.body;
+        this.party = sortBy(myParty.body, (x) => x.Firstname);
+        this.dataDone = true;
+      }
+    },
     components: {
       CharacterTile,
       CharacterStatsCard,
       CharacterDetailCard,
       SpellCard,
-      MaleCharacterEquipment,
-      FemaleCharacterEquipment,
+      CharacterEquip,
       Modal
     }
   }
