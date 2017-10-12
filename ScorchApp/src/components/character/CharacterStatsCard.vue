@@ -46,4 +46,8 @@ export default {
   float: right;
 }
 
+.character-stat-card {
+  width: 100%;
+}
+
 </style>

@@ -14,6 +14,7 @@
 <script>
 import { CharacterCard } from 'components/character'
 import { CharacterService } from 'services'
+import sortBy from 'lodash/sortBy'
 
 export default {
   name: 'home',
@@ -26,7 +27,7 @@ export default {
   async beforeMount() {
     const characterSvc = new CharacterService();
     let response = await characterSvc.getCharacters();
-    this.characters = response.body;
+    this.characters = sortBy(response.body, (x) => x.Firstname);
   },
   components : {
     CharacterCard

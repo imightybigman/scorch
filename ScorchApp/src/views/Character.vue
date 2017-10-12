@@ -1,15 +1,20 @@
 <template>
-    <div class="character-view d-flex flex-wrap" v-if="dataDone">
+    <div class="character-view d-flex flex-wrap border" v-if="dataDone">
         <div class="d-flex flex-column party-navigation">
           <div class="character-cards-container" v-for="(char, index) in party" :key="index">
             <character-tile :character="char"></character-tile>
           </div>
         </div>
-        <div class="d-flex flex-column character-info">
-          <div class="d-flex character-equip">
-            <character-equip :character="character"></character-equip>
+        <div class="d-flex flex-column character-info border">
+          <div class="d-flex character-screen">
+            <div class="d-flex character-stats">
+              <character-stats-card :stats="character.Stats"></character-stats-card>
+            </div>
+            <div class="d-flex character-equip">
+              <character-equip :character="character"></character-equip>
+            </div>
           </div>
-          <div class="d-flex notes"></div>
+          <div class="d-flex notes border"></div>
           
         </div>
         <div class="d-flex flex-column character-abilities">
@@ -21,7 +26,6 @@
       </div>
 
       <div class="stats-card-container">
-        <character-stats-card :stats="character.Stats"></character-stats-card>
       </div>
 
       <div class="spell-card-container">
@@ -86,10 +90,6 @@
 </script>
 
 <style lang="scss" scoped>
-  div {
-    box-sizing: border-box;
-  }
-
   .character-view {
     margin: 1%;
     height: 750px;
@@ -100,7 +100,6 @@
     flex: 1;
     flex-grow: 1;
     overflow-y: scroll;
-
     .character-cards-container {
       margin-bottom: 1%;
       border-radius: 10px;
@@ -110,20 +109,29 @@
   .character-info {
     flex: 1;
     flex-grow: 3;
+    .character-screen {
+      flex: 1;
+      flex-grow: 5;
+      >div {
+        margin: 1%;
+      }
+      .character-stats {
+        flex: 1;
+        flex-grow: 1;
+      }
+      .character-equip {
+        flex: 1;
+        flex-grow: 2;
+      }
+    }
+    .notes {
+      flex: 1;
+      flex-grow: 2;
+    }
   }
 
   .character-abilities {
     flex: 1;
     flex-grow: 1;
   }
-
-  .character-equip {
-    flex: 1;
-    flex-grow: 5;
-  }
-  .notes {
-    flex: 1;
-    flex-grow: 2;
-  }
-
 </style>
