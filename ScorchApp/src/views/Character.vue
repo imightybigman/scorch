@@ -15,16 +15,18 @@
               <div>
                 <character-stats-card :stats="profStats"></character-stats-card>
               </div>
-              <!-- <div>
+              <div>
                 <character-skills-card :skills="character.Skills"></character-skills-card>
-              </div> -->
+              </div>
               
             </div>
             <div class="d-flex character-equip">
               <character-equip :character="character"></character-equip>
             </div>
           </div>
-          <div class="d-flex notes border"></div>
+          <div class="d-flex notes black-border">
+
+          </div>
           
         </div>
         <div class="d-flex flex-column character-abilities">
@@ -100,9 +102,14 @@
 </script>
 
 <style lang="scss" scoped>
+  .black-border {
+    border: 1px solid black;
+    box-sizing: border-box;
+  }
+
   .character-view {
-    margin: 1%;
-    height: 750px;
+    //margin: 1%;
+    //height: 750px;
   }
 
   .party-navigation {
@@ -121,14 +128,16 @@
     flex-grow: 3;
     .character-screen {
       flex: 1;
-      flex-grow: 5;
+      flex-grow: 7;
+
       >div {
         margin: 1%;
       }
       .character-stats-skills {
         flex: 1;
         flex-grow: 1;
-        >div {
+
+        > div {
           margin-bottom: 1%;
         }
       }
