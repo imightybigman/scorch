@@ -2,7 +2,7 @@
 
 namespace ScorchApiV2.Static
 {
-    public static class DatetimeExtensions
+    public static class DateTimeExtensions
     {
         public static int ToUnixTimestamp(this DateTime time)
         {

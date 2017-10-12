@@ -1,16 +1,16 @@
 <template>
   <div class="character-stat-card">
-  <div class="card">
-    <div class="card-header">
-      Stats
-    </div>
-    <div class="card-body">
-      <div v-for="(statValue, stat, index) in stats" :key="index">
-        <strong>{{ stat }}:</strong>
-        <span class="stat">{{ statValue }}</span>
+    <div class="card">
+      <div class="card-header">
+        Stats
       </div>
-    </div>
-</div>
+      <div class="card-body">
+        <div v-for="(statValue, stat, index) in stats" :key="index">
+          <strong>{{ stat }}:</strong>
+          <span class="stat">{{ statValue }}</span>
+        </div>
+      </div>
+  </div>
   </div>
 </template>
 

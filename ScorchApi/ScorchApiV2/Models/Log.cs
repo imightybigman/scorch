@@ -20,7 +20,18 @@ namespace ScorchApiV2.Models
         public Log(Document doc)
         {
             LogId = new Guid(doc["LogId"]);
-            LogDate = DatetimeExtensions.FromUnixTimestamp(doc["LogDate"]);
+            LogDate = DateTimeExtensions.FromUnixTimestamp(doc["LogDate"].AsInt());
+            LogMessage = doc["LogMessage"];
+        }
+
+        public Document ToDocument()
+        {
+            var document = new Document();
+            document["LogId"] = Guid.NewGuid();
+            document["LogDate"] = DateTime.Now.ToUniversalTime().ToUnixTimestamp();
+            document["LogMessage"] = LogMessage;
+
+            return document;
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="character-tile list-group">
-        <router-link class="list-group-item list-group-item-action flex-column align-items-start" :to="'/character/' + character.CharacterId">
+        <a class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
                 <h4>{{ name }}</h4>
                 <small>Lv. {{ this.character.Level }}</small>
@@ -17,8 +17,7 @@
                     aria-valuemin="0" 
                     aria-valuemax="100">{{currentHp}}</div>
             </div>
-        </router-link>
-
+        </a>
     </div>
 </template>
 

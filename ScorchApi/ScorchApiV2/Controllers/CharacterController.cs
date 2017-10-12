@@ -79,6 +79,19 @@ namespace ScorchApiV2.Controllers
             await characterTable.DeleteItemAsync(characterId);
         }
 
+        [HttpPatch("characterId")]
+        public async Task PatchCharacter(Guid characterId, [FromBody]Dictionary<string, string> props)
+        {
+            var document = new Document();
+            document["CharacterId"] = characterId.ToString();
+            foreach (var x in props)
+            {
+                document[x.Key] = x.Value;
+            }
+
+            await characterTable.UpdateItemAsync(document);
+        }
+
         [HttpPut("{characterId}/inventory")]
         public async Task PutItemInInventory(Guid characterId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))] IItem item)
         {

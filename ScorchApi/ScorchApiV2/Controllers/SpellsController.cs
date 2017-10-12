@@ -13,39 +13,39 @@ namespace ScorchApiV2.Controllers
     [Route("api/[controller]")]
     public class SpellsController : Controller
     {
-        private static AmazonDynamoDBClient client = new AmazonDynamoDBClient(RegionEndpoint.USEast1);
-        private static string spellsTableName = "DnD-Spells";
-        private static Table spellsTable;
+        private static AmazonDynamoDBClient _client = new AmazonDynamoDBClient(RegionEndpoint.USEast1);
+        private static string _spellsTableName = "DnD-Spells";
+        private static Table _spellsTable;
 
         public SpellsController()
         {
-            spellsTable = Table.LoadTable(client, spellsTableName);
+            _spellsTable = Table.LoadTable(_client, _spellsTableName);
         }
 
         [HttpGet]
         public async Task<IList<Spell>> Get()
         {
             var scanFilter = new ScanFilter();
-            var search = spellsTable.Scan(scanFilter);
-            var SpellList = new List<Spell>();
+            var search = _spellsTable.Scan(scanFilter);
+            var spellList = new List<Spell>();
             do
             {
                 var documentList = await search.GetNextSetAsync();
                 foreach (var document in documentList)
                 {
                     var json = document.ToJson();
-                    SpellList.Add(JsonConvert.DeserializeObject<Spell>(json));
+                    spellList.Add(JsonConvert.DeserializeObject<Spell>(json));
                 }
             } while (!search.IsDone);
 
-            return SpellList;
+            return spellList;
         }
 
 
         [HttpGet("{spellId}")]
         public async Task<Spell> GetSpell(Guid spellId)
         {
-            var document = await spellsTable.GetItemAsync(spellId);
+            var document = await _spellsTable.GetItemAsync(spellId);
 
             return document != null ? JsonConvert.DeserializeObject<Spell>(document.ToJson()) : null;
         }
@@ -55,7 +55,7 @@ namespace ScorchApiV2.Controllers
         {
             spell.SpellId = Guid.NewGuid();
             var document = Document.FromJson(JsonConvert.SerializeObject(spell));
-            await spellsTable.PutItemAsync(document);
+            await _spellsTable.PutItemAsync(document);
 
             return spell;
         }
@@ -65,7 +65,7 @@ namespace ScorchApiV2.Controllers
         {
             spell.SpellId = spellId;
             var document = Document.FromJson(JsonConvert.SerializeObject(spell));
-            await spellsTable.PutItemAsync(document);
+            await _spellsTable.PutItemAsync(document);
 
             return spell;
         }
@@ -73,7 +73,7 @@ namespace ScorchApiV2.Controllers
         [HttpDelete("{spellId}")]
         public async Task DeleteSpell(Guid spellId)
         {
-            await spellsTable.DeleteItemAsync(spellId);
+            await _spellsTable.DeleteItemAsync(spellId);
         }
     }
 }

@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
+using Amazon.DynamoDBv2.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using ScorchApiV2.Models;
+using ScorchApiV2.Static;
 
 namespace ScorchApiV2.Controllers
 {
@@ -23,31 +26,49 @@ namespace ScorchApiV2.Controllers
             logsTable = Table.LoadTable(client, tableName);
         }
 
-//        [HttpGet]
-//        public List<Log> GetLogs(DateTime startDate, DateTime endDate)
-//        {
-//            
-//        }
-
         [HttpGet]
-        public Log Get()
+        public async Task<List<Log>> GetLogs(DateTime? startDate, DateTime? endDate)
         {
-            var log = new Log
+            if (!startDate.HasValue || !endDate.HasValue)
             {
-                LogDate = DateTime.Now,
-                LogMessage = "Message"
-            };
+                return await GetAllLogs();
+            }
 
-            return log;
+            return await GetLogsBetweenDates(startDate.Value, endDate.Value);
+        }
+
+        private async Task<List<Log>> GetAllLogs()
+        {
+            var scanFilter = new ScanFilter();
+            var search = logsTable.Scan(scanFilter);
+            var logs = new List<Log>();
+            do
+            {
+                var documentList = await search.GetNextSetAsync();
+                foreach (var document in documentList)
+                {
+                    logs.Add(new Log(document));
+                }
+            } while (!search.IsDone);
+
+            return logs;
+        }
+
+        private async Task<List<Log>> GetLogsBetweenDates(DateTime startDate, DateTime endDate)
+        {
+            ScanFilter scanFilter = new ScanFilter();
+            scanFilter.AddCondition("LogDate", ScanOperator.Between, startDate.ToUnixTimestamp(), endDate.ToUnixTimestamp());
+            var scan = logsTable.Scan(scanFilter);
+            var allItems = await scan.GetRemainingAsync();
+     
+            return allItems.Select(x => new Log(x)).ToList();
         }
 
         [HttpPost]
-        public Log PostLog(Log log)
+        public async Task PostLog([FromBody]Log log)
         {
-            var x = log;
-
-            return x;
+            var document = log.ToDocument();
+            await logsTable.PutItemAsync(document);
         }
-
     }
 }
