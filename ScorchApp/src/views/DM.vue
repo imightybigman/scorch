@@ -18,7 +18,7 @@
 
 <script>
 import { VueTabs, VTab } from 'vue-nav-tabs'
-import DungeonMasterMain from '@/components/DungeonMasterMain.vue'
+import { DungeonMasterMain } from 'components/dungeonMaster'
 import 'vue-nav-tabs/themes/vue-tabs.css'
 
 export default {

@@ -1,7 +1,9 @@
 <template>
   <div class="app">
     <div class="home-logo-container">
-      <img class="home-logo" src="./assets/DnD_transparent.png">
+      <router-link :to="'/'">
+        <img class="home-logo" src="./assets/DnD_transparent.png">
+      </router-link>
     </div>
     <router-view></router-view>
   </div>
@@ -19,7 +21,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-
 }
 
 .home-logo-container {
@@ -27,7 +28,7 @@ export default {
 }
 
 .home-logo {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 50%;
+  max-height: 50%;
 }
 </style>

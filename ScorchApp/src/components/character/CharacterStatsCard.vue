@@ -1,13 +1,14 @@
 <template>
-  <div class="stats-panel">
+  <div class="character-stat-card">
   <div class="card">
+    <div class="card-header">
+      Stats
+    </div>
     <div class="card-body">
-      <h4 class="card-title">{{ strength }}</h4>
-      <h4 class="card-title">{{ dexterity }}</h4>
-      <h4 class="card-title">{{ constitution }}</h4>
-      <h4 class="card-title">{{ intelligence }}</h4>
-      <h4 class="card-title">{{ wisdom }}</h4>
-      <h4 class="card-title">{{ charisma }}</h4>
+      <div v-for="(statValue, stat, index) in stats" :key="index">
+        <strong>{{ stat }}:</strong>
+        <span class="stat">{{ statValue }}</span>
+      </div>
     </div>
 </div>
   </div>
@@ -15,7 +16,7 @@
 
 <script>
 export default {
-  name: 'stats-panel',
+  name: 'character-stat-card',
   props: ['stats'], 
   computed: {
     strength: function() {
@@ -41,6 +42,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.stat {
+  float: right;
+}
 
 </style>

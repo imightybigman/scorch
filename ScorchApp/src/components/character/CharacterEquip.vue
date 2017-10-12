@@ -1,7 +1,8 @@
 <template>
-  <div class="male-character-equipment">
+  <div class="character-equipment">
   <div class="card">
-    <img class="card-img-top" src="../assets/dnd-male.jpg" alt="Card image cap">
+    <img class="card-img-top" v-if="character.Sex == 'Male'" src="~assets/dnd-male.jpg" alt="Card image cap">
+    <img class="card-img-top" v-else src="~assets/dnd-female.jpg" alt="Card image cap">
     <div class="equipment helm"></div>
     <div class="equipment necklace"></div>
     <div class="equipment chest"></div>
@@ -20,7 +21,11 @@
 
 <script>
 export default {
-  name: 'male-character-equipment-card'
+  name: 'character-equip-card',
+  props: ['character'],
+  computed: {
+
+  }
 }
 </script>
 
@@ -121,4 +126,5 @@ export default {
     box-shadow: 0 0 15px 5px rgba(0,0,0,0.75);
 
 }
+
 </style>
