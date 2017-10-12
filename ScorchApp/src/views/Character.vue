@@ -1,7 +1,7 @@
 <template>
     <div class="character-view d-flex flex-wrap border" v-if="dataDone">
         <div class="d-flex flex-column party-navigation">
-          <div class="character-cards-container" v-for="(char, index) in party" v-on:click="goTo(char.CharacterId)" :key="index">
+          <div class="character-cards-container" v-for="(char, index) in party" @click="goTo(char.CharacterId)" :key="index">
             <character-tile :character="char"></character-tile>
           </div>
         </div>
@@ -9,7 +9,7 @@
           <div class="d-flex character-screen">
             <div class="d-flex flex-column character-stats-skills">
               <div>
-                <character-stats-card :stats="character.Stats"></character-stats-card>
+                <character-stats-card :stats="profStats"></character-stats-card>
               </div>
               <div>
                 <character-skills-card :skills="character.Skills"></character-skills-card>
@@ -69,9 +69,16 @@
       await this.loadData(to.params.characterId);
       next();
     },
-    props: ['characterId'],
     async beforeMount() {
       await this.loadData(this.characterId);
+    },
+    props: ['characterId'],
+    computed: {
+      profStats: function() {
+        let stats = this.character.Stats;
+        stats.Proficiency = this.character.Proficiency;
+        return stats;
+      }
     },
     methods: {
       async loadData(characterId) {
