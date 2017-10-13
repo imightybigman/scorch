@@ -5,7 +5,6 @@ export default {
         return Vue.http.get('character');
     },
     patchCharacter(id, props) {
-        console.log(props);
         return Vue.http.patch('character/' + id, props);
     }
 }
