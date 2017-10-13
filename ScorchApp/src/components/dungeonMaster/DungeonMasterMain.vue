@@ -28,13 +28,8 @@ export default {
         dataDone: false
       }
     },
-    
-    async beforeRouteUpdate (to, from, next) {
-      await this.loadData();
-      next();
-    },
-    async beforeMount() {
-      await this.loadData();
+    async created() {
+      await this.$store.dispatch('getParty')
     },
     methods: {
       async loadData() {
@@ -43,6 +38,11 @@ export default {
         this.party = sortBy(myParty.body, (x) => x.Firstname);
         this.dataDone = true;
       }
+    },
+    computed: {
+        party() {
+            return this.$store.getters.myParty;
+        }
     },
     components: {
       CharacterTile

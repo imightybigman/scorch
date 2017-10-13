@@ -13,8 +13,7 @@
 </template>
 
 <script>
-  import { CharacterTile } from 'components/character'
-  import sortBy from 'lodash/sortBy'
+    import sortBy from 'lodash/sortBy'
 
 export default {
     name : 'dm-notes-component',
