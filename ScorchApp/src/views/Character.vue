@@ -1,5 +1,5 @@
 <template>
-    <div class="character-view d-flex flex-wrap border" v-if="dataDone">
+    <div class="character-view d-flex flex-wrap border" v-if="character">
         <div class="d-flex flex-column party-navigation">
           <div class="character-cards-container" v-for="(char, index) in party" @click="goTo(char.CharacterId)" :key="index">
             <character-tile :character="char"></character-tile>
@@ -35,54 +35,45 @@
       </div>
 </template>
 
-
 <script>
 
   import { SpellCard } from 'components/spells'
   import { Modal } from 'components/util'
   import { CharacterTile, CharacterEquip, CharacterStatsCard, CharacterDetailCard, CharacterSkillsCard, ExpBar } from 'components/character'
   import { CharacterService } from 'services'
-  import sortBy from 'lodash/sortBy'
+  import find from 'lodash/find'
 
   export default {
     name: 'character-view',
     data() {
       return {
-        character: {},
-        party: [],
         showModal: false,
         dataDone: false
       }
     },
-    async beforeRouteUpdate (to, from, next) {
-      await this.loadData(to.params.characterId);
-      next();
-    },
-    async beforeMount() {
-      await this.loadData(this.characterId);
+    created() {
+      this.$store.dispatch('getParty')
     },
     props: ['characterId'],
     computed: {
-      profStats: function() {
+      profStats() {
         let stats = this.character.Stats;
         stats.Proficiency = this.character.Proficiency;
         return stats;
       },
-      name: function() {
+      name() {
           let firstName = this.character.Firstname || '';
           let lastName = this.character.Lastname || '';
           return `${firstName} ${lastName}`; 
+      },
+      party() {
+        return this.$store.getters.myParty;
+      },
+      character() {
+        return this.$store.getters.getCharacterById(this.characterId)
       }
     },
     methods: {
-      async loadData(characterId) {
-        const characterSvc = new CharacterService();
-        let myCharacter = await characterSvc.getCharacterById(characterId);
-        let myParty = await characterSvc.getCharacters();
-        this.character = myCharacter.body;
-        this.party = sortBy(myParty.body, (x) => x.Firstname);
-        this.dataDone = true;
-      },
       goTo(characterId) {
         this.$router.push('/character/' + characterId)
       }
