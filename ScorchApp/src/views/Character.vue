@@ -97,11 +97,6 @@
     box-sizing: border-box;
   }
 
-  .character-view {
-    //margin: 1%;
-    //height: 750px;
-  }
-
   .party-navigation {
     padding: 1%;
     flex: 1;
