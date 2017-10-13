@@ -11,7 +11,7 @@ namespace ScorchApiV2.Controllers
         {
             return new Info
             {
-                Title = "ScorchApi Dev",
+                Title = "ScorchApi",
                 Version = "v2",
                 Description = "DnD Api Backend Service",
                 TermsOfService = "Lol"

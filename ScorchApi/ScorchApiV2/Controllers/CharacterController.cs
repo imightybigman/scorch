@@ -79,7 +79,7 @@ namespace ScorchApiV2.Controllers
             await characterTable.DeleteItemAsync(characterId);
         }
 
-        [HttpPatch("characterId")]
+        [HttpPatch("{characterId}")]
         public async Task PatchCharacter(Guid characterId, [FromBody]Dictionary<string, string> props)
         {
             var document = new Document();

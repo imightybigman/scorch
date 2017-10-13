@@ -30,7 +30,6 @@
           
         </div>
         <div class="d-flex flex-column character-abilities">
-          
         </div>
       </div>
 </template>
@@ -51,8 +50,8 @@
         dataDone: false
       }
     },
-    created() {
-      this.$store.dispatch('getParty')
+    async created() {
+      await this.$store.dispatch('getParty')
     },
     props: ['characterId'],
     computed: {

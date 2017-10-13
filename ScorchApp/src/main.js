@@ -11,8 +11,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 Vue.use(VueResource);
 Vue.config.productionTip = false
-Vue.url.options.root = "https://dnd-api.imightybigman.com/api"
-//Vue.url.options.root = "http://localhost:5000/api"
+//Vue.url.options.root = "https://dnd-api.imightybigman.com/api"
+Vue.url.options.root = "http://localhost:5000/api"
 
 
 /* eslint-disable no-new */
