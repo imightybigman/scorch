@@ -13,20 +13,20 @@
 
 <script>
 import { CharacterCard } from 'components/character'
-import { CharacterService } from 'services'
+import sortBy from 'lodash/sortBy'
 
 export default {
   name: 'home',
   data () {
     return {
       msg: 'Welcome to Your DnD App',
-      characters: []
     }
   },
-  async beforeMount() {
-    const characterSvc = new CharacterService();
-    let response = await characterSvc.getCharacters();
-    this.characters = response.body;
+  computed: {
+    characters () {
+      let party = this.$store.getters.myParty;
+      return sortBy(party, (x) => x.Firstname);
+    }
   },
   components : {
     CharacterCard

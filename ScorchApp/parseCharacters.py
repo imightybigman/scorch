@@ -129,9 +129,9 @@ def loadCharacters(url):
         print("Error: " + r.text)
 
 if __name__ == '__main__':
-    loadCharacters("http://tjedens.com/chars/Kiliso.json")
+#    loadCharacters("http://tjedens.com/chars/Kiliso.json")
     loadCharacters("http://tjedens.com/chars/iMightyJun.json")
-    loadCharacters("http://tjedens.com/chars/Nightwing.json")
-    loadCharacters("http://tjedens.com/chars/Scooty.json")
-    loadCharacters("http://tjedens.com/chars/Redtail.json")
-    loadCharacters("http://tjedens.com/chars/Fyreblood.json")
+    # loadCharacters("http://tjedens.com/chars/Nightwing.json")
+    # loadCharacters("http://tjedens.com/chars/Scooty.json")
+    # loadCharacters("http://tjedens.com/chars/Redtail.json")
+    # loadCharacters("http://tjedens.com/chars/Fyreblood.json")
