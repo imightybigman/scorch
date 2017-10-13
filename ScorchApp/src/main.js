@@ -3,11 +3,16 @@
 import 'babel-core/register'
 import 'babel-polyfill'
 import Vue from 'vue'
+import VueResource from 'vue-resource'
 import App from './App'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 Vue.config.productionTip = false
+Vue.use(VueResource);
+Vue.url.options.root = "https://dnd-api.imightybigman.com/api"
+//Vue.url.options.root = "http://localhost:5000/api"
+
 
 /* eslint-disable no-new */
 new Vue({

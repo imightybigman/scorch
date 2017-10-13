@@ -15,7 +15,7 @@
             <div class="card-body">
             <div v-for="(skill, index) in skills" @click="skillClick(skill)" :key="index" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                <h5>{{ displaySkillName(skill) }}</h5>
+                <h6>{{ displaySkillName(skill) }}</h6>
                 </div>
             </div>
             </div>

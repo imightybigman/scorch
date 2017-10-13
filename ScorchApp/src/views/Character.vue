@@ -128,22 +128,22 @@
     flex-grow: 3;
     .character-screen {
       flex: 1;
-      flex-grow: 7;
+      flex-grow: 5.5;
 
       >div {
         margin: 1%;
       }
+
       .character-stats-skills {
         flex: 1;
         flex-grow: 1;
-
         > div {
           margin-bottom: 1%;
         }
       }
       .character-equip {
         flex: 1;
-        flex-grow: 2;
+        flex-grow: 3;
       }
     }
     .character-basic-info {
