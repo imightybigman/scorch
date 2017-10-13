@@ -13,7 +13,6 @@
 
 <script>
 import { CharacterCard } from 'components/character'
-import sortBy from 'lodash/sortBy'
 
 export default {
   name: 'home',
@@ -22,10 +21,12 @@ export default {
       msg: 'Welcome to Your DnD App',
     }
   },
+  created() {
+      this.$store.dispatch('getParty')
+  },
   computed: {
     characters () {
-      let party = this.$store.getters.myParty;
-      return sortBy(party, (x) => x.Firstname);
+      return this.$store.getters.myParty;
     }
   },
   components : {

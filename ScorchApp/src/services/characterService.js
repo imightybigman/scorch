@@ -4,8 +4,8 @@ export default {
     getParty() {
         return Vue.http.get('character');
     },
-    
-    getCharacterById(id) {
-        return Vue.http.get('character/' + id);
+    patchCharacter(id, props) {
+        console.log(props);
+        return Vue.http.patch('character/' + id, props);
     }
 }

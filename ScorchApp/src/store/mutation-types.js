@@ -1,1 +1,2 @@
 export const GET_PARTY = 'GET_PARTY';
+export const PATCH_CHARACTER = 'PATCH_CHARACTER';
