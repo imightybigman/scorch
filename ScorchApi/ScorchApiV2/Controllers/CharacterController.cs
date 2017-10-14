@@ -36,7 +36,9 @@ namespace ScorchApiV2.Controllers
                 foreach (var document in documentList)
                 {
                     var json = document.ToJson();
-                    characterList.Add(JsonConvert.DeserializeObject<Character>(json));
+                    var ch = JsonConvert.DeserializeObject<Character>(json);
+                    ch.OrganizeAbilities();
+                    characterList.Add(ch);
                 }
             } while (!search.IsDone);
 
@@ -48,7 +50,10 @@ namespace ScorchApiV2.Controllers
         {
             var document = await characterTable.GetItemAsync(characterId);
 
-            return document != null ? JsonConvert.DeserializeObject<Character>(document.ToJson()) : null;
+            var ch = document != null ? JsonConvert.DeserializeObject<Character>(document.ToJson()) : null;
+            ch?.OrganizeAbilities();
+
+            return ch;
         }
 
         [HttpPost]
@@ -120,7 +125,7 @@ namespace ScorchApiV2.Controllers
         }
 
         [HttpPut("{characterId}/spells")]
-        public async Task PutSpell(Guid characterId, [FromBody] Spell spell)
+        public async Task<Spell> PutSpell(Guid characterId, [FromBody] Spell spell)
         {
             // if no item id was passed in , assume it is a new item
             if (spell.SpellId == Guid.Empty)
@@ -134,6 +139,8 @@ namespace ScorchApiV2.Controllers
             var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
 
             await characterTable.UpdateItemAsync(updateDocument);
+
+            return spell;
         }
 
         [HttpDelete("{characterId}/spells/{spellId}")]

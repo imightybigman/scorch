@@ -3,12 +3,14 @@
         Exp: 
         <div class="progress">
             <div 
-                class="progress-bar" 
+                class="progress-bar bg-warning" 
                 role="progressbar" 
                 aria-valuenow="100" 
                 :style="progressWidth" 
                 aria-valuemin="0" 
-                aria-valuemax="100">{{ currentExp }}</div>
+                aria-valuemax="100">
+                <span>{{ currentExp }}</span>
+            </div>
         </div>
     </div>
 </template>
@@ -22,8 +24,6 @@ export default {
     computed: {
         progressWidth: function() {
             let expRange = LevelService.getExpRange(this.character.Level)
-
-            console.log(this.character.Exp);
             return `width: ${this.character.Exp/expRange.max * 100}%`;
         },
         currentExp: function () {
@@ -35,5 +35,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.progress {
+    position: relative;
+}
 
+.progress span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    color: black;
+ }
 </style>

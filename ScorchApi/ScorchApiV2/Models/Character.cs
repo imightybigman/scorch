@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ScorchApiV2.Interfaces;
 
 namespace ScorchApiV2.Models
@@ -30,6 +31,12 @@ namespace ScorchApiV2.Models
         
         public Character() { }
 
+        public void OrganizeAbilities()
+        {
+            Traits = Traits.OrderBy(t => t.Name).ToList();
+            Skills = Skills.OrderBy(s => s.Name).ToList();
+            Spells = Spells.OrderBy(s => s.Name).ToList();
+        }
 
     }
 }

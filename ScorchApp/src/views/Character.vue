@@ -12,18 +12,21 @@
           </div>
           <div class="d-flex character-screen">
             <div class="d-flex flex-column character-stats-skills">
-                <character-stats-card :stats="profStats"></character-stats-card>
+                <character-stats-card :stats="character.Stats" :proficiency="this.character.Proficiency"></character-stats-card>
                 <character-skills-card :skills="character.Skills"></character-skills-card>          
             </div>
-            <div class="d-flex character-equip">
+            <div class="d-flex character-equip justify-content-center">
               <character-equip :character="character"></character-equip>
+            </div>
+            <div class="d-flex character-spells">
+              <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
             </div>
           </div>
           <div class="d-flex notes black-border">
-
           </div>    
         </div>
-        <div class="d-flex flex-column character-abilities">
+        <div class="d-flex flex-column character-inventory">
+
         </div>
       </div>
 </template>
@@ -32,7 +35,7 @@
 
   import { SpellCard } from 'components/spells'
   import { Modal } from 'components/util'
-  import { CharacterTile, CharacterEquip, CharacterStatsCard, CharacterDetailCard, CharacterSkillsCard, ExpBar } from 'components/character'
+  import { CharacterTile, CharacterEquip, CharacterStatsCard, CharacterDetailCard, CharacterSkillsCard, ExpBar, CharacterSpellsCard } from 'components/character'
   import { CharacterService } from 'services'
 
   export default {
@@ -48,11 +51,6 @@
     },
     props: ['characterId'],
     computed: {
-      profStats() {
-        let stats = this.character.Stats;
-        stats.Proficiency = this.character.Proficiency;
-        return stats;
-      },
       name() {
           let firstName = this.character.Firstname || '';
           let lastName = this.character.Lastname || '';
@@ -75,6 +73,7 @@
       CharacterStatsCard,
       CharacterDetailCard,
       CharacterSkillsCard,
+      CharacterSpellsCard,
       ExpBar,
       SpellCard,
       CharacterEquip,
@@ -125,9 +124,15 @@
           margin-bottom: 1%;
         }
       }
+
       .character-equip {
         flex: 1;
-        flex-grow: 3;
+        flex-grow: 2;
+      }
+
+      .character-spells {
+        flex: 1;
+        flex-grow: 1;
       }
     }
     .character-basic-info {
@@ -139,9 +144,10 @@
     }
   }
 
-  .character-abilities {
+  .character-inventory {
     flex: 1;
     flex-grow: 1;
   }
+
 
 </style>

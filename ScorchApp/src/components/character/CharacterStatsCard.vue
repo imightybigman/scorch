@@ -7,7 +7,11 @@
       <div class="card-body">
         <div v-for="(statValue, stat, index) in stats" :key="index">
           <strong>{{ stat }}:</strong>
-          <span class="stat">{{ statValue }}</span>
+          <span class="stat">{{ statValue }} {{ getABM(statValue) }}</span>
+        </div>
+        <div>
+          <strong>Proficiency:</strong>
+          <span class="stat">{{ proficiency }}</span>
         </div>
       </div>
   </div>
@@ -15,9 +19,11 @@
 </template>
 
 <script>
+import { AbilityModifierService } from 'services'
+
 export default {
   name: 'character-stat-card',
-  props: ['stats'], 
+  props: ['stats', 'proficiency'], 
   computed: {
     strength: function() {
       return `Str: ${this.stats.Strength}`;
@@ -37,6 +43,12 @@ export default {
     charisma: function() {
       return `Cha: ${this.stats.Charisma}`;
     }   
+  },
+  methods: {
+    getABM(val) {
+      let mod = AbilityModifierService.getAbilityModifier(val);
+      return mod ? `(${mod})` : '';
+    }
   }
 }
 </script>

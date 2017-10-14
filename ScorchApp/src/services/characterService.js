@@ -6,5 +6,9 @@ export default {
     },
     patchCharacter(id, props) {
         return Vue.http.patch('character/' + id, props);
+    },
+    putCharacterSpell(id, spell) {
+        let endpoint = `character/${id}/spells`;
+        return Vue.http.put(endpoint, spell)
     }
 }

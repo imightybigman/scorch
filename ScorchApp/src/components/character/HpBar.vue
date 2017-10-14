@@ -7,7 +7,9 @@
                 aria-valuenow="100" 
                 :style="progressWidth" 
                 aria-valuemin="0" 
-                aria-valuemax="100">{{currentHp}}</div>
+                aria-valuemax="100">
+                <span>{{currentHp}}</span>
+              </div>
         </div>
     </div>
 </template>
@@ -40,5 +42,14 @@
 </script>
 
 <style lang="scss" scoped>
+.progress {
+    position: relative;
+}
 
+.progress span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    color: black;
+ }
 </style>

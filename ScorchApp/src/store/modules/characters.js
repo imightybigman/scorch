@@ -27,6 +27,13 @@ const actions = {
         if(response.status === 200){
             commit(types.PATCH_CHARACTER, payload);
         }
+    },
+    async addSpell({ commit }, payload) {
+        let response = await CharacterService.putCharacterSpell(payload.characterId, payload.body);
+        if(response.status === 200){
+            payload.addedSpell = response.body;
+            commit(types.ADD_SPELL, payload);
+        }
     }
 }
 
@@ -45,8 +52,26 @@ const mutations = {
                 for(let key in props) {
                     ch[key] = props[key];
                 }
+            break;                
             }
         }
+    },
+    [types.ADD_SPELL] (state, payload) {
+        let id = payload.characterId;
+        let spell = payload.addedSpell;
+
+        for(let i = 0; i < state.party.length; i++) {
+            let ch = state.party[i];
+            console.log(ch.CharacterId);
+            console.log(id);
+            if(ch.CharacterId === id) {
+                ch.Spells.push(spell);
+                state.party[i].Spells = sortBy(ch.Spells, (s) => s.Name);
+                break;                
+            }
+        }
+
+        
     }
 }
 
