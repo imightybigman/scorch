@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ScorchApiV2.Models
 {
@@ -10,8 +11,8 @@ namespace ScorchApiV2.Models
         public string Detail                { get; set; }
         public string Title                 { get; set; }
         public int ChapterNumber            { get; set; }
-        public bool IsPlayerVisible      { get; set; }
-
+        public bool IsPlayerVisible         { get; set; }
+        List<Entity> Entities               { get; set; }
         public Chapter() { }
 
     }
