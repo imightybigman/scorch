@@ -1,5 +1,4 @@
 <template>
-  <div class="character-equipment">
   <div class="card">
     <img class="card-img-top" v-if="character.Sex == 'Male'" src="~assets/dnd-male.jpg" alt="Card image cap">
     <img class="card-img-top" v-else src="~assets/dnd-female.jpg" alt="Card image cap">
@@ -14,8 +13,6 @@
     <div class="equipment mainhand"></div>
     <div class="equipment offhand"></div>
     <div class="equipment quiver"></div>
-
-</div>
   </div>
 </template>
 
@@ -31,8 +28,8 @@ export default {
 
 <style lang="scss" scoped>
 .card-img-top {
-    height: 604px;
-    width: 450px;
+    height: 100%;
+    width: 450px; 
 }
 .helm {
     position: absolute;
