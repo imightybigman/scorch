@@ -19,10 +19,7 @@
 <script>
 export default {
   name: 'character-equip-card',
-  props: ['character'],
-  computed: {
-
-  }
+  props: ['character']
 }
 </script>
 

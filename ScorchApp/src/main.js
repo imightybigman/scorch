@@ -7,6 +7,7 @@ import VueResource from 'vue-resource'
 import App from './App'
 import router from './router'
 import store from './store'
+import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 Vue.use(VueResource);
