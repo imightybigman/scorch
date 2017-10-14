@@ -26,7 +26,7 @@
           </div>    
         </div>
         <div class="d-flex flex-column character-inventory">
-          <inventory></inventory>
+          <inventory :characterId="character.CharacterId"></inventory>
         </div>
       </div>
 </template>
