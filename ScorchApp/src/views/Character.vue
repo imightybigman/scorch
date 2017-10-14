@@ -26,26 +26,25 @@
           </div>    
         </div>
         <div class="d-flex flex-column character-inventory">
-
+          <inventory></inventory>
         </div>
       </div>
 </template>
 
 <script>
 
-  import { SpellCard } from 'components/spells'
-  import { Modal } from 'components/util'
-  import { CharacterTile, CharacterEquip, CharacterStatsCard, CharacterDetailCard, CharacterSkillsCard, ExpBar, CharacterSpellsCard } from 'components/character'
-  import { CharacterService } from 'services'
+  import {  CharacterTile, 
+            CharacterEquip, 
+            CharacterStatsCard, 
+            CharacterDetailCard, 
+            CharacterSkillsCard, 
+            CharacterSpellsCard } from 'components/character'
+
+  import { Inventory } from 'components/inventory'
 
   export default {
     name: 'character-view',
-    data() {
-      return {
-        showModal: false,
-        dataDone: false
-      }
-    },
+
     async created() {
       await this.$store.dispatch('getParty')
     },
@@ -74,10 +73,8 @@
       CharacterDetailCard,
       CharacterSkillsCard,
       CharacterSpellsCard,
-      ExpBar,
-      SpellCard,
       CharacterEquip,
-      Modal
+      Inventory
     }
   }
 

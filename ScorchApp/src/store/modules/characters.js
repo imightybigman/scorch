@@ -11,7 +11,22 @@ const state = {
 const getters = {
     myParty: state => state.party,
     getCharacterById: (state, getters) => (id) => {
-        return state.party.find(char => char.CharacterId == id);
+        return state.party.find(char => char.CharacterId === id);
+    },
+    getCharacterInventory: (state, getters) => (id) => {
+        return state.party.find(char => char.CharacterId === id).Inventory;
+    },
+    getCharacterWeapons: (state, getters) => (id) => {
+        let inventory = state.party.find(char => char.CharacterId === id).Inventory;
+        return inventory.find(item => item.ItemClass === 'Weapon');
+    },
+    getCharacterArmors: (state, getters) => (id) => {
+        let inventory = state.party.find(char => char.CharacterId === id).Inventory;
+        return inventory.find(item => item.ItemClass === 'Armor');
+    },
+    getCharacterAdventurerGears: (state, getters) => (id) => {
+        let inventory = state.party.find(char => char.CharacterId === id).Inventory;
+        return inventory.find(item => item.ItemClass === 'AdventurerGear');
     }
 }
 
