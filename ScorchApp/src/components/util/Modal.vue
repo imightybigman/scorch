@@ -8,6 +8,9 @@
             <slot name="header">
               default header
             </slot>
+            <button type="button" class="close" aria-label="Close" @click="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
           
           <div class="modal-body">

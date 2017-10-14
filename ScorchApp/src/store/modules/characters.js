@@ -18,15 +18,19 @@ const getters = {
     },
     getCharacterWeapons: (state, getters) => (id) => {
         let inventory = state.party.find(char => char.CharacterId === id).Inventory;
-        return inventory.find(item => item.ItemClass === 'Weapon');
+        return inventory.filter(item => item.ItemClass === 'Weapon');
     },
     getCharacterArmors: (state, getters) => (id) => {
         let inventory = state.party.find(char => char.CharacterId === id).Inventory;
-        return inventory.find(item => item.ItemClass === 'Armor');
+        return inventory.filter(item => item.ItemClass === 'Armor');
     },
     getCharacterAdventurerGears: (state, getters) => (id) => {
         let inventory = state.party.find(char => char.CharacterId === id).Inventory;
-        return inventory.find(item => item.ItemClass === 'AdventurerGear');
+        return inventory.filter(item => item.ItemClass === 'AdventurerGear');
+    },
+    getCharacterQuivers: (state, getters) => (id) => {
+        let inventory = state.party.find(char => char.CharacterId === id).Inventory;
+        return inventory.filter(item => item.ItemClass === 'Quiver');
     }
 }
 
@@ -77,8 +81,6 @@ const mutations = {
 
         for(let i = 0; i < state.party.length; i++) {
             let ch = state.party[i];
-            console.log(ch.CharacterId);
-            console.log(id);
             if(ch.CharacterId === id) {
                 ch.Spells.push(spell);
                 state.party[i].Spells = sortBy(ch.Spells, (s) => s.Name);
