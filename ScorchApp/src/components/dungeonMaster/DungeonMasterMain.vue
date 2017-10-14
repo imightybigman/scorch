@@ -16,7 +16,6 @@
 
 <script>
   import { CharacterTile } from 'components/character'
-  import sortBy from 'lodash/sortBy'
 
 export default {
     name : 'dm-main-component',
@@ -38,6 +37,7 @@ export default {
             else{
                 this.selectedChars.push(characterId);
             }
+            
         }
     },
     computed: {

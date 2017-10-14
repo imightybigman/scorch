@@ -23,9 +23,9 @@ namespace ScorchApiV2.Controllers
         }
 
         [HttpGet("{entityId}")]
-        public async Task<Entity> GetEntity(Guid campaignId, int entityNumber)
+        public async Task<Entity> GetEntity(Guid entityId)
         {
-            var document = await _entityTable.GetItemAsync(campaignId);
+            var document = await _entityTable.GetItemAsync(entityId);
 
             return document != null ? JsonConvert.DeserializeObject<Entity>(document.ToJson()) : null;
         }

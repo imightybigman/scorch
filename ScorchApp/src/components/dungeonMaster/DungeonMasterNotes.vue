@@ -13,7 +13,6 @@
 </template>
 
 <script>
-    import sortBy from 'lodash/sortBy'
 
 export default {
     name : 'dm-notes-component',
