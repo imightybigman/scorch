@@ -25,7 +25,7 @@ namespace ScorchApiV2.Controllers
         [HttpGet("{chapterId}")]
         public async Task<Chapter> GetChapter(Guid chapterId)
         {
-            var document = await _chapterTable.GetItemAsync(campaignId);
+            var document = await _chapterTable.GetItemAsync(chapterId);
 
             return document != null ? JsonConvert.DeserializeObject<Chapter>(document.ToJson()) : null;
         }
