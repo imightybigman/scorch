@@ -15,15 +15,18 @@
                 <character-stats-card :stats="profStats"></character-stats-card>
                 <character-skills-card :skills="character.Skills"></character-skills-card>          
             </div>
-            <div class="d-flex character-equip">
+            <div class="d-flex character-equip justify-content-center">
               <character-equip :character="character"></character-equip>
+            </div>
+            <div class="d-flex character-spells">
+              <character-spells-card :skills="character.Spells"></character-spells-card>
             </div>
           </div>
           <div class="d-flex notes black-border">
-
           </div>    
         </div>
-        <div class="d-flex flex-column character-abilities">
+        <div class="d-flex flex-column character-inventory">
+
         </div>
       </div>
 </template>
@@ -32,9 +35,8 @@
 
   import { SpellCard } from 'components/spells'
   import { Modal } from 'components/util'
-  import { CharacterTile, CharacterEquip, CharacterStatsCard, CharacterDetailCard, CharacterSkillsCard, ExpBar } from 'components/character'
+  import { CharacterTile, CharacterEquip, CharacterStatsCard, CharacterDetailCard, CharacterSkillsCard, ExpBar, CharacterSpellsCard } from 'components/character'
   import { CharacterService } from 'services'
-  import find from 'lodash/find'
 
   export default {
     name: 'character-view',
@@ -76,6 +78,7 @@
       CharacterStatsCard,
       CharacterDetailCard,
       CharacterSkillsCard,
+      CharacterSpellsCard,
       ExpBar,
       SpellCard,
       CharacterEquip,
@@ -126,9 +129,15 @@
           margin-bottom: 1%;
         }
       }
+
       .character-equip {
         flex: 1;
-        flex-grow: 3;
+        flex-grow: 2;
+      }
+
+      .character-spells {
+        flex: 1;
+        flex-grow: 1;
       }
     }
     .character-basic-info {
@@ -140,9 +149,10 @@
     }
   }
 
-  .character-abilities {
+  .character-inventory {
     flex: 1;
     flex-grow: 1;
   }
+
 
 </style>
