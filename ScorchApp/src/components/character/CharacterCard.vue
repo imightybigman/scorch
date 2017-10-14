@@ -1,5 +1,5 @@
 <template>
-  <div class="character-card">
+<div class="character-card">
   <div class="card">
     <img class="card-img-top" src="~assets/blank-background.jpg" alt="Card image cap">
     <div class="card-body">
@@ -7,8 +7,8 @@
       <p class="card-text">{{ description }}</p>
       <router-link class="btn btn-primary" :to="'/character/' + characterInfo.CharacterId">Select</router-link>
     </div>
-</div>
   </div>
+</div>
 </template>
 
 <script>

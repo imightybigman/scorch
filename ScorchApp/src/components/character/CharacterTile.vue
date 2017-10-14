@@ -1,27 +1,27 @@
 <template>
-    <div class="character-tile list-group">
-        <a class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-                <h4>{{ name }}</h4>
-                <small>Lv. {{ this.character.Level }}</small>
-            </div>
-            <div class="icons">
-                <img :class="classIcon" src="~assets/icons/class-icons.jpg">            
-            </div>
-            <div class="progress">
-                <div 
-                    :class="progressBarType" 
-                    role="progressbar" 
-                    aria-valuenow="100" 
-                    :style="progressWidth" 
-                    aria-valuemin="0" 
-                    aria-valuemax="100">{{currentHp}}</div>
-            </div>
-        </a>
+<div class="character-tile list-group">
+  <a class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex flex-row w-100 justify-content-between">
+        <div class="d-flex icon">
+          <img :class="classIcon" src="~assets/icons/class-icons.jpg">
+      </div>
+      <div class="d-flex flex-column character-stats">
+        <div class="d-flex justify-content-between">
+        <h5>{{ name }}</h5>
+        <small class="level">Lv. {{ this.character.Level }}</small>
+        </div>
+        <hp-bar :character="character"></hp-bar>
+        <exp-bar></exp-bar>
+      </div>
     </div>
+  </a>
+</div>
 </template>
 
 <script>
+import ExpBar from './ExpBar'
+import HpBar from './HpBar'
+
 export default {
     name: 'character-tile',
     props: ['character'],
@@ -31,28 +31,13 @@ export default {
             let lastName = this.character.Lastname || '';
             return `${firstName} ${lastName}`;
         },
-        progressWidth: function() {
-            return `width: ${this.character.Hp/this.character.MaxHp * 100}%`;
-        },
-        currentHp: function() {
-            return `${this.character.Hp}/${this.character.MaxHp}`;
-        },
-        progressBarType: function() {
-            let percentage = this.character.Hp/this.character.MaxHp * 100
-            if(percentage < 30) {
-                return 'progress-bar bg-danger'
-            }
-            else if(percentage >=30 && percentage < 50)
-            {
-                return 'progress-bar bg-warning';
-            }
-            else {
-                return 'progress-bar bg-success'
-            }
-        },
         classIcon: function() {
             return this.character.Class.toLowerCase();
         }
+    }, 
+    components: {
+        ExpBar,
+        HpBar
     }
 }
 </script>
@@ -61,6 +46,7 @@ export default {
 .character-tile {
     padding: 1%;
 }
+
 .router-link-active {
     z-index: 2;
     color: white;
@@ -73,6 +59,17 @@ img {
   width: 60px;
   height: 60px;
   margin: 1% 0;
+}
+
+.character-stats {
+    flex:1;
+    flex-grow: 8;
+}
+
+.icon {
+    flex: 1;
+    flex-grow: 1;
+    margin-right: 10%;
 }
 
 .fighter {

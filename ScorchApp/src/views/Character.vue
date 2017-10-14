@@ -8,17 +8,12 @@
         <div class="d-flex flex-column character-info border">
           <div class="d-flex flex-column character-basic-info">
             <h4><strong>{{ name }}</strong></h4>
-            <exp-bar></exp-bar>
+
           </div>
           <div class="d-flex character-screen">
             <div class="d-flex flex-column character-stats-skills">
-              <div>
                 <character-stats-card :stats="profStats"></character-stats-card>
-              </div>
-              <div>
-                <character-skills-card :skills="character.Skills"></character-skills-card>
-              </div>
-              
+                <character-skills-card :skills="character.Skills"></character-skills-card>          
             </div>
             <div class="d-flex character-equip">
               <character-equip :character="character"></character-equip>
@@ -26,8 +21,7 @@
           </div>
           <div class="d-flex notes black-border">
 
-          </div>
-          
+          </div>    
         </div>
         <div class="d-flex flex-column character-abilities">
         </div>
@@ -97,22 +91,28 @@
     box-sizing: border-box;
   }
 
+  .character-view {
+    flex: 1 0 auto;
+  }
+
   .party-navigation {
     padding: 1%;
     flex: 1;
     flex-grow: 1;
     overflow-y: scroll;
+    
     .character-cards-container {
       margin-bottom: 1%;
       border-radius: 10px;
     }
+
   }
 
   .character-info {
     flex: 1;
     flex-grow: 3;
     .character-screen {
-      flex: 1;
+      flex: 1 0 auto;
       flex-grow: 5.5;
 
       >div {
@@ -135,8 +135,8 @@
       padding: 1% 0 0 1%;
     }
     .notes {
-      flex: 1;
-      flex-grow: 2;
+      flex: 1 0 auto;
+      height: 200px;
     }
   }
 

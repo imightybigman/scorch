@@ -1,5 +1,5 @@
 <template>
-    <div class="character-skill list-group">
+    <div class="d-flex flex-column character-skill">
         <modal v-if="showModal" v-on:close="showModal = false">
             <h3 slot="header">
                 {{ displaySkillName(selectedSkill) }}
@@ -8,15 +8,16 @@
                 {{ selectedSkill.Description }}
             </div>
         </modal>
-        <div class="card">
+        <div class="card skill-card">
             <div class="card-header">
             Skills
             </div>
             <div class="card-body">
-            <div v-for="(skill, index) in skills" @click="skillClick(skill)" :key="index" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
+            <div v-for="(skill, index) in skills" 
+                 @click="skillClick(skill)" 
+                 :key="index" 
+                 class="list-group-item list-group-item-action">
                 <h6>{{ displaySkillName(skill) }}</h6>
-                </div>
             </div>
             </div>
         </div>
@@ -51,5 +52,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.skill-card {
+    flex: 1 0 auto;
+}
 
+.character-skill {
+    flex: 1 0 auto;
+}
 </style>
