@@ -35,9 +35,6 @@ export default {
       async loadData() {
         this.dataDone = true;
       }
-    },
-    components: {
-      CharacterTile
     }
 }
 </script>

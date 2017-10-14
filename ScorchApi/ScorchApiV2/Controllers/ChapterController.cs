@@ -23,7 +23,7 @@ namespace ScorchApiV2.Controllers
         }
 
         [HttpGet("{chapterId}")]
-        public async Task<Chapter> GetChapter(Guid campaignId, int chapterNumber)
+        public async Task<Chapter> GetChapter(Guid chapterId)
         {
             var document = await _chapterTable.GetItemAsync(campaignId);
 

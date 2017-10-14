@@ -1,8 +1,8 @@
 <template>
     <div class="dm-main-component">
-        <div class="d-flex flex-wrap dm-character-view" v-if="dataDone">
+        <div class="d-flex flex-wrap dm-character-view">
             <div class="d-flex flex-column dm-party-view">
-                <div class="dm-character-cards-container" v-for="(char, index) in party" :key="index">
+                <div class="dm-character-cards-container" v-for="(char, index) in party" @click="toggleCharacter(char.CharacterId)" :key="index">
                     <character-tile :character="char"></character-tile>
                 </div>
             </div>
@@ -16,7 +16,6 @@
 
 <script>
   import { CharacterTile } from 'components/character'
-  import { CharacterService } from 'services'
   import sortBy from 'lodash/sortBy'
 
 export default {
@@ -24,20 +23,22 @@ export default {
     
     data() {
       return {
-        party: [],
-        dataDone: false
+        selectedChars: []
       }
     },
     async created() {
       await this.$store.dispatch('getParty')
     },
     methods: {
-      async loadData() {
-        const characterSvc = new CharacterService();
-        let myParty = await characterSvc.getCharacters();
-        this.party = sortBy(myParty.body, (x) => x.Firstname);
-        this.dataDone = true;
-      }
+        toggleCharacter(characterId) {
+            var charIndex = this.selectedChars.indexOf(characterId); 
+            if(charIndex >= 0){
+                this.selectedChars.splice(charIndex, 1);
+            }
+            else{
+                this.selectedChars.push(characterId);
+            }
+        }
     },
     computed: {
         party() {
@@ -45,7 +46,7 @@ export default {
         }
     },
     components: {
-      CharacterTile
+        CharacterTile
     }
 }
 </script>
