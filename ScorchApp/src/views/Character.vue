@@ -19,7 +19,7 @@
               <character-equip :character="character"></character-equip>
             </div>
             <div class="d-flex character-spells">
-              <character-spells-card :skills="character.Spells"></character-spells-card>
+              <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
             </div>
           </div>
           <div class="d-flex notes black-border">

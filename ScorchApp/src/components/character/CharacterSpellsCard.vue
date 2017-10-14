@@ -5,7 +5,7 @@
                 {{ selectedSpell.Name }}
             </h3>
             <div slot="body">
-                {{ selectedSpell.Description }}
+                <spell-readonly :spell="selectedSpell"></spell-readonly>
             </div>
         </modal>
         <modal v-if="showSpellAddModal" v-on:close="showSpellAddModal = false">
@@ -13,8 +13,9 @@
                 Add New Spell
             </h3>
             <div slot="body">
-                Spell
+                <spell-form @submit="spellFormSubmit"></spell-form>
             </div>
+            <div slot="footer"></div>
         </modal>
         <div class="card spell-card">
             <div class="card-header">
@@ -27,7 +28,9 @@
                  class="list-group-item list-group-item-action">
                 <h6>{{ spell.Name }}</h6>
             </div>
-            <button class="btn btn-primary" @click="showSpellAddModal = true">+</button>
+            <div class="list-group-item list-group-item-action">
+                <button class="btn btn-block btn-primary" @click="showSpellAddModal = true">+</button>
+            </div>
             </div>
         </div>
     </div>
@@ -35,6 +38,7 @@
 
 <script>
 import { Modal } from 'components/util'
+import { SpellForm, SpellReadonly } from 'components/spells'
 
 export default {
     name: 'character-spells',
@@ -45,21 +49,35 @@ export default {
             selectedSpell: {}
         }
     },
-    props: ['spells'],
+    props: ['characterId', 'spells'],
     methods: {
-        spellClick: function(spell) {
+        spellClick(spell) {
             this.selectedSpell = spell;
             this.showSpellDescription = true;
+        },
+        async spellFormSubmit(spell) {
+            let payload = {
+                characterId: this.characterId,
+                body: spell
+            }
+            await this.$store.dispatch('addSpell', payload);
+            this.showSpellAddModal = false;
         }
     },
     components: {
-        Modal
+        Modal,
+        SpellForm,
+        SpellReadonly
     }
 }
 </script>
 
 <style lang="scss" scoped>
 .spell-card {
+    flex: 1 0 auto;
+}
+
+.character-spell {
     flex: 1 0 auto;
 }
 
