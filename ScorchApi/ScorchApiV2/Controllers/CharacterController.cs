@@ -36,7 +36,9 @@ namespace ScorchApiV2.Controllers
                 foreach (var document in documentList)
                 {
                     var json = document.ToJson();
-                    characterList.Add(JsonConvert.DeserializeObject<Character>(json));
+                    var ch = JsonConvert.DeserializeObject<Character>(json);
+                    ch.OrganizeAbilities();
+                    characterList.Add(ch);
                 }
             } while (!search.IsDone);
 
@@ -48,7 +50,10 @@ namespace ScorchApiV2.Controllers
         {
             var document = await characterTable.GetItemAsync(characterId);
 
-            return document != null ? JsonConvert.DeserializeObject<Character>(document.ToJson()) : null;
+            var ch = document != null ? JsonConvert.DeserializeObject<Character>(document.ToJson()) : null;
+            ch?.OrganizeAbilities();
+
+            return ch;
         }
 
         [HttpPost]

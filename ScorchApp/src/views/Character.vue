@@ -12,7 +12,7 @@
           </div>
           <div class="d-flex character-screen">
             <div class="d-flex flex-column character-stats-skills">
-                <character-stats-card :stats="profStats"></character-stats-card>
+                <character-stats-card :stats="character.Stats" :proficiency="this.character.Proficiency"></character-stats-card>
                 <character-skills-card :skills="character.Skills"></character-skills-card>          
             </div>
             <div class="d-flex character-equip justify-content-center">
@@ -51,11 +51,6 @@
     },
     props: ['characterId'],
     computed: {
-      profStats() {
-        let stats = this.character.Stats;
-        stats.Proficiency = this.character.Proficiency;
-        return stats;
-      },
       name() {
           let firstName = this.character.Firstname || '';
           let lastName = this.character.Lastname || '';

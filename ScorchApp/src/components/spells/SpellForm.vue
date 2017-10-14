@@ -6,7 +6,7 @@
         </div>
         <div class="form-group">
             <label for="spellDesc">Spell Description</label>
-            <textarea type="text" id="spellDesc" class="form-control" v-model="description" placeholder="Spell Description" rows="4" />
+            <textarea type="text" id="spellDesc" class="form-control" v-model="description" placeholder="Spell Description" rows="8" />
         </div>
         <div class="form-group">
             <label for="spellDamage">Spell Damage</label>

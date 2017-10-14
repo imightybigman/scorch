@@ -62,12 +62,16 @@ const mutations = {
 
         for(let i = 0; i < state.party.length; i++) {
             let ch = state.party[i];
+            console.log(ch.CharacterId);
+            console.log(id);
             if(ch.CharacterId === id) {
                 ch.Spells.push(spell);
-                ch.Spells = sortBy(ch.Spells, (s) => s.Name);
+                state.party[i].Spells = sortBy(ch.Spells, (s) => s.Name);
+                break;                
             }
-            break;
         }
+
+        
     }
 }
 
