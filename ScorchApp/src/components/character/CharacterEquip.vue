@@ -27,7 +27,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.card-img-top {
+    height: 100%;
+    width: 450px; 
+}
 .helm {
     position: absolute;
     height: 15%;

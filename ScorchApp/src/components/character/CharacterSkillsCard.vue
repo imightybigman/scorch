@@ -56,7 +56,4 @@ export default {
     flex: 1 0 auto;
 }
 
-.character-skill {
-    flex: 1 0 auto;
-}
 </style>
