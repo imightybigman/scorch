@@ -13,7 +13,10 @@
                  @click="adventurerGearClick(adventurerGear)" 
                  :key="index" 
                  class="list-group-item list-group-item-action">
-                {{ adventurerGear.Name }}
+                <div class="d-flex align-items-center justify-content-between">
+                    <span>{{ adventurerGear.Name }}</span>            
+                    <button class="btn btn-primary" @click="equipAdventurerGear(adventurerGear, $event)">+</button>
+                </div>
             </div>
         </div>
         </div>
@@ -28,7 +31,13 @@ export default {
     methods: {
         adventurerGearClick() {
 
-        }
+        },
+        equipAdventurerGear(adventurerGear, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            console.log('equip')
+        }   
     }
 }
 </script>

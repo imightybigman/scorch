@@ -31,6 +31,9 @@ const getters = {
     getCharacterQuivers: (state, getters) => (id) => {
         let inventory = state.party.find(char => char.CharacterId === id).Inventory;
         return inventory.filter(item => item.ItemClass === 'Quiver');
+    },
+    getCharacterEquipment: (state, getters) => (id) => {
+        return state.party.find(char => char.CharacterId === id).Equipment || { };
     }
 }
 
@@ -53,6 +56,13 @@ const actions = {
             payload.addedSpell = response.body;
             commit(types.ADD_SPELL, payload);
         }
+    },
+    equipItem({ commit }, payload) {
+        let characterId = payload.characterId;
+        let equipment = getters.getCharacterEquipment(characterId);
+        equipment.MainHand = payload.item;
+        payload.equipment = equipment;
+        commit(types.EQUIP_ITEM, payload);
     }
 }
 
@@ -77,7 +87,7 @@ const mutations = {
     },
     [types.ADD_SPELL] (state, payload) {
         let id = payload.characterId;
-        let spell = payload.addedSpell;
+        let equipment = payload.addedSpell;
 
         for(let i = 0; i < state.party.length; i++) {
             let ch = state.party[i];
@@ -87,8 +97,18 @@ const mutations = {
                 break;                
             }
         }
+    }, 
+    [types.EQUIP_ITEM] (state, payload) {
+        let id = payload.characterId;
+        let equipment = payload.equipment;
 
-        
+        for(let i = 0; i < state.party.length; i++) {
+            let ch = state.party[i];
+            if(ch.CharacterId === id) {
+                ch.Equipment = equipment;
+                break;                
+            }
+        }
     }
 }
 

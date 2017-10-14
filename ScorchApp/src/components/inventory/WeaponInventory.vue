@@ -12,9 +12,11 @@
             <div v-for="(weapon, index) in weapons" 
                  @click="weaponClick(weapon)" 
                  :key="index" 
-                 class="list-group-item list-group-item-action justify-content-between">
-                <span>{{ weapon.Name }}</span>
-                <button class="btn btn-primary"></button>
+                 class="list-group-item list-group-item-action ">
+                <div class="d-flex align-items-center justify-content-between">
+                    <span>{{ weapon.Name }}</span>            
+                    <button class="btn btn-primary" @click="equipWeapon(weapon, $event)">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -27,7 +29,13 @@ export default {
     props: ['weapons'],
     methods: {
         weaponClick(weapon) {
-            console.log(weapon)
+            console.log('details')
+        },
+        equipWeapon(weapon, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            this.$emit('equip', weapon);
         }
     }
 }

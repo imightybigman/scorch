@@ -13,7 +13,10 @@
                  @click="armorClick(armor)" 
                  :key="index" 
                  class="list-group-item list-group-item-action">
-                {{ armor.Name }}
+                <div class="d-flex align-items-center justify-content-between">
+                    <span>{{ armor.Name }}</span>            
+                    <button class="btn btn-primary" @click="equipArmor(armor, $event)">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -27,6 +30,12 @@ export default {
     methods: {
         armorClick() {
 
+        },
+        equipArmor(armor, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            console.log('equip')
         }
     }
 }

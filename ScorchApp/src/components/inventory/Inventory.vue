@@ -7,7 +7,7 @@
   <div class="card-body">
     <div id="accordion" role="tablist">
       <adventurer-gear-inventory :adventurerGears="adventurerGears"></adventurer-gear-inventory>
-      <weapon-inventory :weapons="weapons"></weapon-inventory>
+      <weapon-inventory @equip="equipWeapon" :weapons="weapons"></weapon-inventory>
       <armor-inventory :armors="armors"></armor-inventory>
       <quiver-inventory :quivers="quivers"></quiver-inventory>
     </div>
@@ -39,6 +39,15 @@ export default {
       },
       adventurerGears() {
         return this.$store.getters.getCharacterAdventurerGears(this.characterId);        
+      }
+    },
+    methods: {
+      equipWeapon(weapon) {
+        let equipPayload = {
+          characterId: this.characterId,
+          item: weapon
+        }
+        this.$store.dispatch('equipItem', equipPayload);
       }
     },
     components: {
