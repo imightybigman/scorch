@@ -1,4 +1,7 @@
 <template>
+<!-- <div class="card">
+  <div class=""
+</div>
 <div id="accordion" role="tablist">
   <div class="card">
     <div class="card-header" role="tab" id="headingOne">
@@ -42,7 +45,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 </template>
 
 <script>
