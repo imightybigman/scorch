@@ -3,7 +3,7 @@
     <div class="card-header" role="tab" id="weapos">
         <h5 class="mb-0">
         <a data-toggle="collapse" href="#adventurerGearInventory" aria-expanded="false" aria-controls="adventurerGearInventory">
-            Adventurer Gears
+            Adventure Gear
         </a>
         </h5>
     </div>
