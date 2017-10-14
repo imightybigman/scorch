@@ -12,8 +12,9 @@
             <div v-for="(weapon, index) in weapons" 
                  @click="weaponClick(weapon)" 
                  :key="index" 
-                 class="list-group-item list-group-item-action">
-                {{ weapon.Name }}
+                 class="list-group-item list-group-item-action justify-content-between">
+                <span>{{ weapon.Name }}</span>
+                <button class="btn btn-primary"></button>
             </div>
         </div>
     </div>

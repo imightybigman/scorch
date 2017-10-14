@@ -1,0 +1,13 @@
+import Vue from 'vue'
+
+export default {
+    getItem() {
+        return Vue.http.get('item');
+    },
+    postItem(id, item) {
+        return Vue.http.post('item', item);
+    },
+    deleteItem(id) {
+        return Vue.http.delete('item/' + id);
+    }
+}
