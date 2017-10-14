@@ -2,7 +2,7 @@
 <div class="character-tile list-group">
   <a class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex flex-row w-100 justify-content-between">
-        <div class="d-flex icon">
+        <div class="d-flex icon align-items-center">
           <img :class="classIcon" src="~assets/icons/class-icons.jpg">
       </div>
       <div class="d-flex flex-column character-stats">
@@ -11,7 +11,7 @@
         <small class="level">Lv. {{ this.character.Level }}</small>
         </div>
         <hp-bar :character="character"></hp-bar>
-        <exp-bar></exp-bar>
+        <exp-bar :character="character"></exp-bar>
       </div>
     </div>
   </a>

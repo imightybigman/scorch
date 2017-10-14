@@ -1,6 +1,6 @@
 <template>
     <div>
-        Exp: 
+        Hp: 
         <div class="progress">
           <div :class="progressBarType" 
                 role="progressbar" 

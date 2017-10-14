@@ -69,7 +69,7 @@ export default {
     };
   },
 
-  getExpRange(lvl) {
+  getExpRange(level) {
     switch (level) {
       case 1:
         return {
