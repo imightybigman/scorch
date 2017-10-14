@@ -44,7 +44,6 @@ const mutations = {
             if(ch.CharacterId === id) {
                 for(let key in props) {
                     ch[key] = props[key];
-                    break;
                 }
             }
         }
