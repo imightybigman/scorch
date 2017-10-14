@@ -1,16 +1,16 @@
 <template>
     <div class="dm-view">
         <vue-tabs>
-            <v-tab title="DM Main">
+            <v-tab title="General">
                 <dungeon-master-main></dungeon-master-main>
             </v-tab>
 
-            <v-tab title="Second tab">
+            <v-tab title="Battle Planner">
             Second tab content
             </v-tab>
 
-            <v-tab title="Third tab">
-            Third tab content
+            <v-tab title="Campaign Notes">
+                <dungeon-master-notes></dungeon-master-notes>
             </v-tab>
         </vue-tabs>
     </div>
@@ -18,7 +18,7 @@
 
 <script>
 import { VueTabs, VTab } from 'vue-nav-tabs'
-import { DungeonMasterMain } from 'components/dungeonMaster'
+import { DungeonMasterMain, DungeonMasterNotes } from 'components/dungeonMaster'
 import 'vue-nav-tabs/themes/vue-tabs.css'
 
 export default {
@@ -26,7 +26,8 @@ export default {
     components: {
         VueTabs,
         VTab,
-        DungeonMasterMain
+        DungeonMasterMain,
+        DungeonMasterNotes
     }
 }
 </script>
