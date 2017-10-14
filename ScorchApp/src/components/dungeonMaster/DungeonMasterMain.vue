@@ -2,12 +2,12 @@
     <div class="dm-main-component">
         <div class="d-flex flex-wrap dm-character-view">
             <div class="d-flex flex-column dm-party-view">
-                <div class="dm-character-cards-container" v-for="(char, index) in party" @click="toggleCharacter(char.CharacterId)" :key="index">
-                    <character-tile :character="char"></character-tile>
+                <div class="dm-character-cards-container" v-for="(char, index) in party" @click="toggleCharacter(char)" :key="index">
+                    <character-tile :character="char" v-bind:class="{ selected: isCharacterSelected(char) }"></character-tile>
                 </div>
             </div>
             <div class="d-flex character-operations">
-                <span>sup </span>
+                <character-operator :character-list="selectedChars"></character-operator>
             </div>
         </div>
     </div>
@@ -15,7 +15,8 @@
 </template>
 
 <script>
-  import { CharacterTile } from 'components/character'
+    import { CharacterTile } from 'components/character'
+    import CharacterOperator from './CharacterOperator.vue'
 
 export default {
     name : 'dm-main-component',
@@ -29,15 +30,19 @@ export default {
       await this.$store.dispatch('getParty')
     },
     methods: {
-        toggleCharacter(characterId) {
-            var charIndex = this.selectedChars.indexOf(characterId); 
-            if(charIndex >= 0){
-                this.selectedChars.splice(charIndex, 1);
+        toggleCharacter(character) {
+            var foundChar = this.selectedChars.find(char => char.CharacterId == character.CharacterId); 
+            
+            if(foundChar){
+                var index = this.selectedChars.findIndex(char => char.CharacterId == character.CharacterId);
+                this.selectedChars.splice(index, 1);
             }
             else{
-                this.selectedChars.push(characterId);
+                this.selectedChars.push(character);
             }
-            
+        },
+        isCharacterSelected(character) {
+            return !(this.selectedChars.find(char => char.CharacterId == character.CharacterId) == undefined);
         }
     },
     computed: {
@@ -46,7 +51,8 @@ export default {
         }
     },
     components: {
-        CharacterTile
+        CharacterTile,
+        CharacterOperator
     }
 }
 </script>
@@ -74,5 +80,9 @@ export default {
         margin: 1%;
         flex: 1;
         flex-grow: 5;
+        border-radius: 10px;
+    }
+    .selected {
+        background-color: black;
     }
 </style>

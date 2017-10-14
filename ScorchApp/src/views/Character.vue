@@ -34,7 +34,6 @@
   import { Modal } from 'components/util'
   import { CharacterTile, CharacterEquip, CharacterStatsCard, CharacterDetailCard, CharacterSkillsCard, ExpBar } from 'components/character'
   import { CharacterService } from 'services'
-  import find from 'lodash/find'
 
   export default {
     name: 'character-view',
