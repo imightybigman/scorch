@@ -1,15 +1,14 @@
 <template>
 <div class="card">
-  
   <div class="card-header">
     Inventory
   </div>
   <div class="card-body">
     <div id="accordion" role="tablist">
       <adventurer-gear-inventory :adventurerGears="adventurerGears"></adventurer-gear-inventory>
-      <weapon-inventory @equip="equipWeapon" :weapons="weapons"></weapon-inventory>
-      <armor-inventory :armors="armors"></armor-inventory>
-      <quiver-inventory :quivers="quivers"></quiver-inventory>
+      <weapon-inventory @equip="equipItem" :weapons="weapons"></weapon-inventory>
+      <armor-inventory @equip="equipItem" :armors="armors"></armor-inventory>
+      <quiver-inventory @equip="equipItem" :quivers="quivers"></quiver-inventory>
     </div>
   </div>
 </div>
@@ -42,10 +41,10 @@ export default {
       }
     },
     methods: {
-      equipWeapon(weapon) {
+      equipItem(item) {
         let equipPayload = {
           characterId: this.characterId,
-          item: weapon
+          item: item
         }
         this.$store.dispatch('equipItem', equipPayload);
       }

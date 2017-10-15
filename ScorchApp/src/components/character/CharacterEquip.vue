@@ -1,21 +1,43 @@
 <template>
+
   <div class="card">
     <img class="card-img-top" v-if="sex == 'Male'" src="~assets/dnd-male.jpg" alt="Card image cap">
     <img class="card-img-top" v-else src="~assets/dnd-female.jpg" alt="Card image cap">
-    <div class="equipment helm"></div>
-    <div class="equipment necklace"></div>
-    <div class="equipment chest"></div>
-    <div class="equipment gauntlets"></div>    
-    <div class="equipment legs"></div>
-    <div class="equipment boots"></div>
-    <div class="equipment leftring"></div>
-    <div class="equipment rightring"></div>
-    <div class="equipment mainhand">
-        <img v-if="equipment.MainHand" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    <div class="equipment helm">
+      <img v-if="equipment.Helm" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
     </div>
-    <div class="equipment offhand"></div>
-    <div class="equipment quiver"></div>
+    <div class="equipment necklace">
+      <img v-if="equipment.Necklace" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment chest">
+      <img v-if="equipment.Chest" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment gauntlets">
+      <img v-if="equipment.Gauntlets" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment legs">
+      <img v-if="equipment.LEgs" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment boots">
+      <img v-if="equipment.Boots" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment leftring">
+      <img v-if="equipment.LeftRing" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment rightring">
+      <img v-if="equipment.RightRing" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment mainhand">
+      <img v-if="equipment.MainHand" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment offhand">
+      <img v-if="equipment.OffHand" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment quiver">
+      <img v-if="equipment.Quiver" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -34,6 +56,9 @@ export default {
 .equipped {
     height: 100%;
     width: 100% ;
+    border: 4px solid #a1887f;
+    box-sizing: border-box;
+    border-radius: 10px;
 }
 
 .helm {
@@ -126,7 +151,7 @@ export default {
 
 
 .equipment:hover {
-    border: 4px solid black;
+    border: 1px solid black;
     box-sizing: border-box;
     border-radius: .5em;
     box-shadow: 0 0 15px 5px rgba(0,0,0,0.75);

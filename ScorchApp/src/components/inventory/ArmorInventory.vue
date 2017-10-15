@@ -32,10 +32,10 @@ export default {
 
         },
         equipArmor(armor, event) {
-            if (event) {
+         if (event) {
                 event.stopPropagation();
             }
-            console.log('equip')
+            this.$emit('equip', armor);
         }
     }
 }

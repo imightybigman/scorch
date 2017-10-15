@@ -15,7 +15,6 @@
                  class="list-group-item list-group-item-action">
                 <div class="d-flex align-items-center justify-content-between">
                     <span>{{ adventurerGear.Name }}</span>            
-                    <button class="btn btn-primary" @click="equipAdventurerGear(adventurerGear, $event)">+</button>
                 </div>
             </div>
         </div>

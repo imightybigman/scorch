@@ -16,7 +16,7 @@
                 <character-skills-card :skills="character.Skills"></character-skills-card>          
             </div>
             <div class="d-flex character-equip justify-content-center">
-              <character-equip :sex="character.Sex" :equipment="equipment"></character-equip>
+              <character-equip :sex="character.Sex" :equipment="character.Equipment || {}"></character-equip>
             </div>
             <div class="d-flex character-spells">
               <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
@@ -59,10 +59,7 @@
         return this.$store.getters.myParty;
       },
       character() {
-        return this.$store.getters.getCharacterById(this.characterId)
-      },
-      equipment() {
-        return this.$store.getters.getCharacterEquipment(this.characterId)
+        return this.$store.getters.getCharacterById(this.characterId);
       }
     },
     methods: {

@@ -35,7 +35,8 @@ export default {
             if (event) {
                 event.stopPropagation();
             }
-            console.log('equip')
+
+            this.$emit('equip', quiver);
         }
     }
 }
