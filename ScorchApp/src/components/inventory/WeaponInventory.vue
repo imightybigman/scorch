@@ -1,5 +1,13 @@
 <template>
     <div class="card">
+         <modal v-if="showModal" v-on:close="showModal = false">
+            <h3 slot="header">
+                {{ selectedWeapon.Name }}
+            </h3>
+            <div slot="body">
+                
+            </div>
+        </modal>
     <div class="card-header" role="tab" id="weapos">
         <h5 class="mb-0">
         <a data-toggle="collapse" href="#weaponInventory" aria-expanded="false" aria-controls="weaponInventory">
@@ -14,7 +22,10 @@
                  :key="index" 
                  class="list-group-item list-group-item-action ">
                 <div class="d-flex align-items-center justify-content-between">
-                    <span>{{ weapon.Name }}</span>            
+                    <div class="d-flex flex-column">
+                    <span>{{ weapon.Name }}</span>
+                    <small>{{ weapon.Damage }} </small>        
+                    </div>
                     <button class="btn btn-primary" @click="equipWeapon(weapon, $event)">+</button>
                 </div>
             </div>
@@ -24,12 +35,22 @@
 </template>
 
 <script>
+
+import { Modal } from 'components/util'
+
 export default {
     name: 'weapon-inventory',
     props: ['weapons'],
+    data() {
+        return {
+            showModal: false,
+            selectedWeapon: {}
+        }
+    },
     methods: {
         weaponClick(weapon) {
-            console.log('details')
+            this.selectedWeapon = weapon;
+            this.showModal = true;
         },
         equipWeapon(weapon, event) {
             if (event) {
@@ -37,6 +58,9 @@ export default {
             }
             this.$emit('equip', weapon);
         }
+    },
+    components: {
+        Modal
     }
 }
 </script>
