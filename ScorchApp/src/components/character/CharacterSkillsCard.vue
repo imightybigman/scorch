@@ -53,7 +53,7 @@ export default {
 
 <style lang="scss" scoped>
 .skill-card {
-    flex: 1 0 auto;
+    flex: auto;
 }
 
 </style>

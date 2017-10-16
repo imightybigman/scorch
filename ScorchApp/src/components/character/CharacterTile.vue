@@ -62,7 +62,7 @@ img {
 }
 
 .character-stats {
-    flex: 1 0 auto;
+    flex: auto;
 }
 
 .icon {

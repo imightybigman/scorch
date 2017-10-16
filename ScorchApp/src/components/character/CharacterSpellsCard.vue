@@ -74,11 +74,11 @@ export default {
 
 <style lang="scss" scoped>
 .spell-card {
-    flex: 1 0 auto;
+    flex: auto;
 }
 
 .character-spell {
-    flex: 1 0 auto;
+    flex: auto;
 }
 
 </style>
