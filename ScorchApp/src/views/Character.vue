@@ -92,8 +92,7 @@
 
   .party-navigation {
     padding: 1%;
-    flex: 1;
-    flex-grow: 1;
+    flex: 1 0 auto;
     overflow-y: scroll;
     
     .character-cards-container {
@@ -104,8 +103,8 @@
   }
 
   .character-info {
-    flex: 1;
-    flex-grow: 3;
+    flex: 1 0 auto;
+
     .character-screen {
       flex: 1 0 auto;
       flex-grow: 5.5;

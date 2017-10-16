@@ -18,9 +18,9 @@
 
 <script>
 import WeaponInventory from './weapons/WeaponInventory'
-import AdventurerGearInventory from './AdventurerGearInventory'
-import QuiverInventory from './QuiverInventory'
-import ArmorInventory from './ArmorInventory'
+import AdventurerGearInventory from './adventurergear/AdventurerGearInventory'
+import QuiverInventory from './quiver/QuiverInventory'
+import ArmorInventory from './armor/ArmorInventory'
 import { mapGetters } from 'vuex'
 
 export default {

@@ -62,13 +62,10 @@ img {
 }
 
 .character-stats {
-    flex:1;
-    flex-grow: 8;
+    flex: 1 0 auto;
 }
 
 .icon {
-    flex: 1;
-    flex-grow: 1;
     margin-right: 10%;
 }
 
