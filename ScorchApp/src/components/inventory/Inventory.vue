@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import WeaponInventory from './WeaponInventory'
+import WeaponInventory from './weapons/WeaponInventory'
 import AdventurerGearInventory from './AdventurerGearInventory'
 import QuiverInventory from './QuiverInventory'
 import ArmorInventory from './ArmorInventory'
