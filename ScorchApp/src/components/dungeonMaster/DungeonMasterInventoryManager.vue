@@ -14,6 +14,9 @@
             </div>
             <div>
                 <adventurer-gear-creator v-if="state == 'createAG'" />
+                <weapon-creator v-if="state == 'createWeapon'" />
+                <armor-creator v-if="state == 'createArmor'" />
+                <quiver-creator v-if="state == 'createQuiver'" />
             </div>
 
         </div>

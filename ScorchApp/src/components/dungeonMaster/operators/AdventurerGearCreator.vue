@@ -15,27 +15,36 @@
                     <label for="item-type">Item Type : </label>
                     <input type="text" class="form-control" id="item-type" v-model="itemType" placeholder="Item Type" autocomplete="off"/>
                 </div>
-                <div class="form-group">
-                    <label for="weight">Weight : </label>
-                    <input type="text" class="form-control" id="weight" v-model="weight" placeholder="Weight" autocomplete="off"/>
-                </div>
-                <div class="form-group">
-                    <label for="cost">Cost in gp : </label>
-                    <input type="number" class="form-control" id="cost" v-model="cost" placeholder="Cost in gp" autocomplete="off"/>
+                <div class="d-flex">
+                    <div class="form-group numeric-entry">
+                        <label for="weight">Weight : </label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="weight" v-model="weight" placeholder="Weight" autocomplete="off"/>
+                            <span class="input-group-addon">lbs</span>
+                        </div>
+                    </div>
+                    <div class="form-group numeric-entry">
+                        <label for="cost">Cost : </label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="cost" v-model="cost" placeholder="Cost in gp" autocomplete="off"/>
+                            <span class="input-group-addon">gp</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="properties">
-                    <label> Properties </label>
-                    <div class="property-holder" v-for="(prop, index) in properties" :key="index">
-                        <span>{{prop}}</span>
+                    <label class="property-label"> Properties </label>
+                    <div class="property-holder">
+                        <div class="property-list-items" v-for="(prop, index) in properties" :key="index">
+                            <!-- <li class="list-group-item"><b>{{prop}}</b></li> -->
+                            <span class="badge badge-pill badge-default">{{prop}}</span>
+                        </div>
                     </div>
                     <div class="input-group">
-                        <button class="btn btn-primary " type="button" v-on:click="addProp()">
-                            <b>+</b>
-                        </button>
+                        <button class="btn btn-primary " type="button" v-on:click="addProp()"><b>+</b></button>                        
                         <input type="text" class="form-control" id="properties" v-model="newProp" placeholder="Properties" autocomplete="off"/>
                     </div>
                 </div> 
-                <button class="btn btn-primary">Submit</button>
+                <button class="btn btn-primary">Submit</button>                
             </form>
         </div>
     </div>
@@ -58,6 +67,9 @@ export default {
     methods: {
         async addProp() {
             this.properties.push(this.newProp);
+        },
+        async create(){
+            //TODO implement
         }
     }
 }
@@ -76,5 +88,20 @@ export default {
     .properties{
         margin-bottom: 5%;
     }
-
+    .property-list-items {
+        float:left;
+    }
+    .property-holder {
+        padding:1%;
+    }   
+    .numeric-entry {
+        padding-right:2%;
+        // padding-right:2%;
+    }
+    .property-label {
+        margin-bottom:1%;
+    }
+    .badge{
+        background-color: grey;
+    }
 </style>
