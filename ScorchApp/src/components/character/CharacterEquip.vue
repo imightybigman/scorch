@@ -1,5 +1,5 @@
 <template>
-
+<div class="character-equip">
   <div class="card">
     <img class="card-img-top" v-if="sex == 'Male'" src="~assets/dnd-male.jpg" alt="Card image cap">
     <img class="card-img-top" v-else src="~assets/dnd-female.jpg" alt="Card image cap">
@@ -10,13 +10,13 @@
       <img v-if="equipment.Necklace" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
     </div>
     <div class="equipment chest">
-      <img v-if="equipment.Chest" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+      <img v-if="equipment.Chest" data-toggle="tooltip" data-placement="left" :title="equipment.Chest.AC" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
     </div>
     <div class="equipment gauntlets">
       <img v-if="equipment.Gauntlets" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
     </div>
     <div class="equipment legs">
-      <img v-if="equipment.LEgs" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+      <img v-if="equipment.Legs" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
     </div>
     <div class="equipment boots">
       <img v-if="equipment.Boots" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
@@ -27,8 +27,8 @@
     <div class="equipment rightring">
       <img v-if="equipment.RightRing" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
     </div>
-    <div class="equipment mainhand">
-      <img v-if="equipment.MainHand" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    <div class="equipment mainhand"  >
+      <img v-if="equipment.MainHand" @contextmenu.prevent="$refs.ctxMenu.open" data-toggle="tooltip" data-placement="left" :title="displayDamage(equipment.MainHand.Damage)" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
     </div>
     <div class="equipment offhand">
       <img v-if="equipment.OffHand" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
@@ -38,19 +38,46 @@
     </div>
   </div>
 
+  <context-menu id="context-menu" ref="ctxMenu">
+    <li @click="contextClick">Details</li>
+    <li class="disabled">Unequip</li>
+  </context-menu>
+</div>
+
+
 </template>
 
 <script>
+import contextMenu from 'vue-context-menu'
+
 export default {
   name: 'character-equip-card',
-  props: ['sex','equipment']
+  props: ['sex','equipment'],
+  watch: {
+    equipment(val) {
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    }
+  },
+  methods: {
+    displayDamage(damage) {
+      return `Damage: ${damage}`
+    },
+    contextClick() {
+      console.log('hahaha')
+    }
+  },
+  components: {
+    contextMenu
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .card-img-top {
     height: 100%;
-    width: 450px; 
+    width: 100%; 
 }
 
 .equipped {
