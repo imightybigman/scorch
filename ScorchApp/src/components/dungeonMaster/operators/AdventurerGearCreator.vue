@@ -1,52 +1,61 @@
 <template>
-    <div class="dm-adventurer-gear-creator border border-dark">
-        <h4> Adventurer Gear </h4>
-        <div class="adv-gear-form">
-            <form v-on:submit="create">
-                <div class="form-group">
-                    <label for="name">Name : </label>
-                    <input type="text" class="form-control" id="name" v-model="name" placeholder="Name" autocomplete="off"/>
-                </div>
-                <div class="form-group">
-                    <label for="description">Description : </label>
-                    <input type="text" class="form-control" id="description" v-model="description" placeholder="Description" autocomplete="off"/>
-                </div>
-                <div class="form-group">
-                    <label for="item-type">Item Type : </label>
-                    <input type="text" class="form-control" id="item-type" v-model="itemType" placeholder="Item Type" autocomplete="off"/>
-                </div>
-                <div class="d-flex">
-                    <div class="form-group numeric-entry">
-                        <label for="weight">Weight : </label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="weight" v-model="weight" placeholder="Weight" autocomplete="off"/>
-                            <span class="input-group-addon">lbs</span>
-                        </div>
-                    </div>
-                    <div class="form-group numeric-entry">
-                        <label for="cost">Cost : </label>
-                        <div class="input-group">
-                            <input type="number" class="form-control" id="cost" v-model="cost" placeholder="Cost in gp" autocomplete="off"/>
-                            <span class="input-group-addon">gp</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="properties">
-                    <label class="property-label"> Properties </label>
-                    <div class="property-holder">
-                        <div class="property-list-items" v-for="(prop, index) in properties" :key="index">
-                            <!-- <li class="list-group-item"><b>{{prop}}</b></li> -->
-                            <span class="badge badge-pill badge-default">{{prop}}</span>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <button class="btn btn-primary " type="button" v-on:click="addProp()"><b>+</b></button>                        
-                        <input type="text" class="form-control" id="properties" v-model="newProp" placeholder="Properties" autocomplete="off"/>
-                    </div>
-                </div> 
-                <button class="btn btn-primary">Submit</button>                
-            </form>
+    <div>
+        <div class="alert alert-success success-notification" id='success-msg'>
+            <strong>Success Item Added!</strong>
         </div>
+        <div class="alert alert-danger failure-notification">
+            <strong>Error creating Item!</strong>
+        </div>
+        <div class="dm-adventurer-gear-creator border border-dark">
+            <h4> Adventurer Gear </h4>
+            <div class="adv-gear-form">
+                <form v-on:submit="create">
+                    <div class="form-group">
+                        <label for="name">Name : </label>
+                        <input type="text" class="form-control" id="name" v-model="name" placeholder="Name" autocomplete="off" required="true"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description : </label>
+                        <input type="text" class="form-control" id="description" v-model="description" placeholder="Description" autocomplete="off" required="true"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="item-type">Item Type : </label>
+                        <input type="text" class="form-control" id="item-type" v-model="itemType" placeholder="Item Type" autocomplete="off" required="true"/>
+                    </div>
+                    <div class="d-flex">
+                        <div class="form-group numeric-entry">
+                            <label for="weight">Weight : </label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="weight" v-model="weight" placeholder="Weight" autocomplete="off" required="true"/>
+                                <span class="input-group-addon">lbs</span>
+                            </div>
+                        </div>
+                        <div class="form-group numeric-entry">
+                            <label for="cost">Cost : </label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="cost" v-model="cost" placeholder="Cost in gp" autocomplete="off" required="true"/>
+                                <span class="input-group-addon">gp</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="properties">
+                        <label class="property-label"> Properties </label>
+                        <div class="property-holder">
+                            <div class="property-list-items" v-for="(prop, index) in properties" :key="index">
+                                <!-- <li class="list-group-item"><b>{{prop}}</b></li> -->
+                                <span class="badge badge-pill badge-default">{{prop}}</span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <button class="btn btn-primary " type="button" v-on:click="addProp()"><b>+</b></button>                        
+                            <input type="text" class="form-control" id="property-input" v-model="newProp" placeholder="Properties" autocomplete="off"/>
+                        </div>
+                    </div> 
+                    <button class="btn btn-primary">Submit</button>                
+                </form>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -55,21 +64,33 @@ export default {
     name: 'dm-adventurer-gear-creator',
     data(){
         return {
-            name : "",
-            description : "",
-            itemType : "",
+            name : '',
+            description : '',
+            itemType : '',
             cost : 0,
             properties: [],
-            newProp: "",
+            newProp: '',
             weight : 0
         }
     },
     methods: {
         async addProp() {
             this.properties.push(this.newProp);
+            this.newProp = '';
         },
         async create(){
             //TODO implement
+            this.name = '';
+            this.description = '';
+            this.itemType = '';
+            this.cost = 0;
+            this.weight = 0;
+            this.properties = [];
+            this.newProp = '';
+            $('#success-msg').fadeIn(250);
+            setTimeout(13000, new function(){
+                $('#success-msg').fadeOut(8500);
+            });
         }
     }
 }
@@ -103,5 +124,14 @@ export default {
     }
     .badge{
         background-color: grey;
+    }
+    .success-notification{
+        display: none;
+        position: absolute;
+        width: 88%;
+        margin-top: -4%;
+    }
+    .failure-notification{
+        display: none;        
     }
 </style>
