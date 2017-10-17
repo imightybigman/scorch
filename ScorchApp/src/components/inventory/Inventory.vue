@@ -1,15 +1,14 @@
 <template>
 <div class="card">
-  
   <div class="card-header">
     Inventory
   </div>
   <div class="card-body">
     <div id="accordion" role="tablist">
       <adventurer-gear-inventory :adventurerGears="adventurerGears"></adventurer-gear-inventory>
-      <weapon-inventory :weapons="weapons"></weapon-inventory>
-      <armor-inventory :armors="armors"></armor-inventory>
-      <quiver-inventory :quivers="quivers"></quiver-inventory>
+      <weapon-inventory @equip="equipItem" :weapons="weapons"></weapon-inventory>
+      <armor-inventory @equip="equipItem" :armors="armors"></armor-inventory>
+      <quiver-inventory @equip="equipItem" :quivers="quivers"></quiver-inventory>
     </div>
   </div>
 </div>
@@ -18,10 +17,10 @@
 </template>
 
 <script>
-import WeaponInventory from './WeaponInventory'
-import AdventurerGearInventory from './AdventurerGearInventory'
-import QuiverInventory from './QuiverInventory'
-import ArmorInventory from './ArmorInventory'
+import WeaponInventory from './weapons/WeaponInventory'
+import AdventurerGearInventory from './adventurergear/AdventurerGearInventory'
+import QuiverInventory from './quiver/QuiverInventory'
+import ArmorInventory from './armor/ArmorInventory'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -39,6 +38,15 @@ export default {
       },
       adventurerGears() {
         return this.$store.getters.getCharacterAdventurerGears(this.characterId);        
+      }
+    },
+    methods: {
+      equipItem(item) {
+        let equipPayload = {
+          characterId: this.characterId,
+          item: item
+        }
+        this.$store.dispatch('equipItem', equipPayload);
       }
     },
     components: {

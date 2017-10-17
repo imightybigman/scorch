@@ -1,6 +1,6 @@
 <template>
-    <div class="character-view d-flex flex-wrap border" v-if="character">
-        <div class="d-flex flex-column party-navigation">
+    <div class="character-view d-flex flex-wrap" v-if="character">
+        <div class="d-flex flex-column party-navigation border">
           <div class="character-cards-container" v-for="(char, index) in party" @click="goTo(char.CharacterId)" :key="index">
             <character-tile :character="char"></character-tile>
           </div>
@@ -8,15 +8,14 @@
         <div class="d-flex flex-column character-info border">
           <div class="d-flex flex-column character-basic-info">
             <h4><strong>{{ name }}</strong></h4>
-
           </div>
-          <div class="d-flex character-screen">
+          <div class="d-flex flex-row character-screen">
             <div class="d-flex flex-column character-stats-skills">
                 <character-stats-card :stats="character.Stats" :proficiency="this.character.Proficiency"></character-stats-card>
                 <character-skills-card :skills="character.Skills"></character-skills-card>          
             </div>
             <div class="d-flex character-equip justify-content-center">
-              <character-equip :character="character"></character-equip>
+              <character-equip :sex="character.Sex" :equipment="character.Equipment || {}"></character-equip>
             </div>
             <div class="d-flex character-spells">
               <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
@@ -25,7 +24,7 @@
           <div class="d-flex notes black-border">
           </div>    
         </div>
-        <div class="d-flex flex-column character-inventory">
+        <div class="d-flex flex-column character-inventory border">
           <inventory :characterId="character.CharacterId"></inventory>
         </div>
       </div>
@@ -59,7 +58,7 @@
         return this.$store.getters.myParty;
       },
       character() {
-        return this.$store.getters.getCharacterById(this.characterId)
+        return this.$store.getters.getCharacterById(this.characterId);
       }
     },
     methods: {
@@ -87,13 +86,12 @@
   }
 
   .character-view {
-    flex: 1 0 auto;
+    width: 100%;
   }
 
   .party-navigation {
     padding: 1%;
-    flex: 1;
-    flex-grow: 1;
+    flex: 1 0 auto;
     overflow-y: scroll;
     
     .character-cards-container {
@@ -104,46 +102,43 @@
   }
 
   .character-info {
-    flex: 1;
-    flex-grow: 3;
+    flex: 1 0 auto;
+
     .character-screen {
       flex: 1 0 auto;
-      flex-grow: 5.5;
 
       >div {
         margin: 1%;
       }
 
       .character-stats-skills {
-        flex: 1;
-        flex-grow: 1;
+        flex:auto;
         > div {
           margin-bottom: 1%;
         }
       }
 
       .character-equip {
-        flex: 1;
+        flex:auto;
         flex-grow: 2;
       }
 
       .character-spells {
-        flex: 1;
-        flex-grow: 1;
+        flex:auto;
       }
     }
     .character-basic-info {
+      flex: auto;
       padding: 1% 0 0 1%;
     }
     .notes {
-      flex: 1 0 auto;
+      flex:auto;
       height: 200px;
     }
   }
 
   .character-inventory {
-    flex: 1;
-    flex-grow: 1;
+    flex: 1 0 auto;
   }
 
 

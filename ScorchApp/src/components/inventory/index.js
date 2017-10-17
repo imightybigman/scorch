@@ -1,8 +1,8 @@
 import Inventory from './Inventory'
-import WeaponInventory from './WeaponInventory'
-import AdventurerGearInventory from './AdventurerGearInventory'
-import QuiverInventory from './QuiverInventory'
-import ArmorInventory from './ArmorInventory'
+import WeaponInventory from './weapons/WeaponInventory'
+import AdventurerGearInventory from './adventurergear/AdventurerGearInventory'
+import QuiverInventory from './quiver/QuiverInventory'
+import ArmorInventory from './armor/ArmorInventory'
 
 export {
     Inventory,

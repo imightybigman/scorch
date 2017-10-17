@@ -3,7 +3,7 @@
     <div class="card-header" role="tab" id="weapos">
         <h5 class="mb-0">
         <a data-toggle="collapse" href="#adventurerGearInventory" aria-expanded="false" aria-controls="adventurerGearInventory">
-            Adventurer Gears
+            Adventure Gear
         </a>
         </h5>
     </div>
@@ -13,7 +13,9 @@
                  @click="adventurerGearClick(adventurerGear)" 
                  :key="index" 
                  class="list-group-item list-group-item-action">
-                {{ adventurerGear.Name }}
+                <div class="d-flex align-items-center justify-content-between">
+                    <span>{{ adventurerGear.Name }}</span>            
+                </div>
             </div>
         </div>
         </div>
@@ -28,7 +30,13 @@ export default {
     methods: {
         adventurerGearClick() {
 
-        }
+        },
+        equipAdventurerGear(adventurerGear, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            console.log('equip')
+        }   
     }
 }
 </script>

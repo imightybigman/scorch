@@ -1,6 +1,7 @@
 import { CharacterService } from 'services'
 import sortBy from 'lodash/sortBy'
 import * as types from '../mutation-types'
+import Vue from 'vue'
 
 // initial state
 const state = {
@@ -31,6 +32,9 @@ const getters = {
     getCharacterQuivers: (state, getters) => (id) => {
         let inventory = state.party.find(char => char.CharacterId === id).Inventory;
         return inventory.filter(item => item.ItemClass === 'Quiver');
+    },
+    getCharacterEquipment: (state, getters) => (id) => {
+        return state.party.find(char => char.CharacterId === id).Equipment || { };
     }
 }
 
@@ -53,6 +57,10 @@ const actions = {
             payload.addedSpell = response.body;
             commit(types.ADD_SPELL, payload);
         }
+    },
+    equipItem({ commit }, payload) {
+ 
+        commit(types.EQUIP_ITEM, payload);
     }
 }
 
@@ -77,18 +85,31 @@ const mutations = {
     },
     [types.ADD_SPELL] (state, payload) {
         let id = payload.characterId;
-        let spell = payload.addedSpell;
+        let addedSpell = payload.addedSpell;
 
         for(let i = 0; i < state.party.length; i++) {
             let ch = state.party[i];
             if(ch.CharacterId === id) {
-                ch.Spells.push(spell);
+                ch.Spells.push(addedSpell);
                 state.party[i].Spells = sortBy(ch.Spells, (s) => s.Name);
                 break;                
             }
         }
-
-        
+    }, 
+    [types.EQUIP_ITEM] (state, payload) {
+        let id = payload.characterId;
+        let item = payload.item;
+        for(let i = 0; i < state.party.length; i++) {
+            let ch = state.party[i];
+            if(ch.CharacterId === id) {
+                if (!state.party[i].Equipment) {
+                    state.party[i].Equipment = {};
+                }
+                let equipment = state.party[i].Equipment;
+                state.party[i].Equipment = { ...state.party[i].Equipment, [item.Slot] : item };
+                break;                
+            }
+        }
     }
 }
 

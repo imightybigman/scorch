@@ -13,7 +13,10 @@
                  @click="quiverClick(quiver)" 
                  :key="index" 
                  class="list-group-item list-group-item-action">
-                {{ quiver.Name }}
+                <div class="d-flex align-items-center justify-content-between">
+                    <span>{{ quiver.Name }}</span>            
+                    <button class="btn btn-primary" @click="equipQuiver(quiver, $event)">+</button>
+                </div>
             </div>
         </div>
     </div>
@@ -27,6 +30,13 @@ export default {
     methods: {
         quiverClick() {
 
+        },
+        equipQuiver(quiver, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+
+            this.$emit('equip', quiver);
         }
     }
 }

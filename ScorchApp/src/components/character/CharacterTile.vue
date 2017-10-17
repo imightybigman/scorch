@@ -2,13 +2,13 @@
 <div class="character-tile list-group">
   <a class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex flex-row w-100 justify-content-between">
-        <div class="d-flex icon align-items-center">
-          <img :class="classIcon" src="~assets/icons/class-icons.jpg">
+        <div class="d-flex flex-column icon align-items-center">
+            <small class="level">Lv. {{ this.character.Level }}</small>
+            <img :class="classIcon" src="~assets/icons/class-icons.jpg">
       </div>
       <div class="d-flex flex-column character-stats">
         <div class="d-flex justify-content-between">
         <h5>{{ name }}</h5>
-        <small class="level">Lv. {{ this.character.Level }}</small>
         </div>
         <hp-bar :character="character"></hp-bar>
         <exp-bar :character="character"></exp-bar>
@@ -62,13 +62,10 @@ img {
 }
 
 .character-stats {
-    flex:1;
-    flex-grow: 8;
+    flex: auto;
 }
 
 .icon {
-    flex: 1;
-    flex-grow: 1;
     margin-right: 10%;
 }
 
