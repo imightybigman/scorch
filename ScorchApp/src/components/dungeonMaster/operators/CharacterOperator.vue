@@ -9,7 +9,7 @@
                 <label for="modify-exp">Modify Exp : </label>
                 <input type="number" class="form-control" id="modify-exp" v-model="deltaExp" placeholder="Exp Change" autocomplete="off"/>
             </div>
-            <button class="btn btn-default">Submit</button>
+            <button class="btn btn-primary">Submit</button>
         </form>
     </div>
 </template>
@@ -43,7 +43,6 @@ export default {
                 
                 await this.$store.dispatch('updateCharacter', payload);
             });
-
         }
     }
 }
