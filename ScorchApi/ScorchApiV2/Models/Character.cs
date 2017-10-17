@@ -59,8 +59,9 @@ namespace ScorchApiV2.Models
         {
             if(weapon.Slot == "MainHand")
             {
-
+                Equipment.MainHand = weapon;
             }
+            if(weapon.Slot == "OffHand")
             return Equipment;
         }
 
