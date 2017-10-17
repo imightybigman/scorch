@@ -16,6 +16,7 @@ Vue.url.options.root = "https://dnd-api.imightybigman.com/api"
 //Vue.url.options.root = "http://localhost:5000/api"
 
 
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

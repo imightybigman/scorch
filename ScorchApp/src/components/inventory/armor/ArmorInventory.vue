@@ -14,7 +14,10 @@
                  :key="index" 
                  class="list-group-item list-group-item-action">
                 <div class="d-flex align-items-center justify-content-between">
-                    <span>{{ armor.Name }}</span>            
+                    <div class="d-flex flex-column">
+                        <span>{{ armor.Name }}</span>
+                        <small>AC {{ armor.AC }} </small>        
+                    </div>          
                     <button class="btn btn-primary" @click="equipArmor(armor, $event)">+</button>
                 </div>
             </div>

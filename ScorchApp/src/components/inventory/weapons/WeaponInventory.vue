@@ -23,8 +23,8 @@
                  class="list-group-item list-group-item-action ">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex flex-column">
-                    <span>{{ weapon.Name }}</span>
-                    <small>{{ weapon.Damage }} </small>        
+                        <span>{{ weapon.Name }}</span>
+                        <small>Damage {{ weapon.Damage }} </small>        
                     </div>
                     <button class="btn btn-primary" @click="equipWeapon(weapon, $event)">+</button>
                 </div>
