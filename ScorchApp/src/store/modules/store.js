@@ -14,6 +14,7 @@ const getters = {
 // actions
 const actions = {
     async addItem({ commit }, payload) {
+        console.log(payload.body);
         let response = await ItemService.postItem(payload.body);
         if(response.status === 200){
             commit(types.ADD_ITEM, response.body);

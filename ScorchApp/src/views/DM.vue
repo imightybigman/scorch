@@ -5,10 +5,6 @@
                 <dungeon-master-main></dungeon-master-main>
             </v-tab>
 
-            <v-tab title="Battle Planner">
-            Second tab content
-            </v-tab>
-
             <v-tab title="Inventory Manager">
                 <dungeon-master-inventory-manager></dungeon-master-inventory-manager>
             </v-tab>

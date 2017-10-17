@@ -39,10 +39,9 @@
                         </div>
                     </div>
                     <div class="properties">
-                        <label class="property-label"> Properties </label>
+                        <label class="property-label">Properties</label>
                         <div class="property-holder">
                             <div class="property-list-items" v-for="(prop, index) in properties" :key="index">
-                                <!-- <li class="list-group-item"><b>{{prop}}</b></li> -->
                                 <span class="badge badge-pill badge-default">{{prop}}</span>
                             </div>
                         </div>
@@ -79,7 +78,26 @@ export default {
             this.newProp = '';
         },
         async create(){
-            //TODO implement
+            let payload = {};
+            let body = {};
+
+            body.Name = this.name;
+            body.Description = this.description;
+            body.ItemType = this.itemType;
+            body.Cost = this.cost;
+            body.Weight = this.weight;
+            body.Properties = this.properties;
+
+            payload.body = body;
+            await this.$store.dispatch('addItem', payload);
+            clearFields();
+            
+            $('#success-msg').fadeIn(250);
+            setTimeout(13000, new function(){
+                $('#success-msg').fadeOut(8500);
+            });
+        },
+        clearFields(){
             this.name = '';
             this.description = '';
             this.itemType = '';
@@ -87,10 +105,6 @@ export default {
             this.weight = 0;
             this.properties = [];
             this.newProp = '';
-            $('#success-msg').fadeIn(250);
-            setTimeout(13000, new function(){
-                $('#success-msg').fadeOut(8500);
-            });
         }
     }
 }
@@ -111,6 +125,7 @@ export default {
     }
     .property-list-items {
         float:left;
+        font-size:medium;
     }
     .property-holder {
         padding:1%;
