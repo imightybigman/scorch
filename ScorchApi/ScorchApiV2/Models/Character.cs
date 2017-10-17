@@ -33,9 +33,46 @@ namespace ScorchApiV2.Models
 
         public void OrganizeAbilities()
         {
+            Equipment = new Equipment();
             Traits = Traits.OrderBy(t => t.Name).ToList();
             Skills = Skills.OrderBy(s => s.Name).ToList();
             Spells = Spells.OrderBy(s => s.Name).ToList();
+        }
+
+        public Equipment Equip(IItem equipment)
+        {
+            var itemClass = equipment.ItemClass;
+            switch (itemClass)
+            {
+                case "Weapon":
+                    return EquipWeapon((Weapon)equipment);
+                case "Armor":
+                    return EquipArmor((Armor)equipment);
+                case "Quiver":
+                    return EquipQuiver((Quiver)equipment);
+                default:
+                    return Equipment;
+            }
+        }
+
+        private Equipment EquipWeapon(Weapon weapon)
+        {
+            if(weapon.Slot == "MainHand")
+            {
+                Equipment.MainHand = weapon;
+            }
+            if(weapon.Slot == "OffHand")
+            return Equipment;
+        }
+
+        private Equipment EquipArmor(Armor weapon)
+        {
+            return Equipment;
+        }
+
+        private Equipment EquipQuiver(Quiver weapon)
+        {
+            return Equipment;
         }
 
     }
