@@ -2,18 +2,18 @@
     <div class="dm-inventory-component d-flex">
         <div class="item-creator flex-column">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="item-creator-dd-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Create
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <button class="dropdown-item" type="button" v-on:click="state=1">Create Adv. Gear</button>
-                    <button class="dropdown-item" type="button" v-on:click="state=2">Create Armor</button>
-                    <button class="dropdown-item" type="button" v-on:click="state=3">Create Quiver</button>
-                    <button class="dropdown-item" type="button" v-on:click="state=4">Create Weapon</button>
+                <div class="dropdown-menu" aria-labelledby="item-creator-dropdown">
+                    <button class="dropdown-item" type="button" v-on:click="state='createAG'">Create Adv. Gear</button>
+                    <button class="dropdown-item" type="button" v-on:click="state='createArmor'">Create Armor</button>
+                    <button class="dropdown-item" type="button" v-on:click="state='createQuiver'">Create Quiver</button>
+                    <button class="dropdown-item" type="button" v-on:click="state='createWeapon'">Create Weapon</button>
                 </div>
             </div>
             <div>
-                <adventurer-gear-creator v-if="state == 1" />
+                <adventurer-gear-creator v-if="state == 'createAG'" />
             </div>
 
         </div>
@@ -35,13 +35,8 @@ export default {
     
     data() {
       return {
-        state : 0
+        state : ''
       }
-    },
-    methods: {
-        doNothing() {
-            
-        }
     },
     computed: {
 

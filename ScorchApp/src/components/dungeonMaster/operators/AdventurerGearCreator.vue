@@ -56,10 +56,6 @@ export default {
         }
     },
     methods: {
-        async create() {
-            
-            console.log("");
-        },
         async addProp() {
             this.properties.push(this.newProp);
         }
