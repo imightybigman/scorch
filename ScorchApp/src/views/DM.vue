@@ -9,16 +9,25 @@
             Second tab content
             </v-tab>
 
+            <v-tab title="Inventory Manager">
+                <dungeon-master-inventory-manager></dungeon-master-inventory-manager>
+            </v-tab>
+
             <v-tab title="Campaign Notes">
                 <dungeon-master-notes></dungeon-master-notes>
             </v-tab>
+
+            <v-tab title="Log">
+                This'll be the log... too many tabs?
+            </v-tab>
+
         </vue-tabs>
     </div>
 </template>
 
 <script>
 import { VueTabs, VTab } from 'vue-nav-tabs'
-import { DungeonMasterMain, DungeonMasterNotes } from 'components/dungeonMaster'
+import { DungeonMasterMain, DungeonMasterNotes, DungeonMasterInventoryManager } from 'components/dungeonMaster'
 import 'vue-nav-tabs/themes/vue-tabs.css'
 
 export default {
@@ -27,7 +36,8 @@ export default {
         VueTabs,
         VTab,
         DungeonMasterMain,
-        DungeonMasterNotes
+        DungeonMasterNotes,
+        DungeonMasterInventoryManager
     }
 }
 </script>

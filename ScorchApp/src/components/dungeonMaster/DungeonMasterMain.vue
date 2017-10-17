@@ -16,7 +16,7 @@
 
 <script>
     import { CharacterTile } from 'components/character'
-    import CharacterOperator from './CharacterOperator.vue'
+    import CharacterOperator from './operators/CharacterOperator.vue'
 
 export default {
     name : 'dm-main-component',
