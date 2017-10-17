@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
+using ScorchApiV2.Middleware;
 
 namespace ScorchApiV2
 {
@@ -59,8 +60,7 @@ namespace ScorchApiV2
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Scorch API V1");
             });
-
-            app.UseDeveloperExceptionPage();
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
             app.UseMvc();
 
         }

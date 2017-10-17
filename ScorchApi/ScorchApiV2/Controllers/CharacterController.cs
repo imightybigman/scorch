@@ -152,5 +152,11 @@ namespace ScorchApiV2.Controllers
             var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
             await characterTable.UpdateItemAsync(updateDocument);
         }
+
+        [HttpPut("{characterId}/equipment")]
+        public async Task<Equipment> PutCharacterEquipment(Guid characterId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))] IItem equipment)
+        {
+            throw new NotImplementedException("reaspons");
+        } 
     }
 }
