@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ScorchApiV2.Models
+﻿namespace ScorchApiV2.Models
 {
     public class Skill
     {

@@ -145,6 +145,7 @@ namespace ScorchApiV2.Controllers
 
         [HttpDelete("{characterId}/spells/{spellId}")]
         public async Task DeleteSpell(Guid characterId, Guid spellId)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             var character = await GetCharacter(characterId);
             character.Spells.RemoveAll(x => x.SpellId == spellId);
