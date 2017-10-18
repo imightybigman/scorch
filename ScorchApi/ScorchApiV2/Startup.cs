@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.PlatformAbstractions;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
 using ScorchApiV2.Middleware;
+using System;
 
 namespace ScorchApiV2
 {
@@ -40,7 +40,7 @@ namespace ScorchApiV2
                 c.SwaggerDoc("v1", new Info { Title = "Scorch API", Version = "v2" });
 
                 // Set the comments path for the Swagger JSON and UI.
-                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var basePath = AppDomain.CurrentDomain.BaseDirectory;
                 var xmlPath = Path.Combine(basePath, "ScorchApi.xml");
                 c.IncludeXmlComments(xmlPath);
             });
