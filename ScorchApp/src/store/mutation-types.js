@@ -4,3 +4,4 @@ export const ADD_SPELL          = 'ADD_SPELL';
 export const GET_ITEM           = 'GET_ITEM';
 export const ADD_ITEM           = 'ADD_ITEM';
 export const EQUIP_ITEM         = 'EQUIP_ITEM';
+export const UNEQUIP_ITEM       = 'UNEQUIP_ITEM';

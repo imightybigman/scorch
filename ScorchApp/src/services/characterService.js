@@ -10,5 +10,13 @@ export default {
     putCharacterSpell(id, spell) {
         let endpoint = `character/${id}/spells`;
         return Vue.http.put(endpoint, spell)
+    },
+    equipItem(id, item) {
+        let endpoint = `character/${id}/equipment`;
+        return Vue.http.put(endpoint, item);
+    },
+    unequipItem(id, slot){
+        let endpoint = `character/${id}/equipment`;
+        return Vue.http.delete(endpoint, { params: { slot: slot } });
     }
 }

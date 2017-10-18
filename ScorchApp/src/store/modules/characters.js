@@ -58,9 +58,11 @@ const actions = {
             commit(types.ADD_SPELL, payload);
         }
     },
-    equipItem({ commit }, payload) {
- 
-        commit(types.EQUIP_ITEM, payload);
+    async equipItem({ commit }, payload) {
+        let response = await CharacterService.equipItem(payload.characterId, payload.item);
+        if(response.status === 200) {
+            commit(types.EQUIP_ITEM, payload);
+        }
     }
 }
 

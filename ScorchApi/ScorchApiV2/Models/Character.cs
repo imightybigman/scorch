@@ -22,7 +22,7 @@ namespace ScorchApiV2.Models
         public int Level                { get; set; }
         public int Proficiency          { get; set; }
         public Stats Stats              { get; set; }
-        public Equipment Equipment      { get; set; } 
+        public Equipment Equipment      { get; set; } = new Equipment();
         public List<Trait> Traits       { get; set; } = new List<Trait>();
         public List<Skill> Skills       { get; set; } = new List<Skill>();
         public List<Spell> Spells       { get; set; } = new List<Spell>();

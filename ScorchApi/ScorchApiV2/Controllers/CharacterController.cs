@@ -60,6 +60,7 @@ namespace ScorchApiV2.Controllers
         public async Task<Character> PostCharacter([FromBody]Character character)
         {
             character.CharacterId = Guid.NewGuid();
+            
             var document = Document.FromJson(JsonConvert.SerializeObject(character));
 
             await characterTable.PutItemAsync(document);
