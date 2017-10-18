@@ -33,7 +33,6 @@ namespace ScorchApiV2.Models
 
         public void OrganizeAbilities()
         {
-            Equipment = new Equipment();
             Traits = Traits.OrderBy(t => t.Name).ToList();
             Skills = Skills.OrderBy(s => s.Name).ToList();
             Spells = Spells.OrderBy(s => s.Name).ToList();
