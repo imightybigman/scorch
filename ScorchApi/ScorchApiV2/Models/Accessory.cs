@@ -13,6 +13,7 @@ namespace ScorchApiV2.Models
         public string ItemType          { get; set; }
         public string Cost              { get; set; }
         public int Weight               { get; set; }
+        public string Slot              { get; set; }
         public List<string> Properties  { get; set; }
 
         public Accessory() { }

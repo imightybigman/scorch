@@ -8,8 +8,8 @@
         public Armor Legs                   { get; set; }
         public Armor Gauntlets              { get; set; }
         public Armor Boots                  { get; set; }
-        public Accessory LeftAccessory      { get; set; }
-        public Accessory RightAccessory     { get; set; }
+        public Accessory LeftRing           { get; set; }
+        public Accessory RightRing          { get; set; }
         public Weapon MainHand              { get; set; }
         public Weapon OffHand               { get; set; }
         public Quiver Quiver                { get; set; }
