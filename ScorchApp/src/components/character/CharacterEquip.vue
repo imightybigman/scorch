@@ -1,7 +1,7 @@
 <template>
 <div class="character-equip">
   <div class="card">
-    <img class="card-img-top" v-if="sex == 'Male'" src="~assets/dnd-male.jpg" alt="Card image cap">
+    <img class="card-img-top" v-if="this.character.Sex == 'Male'" src="~assets/dnd-male.jpg" alt="Card image cap">
     <img class="card-img-top" v-else src="~assets/dnd-female.jpg" alt="Card image cap">
     <div class="equipment helm">
       <img v-if="equipment.Helm" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
@@ -38,7 +38,7 @@
     </div>
   </div>
   <context-menu id="context-menu" @ctx-open="onCtxOpen" ref="ctxMenu">
-    <li class="ctx-item" @click="contextClick">Details</li>
+    <li class="ctx-item" @click="detailClick($event, item)">Details</li>
     <li class="ctx-item" @click="unequip($event, item)">Unequip</li>
   </context-menu>
 </div>
@@ -51,10 +51,15 @@ import contextMenu from 'vue-context-menu'
 
 export default {
   name: 'character-equip-card',
-  props: ['sex','equipment'],
+  props: ['character'],
   data() {
     return {
       item: {}
+    }
+  },
+  computed: {
+    equipment() {
+      return this.character.Equipment || { }; 
     }
   },
   watch: {
@@ -75,7 +80,12 @@ export default {
       console.log('hahaha')
     },
     unequip($event, item) {
-      console.log(this.item)
+      let payload = {
+        characterId: this.character.CharacterId,
+        slot: item.Slot
+      };
+
+      this.$store.dispatch('unequipItem', payload);
     }
   },
   components: {

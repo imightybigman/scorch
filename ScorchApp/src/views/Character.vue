@@ -15,7 +15,7 @@
                 <character-skills-card :skills="character.Skills"></character-skills-card>          
             </div>
             <div class="d-flex character-equip justify-content-center">
-              <character-equip :sex="character.Sex" :equipment="character.Equipment || {}"></character-equip>
+              <character-equip :character="this.character"></character-equip>
             </div>
             <div class="d-flex character-spells">
               <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
