@@ -87,8 +87,7 @@ namespace ScorchApiV2.Controllers
         [HttpPatch("{characterId}")]
         public async Task PatchCharacter(Guid characterId, [FromBody]Dictionary<string, string> props)
         {
-            var document = new Document();
-            document["CharacterId"] = characterId.ToString();
+            var document = new Document {["CharacterId"] = characterId.ToString()};
             foreach (var x in props)
             {
                 document[x.Key] = x.Value;
@@ -159,9 +158,11 @@ namespace ScorchApiV2.Controllers
         {
             var character = await GetCharacter(characterId);
             character.Equip(equipment);
-            var doc = new Document();
-            doc["CharacterId"] = characterId;
-            doc["Equipment"] = Document.FromJson(JsonConvert.SerializeObject(character.Equipment));
+            var doc = new Document
+            {
+                ["CharacterId"] = characterId,
+                ["Equipment"] = Document.FromJson(JsonConvert.SerializeObject(character.Equipment))
+            };
 
             await characterTable.UpdateItemAsync(doc);
 
@@ -173,9 +174,11 @@ namespace ScorchApiV2.Controllers
         {
             var character = await GetCharacter(characterId);
             character.Unequip(slot);
-            var doc = new Document();
-            doc["CharacterId"] = characterId;
-            doc["Equipment"] = Document.FromJson(JsonConvert.SerializeObject(character.Equipment));
+            var doc = new Document
+            {
+                ["CharacterId"] = characterId,
+                ["Equipment"] = Document.FromJson(JsonConvert.SerializeObject(character.Equipment))
+            };
 
             await characterTable.UpdateItemAsync(doc);
         }
