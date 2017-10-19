@@ -114,6 +114,23 @@ namespace ScorchApiV2.Controllers
             await characterTable.UpdateItemAsync(updateDocument);
         }
 
+        [HttpPut("{characterId}/inventory")]
+        public async Task PutItemInInventoryByItemId(Guid characterId, Guid itemId)
+        {
+ 
+            var itemController = new ItemController();
+            var item = await itemController.GetItem(itemId);
+            if(item == null) {
+                throw new KeyNotFoundException("Item Id: " + itemId.ToString() +" was not found");
+            }
+
+            var character = await GetCharacter(characterId);
+            character.Inventory.Add(item);
+            var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
+
+            await characterTable.UpdateItemAsync(updateDocument);
+        }
+
         [HttpDelete("{characterId}/inventory")]
         public async Task DeleteItemFromInventory(Guid characterId, Guid itemId)
         {
