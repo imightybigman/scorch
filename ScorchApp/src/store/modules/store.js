@@ -3,20 +3,25 @@ import * as types from '../mutation-types'
 
 // initial state
 const state = {
-    items: []
+    items: [],
+    error: null
 }
 
 // getters
 const getters = {
     items: state => state.items,
+    error: state => state.error
 }
 
 // actions
 const actions = {
     async addItem({ commit }, payload) {
-        let response = await ItemService.postItem(payload.body);
-        if(response.status === 200){
+        let response = {};
+        try{
+            response = await ItemService.postItem(payload.body);
             commit(types.ADD_ITEM, response.body);
+        } catch(errorResponse) {
+            commit(types.API_ERROR, errorResponse.bodyText);
         }
     }
 }
@@ -25,6 +30,10 @@ const actions = {
 const mutations = {
     [types.ADD_ITEM] (state, item) {
         state.items.push(item);
+    },
+    [types.API_ERROR] (state, error){
+        error = "Item not created : " + error;
+        state.error = error;
     }
 }
 

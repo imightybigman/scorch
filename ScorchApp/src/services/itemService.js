@@ -4,7 +4,7 @@ export default {
     getItem() {
         return Vue.http.get('item');
     },
-    postItem(id, item) {
+    postItem(item) {
         return Vue.http.post('item', item);
     },
     deleteItem(id) {
