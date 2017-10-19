@@ -15,7 +15,7 @@ namespace ScorchApiV2.Models
         public int Weight           { get; set; }
 
         public string Damage                { get; set; }
-        public string DamgeType             { get; set; }
+        public string DamageType             { get; set; }
         public string Slot                  { get; set; }
         public List<string> Properties      { get; set; }
         public List<Modifiers> Modifiers    { get; set; }
