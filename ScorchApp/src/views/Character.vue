@@ -8,6 +8,8 @@
         <div class="d-flex flex-column character-info border">
           <div class="d-flex flex-column character-basic-info">
             <h4><strong>{{ name }}</strong></h4>
+            <hp-bar :character="character"></hp-bar>
+            <exp-bar :character="character"></exp-bar>
           </div>
           <div class="d-flex flex-row character-screen">
             <div class="d-flex flex-column character-stats-skills">
@@ -37,7 +39,9 @@
             CharacterStatsCard, 
             CharacterDetailCard, 
             CharacterSkillsCard, 
-            CharacterSpellsCard } from 'components/character'
+            CharacterSpellsCard,
+            ExpBar,
+            HpBar } from 'components/character'
 
   import { Inventory } from 'components/inventory'
 
@@ -73,6 +77,8 @@
       CharacterSkillsCard,
       CharacterSpellsCard,
       CharacterEquip,
+      ExpBar,
+      HpBar,
       Inventory
     }
   }
@@ -102,7 +108,7 @@
   }
 
   .character-info {
-    flex: 1 0 auto;
+    flex: 3 0 auto;
 
     .character-screen {
       flex: 1 0 auto;
@@ -112,24 +118,23 @@
       }
 
       .character-stats-skills {
-        flex:auto;
+        flex: 1 0 auto;
         > div {
           margin-bottom: 1%;
         }
       }
 
       .character-equip {
-        flex:auto;
-        flex-grow: 2;
+        flex: 1 0 auto;
       }
 
       .character-spells {
-        flex:auto;
+        flex: 3 0 auto;
       }
     }
     .character-basic-info {
-      flex: auto;
-      padding: 1% 0 0 1%;
+      flex: 1 0 auto;
+      padding: 1% 1% 0 1%;
     }
     .notes {
       flex:auto;
