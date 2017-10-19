@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
 using Amazon.DynamoDBv2.DocumentModel;
-using Newtonsoft.Json;
 using ScorchApiV2.Static;
 
 namespace ScorchApiV2.Models

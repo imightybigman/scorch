@@ -58,9 +58,17 @@ const actions = {
             commit(types.ADD_SPELL, payload);
         }
     },
-    equipItem({ commit }, payload) {
- 
-        commit(types.EQUIP_ITEM, payload);
+    async equipItem({ commit }, payload) {
+        let response = await CharacterService.equipItem(payload.characterId, payload.item);
+        if(response.status === 200) {
+            commit(types.EQUIP_ITEM, payload);
+        }
+    },
+    async unequipItem({ commit }, payload) {
+        let response = await CharacterService.unequipItem(payload.characterId, payload.slot);
+        if(response.status === 200){
+            commit(types.UNEQUIP_ITEM, payload);
+        }
     }
 }
 
@@ -107,6 +115,17 @@ const mutations = {
                 }
                 let equipment = state.party[i].Equipment;
                 state.party[i].Equipment = { ...state.party[i].Equipment, [item.Slot] : item };
+                break;                
+            }
+        }
+    },
+    [types.UNEQUIP_ITEM] (state, payload) {
+        let id = payload.characterId;
+        let slot = payload.slot;
+        for(let i = 0; i < state.party.length; i++) {
+            let ch = state.party[i];
+            if(ch.CharacterId === id) {
+                state.party[i].Equipment = { ...state.party[i].Equipment, [slot] : null };
                 break;                
             }
         }

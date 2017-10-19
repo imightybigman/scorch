@@ -41,12 +41,12 @@ export default {
       }
     },
     methods: {
-      equipItem(item) {
+      async equipItem(item) {
         let equipPayload = {
           characterId: this.characterId,
           item: item
         }
-        this.$store.dispatch('equipItem', equipPayload);
+        await this.$store.dispatch('equipItem', equipPayload);
       }
     },
     components: {

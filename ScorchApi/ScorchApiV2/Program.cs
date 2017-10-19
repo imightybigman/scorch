@@ -13,7 +13,6 @@ namespace ScorchApiV2
                 .UseSetting("detailedErrors", "true")
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseApplicationInsights()
                 .Build();
 
             host.Run();

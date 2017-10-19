@@ -19,6 +19,8 @@ namespace ScorchApiV2.Interfaces
                     return new Armor();
                 case "Quiver":
                     return new Quiver();
+                case "Accessory":
+                    return new Accessory();
                 default:
                     return new AdventurerGear();
             }

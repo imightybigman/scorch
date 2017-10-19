@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using ScorchApiV2.Interfaces;
 
 namespace ScorchApiV2.Models
 {

@@ -1,8 +1,8 @@
 import json
 import requests
 
-# apiUrl = "http://localhost:5000/api/character"
-apiUrl = "https://dnd-api.imightybigman.com/api/character"
+apiUrl = "http://localhost:5000/api/character"
+#apiUrl = "https://dnd-api.imightybigman.com/api/character"
 
 def createSkill(skill):
     skill = list(skill)[0]
@@ -100,6 +100,20 @@ def buildSpells(spells):
 
     return mySpells
 
+def getEquipment():
+    return {
+    "Boots": None,
+    "Chest": None,
+    "Gauntlets": None,
+    "Helm": None,
+    "LeftRing": None,
+    "Legs": None,
+    "MainHand": None,
+    "Necklace": None,
+    "OffHand": None,
+    "Quiver": None,
+    "RightRing": None
+    }
 
 def loadCharacters(url):
     character = requests.get(url)
@@ -121,6 +135,7 @@ def loadCharacters(url):
     n['Level']          = 3
     n['Proficiency']    = 2
     n['Skills']         = buildSkills(c['skills'])
+    #n['Equipment']      = getEquipment()
 
     r = requests.post(apiUrl, json=n)
     if(r.status_code == 200):
@@ -129,9 +144,9 @@ def loadCharacters(url):
         print("Error: " + r.text)
 
 if __name__ == '__main__':
-#    loadCharacters("http://tjedens.com/chars/Kiliso.json")
+    loadCharacters("http://tjedens.com/chars/Kiliso.json")
     loadCharacters("http://tjedens.com/chars/iMightyJun.json")
-    # loadCharacters("http://tjedens.com/chars/Nightwing.json")
-    # loadCharacters("http://tjedens.com/chars/Scooty.json")
-    # loadCharacters("http://tjedens.com/chars/Redtail.json")
-    # loadCharacters("http://tjedens.com/chars/Fyreblood.json")
+    loadCharacters("http://tjedens.com/chars/Nightwing.json")
+    loadCharacters("http://tjedens.com/chars/Scooty.json")
+    loadCharacters("http://tjedens.com/chars/Redtail.json")
+    loadCharacters("http://tjedens.com/chars/Fyreblood.json")

@@ -60,6 +60,7 @@ namespace ScorchApiV2.Controllers
         public async Task<Character> PostCharacter([FromBody]Character character)
         {
             character.CharacterId = Guid.NewGuid();
+            
             var document = Document.FromJson(JsonConvert.SerializeObject(character));
 
             await characterTable.PutItemAsync(document);
@@ -87,8 +88,7 @@ namespace ScorchApiV2.Controllers
         [HttpPatch("{characterId}")]
         public async Task PatchCharacter(Guid characterId, [FromBody]Dictionary<string, string> props)
         {
-            var document = new Document();
-            document["CharacterId"] = characterId.ToString();
+            var document = new Document {["CharacterId"] = characterId.ToString()};
             foreach (var x in props)
             {
                 document[x.Key] = x.Value;
@@ -114,7 +114,7 @@ namespace ScorchApiV2.Controllers
             await characterTable.UpdateItemAsync(updateDocument);
         }
 
-        [HttpDelete("{characterId}/inventory/{itemId}")]
+        [HttpDelete("{characterId}/inventory")]
         public async Task DeleteItemFromInventory(Guid characterId, Guid itemId)
         {
             var character = await GetCharacter(characterId);
@@ -143,8 +143,9 @@ namespace ScorchApiV2.Controllers
             return spell;
         }
 
-        [HttpDelete("{characterId}/spells/{spellId}")]
+        [HttpDelete("{characterId}/spells")]
         public async Task DeleteSpell(Guid characterId, Guid spellId)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             var character = await GetCharacter(characterId);
             character.Spells.RemoveAll(x => x.SpellId == spellId);
@@ -156,7 +157,31 @@ namespace ScorchApiV2.Controllers
         [HttpPut("{characterId}/equipment")]
         public async Task<Equipment> PutCharacterEquipment(Guid characterId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))] IItem equipment)
         {
-            throw new NotImplementedException("reaspons");
-        } 
+            var character = await GetCharacter(characterId);
+            character.Equip(equipment);
+            var doc = new Document
+            {
+                ["CharacterId"] = characterId,
+                ["Equipment"] = Document.FromJson(JsonConvert.SerializeObject(character.Equipment))
+            };
+
+            await characterTable.UpdateItemAsync(doc);
+
+            return character.Equipment;
+        }
+
+        [HttpDelete("{characterId}/equipment")]
+        public async Task DeleteCharacterEquipment(Guid characterId, string slot)
+        {
+            var character = await GetCharacter(characterId);
+            character.Unequip(slot);
+            var doc = new Document
+            {
+                ["CharacterId"] = characterId,
+                ["Equipment"] = Document.FromJson(JsonConvert.SerializeObject(character.Equipment))
+            };
+
+            await characterTable.UpdateItemAsync(doc);
+        }
     }
 }

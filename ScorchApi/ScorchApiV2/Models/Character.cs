@@ -22,7 +22,7 @@ namespace ScorchApiV2.Models
         public int Level                { get; set; }
         public int Proficiency          { get; set; }
         public Stats Stats              { get; set; }
-        public Equipment Equipment      { get; set; } 
+        public Equipment Equipment      { get; set; } = new Equipment();
         public List<Trait> Traits       { get; set; } = new List<Trait>();
         public List<Skill> Skills       { get; set; } = new List<Skill>();
         public List<Spell> Spells       { get; set; } = new List<Spell>();
@@ -33,48 +33,136 @@ namespace ScorchApiV2.Models
 
         public void OrganizeAbilities()
         {
-            Equipment = new Equipment();
             Traits = Traits.OrderBy(t => t.Name).ToList();
             Skills = Skills.OrderBy(s => s.Name).ToList();
             Spells = Spells.OrderBy(s => s.Name).ToList();
         }
 
-        public Equipment Equip(IItem equipment)
+        public void Equip(IItem equipment)
         {
             var itemClass = equipment.ItemClass;
             switch (itemClass)
             {
                 case "Weapon":
-                    return EquipWeapon((Weapon)equipment);
+                    EquipWeapon((Weapon)equipment);
+                    break;
                 case "Armor":
-                    return EquipArmor((Armor)equipment);
+                    EquipArmor((Armor)equipment);
+                    break;
                 case "Quiver":
-                    return EquipQuiver((Quiver)equipment);
-                default:
-                    return Equipment;
+                    EquipQuiver((Quiver)equipment);
+                    break;
+                case "Accessory":
+                    EquipAccessory((Accessory) equipment);
+                    break;
             }
         }
 
-        private Equipment EquipWeapon(Weapon weapon)
+        public void Unequip(string slot)
+        {
+            if (slot == "Helm")
+            {
+                Equipment.Helm = null;
+            }
+            if (slot == "Necklace")
+            {
+                Equipment.Necklace = null;
+            }
+            if (slot == "Chest")
+            {
+                Equipment.Chest = null;
+            }
+            if (slot == "Legs")
+            {
+                Equipment.Legs = null;
+            }
+            if (slot == "Gauntlets")
+            {
+                Equipment.Gauntlets = null;
+            }
+            if (slot == "Boots")
+            {
+                Equipment.Boots = null;
+            }
+            if (slot == "LeftRing")
+            {
+                Equipment.LeftRing = null;
+            }
+            if (slot == "RightRing")
+            {
+                Equipment.RightRing = null;
+            }
+            if (slot == "MainHand")
+            {
+                Equipment.MainHand = null;
+            }
+            if (slot == "OffHand")
+            {
+                Equipment.OffHand = null;
+            }
+            if (slot == "Quiver")
+            {
+                Equipment.Quiver = null;
+            }
+        }
+
+        private void EquipWeapon(Weapon weapon)
         {
             if(weapon.Slot == "MainHand")
             {
                 Equipment.MainHand = weapon;
             }
-            if(weapon.Slot == "OffHand")
-            return Equipment;
+            else if(weapon.Slot == "OffHand") {
+                Equipment.OffHand = weapon;
+            }
         }
 
-        private Equipment EquipArmor(Armor weapon)
+        private void EquipArmor(Armor armor)
         {
-            return Equipment;
+            if (armor.Slot == "Chest")
+            {
+                Equipment.Chest = armor;
+            }
+            else if (armor.Slot == "Helm")
+            {
+                Equipment.Helm = armor;
+            }
+            else if (armor.Slot == "Legs")
+            {
+                Equipment.Legs = armor;
+            }
+            else if (armor.Slot == "Gauntlets")
+            {
+                Equipment.Gauntlets = armor;
+            }
+            else if (armor.Slot == "Boots")
+            {
+                Equipment.Boots = armor;
+            }
         }
 
-        private Equipment EquipQuiver(Quiver weapon)
+        private void EquipAccessory(Accessory accessory)
         {
-            return Equipment;
+            if (accessory.Slot == "Necklace")
+            {
+                Equipment.Necklace = accessory;
+            }
+            else if (accessory.Slot == "RightRing")
+            {
+                Equipment.RightRing = accessory;
+            }
+            else if (accessory.Slot == "LeftRing")
+            {
+                Equipment.LeftRing = accessory;
+            }
         }
 
+        private void EquipQuiver(Quiver quiver)
+        {
+            Equipment.Quiver = quiver;
+        }
+
+        
     }
 }
     

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -32,6 +31,8 @@ namespace ScorchApiV2.Abstract
             object existingValue,
             JsonSerializer serializer)
         {
+            if (reader.TokenType == JsonToken.Null) return null;
+
             // Load JObject from stream
             JObject jObject = JObject.Load(reader);
 
