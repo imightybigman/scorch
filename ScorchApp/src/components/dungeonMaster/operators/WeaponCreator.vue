@@ -134,7 +134,7 @@ export default {
             body.DamageType = this.damageType;
             body.Properties = this.properties;
             body.Description = this.description;
-            body.statModifiers = this.statModifiers;
+            body.StatModifiers = this.statModifiers;
 
             payload.body = body;
             await this.$store.dispatch('addItem', payload);
