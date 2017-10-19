@@ -11,16 +11,16 @@ namespace ScorchApiV2.Models
         public string Description   { get; set; }
         public string ItemClass     { get; set; } = typeof(Weapon).Name;
         public string ItemType      { get; set; }
-        public string Cost          { get; set; }
+        public double Cost          { get; set; }
         public int Weight           { get; set; }
 
-        public string Damage                { get; set; }
-        public string DamageType            { get; set; }
-        public string Slot                  { get; set; }
-        public List<string> Properties      { get; set; }
-        public List<Modifiers> Modifiers    { get; set; }
-        public int ShortRange               { get; set; }
-        public int LongRange                { get; set; }
+        public string Damage                    { get; set; }
+        public string DamageType                { get; set; }
+        public string Slot                      { get; set; }
+        public List<string> Properties          { get; set; }
+        public List<Modifiers> StatModifiers    { get; set; }
+        public int ShortRange                   { get; set; }
+        public int LongRange                    { get; set; }
 
         public Weapon() { }
     }
