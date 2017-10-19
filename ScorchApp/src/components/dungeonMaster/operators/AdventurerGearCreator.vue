@@ -72,11 +72,6 @@ export default {
             properties: []
         }
     },
-    computed: {
-        error() {
-            return this.$store.getters.error;
-        }
-    },
     methods: {
         async addProp() {
             this.properties.push(this.newProp);
