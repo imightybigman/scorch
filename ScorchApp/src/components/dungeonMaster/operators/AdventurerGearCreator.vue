@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div class="alert alert-success success-notification" id='success-msg'>
+        <div class="alert alert-success success-notification" id='success-adv-gear-msg'>
             <strong>Success Item Added!</strong>
         </div>
-        <div class="alert alert-danger failure-notification">
+        <div class="alert alert-danger failure-notification" id='failure-adv-gear-msg'>
             <strong>Error creating Item!</strong>
         </div>
         <div class="dm-adventurer-gear-creator border border-dark">
@@ -42,7 +42,7 @@
                         <label class="property-label">Properties</label>
                         <div class="property-holder">
                             <div class="property-list-items" v-for="(prop, index) in properties" :key="index">
-                                <span class="badge badge-pill badge-default">{{prop}}</span>
+                                <span class="badge badge-pill badge-secondary">{{prop}}</span>
                             </div>
                         </div>
                         <div class="input-group">
@@ -63,13 +63,18 @@ export default {
     name: 'dm-adventurer-gear-creator',
     data(){
         return {
-            name : '',
             description : '',
             itemType : '',
-            cost : 0,
-            properties: [],
             newProp: '',
-            weight : 0
+            name : '',
+            weight : 0,
+            cost : 0,
+            properties: []
+        }
+    },
+    computed: {
+        error() {
+            return this.$store.getters.error;
         }
     },
     methods: {
@@ -80,22 +85,34 @@ export default {
         async create(){
             let payload = {};
             let body = {};
+            body.ItemClass = 'AdventurerGear';
 
-            body.Name = this.name;
             body.Description = this.description;
-            body.ItemType = this.itemType;
-            body.Cost = this.cost;
-            body.Weight = this.weight;
             body.Properties = this.properties;
+            body.ItemType = this.itemType;
+            body.Weight = this.weight;
+            body.Cost = this.cost;
+            body.Name = this.name;
 
             payload.body = body;
             await this.$store.dispatch('addItem', payload);
-            clearFields();
+            if(this.$store.getters.error){
+                console.log("Encountered an error during item creation : " + this.error);
+
+                $('#failure-adv-gear-msg').fadeIn(0);
+                setTimeout(13000, new function(){
+                    $('#failure-adv-gear-msg').fadeOut(5000);
+                });
+            }
+            else{
+                this.clearFields();
+
+                $('#success-adv-gear-msg').fadeIn(0);
+                setTimeout(13000, new function(){
+                    $('#success-adv-gear-msg').fadeOut(5000);
+                });
+            }
             
-            $('#success-msg').fadeIn(250);
-            setTimeout(13000, new function(){
-                $('#success-msg').fadeOut(8500);
-            });
         },
         clearFields(){
             this.name = '';
@@ -132,13 +149,9 @@ export default {
     }   
     .numeric-entry {
         padding-right:2%;
-        // padding-right:2%;
     }
     .property-label {
         margin-bottom:1%;
-    }
-    .badge{
-        background-color: grey;
     }
     .success-notification{
         display: none;
@@ -147,6 +160,9 @@ export default {
         margin-top: -4%;
     }
     .failure-notification{
-        display: none;        
+        display: none;       
+        position: absolute;
+        width: 88%;
+        margin-top: -4%; 
     }
 </style>
