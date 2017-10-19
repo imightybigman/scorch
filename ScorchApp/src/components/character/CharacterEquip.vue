@@ -1,60 +1,63 @@
 <template>
 <div class="character-equip">
-<div class="card">
-  <img class="card-img-top" v-if="this.character.Sex == 'Male'" src="~assets/dnd-male.jpg" alt="Card image cap">
-  <img class="card-img-top" v-else src="~assets/dnd-female.jpg" alt="Card image cap">
-  <div class="equipment helm">
-    <img  v-if="equipment.Helm" 
-          class="equipped" 
-          src="~assets/items/stock.jpg" 
-          @contextmenu.prevent="$refs.ctxMenu.open($event, equipment.Helm)"
-          data-toggle="tooltip" 
-          data-placement="left" 
-          :title="equipment.Helm.Prop"
-          alt="Card image cap">
+  <div class="card">
+    <img class="card-img-top" v-if="this.character.Sex == 'Male'" src="~assets/dnd-male.jpg" alt="Card image cap">
+    <img class="card-img-top" v-else src="~assets/dnd-female.jpg" alt="Card image cap">
+    <div class="equipment helm">
+      <img  v-if="equipment.Helm" 
+            class="equipped" 
+            src="~assets/items/stock.jpg" 
+            @contextmenu.prevent="$refs.ctxMenu.open($event, equipment.Helm)"
+            data-toggle="tooltip" 
+            data-placement="left" 
+            :title="equipment.Helm.Name"
+            alt="Card image cap" />
+    </div>
+    <div class="equipment necklace">
+      <img v-if="equipment.Necklace" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment chest">
+      <img v-if="equipment.Chest" data-toggle="tooltip" data-placement="left" :title="equipment.Chest.AC" class="equipped" src="~assets/items/stock.jpg"
+        alt="Card image cap">
+    </div>
+    <div class="equipment gauntlets">
+      <img v-if="equipment.Gauntlets" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment legs">
+      <img v-if="equipment.Legs" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment boots">
+      <img v-if="equipment.Boots" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment leftring">
+      <img v-if="equipment.LeftRing" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment rightring">
+      <img v-if="equipment.RightRing" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment mainhand">
+      <img  v-if="equipment.MainHand" 
+            class="equipped" 
+            src="~assets/items/stock.jpg" 
+            @contextmenu.prevent="$refs.ctxMenu.open($event, equipment.MainHand)"
+            data-toggle="tooltip" 
+            data-placement="left" 
+            :title="equipment.MainHand.Damage"
+            alt="Card image cap" />
+    </div>
+    <div class="equipment offhand">
+      <img v-if="equipment.OffHand" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
+    <div class="equipment quiver">
+      <img v-if="equipment.Quiver" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
+    </div>
   </div>
-  <div class="equipment necklace">
-    <img v-if="equipment.Necklace" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
-  </div>
-  <div class="equipment chest">
-    <img v-if="equipment.Chest" data-toggle="tooltip" data-placement="left" :title="equipment.Chest.AC" class="equipped" src="~assets/items/stock.jpg"
-      alt="Card image cap">
-  </div>
-  <div class="equipment gauntlets">
-    <img v-if="equipment.Gauntlets" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
-  </div>
-  <div class="equipment legs">
-    <img v-if="equipment.Legs" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
-  </div>
-  <div class="equipment boots">
-    <img v-if="equipment.Boots" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
-  </div>
-  <div class="equipment leftring">
-    <img v-if="equipment.LeftRing" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
-  </div>
-  <div class="equipment rightring">
-    <img v-if="equipment.RightRing" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
-  </div>
-  <div class="equipment mainhand">
-    <img v-if="equipment.MainHand" @contextmenu.prevent="$refs.ctxMenu.open($event, equipment.MainHand)" data-toggle="tooltip"
-      data-placement="left" :title="displayDamage(equipment.MainHand.Damage)" class="equipped" src="~assets/items/stock.jpg"
-      alt="Card image cap">
-  </div>
-  <div class="equipment offhand">
-    <img v-if="equipment.OffHand" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
-  </div>
-  <div class="equipment quiver">
-    <img v-if="equipment.Quiver" class="equipped" src="~assets/items/stock.jpg" alt="Card image cap">
-  </div>
+
+    <context-menu id="context-menu" @ctx-open="onCtxOpen" ref="ctxMenu">
+      <li class="ctx-item" @click="detailClick($event, item)">Details</li>
+      <li class="ctx-item" @click="unequip($event, item)">Unequip</li>
+    </context-menu>
 </div>
-
-  <context-menu id="context-menu" @ctx-open="onCtxOpen" ref="ctxMenu">
-    <li class="ctx-item" @click="detailClick($event, item)">Details</li>
-    <li class="ctx-item" @click="unequip($event, item)">Unequip</li>
-  </context-menu>
-</div>
-
-
 </template>
 
 <script>
@@ -213,7 +216,6 @@ export default {
     box-sizing: border-box;
     border-radius: .5em;
     box-shadow: 0 0 15px 5px rgba(0,0,0,0.75);
-
 }
 
 </style>
