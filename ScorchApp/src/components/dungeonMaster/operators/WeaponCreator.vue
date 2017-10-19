@@ -161,7 +161,7 @@ export default {
             this.newProp = '';
             this.damage = '';
             this.name = '';
-            this.slot = '';
+            this.slot = 'OneHanded';
             this.shortRange = 0;
             this.longRange = 0;
             this.weight = 0;
