@@ -1,13 +1,13 @@
 <template>
     <div class="card">
-        <div class="card-header" role="tab" id="weapos">
+        <div class="card-header" role="tab" id="armor">
             <h5 class="mb-0">
             <a data-toggle="collapse" href="#armorInventory" aria-expanded="false" aria-controls="armorInventory">
                 Armors
             </a>
             </h5>
         </div>
-        <div id="armorInventory" class="collapse" role="tabpanel" aria-labelledby="weapos" data-parent="#accordion">
+        <div id="armorInventory" class="collapse" role="tabpanel" aria-labelledby="armor" data-parent="#accordion">
             <div class="card-body armor-list">
             <div v-for="(armor, index) in armors" 
                     @click="armorClick(armor)" 

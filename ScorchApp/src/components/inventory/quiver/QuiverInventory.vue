@@ -1,13 +1,13 @@
 <template>
     <div class="card">
-    <div class="card-header" role="tab" id="weapos">
+    <div class="card-header" role="tab" id="quiver">
         <h5 class="mb-0">
         <a data-toggle="collapse" href="#quiverInventory" aria-expanded="false" aria-controls="quiverInventory">
             Quivers
         </a>
         </h5>
     </div>
-    <div id="quiverInventory" class="collapse" role="tabpanel" aria-labelledby="weapos" data-parent="#accordion">
+    <div id="quiverInventory" class="collapse" role="tabpanel" aria-labelledby="quiver" data-parent="#accordion">
         <div class="card-body quiver-list">
         <div v-for="(quiver, index) in quivers" 
                  @click="quiverClick(quiver)" 

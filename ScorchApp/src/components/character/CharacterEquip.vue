@@ -116,7 +116,6 @@
   </div>
 
     <context-menu id="context-menu" @ctx-open="onCtxOpen" ref="ctxMenu">
-      <li class="ctx-item" @click="detailClick($event, item)">Details</li>
       <li class="ctx-item" @click="unequip($event, item)">Unequip</li>
     </context-menu>
 </div>
@@ -151,12 +150,6 @@ export default {
     },
     displayAC(ac) {
       return `AC: ${ac}`
-    },
-    onCtxOpen(locals) {
-      this.item = locals
-    },
-    contextClick() {
-      console.log('hahaha')
     },
     unequip($event, item) {
       let payload = {

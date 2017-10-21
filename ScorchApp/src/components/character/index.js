@@ -5,6 +5,7 @@ import CharacterStatsCard from './CharacterStatsCard.vue'
 import CharacterTile from './CharacterTile.vue'
 import CharacterSkillsCard from './CharacterSkillsCard.vue'
 import CharacterSpellsCard from './CharacterSpellsCard.vue'
+import CharacterBioCard from './CharacterBioCard.vue'
 
 import ExpBar from './ExpBar.vue'
 import HpBar from './HpBar.vue'
@@ -17,6 +18,7 @@ export {
     CharacterTile,
     CharacterSkillsCard,
     CharacterSpellsCard,
+    CharacterBioCard,
     ExpBar,
     HpBar
 }
