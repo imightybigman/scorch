@@ -9,6 +9,10 @@
                     <label for="damage">Damage Type</label>
                     <input type="text" id="damage" class="form-control" v-model="weapon.Damage" placeholder="e.g. Force" readonly />
                 </div>
+                <div class="form-group">
+                    <label for="damage">Damage Type</label>
+                    <input type="text" id="damage" class="form-control" v-model="weapon.Damage" placeholder="e.g. Force" readonly />
+                </div>
             </div>
         </modal>
     </div>
