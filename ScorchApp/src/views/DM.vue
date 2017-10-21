@@ -1,7 +1,7 @@
 <template>
     <div class="dm-view">
         <vue-tabs>
-            <v-tab title="General">
+            <v-tab title="Party">
                 <dungeon-master-main></dungeon-master-main>
             </v-tab>
 

@@ -13,8 +13,8 @@ namespace ScorchApiV2.Models
         public string Race              { get; set; }
         public string Class             { get; set; }
         public string Sex               { get; set; }
-        public int Age                  { get; set; }
         public string Align             { get; set; }
+        public int Age                  { get; set; }
         public int Hp                   { get; set; }
         public int MaxHp                { get; set; }
         public int Gold                 { get; set; }
