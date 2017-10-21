@@ -21,12 +21,14 @@
             <div class="card-header">
             Spells
             </div>
-            <div class="card-body text-center">
+            <div class="card-body">
             <div v-for="(spell, index) in spells" 
                  @click="spellClick(spell)" 
                  :key="index" 
                  class="list-group-item list-group-item-action">
                 <h6>{{ spell.Name }}</h6>
+                <small>Damage: {{ spell.Damage }}</small>
+                <small>Damage Type: {{ spell.DamageType }}</small>                
             </div>
             <div class="list-group-item list-group-item-action">
                 <button class="btn btn-block btn-primary" @click="showSpellAddModal = true">+</button>

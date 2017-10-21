@@ -18,7 +18,7 @@
                         <div class="d-flex flex-column">
                             <span>{{ weapon.Name }}</span>
                             <small>{{ weapon.Slot }}</small>
-                            <small>Damage {{ weapon.Damage }} </small>        
+                            <small>Damage: {{ weapon.Damage }} </small>        
                         </div>
                         <button class="btn btn-primary" @click="equipWeapon(weapon, $event)">+</button>
                     </div>

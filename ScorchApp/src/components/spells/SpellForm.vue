@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="form spell-form">
         <div class="form-group">
             <label for="spellName">Spell Name</label>
             <input type="text" id="spellName" class="form-control" v-model="name" placeholder="Spell Name" />
@@ -13,12 +13,12 @@
             <input type="text" id="spellDamage" class="form-control" v-model="damage" placeholder="e.g. 1d8" />
         </div>
         <div class="form-group">
-            <label for="spellDuration">Spell Duration</label>
-            <input type="text" id="spellDuration" class="form-control" v-model="duration" placeholder="e.g. 1 Hour" />
+            <label for="spellType">Damage Type</label>
+            <input type="text" id="spellType" class="form-control" v-model="damageType" placeholder="e.g. Force" />
         </div>
         <div class="form-group">
-            <label for="spellType">Spell Type</label>
-            <input type="text" id="spellType" class="form-control" v-model="spellType" placeholder="e.g. Force" />
+            <label for="spellDuration">Spell Duration</label>
+            <input type="text" id="spellDuration" class="form-control" v-model="duration" placeholder="e.g. 1 Hour" />
         </div>
         <div class="form-group">
             <label for="range">Range</label>
@@ -40,7 +40,7 @@ export default {
             description: undefined,
             damage: undefined,
             duration: undefined,
-            spellType: undefined,
+            damageType: undefined,
             range: undefined
         }
     },
@@ -51,7 +51,7 @@ export default {
                 Description: this.description,
                 Damage: this.damage,
                 Duration: this.duration,
-                SpellType: this.spellType,
+                DamageType: this.damageType,
                 Range: this.range
             }
 
@@ -62,5 +62,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.spell-form {
+    max-height: 400px;
+    overflow-y: scroll;
+}
 </style>
