@@ -12,7 +12,7 @@ namespace ScorchApiV2.Interfaces
         string Description      { get; set; }
         string ItemClass        { get; set; }
         string ItemType         { get; set; }
-        string Cost             { get; set; }
+        double Cost             { get; set; }
         int Weight              { get; set; }
         List<string> Properties { get; set; }
     }
