@@ -19,8 +19,8 @@
   </modal>
   <div class="card spell-card">
     <div class="card-header" role="tab" id="character-spells">
-      <h5 class="mb-0">
-        <a data-toggle="collapse" href="#spells" aria-expanded="false" aria-controls="spells">Spell</a>
+      <h5 class="mb-0" data-toggle="collapse">
+        <a href="#spells" aria-expanded="false" aria-controls="spells">Spell</a>
       </h5>
     </div>
     <div id="spells" class="collapse" role="tabpanel" aria-labelledby="character-spells" data-parent="#accordion">

@@ -145,6 +145,10 @@ export default {
     }
   },
   methods: {
+    onCtxOpen(locals) {
+      console.log('open', locals)
+      this.menuData = locals
+    },
     displayDamage(damage) {
       return `Damage: ${damage}`
     },
