@@ -1,6 +1,6 @@
 <template>
 <div class="character-stat-card">
-  <div class="card">
+  <div class="card card-width">
     <div class="card-header" role="tab" id="character-stats">
       <h5 class="mb-0">
         <a data-toggle="collapse" href="#stats" aria-expanded="false" aria-controls="stats">Stats</a>
@@ -65,9 +65,5 @@ export default {
   float: right;
 }
 
-.character-stat-card {
-  min-width: $min-card-width;
-  width: 100%;
-}
 
 </style>

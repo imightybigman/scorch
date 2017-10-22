@@ -14,7 +14,7 @@
       <hp-bar :character="character"></hp-bar>
       <exp-bar :character="character"></exp-bar>
     </div>
-    <div class="d-flex flex-row character-screen">
+    <div class="d-flex flex-row flex-wrap character-screen">
       <div class="d-flex flex-column character-details">
         <character-bio-card :character="character"></character-bio-card>
         <character-stats-card :stats="character.Stats" :proficiency="this.character.Proficiency"></character-stats-card>

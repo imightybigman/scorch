@@ -8,7 +8,7 @@
                 {{ selectedSkill.Description }}
             </div>
         </modal>
-        <div class="card skill-card">
+        <div class="card skill-card card-width">
             <div class="card-header" role="tab" id="character-skills">
                 <h5 class="mb-0">
                     <a data-toggle="collapse" href="#skills" aria-expanded="false" aria-controls="skills">
@@ -63,10 +63,6 @@ export default {
 
 .skill-card {
     flex: 1 0 auto;
-}
-
-.character-skill {
-    min-width: $min-card-width;
 }
 
 </style>
