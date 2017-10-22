@@ -9,6 +9,10 @@
                 <label for="modify-exp">Modify Exp : </label>
                 <input type="number" class="form-control" id="modify-exp" v-model="deltaExp" placeholder="Exp Change" autocomplete="off"/>
             </div>
+            <div class="form-group">
+                <label for="modify-gp">Modify Gold : </label>
+                <input type="number" class="form-control" id="modify-gold" v-model="deltaGold" placeholder="Gold Change" autocomplete="off"/>
+            </div>
             <button class="btn btn-primary">Submit</button>
         </form>
     </div>
@@ -20,7 +24,8 @@ export default {
     data(){
         return {
             deltaHealth : 0,
-            deltaExp : 0
+            deltaExp : 0,
+            deltaGold : 0
         }
     },
     props: ['characterList'],
@@ -40,6 +45,10 @@ export default {
                 let newExp = char.Exp + parseInt(this.deltaExp);
                 newExp = newExp < 0 ? 0 : newExp;
                 payload.body.Exp = newExp;
+
+                let newGold = char.Gold + parseInt(this.deltaGold);
+                newGold = newGold< 0 ? 0: newGold;
+                payload.body.Gold = newGold;
                 
                 await this.$store.dispatch('updateCharacter', payload);
             });
