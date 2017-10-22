@@ -1,13 +1,13 @@
 <template>
     <div class="card">
-    <div class="card-header" role="tab" id="weapos">
+    <div class="card-header" role="tab" id="adventurergear">
         <h5 class="mb-0">
         <a data-toggle="collapse" href="#adventurerGearInventory" aria-expanded="false" aria-controls="adventurerGearInventory">
             Adventure Gear
         </a>
         </h5>
     </div>
-    <div id="adventurerGearInventory" class="collapse" role="tabpanel" aria-labelledby="weapos" data-parent="#accordion">
+    <div id="adventurerGearInventory" class="collapse" role="tabpanel" aria-labelledby="adventurergear" data-parent="#accordion">
         <div class="card-body adventurerGear-list">
             <div v-for="(adventurerGear, index) in adventurerGears" 
                  @click="adventurerGearClick(adventurerGear)" 
