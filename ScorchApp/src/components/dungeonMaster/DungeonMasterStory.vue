@@ -1,5 +1,5 @@
 <template>
-    <div class="dm-notes-component">
+    <div class="dm-story-component">
         <div class="d-flex flex-wrap" v-if="dataDone">
             <div class="flex-column">
                 Sup
@@ -15,7 +15,7 @@
 <script>
 
 export default {
-    name : 'dm-notes-component',
+    name : 'dm-story-component',
     
     data() {
       return {

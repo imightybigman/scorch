@@ -16,7 +16,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Description : </label>
-                        <input type="text" class="form-control" id="description" v-model="description" placeholder="Description" autocomplete="off" required="true"/>
+                        <textarea rows="4" class="form-control" id="description" v-model="description" placeholder="Description" autocomplete="off" required="true"/>
                     </div>
                     <div class="form-group">
                         <label for="item-type">Item Type : </label>
@@ -46,8 +46,8 @@
                             </div>
                         </div>
                         <div class="input-group">
-                            <button class="btn btn-primary" type="button" v-on:click="addProp()"><b>+</b></button>  
-                            <button class="btn btn-danger" type="button" v-on:click="removeProp()"><b>-</b></button>
+                            <button class="btn btn-primary add-remove-btn" type="button" v-on:click="addProp()"><b>+</b></button>  
+                            <button class="btn btn-danger add-remove-btn" type="button" v-on:click="removeProp()"><b>-</b></button>
                             <input type="text" class="form-control" id="property-input" v-model="newProp" placeholder="Properties" autocomplete="off"/>
                         </div>
                     </div> 
@@ -176,5 +176,8 @@ export default {
     }
     .clear-button{
         float: right;
+    }
+    .add-remove-btn{
+        width: 10%;
     }
 </style>

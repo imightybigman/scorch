@@ -5,12 +5,12 @@
                 <dungeon-master-main></dungeon-master-main>
             </v-tab>
 
-            <v-tab title="Inventory Manager">
+            <v-tab title="Data Manager">
                 <dungeon-master-inventory-manager></dungeon-master-inventory-manager>
             </v-tab>
 
             <v-tab title="Campaign Notes">
-                <dungeon-master-notes></dungeon-master-notes>
+                <dungeon-master-story></dungeon-master-story>
             </v-tab>
 
             <v-tab title="Log">
@@ -23,7 +23,7 @@
 
 <script>
 import { VueTabs, VTab } from 'vue-nav-tabs'
-import { DungeonMasterMain, DungeonMasterNotes, DungeonMasterInventoryManager } from 'components/dungeonMaster'
+import { DungeonMasterMain, DungeonMasterStory, DungeonMasterInventoryManager } from 'components/dungeonMaster'
 import 'vue-nav-tabs/themes/vue-tabs.css'
 
 export default {
@@ -32,7 +32,7 @@ export default {
         VueTabs,
         VTab,
         DungeonMasterMain,
-        DungeonMasterNotes,
+        DungeonMasterStory,
         DungeonMasterInventoryManager
     }
 }
