@@ -41,9 +41,11 @@
                     <div class="max-ammo-entry">
                         <label class="max-ammo-label">Max Ammo</label>
                         <div class="max-ammo-holder">
-                            <div class="max-ammo-list-items" v-for="(maxAmmo, index) in maxAmmoList" :key="index">
-                                <span class="badge-small badge-pill badge-secondary">{{prop}}</span>
-                            </div>  
+                            <ul class="list-group">
+                                <div class="max-ammo-list-items" v-for="(maxAmmo, index) in maxAmmoList" :key="index">
+                                    <li class="list-group-item">{{maxAmmo.Type + " : " + maxAmmo.MaxAmount}}</li>
+                                </div>  
+                            </ul>
                         </div>
                         <div class="input-group">
                             <button class="btn btn-primary add-remove-btn" type="button" v-on:click="addAmmo()"><b>+</b></button>
@@ -109,7 +111,28 @@ export default {
             }
         },
         addAmmo(){
-
+            let isPresent = this.maxAmmoList.find(ammo => ammo.Type == this.newAmmoType);
+            if(this.newAmmoMaxAmt > 0)
+            {
+                if(isPresent){
+                    this.removeAmmo();
+                }
+                let newAmmo = {};
+                newAmmo.Type = this.newAmmoType;
+                newAmmo.MaxAmount = this.newAmmoMaxAmt;
+                this.maxAmmoList.push(newAmmo);
+                this.newAmmoType = '';
+                this.newAmmoMaxAmt = 0;
+            }
+        },
+        removeAmmo(){
+            let index = this.maxAmmoList.findIndex(ammo => ammo.Type == this.newAmmoType);
+            if(index >= 0){
+                this.maxAmmoList.splice(index, 1);
+                this.newAmmoType = '';
+            } else {
+                this.maxAmmoList.pop();
+            }
         },
         async create(){
             let payload = {};
@@ -122,6 +145,12 @@ export default {
             body.Weight = this.weight;
             body.Properties = this.properties;
             body.Description = this.description;
+
+            let maxAmmoPayload = {};
+            this.maxAmmoList.forEach(ammo => {
+                maxAmmoPayload[ammo.Type] = ammo.MaxAmount;
+            });
+            body.Container = maxAmmoPayload;
 
             payload.body = body;
             await this.$store.dispatch('addItem', payload);
@@ -179,7 +208,10 @@ export default {
     }
     .property-holder {
         padding:1%;
-    }   
+    }
+    .max-ammo-holder {
+        margin-bottom: 5%;
+    }
     .numeric-entry {
         padding-right:2%;
         flex: 1;
