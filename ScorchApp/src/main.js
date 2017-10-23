@@ -19,7 +19,7 @@ Vue.config.productionTip = false
 Vue.url.options.root = "https://dnd-api.imightybigman.com/api"
 //Vue.url.options.root = "http://localhost:5000/api"
 
-// Vue.use(VueSocketio, 'http://localhost:3000', store);
+Vue.use(VueSocketio, 'http://54.234.179.234:3000/', store);
 
 
 /* eslint-disable no-new */
