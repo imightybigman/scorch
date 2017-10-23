@@ -51,6 +51,7 @@ export default {
                 payload.body.Gold = newGold;
                 
                 await this.$store.dispatch('updateCharacter', payload);
+                this.$socket.emit('updateParty');
             });
         }
     }

@@ -3,6 +3,7 @@ import sortBy from 'lodash/sortBy'
 import * as types from '../mutation-types'
 import Vue from 'vue'
 
+
 // initial state
 const state = {
     party: []
@@ -69,6 +70,11 @@ const actions = {
         if(response.status === 200){
             commit(types.UNEQUIP_ITEM, payload);
         }
+    }, 
+    async socket_getParty({ commit }, message) {
+        let response = await CharacterService.getParty();
+        let myParty = sortBy(response.body, (c) => c.Firstname);
+        commit(types.GET_PARTY, myParty);
     }
 }
 
