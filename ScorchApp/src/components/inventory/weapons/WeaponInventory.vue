@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card weapon-card">
         <weapon-detail :weapon="selectedWeapon" :showModal="showDetail" v-on:close="showDetail = false"></weapon-detail>
         <div class="card-header" role="tab" id="weapons">
             <h5 class="mb-0">
@@ -13,14 +13,16 @@
                 <div v-for="(weapon, index) in weapons" 
                     @click="weaponClick(weapon)" 
                     :key="index" 
-                    class="list-group-item list-group-item-action ">
+                    class="weapon-list-item border">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex flex-column">
                             <span>{{ weapon.Name }}</span>
                             <small>{{ weapon.Slot }}</small>
                             <small>Damage: {{ weapon.Damage }} </small>        
                         </div>
-                        <button class="btn btn-primary" @click="equipWeapon(weapon, $event)">+</button>
+                        <button class="btn btn-primary" @click="equipWeapon(weapon, $event)">
+                            <i class="fa fa-level-up" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -69,6 +71,14 @@ export default {
 <style lang="scss" scoped>
 .weapon-list {
     height: 400px;
-    overflow-y: scroll;
+}
+.weapon-list-item {
+    padding: 2%;
+    border-radius: 10px;
+    margin-bottom: 1%;
+
+}
+.weapon-list-item:hover {
+    background-color:#e6e6e6;
 }
 </style>
