@@ -1,6 +1,6 @@
 <template>
 <div class="character-bio-card">
-  <div class="card">
+  <div class="card card-width">
     <div class="card-header" role="tab" id="character-bios">
       <h5 class="mb-0">
         <a data-toggle="collapse" href="#bios" aria-expanded="false" aria-controls="bios">Character Bio</a>
@@ -64,9 +64,5 @@ export default {
   float: right;
 }
 
-.character-bio-card {
-  min-width: $min-card-width;
-  width: 100%;
-}
 
 </style>

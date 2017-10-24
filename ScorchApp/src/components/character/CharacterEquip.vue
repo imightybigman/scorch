@@ -145,19 +145,22 @@ export default {
     }
   },
   methods: {
+    onCtxOpen(locals) {
+      this.item = locals
+    },
     displayDamage(damage) {
       return `Damage: ${damage}`
     },
     displayAC(ac) {
       return `AC: ${ac}`
     },
-    unequip($event, item) {
+    async unequip($event, item) {
+      console.log(item)
       let payload = {
         characterId: this.character.CharacterId,
         slot: item.Slot
       };
-
-      this.$store.dispatch('unequipItem', payload);
+      await this.$store.dispatch('unequipItem', payload);
     }
   },
   components: {
@@ -168,8 +171,8 @@ export default {
 
 <style lang="scss" scoped>
 .card-img-top {
-    height: 100%;
-    width: 100%; 
+    max-height: 100%;
+    max-width: 100%; 
 }
 
 .equipped {

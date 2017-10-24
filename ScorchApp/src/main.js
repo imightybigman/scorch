@@ -9,12 +9,17 @@ import router from './router'
 import store from './store'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'font-awesome/scss/font-awesome.scss'
+import 'styles/styles.scss'
+
+import VueSocketio from 'vue-socket.io';
 
 Vue.use(VueResource);
 Vue.config.productionTip = false
 Vue.url.options.root = "https://dnd-api.imightybigman.com/api"
 //Vue.url.options.root = "http://localhost:5000/api"
 
+Vue.use(VueSocketio, 'http://54.234.179.234:3000/', store);
 
 
 /* eslint-disable no-new */

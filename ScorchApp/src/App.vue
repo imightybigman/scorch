@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app parchment">
     <div class="home-logo-container">
       <router-link :to="'/'">
         <img class="home-logo" src="./assets/DnD_transparent.png">
@@ -21,7 +21,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-}
+} 
 
 .home-logo-container {
   text-align: center;
