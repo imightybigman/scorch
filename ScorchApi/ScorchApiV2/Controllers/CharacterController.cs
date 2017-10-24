@@ -114,7 +114,7 @@ namespace ScorchApiV2.Controllers
             await characterTable.UpdateItemAsync(updateDocument);
         }
 
-        [HttpPut("{characterId}/inventory")]
+        [HttpPut("{characterId}/inventoryById")]
         public async Task PutItemInInventoryByItemId(Guid characterId, Guid itemId)
         {
  
