@@ -25,7 +25,13 @@ const actions = {
         }
     },
     async getItem({ commit }) {
-
+        let response = {};
+        try{
+            response = await ItemService.getItem();
+            commit(types.GET_ITEM, response.body);
+        } catch(errorResponse) {
+            commit(types.API_ERROR, errorResponse.bodyText);
+        }
     }
 }
 
