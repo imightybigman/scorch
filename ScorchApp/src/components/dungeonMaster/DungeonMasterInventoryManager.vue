@@ -1,17 +1,14 @@
 <template>
     <div class="dm-inventory-component d-flex">
-        <div class="item-creator flex-column">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="item-creator-dd-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Create
-                </button>
-                <div class="dropdown-menu" aria-labelledby="item-creator-dropdown">
-                    <button class="dropdown-item" type="button" v-on:click="state='createAG'">Create Adv. Gear</button>
-                    <button class="dropdown-item" type="button" v-on:click="state='createArmor'">Create Armor</button>
-                    <button class="dropdown-item" type="button" v-on:click="state='createQuiver'">Create Quiver</button>
-                    <button class="dropdown-item" type="button" v-on:click="state='createWeapon'">Create Weapon</button>
-                </div>
+        <div class="flex-column">
+            <div class="btn-group-vertical creator-group" role="group">
+                <button class="btn btn-secondary border border-dark" type="button" v-on:click="state='createAG'">Create Adv. Gear</button>
+                <button class="btn btn-secondary border border-dark" type="button" v-on:click="state='createArmor'">Create Armor</button>
+                <button class="btn btn-secondary border border-dark" type="button" v-on:click="state='createQuiver'">Create Quiver</button>
+                <button class="btn btn-secondary border border-dark" type="button" v-on:click="state='createWeapon'">Create Weapon</button>                    
             </div>
+        </div>
+        <div class="item-creator flex-column">
             <div>
                 <adventurer-gear-creator v-if="state == 'createAG'" />
                 <weapon-creator v-if="state == 'createWeapon'" />
@@ -62,14 +59,18 @@ export default {
         margin: 1%;
     }
     .item-creator {
-        padding: 1%;
+        margin-left: 1%;
+        margin-right: 1%;
         flex: 1;
-        flex-grow: 1;
+        flex-grow: 2;
         border-radius: 10px;
     }
     .item-store {
         flex: 1;
         flex-grow: 3;
+    }
+    .creator-group{
+        border-width:10000px;
     }
 
 </style>

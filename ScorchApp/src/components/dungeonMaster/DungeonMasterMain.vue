@@ -1,14 +1,18 @@
 <template>
     <div class="dm-main-component">
-        <div class="d-flex flex-wrap dm-character-view">
-            <div class="d-flex flex-column dm-party-view">
+        <div class="d-flex dm-character-view">
+            <div class="flex-column dm-party-view">
                 <div class="dm-character-cards-container" v-for="(char, index) in party" @click="toggleCharacter(char)" :key="index">
                     <character-tile :character="char" v-bind:class="{ selected: isCharacterSelected(char) }"></character-tile>
                 </div>
             </div>
-            <div class="d-flex character-operations">
+            <div class="item-searcher flex-column">
+                <item-searcher />
+            </div>
+            <div class="character-operations">
                 <character-operator :character-list="selectedChars"></character-operator>
             </div>
+
         </div>
     </div>
     
@@ -17,6 +21,7 @@
 <script>
     import { CharacterTile } from 'components/character'
     import CharacterOperator from './operators/CharacterOperator.vue'
+    import { ItemSearcher } from 'components/inventory'
 
 export default {
     name : 'dm-main-component',
@@ -52,7 +57,8 @@ export default {
     },
     components: {
         CharacterTile,
-        CharacterOperator
+        CharacterOperator,
+        ItemSearcher
     }
 }
 </script>
@@ -66,6 +72,9 @@ export default {
         margin: 1%;
         height: 600px;
     }
+    .dm-character-view {
+        flex-wrap: wrap;
+    }
     .dm-party-view {
         margin: 1%;
         flex: 1;
@@ -73,16 +82,18 @@ export default {
         .dm-character-cards-container {
             margin-bottom: 1%;
             border-radius: 10px;
-            
         }
     }
     .character-operations {
         margin: 1%;
         flex: 1;
-        flex-grow: 5;
         border-radius: 10px;
     }
     .selected {
         background-color: black;
+    }
+    .item-searcher{
+        flex: 1;
+        flex-grow: 3;
     }
 </style>
