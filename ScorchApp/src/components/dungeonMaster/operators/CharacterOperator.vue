@@ -1,6 +1,6 @@
 <template>
     <div class="dm-character-operator">
-        <form v-on:submit="apply">
+        <form v-on:submit="apply" class="d-flex">
             <div class="form-group">
                 <label for="modify-health">Modify Health : </label>
                 <input type="number" class="form-control" id="modify-health" v-model="deltaHealth" placeholder="Hp Change" autocomplete="off"/>
@@ -60,6 +60,11 @@ export default {
 <style lang="scss" scoped>
     .dm-character-operator {
         margin: 1%;
+        flex-direction: row;
+    }
+    .form-group{
+        flex: 1;
+        margin-right: 1%;
     }
 
 </style>

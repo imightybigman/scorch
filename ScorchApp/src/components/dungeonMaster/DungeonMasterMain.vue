@@ -6,13 +6,14 @@
                     <character-tile :character="char" v-bind:class="{ selected: isCharacterSelected(char) }"></character-tile>
                 </div>
             </div>
-            <div class="item-searcher flex-column">
-                <item-searcher />
+            <div class="rhs-character-ops">
+                <div class="item-searcher flex-column">
+                    <item-searcher />
+                </div>
+                <div class="character-operations">
+                    <character-operator :character-list="selectedChars"></character-operator>
+                </div>
             </div>
-            <div class="character-operations">
-                <character-operator :character-list="selectedChars"></character-operator>
-            </div>
-
         </div>
     </div>
     
@@ -69,7 +70,6 @@ export default {
     }
     
     .dm-main-component {
-        margin: 1%;
         height: 600px;
     }
     .dm-character-view {
@@ -95,5 +95,10 @@ export default {
     .item-searcher{
         flex: 1;
         flex-grow: 3;
+    }
+    .rhs-character-ops{
+        flex: 2;
+        flex-grow: 5;
+        flex-direction:column;
     }
 </style>

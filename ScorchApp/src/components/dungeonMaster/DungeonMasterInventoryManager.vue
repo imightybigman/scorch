@@ -69,8 +69,4 @@ export default {
         flex: 1;
         flex-grow: 3;
     }
-    .creator-group{
-        border-width:10000px;
-    }
-
 </style>
