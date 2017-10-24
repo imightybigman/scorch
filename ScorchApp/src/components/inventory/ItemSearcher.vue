@@ -9,7 +9,7 @@
             </div>
             <div class="search-results list-group">
                 <div class="list-group-item item-result" v-for="(item, index) in searchResults" :key="index">
-                    <h5>{{item.Name}}</h5>
+                    <h6>{{item.Name}}</h6>
                 </div>
             </div>
         </div>
@@ -28,11 +28,14 @@ export default {
       }
     },
     methods: {
-    
+        search(){
+            this.$store.dispatch('getItem');
+        }
     },
     computed: {
         searchResults(){
-
+            console.log("blah");
+            return this.$store.getters.items;
         }
     },
     components: {
