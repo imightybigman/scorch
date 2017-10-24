@@ -8,13 +8,13 @@
             </a>
             </h5>
         </div>
-        <div id="weaponInventory" class="collapse" role="tabpanel" aria-labelledby="weapons" data-parent="#accordion">
+        <div id="weaponInventory" class="collapse show" role="tabpanel" aria-labelledby="weapons" data-parent="#accordion">
             <div class="card-body weapon-list">
                 <div v-for="(weapon, index) in weapons" 
                     @click="weaponClick(weapon)" 
                     :key="index" 
                     class="weapon-list-item border">
-                    <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex justify-content-between">
                         <div class="d-flex flex-column">
                             <span>{{ weapon.Name }}</span>
                             <small>{{ weapon.Slot }}</small>
@@ -73,12 +73,12 @@ export default {
     height: 400px;
 }
 .weapon-list-item {
-    padding: 2%;
+    padding: 3%;
     border-radius: 10px;
     margin-bottom: 1%;
-
 }
 .weapon-list-item:hover {
     background-color:#e6e6e6;
 }
+
 </style>

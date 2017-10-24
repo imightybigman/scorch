@@ -146,8 +146,7 @@ export default {
   },
   methods: {
     onCtxOpen(locals) {
-      console.log('open', locals)
-      this.menuData = locals
+      this.item = locals
     },
     displayDamage(damage) {
       return `Damage: ${damage}`
@@ -155,13 +154,13 @@ export default {
     displayAC(ac) {
       return `AC: ${ac}`
     },
-    unequip($event, item) {
+    async unequip($event, item) {
+      console.log(item)
       let payload = {
         characterId: this.character.CharacterId,
         slot: item.Slot
       };
-
-      this.$store.dispatch('unequipItem', payload);
+      await this.$store.dispatch('unequipItem', payload);
     }
   },
   components: {
