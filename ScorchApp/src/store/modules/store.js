@@ -28,11 +28,8 @@ const actions = {
         let response = {};
         try{
             response = await ItemService.getItem();
-            console.log("got items");
             commit(types.GET_ITEM, response.body);
-            console.log(response.body);
         } catch(errorResponse) {
-            console.log(errorResponse);
             commit(types.API_ERROR, errorResponse.bodyText);
         }
     }

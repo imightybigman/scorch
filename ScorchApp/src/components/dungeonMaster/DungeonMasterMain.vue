@@ -8,7 +8,7 @@
             </div>
             <div class="rhs-character-ops">
                 <div class="item-searcher flex-column">
-                    <item-searcher />
+                    <item-searcher @search-item-selected="searchItem" />
                 </div>
                 <div class="character-operations">
                     <character-operator :character-list="selectedChars"></character-operator>
@@ -29,7 +29,8 @@ export default {
     
     data() {
       return {
-        selectedChars: []
+        selectedChars: [],
+        selectedItem: {}
       }
     },
     async created() {
@@ -49,6 +50,10 @@ export default {
         },
         isCharacterSelected(character) {
             return !(this.selectedChars.find(char => char.CharacterId == character.CharacterId) == undefined);
+        },
+        searchItem(item){
+            console.log(item);
+            this.selectedItem = item;
         }
     },
     computed: {
