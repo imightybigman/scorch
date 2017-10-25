@@ -1,5 +1,7 @@
 <template>
     <div class="card">
+        <armor-detail :armor="selectedArmor" :showModal="showDetail" v-on:close="showDetail = false"></armor-detail>
+
         <div class="card-header" role="tab" id="armor">
             <h5 class="mb-0">
             <a data-toggle="collapse" href="#armorInventory" aria-expanded="false" aria-controls="armorInventory">
@@ -28,12 +30,21 @@
 </template>
 
 <script>
+import ArmorDetail from './ArmorDetail';
+
 export default {
     name: 'armor-inventory',
+    data() {
+        return {
+            selectedArmor: {},
+            showDetail: false
+        }
+    },
     props: ['armors'],
     methods: {
-        armorClick() {
-
+        armorClick(armor) {
+            this.selectedArmor = armor;
+            this.showDetail = true;
         },
         equipArmor(armor, event) {
          if (event) {
@@ -41,6 +52,9 @@ export default {
             }
             this.$emit('equip', armor);
         }
+    },
+    components: {
+        ArmorDetail
     }
 }
 </script>
