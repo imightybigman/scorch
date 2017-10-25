@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Amazon;
@@ -91,8 +91,8 @@ namespace ScorchApiV2.Controllers
             await characterTable.UpdateItemAsync(document);
         }
 
-        [HttpPut("{characterId}/inventory")]
-        public async Task PutItemInInventory(Guid characterId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))] IItem item)
+        [HttpPost("{characterId}/inventory")]
+        public async Task PostItemInInventory(Guid characterId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))] IItem item)
         {
             var itemController = new ItemController();
             var itemId = item.ItemId;
@@ -116,6 +116,32 @@ namespace ScorchApiV2.Controllers
 
             await characterTable.UpdateItemAsync(updateDocument);
         }
+
+        [HttpPut("{characterId}/inventory")]
+        public async Task PutItemInInventory(Guid characterId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))] IItem item)
+        {
+            var itemId = item.ItemId;
+            // if no item id was passed in , assume it is a new item
+            if (itemId == Guid.Empty)
+            {
+                throw new InvalidOperationException("Item does not contain an item id");
+            }
+
+            var character = await GetCharacter(characterId);
+            var itemIndex = character.Inventory.FindIndex(x => x.ItemId == itemId);
+            if (itemIndex == -1)
+            {
+                throw new InvalidOperationException("Character does not have this item");
+            }
+            character.Inventory[itemIndex] = item;
+
+            // Also need to update the character equipment if they have that equipped
+            character.UpdateEquipment(item);
+
+            var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
+            await characterTable.UpdateItemAsync(updateDocument);
+        }
+
 
         [HttpDelete("{characterId}")]
         public async Task DeleteCharacter(Guid characterId)
