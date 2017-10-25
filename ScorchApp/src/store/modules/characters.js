@@ -132,9 +132,6 @@ const mutations = {
             let ch = state.party[i];
             if(ch.CharacterId === id) {
                 state.party[i].Equipment = { ...state.party[i].Equipment, [slot] : null };
-                console.log(slot);
-                
-                console.log(state.party[i].Equipment);
                 break;                
             }
         }
