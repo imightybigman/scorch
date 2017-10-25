@@ -155,7 +155,6 @@ export default {
       return `AC: ${ac}`
     },
     async unequip($event, item) {
-      console.log(item)
       let payload = {
         characterId: this.character.CharacterId,
         slot: item.Slot

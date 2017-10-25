@@ -52,7 +52,6 @@ export default {
     },
     computed: {
         stealthAdv() {
-            console.log(this.armor);
             return this.armor.StealthAdvantage ? 'Yes' : 'No'
         }
     },

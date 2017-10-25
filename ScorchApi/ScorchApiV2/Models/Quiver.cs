@@ -15,7 +15,7 @@ namespace ScorchApiV2.Models
         public int Weight               { get; set; }
         public List<string> Properties  { get; set; }
 
-        public Dictionary<string, ArrowCounter> Container   { get; set; }
+        public Dictionary<string, ArrowCounter> Projectiles   { get; set; }
         public string Slot                                  { get; set; }
 
         public Quiver() { }
