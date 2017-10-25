@@ -150,7 +150,7 @@ export default {
             this.maxAmmoList.forEach(ammo => {
                 maxAmmoPayload[ammo.Type] = ammo.MaxAmount;
             });
-            body.Container = maxAmmoPayload;
+            body.Projectiles = maxAmmoPayload;
 
             payload.body = body;
             await this.$store.dispatch('addItem', payload);

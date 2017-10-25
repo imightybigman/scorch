@@ -1,13 +1,11 @@
 <template>
-    <div class="item-searcher border border-dark d-flex">
+    <div class="item-searcher border border-dark">
             <div class="item-searcher-inner">
                 <div class="d-flex top-bar">
-                    <h4 class="item-searcher-header">ItemSearcher</h4>
-                    <button class="filter-btn btn btn-primary">Filter</button>
+                    <h4 class="item-searcher-header">Searcher</h4>
                 </div>            
                 <div class="input-group">
                     <input type="text" class="form-control" id="name" v-model="searchTerm" placeholder="Name To Filter By" autocomplete="off" required="true"/>
-                    <button class="btn btn-secondary" type="button" v-on:click="search()"><b>Search</b></button>
                 </div>
                 <div class="search-results table-responsive">
                     <table id="search-results-table" class="table table-hover table-bordered">
@@ -36,30 +34,25 @@
                     </table>
                 </div>
             </div>
-            <div class="filter-window">
-                sup
-            </div>
     </div>
     
 </template>
 
 <script>
+    import filter from 'lodash/filter'
+
 export default {
     name : 'item-searcher',
     
     data() {
       return {
         searchTerm : ''
-        
       }
     },
     created() {
         this.$store.dispatch('getItem');   
     },
     methods: {
-        search(){
-            
-        },
         selectItem(item){
             this.$emit('search-item-selected', item);
         }
@@ -67,7 +60,8 @@ export default {
     computed: {
         searchResults(){
             let results = this.$store.getters.items;
-            return this.$store.getters.items;
+            results = filter(results, item => item.Name.includes(this.searchTerm));
+            return results;
         }
     },
     components: {
@@ -85,8 +79,7 @@ export default {
         margin: 1%;
         margin-top: 2%;
         padding: 1%;
-        border-radius: 5px;
-        
+        border-radius: 10px;
     }
     .item-searcher-inner {
         padding: 1%;
@@ -104,9 +97,5 @@ export default {
     }
     .item-searcher-header {
         flex:1;
-    }
-    .filter-window{
-        flex:0;
-        display:none;
     }
 </style>

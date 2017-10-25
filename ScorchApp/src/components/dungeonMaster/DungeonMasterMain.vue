@@ -7,11 +7,16 @@
                 </div>
             </div>
             <div class="rhs-character-ops">
+                <div class="d-flex bottom-bar">
+                    <div class="character-operations">
+                        <character-operator :character-list="selectedChars"></character-operator>
+                    </div>
+                    <div class ="item-card" >
+                        <item-card :item="selectedItem"></item-card>
+                    </div>
+                </div>
                 <div class="item-searcher flex-column">
                     <item-searcher @search-item-selected="searchItem" />
-                </div>
-                <div class="character-operations">
-                    <character-operator :character-list="selectedChars"></character-operator>
                 </div>
             </div>
         </div>
@@ -23,7 +28,8 @@
     import { CharacterTile } from 'components/character'
     import CharacterOperator from './operators/CharacterOperator.vue'
     import { ItemSearcher } from 'components/inventory'
-
+    import { ItemCard } from 'components/inventory'
+    
 export default {
     name : 'dm-main-component',
     
@@ -64,7 +70,8 @@ export default {
     components: {
         CharacterTile,
         CharacterOperator,
-        ItemSearcher
+        ItemSearcher,
+        ItemCard
     }
 }
 </script>
@@ -105,5 +112,11 @@ export default {
         flex: 2;
         flex-grow: 5;
         flex-direction:column;
+    }
+    .bottom-bar{
+        flex-direction:row;
+    }
+    .item-card{
+        flex: 1;
     }
 </style>
