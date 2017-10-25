@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <label for="description">Description : </label>
                         <input type="text" class="form-control" id="description" v-model="description" placeholder="Description" autocomplete="off" required="true"/>
-                    </div>                
+                    </div>
                     <div class="d-flex">
                         <div class="form-group numeric-entry">
                             <label for="damage">Damage : </label>
@@ -31,7 +31,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="d-flex">
                         <div class="form-group numeric-entry">
                             <label for="damage-type">Damage Type : </label>
@@ -83,11 +83,11 @@
                             </div>
                         </div>
                         <div class="input-group">
-                            <button class="btn btn-primary " type="button" v-on:click="addProp()"><b>+</b></button>                        
+                            <button class="btn btn-primary " type="button" v-on:click="addProp()"><b>+</b></button>
                             <input type="text" class="form-control" id="property-input" v-model="newProp" placeholder="Properties" autocomplete="off"/>
                         </div>
-                    </div> 
-                    <button class="btn btn-primary">Submit</button>                
+                    </div>
+                    <button class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
@@ -176,7 +176,6 @@ export default {
 <style lang="scss" scoped>
     .dm-weapon-creator {
         margin: 1%;
-        margin-top: 4%;
         padding: 1%;
         border-radius: 10px;
     }
@@ -192,7 +191,7 @@ export default {
     }
     .property-holder {
         padding:1%;
-    }   
+    }
     .numeric-entry {
         padding-right:2%;
     }
@@ -209,6 +208,6 @@ export default {
         display: none;
         position: absolute;
         width: 88%;
-        margin-top: -4%;     
+        margin-top: -4%;
     }
 </style>
