@@ -1,35 +1,43 @@
 <template>
-    <div class="character-view d-flex flex-wrap" v-if="character">
-        <div class="d-flex flex-column party-navigation border">
-          <div class="character-cards-container" v-for="(char, index) in party" @click="goTo(char.CharacterId)" :key="index">
-            <character-tile :character="char"></character-tile>
-          </div>
-        </div>
-        <div class="d-flex flex-column character-info border">
-          <div class="d-flex flex-column character-basic-info">
-            <h4><strong>{{ name }}</strong></h4>
-            <hp-bar :character="character"></hp-bar>
-            <exp-bar :character="character"></exp-bar>
-          </div>
-          <div class="d-flex flex-row character-screen">
-            <div class="d-flex flex-column character-stats-skills">
-                <character-stats-card :stats="character.Stats" :proficiency="this.character.Proficiency"></character-stats-card>
-                <character-skills-card :skills="character.Skills"></character-skills-card>          
-            </div>
-            <div class="d-flex character-equip justify-content-center">
-              <character-equip :character="this.character"></character-equip>
-            </div>
-            <div class="d-flex character-spells">
-              <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
-            </div>
-          </div>
-          <div class="d-flex notes black-border">
-          </div>    
-        </div>
-        <div class="d-flex flex-column character-inventory border">
-          <inventory :characterId="character.CharacterId"></inventory>
-        </div>
+<div class="character-view d-flex flex-wrap" v-if="character">
+  <div class="d-flex flex-column party-navigation border">
+    <div class="character-cards-container" v-for="(char, index) in party" @click="goTo(char.CharacterId)" :key="index">
+      <character-tile :character="char"></character-tile>
+    </div>
+  </div>
+  <div class="d-flex flex-column character-info border">
+    <div class="d-flex flex-column character-basic-info">
+      <h4>
+        <strong>{{ name }}</strong>
+        <small>Lv. {{ character.Level }}</small>
+      </h4>
+      <div class="gold-counter"><img class="gold" src="~assets/icons/gold.png"/> {{ character.Gold }} </div>
+
+      <hp-bar :character="character"></hp-bar>
+      <exp-bar :character="character"></exp-bar>
+    </div>
+    <div class="d-flex flex-row flex-wrap character-screen">
+      <div class="d-flex flex-column character-details">
+        <h4>Character Info</h4>
+        <character-bio-card :character="character"></character-bio-card>
+        <character-stats-card :stats="character.Stats" :proficiency="this.character.Proficiency"></character-stats-card>
+        <character-skills-card :skills="character.Skills"></character-skills-card>
+        <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
       </div>
+      <div class="d-flex flex-column character-equip">
+        <h4>Character Equip</h4>
+        <character-equip :character="this.character"></character-equip>
+      </div>
+
+    </div>
+    <div class="d-flex notes black-border">
+    </div>
+  </div>
+  <div class="d-flex flex-column character-inventory border">
+    <inventory :characterId="character.CharacterId"></inventory>
+  </div>
+</div>
+
 </template>
 
 <script>
@@ -40,6 +48,7 @@
             CharacterDetailCard, 
             CharacterSkillsCard, 
             CharacterSpellsCard,
+            CharacterBioCard,
             ExpBar,
             HpBar } from 'components/character'
 
@@ -77,6 +86,7 @@
       CharacterSkillsCard,
       CharacterSpellsCard,
       CharacterEquip,
+      CharacterBioCard,
       ExpBar,
       HpBar,
       Inventory
@@ -108,7 +118,7 @@
   }
 
   .character-info {
-    flex: 3 0 auto;
+    flex: 2 0 auto;
 
     .character-screen {
       flex: 1 0 auto;
@@ -117,7 +127,7 @@
         margin: 1%;
       }
 
-      .character-stats-skills {
+      .character-details {
         flex: 1 0 auto;
         > div {
           margin-bottom: 1%;
@@ -128,23 +138,26 @@
         flex: 1 0 auto;
       }
 
-      .character-spells {
-        flex: 3 0 auto;
-      }
     }
     .character-basic-info {
       flex: 1 0 auto;
       padding: 1% 1% 0 1%;
     }
     .notes {
-      flex:auto;
+      flex: 1 0 auto;
       height: 200px;
     }
   }
 
   .character-inventory {
-    flex: 1 0 auto;
+    flex: 2 0 auto;
   }
 
-
+.gold {
+  width: 2%;
+  height: 2%;
+}
+.gold-counter {
+  float: right;
+}
 </style>

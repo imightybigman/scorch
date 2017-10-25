@@ -116,7 +116,6 @@
   </div>
 
     <context-menu id="context-menu" @ctx-open="onCtxOpen" ref="ctxMenu">
-      <li class="ctx-item" @click="detailClick($event, item)">Details</li>
       <li class="ctx-item" @click="unequip($event, item)">Unequip</li>
     </context-menu>
 </div>
@@ -146,25 +145,21 @@ export default {
     }
   },
   methods: {
+    onCtxOpen(locals) {
+      this.item = locals
+    },
     displayDamage(damage) {
       return `Damage: ${damage}`
     },
     displayAC(ac) {
       return `AC: ${ac}`
     },
-    onCtxOpen(locals) {
-      this.item = locals
-    },
-    contextClick() {
-      console.log('hahaha')
-    },
-    unequip($event, item) {
+    async unequip($event, item) {
       let payload = {
         characterId: this.character.CharacterId,
         slot: item.Slot
       };
-
-      this.$store.dispatch('unequipItem', payload);
+      await this.$store.dispatch('unequipItem', payload);
     }
   },
   components: {
@@ -175,8 +170,8 @@ export default {
 
 <style lang="scss" scoped>
 .card-img-top {
-    height: 100%;
-    width: 100%; 
+    max-height: 100%;
+    max-width: 100%; 
 }
 
 .equipped {

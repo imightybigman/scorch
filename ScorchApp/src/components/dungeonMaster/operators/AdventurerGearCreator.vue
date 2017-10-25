@@ -42,15 +42,17 @@
                         <label class="property-label">Properties</label>
                         <div class="property-holder">
                             <div class="property-list-items" v-for="(prop, index) in properties" :key="index">
-                                <span class="badge badge-pill badge-secondary">{{prop}}</span>
+                                <span class="badge-small badge-pill badge-secondary">{{prop}}</span>
                             </div>
                         </div>
                         <div class="input-group">
-                            <button class="btn btn-primary " type="button" v-on:click="addProp()"><b>+</b></button>
+                            <button class="btn btn-primary" type="button" v-on:click="addProp()"><b>+</b></button>  
+                            <button class="btn btn-danger" type="button" v-on:click="removeProp()"><b>-</b></button>
                             <input type="text" class="form-control" id="property-input" v-model="newProp" placeholder="Properties" autocomplete="off"/>
                         </div>
-                    </div>
-                    <button class="btn btn-primary">Submit</button>
+                    </div> 
+                    <button class="btn btn-primary">Submit</button>          
+                    <button class="btn btn-danger clear-button" type="button" v-on:click="clearFields()">Clear</button>                
                 </form>
             </div>
         </div>
@@ -73,9 +75,21 @@ export default {
         }
     },
     methods: {
-        async addProp() {
-            this.properties.push(this.newProp);
-            this.newProp = '';
+        addProp() {
+            let isPresent = this.properties.includes(this.newProp);
+            if(this.newProp && !isPresent){
+                this.properties.push(this.newProp);
+                this.newProp = '';
+            }
+        },
+        removeProp(){
+            let index = this.properties.indexOf(this.newProp);
+            if(index >= 0 && this.newProp){
+                this.properties.splice(index, 1);
+                this.newProp = '';
+            } else {
+                this.properties.pop();
+            }
         },
         async create(){
             let payload = {};
@@ -158,5 +172,8 @@ export default {
         position: absolute;
         width: 88%;
         margin-top: -4%;
+    }
+    .clear-button{
+        float: right;
     }
 </style>

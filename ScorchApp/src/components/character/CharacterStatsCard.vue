@@ -1,9 +1,12 @@
 <template>
-  <div class="character-stat-card">
-    <div class="card">
-      <div class="card-header">
-        Stats
-      </div>
+<div class="character-stat-card">
+  <div class="card card-width">
+    <div class="card-header" role="tab" id="character-stats">
+      <h5 class="mb-0">
+        <a data-toggle="collapse" href="#stats" aria-expanded="false" aria-controls="stats">Stats</a>
+      </h5>
+    </div>
+    <div id="stats" class="collapse" role="tabpanel" aria-labelledby="character-stats" data-parent="#accordion">
       <div class="card-body">
         <div v-for="(statValue, stat, index) in stats" :key="index">
           <strong>{{ stat }}:</strong>
@@ -14,8 +17,10 @@
           <span class="stat">{{ proficiency }}</span>
         </div>
       </div>
+    </div>
   </div>
-  </div>
+</div>
+
 </template>
 
 <script>
@@ -54,12 +59,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~styles/shared.scss";
+
 .stat {
   float: right;
 }
 
-.character-stat-card {
-  width: 100%;
-}
 
 </style>
