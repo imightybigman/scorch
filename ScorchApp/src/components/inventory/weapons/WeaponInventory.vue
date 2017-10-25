@@ -9,11 +9,11 @@
             </h5>
         </div>
         <div id="weaponInventory" class="collapse show" role="tabpanel" aria-labelledby="weapons" data-parent="#accordion">
-            <div class="card-body weapon-list">
+            <div class="card-body item-list">
                 <div v-for="(weapon, index) in weapons" 
                     @click="weaponClick(weapon)" 
                     :key="index" 
-                    class="weapon-list-item border">
+                    class="list-item border">
                     <div class="d-flex justify-content-between">
                         <div class="d-flex flex-column">
                             <span>{{ weapon.Name }}</span>
@@ -69,16 +69,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.weapon-list {
-    height: 400px;
-}
-.weapon-list-item {
-    padding: 3%;
-    border-radius: 10px;
-    margin-bottom: 1%;
-}
-.weapon-list-item:hover {
-    background-color:#e6e6e6;
-}
+@import '~styles/shared.scss';
 
 </style>

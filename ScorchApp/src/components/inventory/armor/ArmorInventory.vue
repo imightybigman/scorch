@@ -14,14 +14,16 @@
             <div v-for="(armor, index) in armors" 
                     @click="armorClick(armor)" 
                     :key="index" 
-                    class="list-group-item list-group-item-action">
-                    <div class="d-flex align-items-center justify-content-between">
+                    class="list-item border">
+                    <div class="d-flex justify-content-between">
                         <div class="d-flex flex-column">
                             <span>{{ armor.Name }}</span>
                             <small>{{ armor.Slot }}</small>
                             <small>AC {{ armor.AC }} </small>        
                         </div>          
-                        <button class="btn btn-primary" @click="equipArmor(armor, $event)">+</button>
+                        <button class="btn btn-primary" @click="equipArmor(armor, $event)">
+                            <i class="fa fa-level-up" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -60,8 +62,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.armor-list {
-    height: 400px;
-    overflow-y: scroll;
-}
+@import '~styles/shared.scss';
+
 </style>

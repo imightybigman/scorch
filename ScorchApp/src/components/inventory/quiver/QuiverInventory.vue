@@ -8,14 +8,16 @@
         </h5>
     </div>
     <div id="quiverInventory" class="collapse" role="tabpanel" aria-labelledby="quiver" data-parent="#accordion">
-        <div class="card-body quiver-list">
+        <div class="card-body item-list">
         <div v-for="(quiver, index) in quivers" 
                  @click="quiverClick(quiver)" 
                  :key="index" 
-                 class="list-group-item list-group-item-action">
-                <div class="d-flex align-items-center justify-content-between">
+                 class="list-item border">
+                <div class="d-flex justify-content-between">
                     <span>{{ quiver.Name }}</span>            
-                    <button class="btn btn-primary" @click="equipQuiver(quiver, $event)">+</button>
+                    <button class="btn btn-primary" @click="equipQuiver(quiver, $event)">
+                        <i class="fa fa-level-up" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -43,8 +45,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.quiver-list {
-    height: 400px;
-    overflow-y: scroll;
-}
+@import '~styles/shared.scss';
+
 </style>
