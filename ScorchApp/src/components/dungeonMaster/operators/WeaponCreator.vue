@@ -37,8 +37,8 @@
                         <div class="form-group numeric-entry">
                             <label for="slot">Slot : </label>
                             <select class="form-control" v-model="slot">
-                                <option>OneHanded</option>
-                                <option>TwoHanded</option>
+                                <option>One-Handed</option>
+                                <option>Two-Handed</option>
                             </select>
                         </div>
                     </div>
@@ -130,7 +130,7 @@ export default {
             newProp: '',
             damage : '',
             name : '',
-            slot : 'OneHanded',
+            slot : 'One-Handed',
             newStatModAmount: 0,
             shortRange : 0,
             longRange : 0,
@@ -220,7 +220,7 @@ export default {
             this.newProp = '';
             this.damage = '';
             this.name = '';
-            this.slot = 'OneHanded';
+            this.slot = 'One-Handed';
             this.shortRange = 0;
             this.longRange = 0;
             this.weight = 0;

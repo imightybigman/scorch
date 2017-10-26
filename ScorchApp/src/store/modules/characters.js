@@ -65,6 +65,9 @@ const actions = {
             commit(types.EQUIP_ITEM, payload);
         }
     },
+    async updateItem({ commit }, payload) {
+        let response = await CharacterService.putCharacterItem(payload.characterId, payload.item);
+    },
     async unequipItem({ commit }, payload) {
         let response = await CharacterService.unequipItem(payload.characterId, payload.slot);
         if(response.status === 200){
