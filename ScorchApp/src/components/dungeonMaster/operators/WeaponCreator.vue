@@ -235,7 +235,6 @@ export default {
 <style lang="scss" scoped>
     .dm-weapon-creator {
         margin: 1%;
-        margin-top: 2%;
         padding: 1%;
         border-radius: 10px;
     }
@@ -251,7 +250,7 @@ export default {
     }
     .property-holder {
         padding:1%;
-    }   
+    }
     .numeric-entry {
         padding-right:2%;
         flex: 1;
@@ -269,7 +268,7 @@ export default {
         display: none;
         position: absolute;
         width: 88%;
-        margin-top: -4%;     
+        margin-top: -4%;
     }
     .clear-button{
         float: right;

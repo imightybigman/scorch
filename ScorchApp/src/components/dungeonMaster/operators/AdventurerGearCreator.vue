@@ -121,7 +121,7 @@ export default {
                     $('#success-adv-gear-msg').fadeOut(5000);
                 });
             }
-            
+
         },
         clearFields(){
             this.name = '';
@@ -139,7 +139,6 @@ export default {
 <style lang="scss" scoped>
     .dm-adventurer-gear-creator {
         margin: 1%;
-        margin-top: 2%;
         padding: 1%;
         border-radius: 10px;
     }
@@ -155,7 +154,7 @@ export default {
     }
     .property-holder {
         padding:1%;
-    }   
+    }
     .numeric-entry {
         padding-right:2%;
     }
@@ -169,10 +168,10 @@ export default {
         margin-top: -4%;
     }
     .failure-notification{
-        display: none;       
+        display: none;
         position: absolute;
         width: 88%;
-        margin-top: -4%; 
+        margin-top: -4%;
     }
     .clear-button{
         float: right;
