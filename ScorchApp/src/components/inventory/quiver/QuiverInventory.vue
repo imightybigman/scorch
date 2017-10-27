@@ -24,8 +24,8 @@
                     <div class="projectiles d-flex" v-for="(count, projectile, index) in quiver.Projectiles" :key="index">
                         <strong>{{projectile}} : {{ getArrowCount(count) }}</strong>
                         <div class="d-flex flex-row ml-auto">
-                        <button class="projectile-minus btn btn-primary btn-sm" @click="decrementProjectile(count)"><i class="fa fa-minus"></i></button>                        
-                        <button class="projectile-add btn btn-primary btn-sm" @click="incrementProjectile(count)"><i class="fa fa-plus"></i></button>
+                        <button class="projectile-minus btn btn-primary btn-sm" @click="decrementProjectile(count, quiver, $event)"><i class="fa fa-minus"></i></button>                        
+                        <button class="projectile-add btn btn-primary btn-sm" @click="incrementProjectile(count, quiver, $event)"><i class="fa fa-plus"></i></button>
                         </div>
                    </div>
                 </div>
@@ -40,7 +40,7 @@ import QuiverDetail from './QuiverDetail'
 
 export default {
     name: 'quiver-inventory',
-    props: ['quivers'],
+    props: ['characterId', 'quivers'],
     data() {
         return {
             selectedQuiver: {},
@@ -52,13 +52,20 @@ export default {
             this.selectedQuiver = quiver;
             this.showDetail = true;
         },
-        incrementProjectile(projectile) {
+        incrementProjectile(projectile, quiver, event) {
+            if (event) {
+                event.stopPropagation();
+            }
             projectile.CurrentAmount++;
             if(projectile.CurrentAmount >= projectile.MaxAmount) {
                 projectile.CurrentAmount = projectile.MaxAmount;
             }
+            
         },
         decrementProjectile(projectile) {
+            if (event) {
+                event.stopPropagation();
+            }
             projectile.CurrentAmount--;
             if(projectile.CurrentAmount <= 0){
                 projectile.CurrentAmount = 0;

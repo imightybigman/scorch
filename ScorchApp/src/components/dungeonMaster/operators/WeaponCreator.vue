@@ -37,8 +37,8 @@
                         <div class="form-group numeric-entry">
                             <label for="slot">Slot : </label>
                             <select class="form-control" v-model="slot">
-                                <option>OneHanded</option>
-                                <option>TwoHanded</option>
+                                <option>One-Handed</option>
+                                <option>Two-Handed</option>
                             </select>
                         </div>
                     </div>
@@ -130,7 +130,7 @@ export default {
             newProp: '',
             damage : '',
             name : '',
-            slot : 'OneHanded',
+            slot : 'One-Handed',
             newStatModAmount: 0,
             shortRange : 0,
             longRange : 0,
@@ -220,7 +220,7 @@ export default {
             this.newProp = '';
             this.damage = '';
             this.name = '';
-            this.slot = 'OneHanded';
+            this.slot = 'One-Handed';
             this.shortRange = 0;
             this.longRange = 0;
             this.weight = 0;
@@ -235,7 +235,6 @@ export default {
 <style lang="scss" scoped>
     .dm-weapon-creator {
         margin: 1%;
-        margin-top: 2%;
         padding: 1%;
         border-radius: 10px;
     }
@@ -251,7 +250,7 @@ export default {
     }
     .property-holder {
         padding:1%;
-    }   
+    }
     .numeric-entry {
         padding-right:2%;
         flex: 1;
@@ -269,7 +268,7 @@ export default {
         display: none;
         position: absolute;
         width: 88%;
-        margin-top: -4%;     
+        margin-top: -4%;
     }
     .clear-button{
         float: right;
