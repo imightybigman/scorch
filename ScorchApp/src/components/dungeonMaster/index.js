@@ -1,5 +1,5 @@
 import DungeonMasterMain from './DungeonMasterMain.vue'
-import DungeonMasterNotes from './DungeonMasterNotes.vue'
+import DungeonMasterStory from './DungeonMasterStory.vue'
 import DungeonMasterInventoryManager from './DungeonMasterInventoryManager.vue'
 import CharacterOperator from './operators/CharacterOperator.vue'
 import AdventurerGearCreator from './operators/AdventurerGearCreator.vue'
@@ -9,7 +9,7 @@ import WeaponCreator from './operators/WeaponCreator.vue'
 
 export {
     DungeonMasterMain,
-    DungeonMasterNotes,
+    DungeonMasterStory,
     DungeonMasterInventoryManager,
     CharacterOperator,
     AdventurerGearCreator,

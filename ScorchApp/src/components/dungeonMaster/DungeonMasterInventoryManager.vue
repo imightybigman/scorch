@@ -1,9 +1,18 @@
 <template>
     <div class="dm-inventory-component d-flex">
+        <div class="flex-column">
+            <div class="btn-group-vertical creator-group" role="group">
+                <button class="btn btn-secondary border border-dark" type="button" v-on:click="state='createAG'">Create Adv. Gear</button>
+                <button class="btn btn-secondary border border-dark" type="button" v-on:click="state='createArmor'">Create Armor</button>
+                <button class="btn btn-secondary border border-dark" type="button" v-on:click="state='createQuiver'">Create Quiver</button>
+                <button class="btn btn-secondary border border-dark" type="button" v-on:click="state='createWeapon'">Create Weapon</button>                    
+            </div>
         <div class="item-search flex-column">
             <div>
               <p>search bar here...</p>
             </div>
+        </div>
+        <div class="item-creator flex-column">
             <div>
               <p>results here</p>
             </div>
@@ -60,10 +69,17 @@ export default {
     .dm-inventory-component {
         margin: 1%;
     }
+    .item-creator {
+        margin-left: 1%;
+        margin-right: 1%;
+        flex: 1;
+        flex-grow: 2;
+        border-radius: 10px;
+    }
     .item-search {
         padding: 1%;
         flex: 1;
-        flex-grow: 1;
+        flex-grow: 2;
         border-radius: 10px;
     }
     .item-creator {
@@ -115,7 +131,4 @@ export default {
       background-position: center;
       background-repeat: no-repeat;
     }
-
-
-
 </style>

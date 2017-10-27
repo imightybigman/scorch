@@ -23,6 +23,15 @@ const actions = {
         } catch(errorResponse) {
             commit(types.API_ERROR, errorResponse.bodyText);
         }
+    },
+    async getItem({ commit }) {
+        let response = {};
+        try{
+            response = await ItemService.getItem();
+            commit(types.GET_ITEM, response.body);
+        } catch(errorResponse) {
+            commit(types.API_ERROR, errorResponse.bodyText);
+        }
     }
 }
 
@@ -34,6 +43,9 @@ const mutations = {
     [types.API_ERROR] (state, error){
         error = "Item not created : " + error;
         state.error = error;
+    },
+    [types.GET_ITEM] (state, items) {
+        state.items = items;
     }
 }
 

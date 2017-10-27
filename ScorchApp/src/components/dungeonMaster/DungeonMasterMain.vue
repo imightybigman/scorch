@@ -1,13 +1,23 @@
 <template>
     <div class="dm-main-component">
-        <div class="d-flex flex-wrap dm-character-view">
-            <div class="d-flex flex-column dm-party-view">
+        <div class="d-flex dm-character-view">
+            <div class="flex-column dm-party-view">
                 <div class="dm-character-cards-container" v-for="(char, index) in party" @click="toggleCharacter(char)" :key="index">
                     <character-tile :character="char" v-bind:class="{ selected: isCharacterSelected(char) }"></character-tile>
                 </div>
             </div>
-            <div class="d-flex character-operations">
-                <character-operator :character-list="selectedChars"></character-operator>
+            <div class="rhs-character-ops">
+                <div class="d-flex bottom-bar">
+                    <div class="character-operations">
+                        <character-operator :character-list="selectedChars"></character-operator>
+                    </div>
+                    <div class ="item-card" >
+                        <item-card :item="selectedItem"></item-card>
+                    </div>
+                </div>
+                <div class="item-searcher flex-column">
+                    <item-searcher @search-item-selected="searchItem" />
+                </div>
             </div>
         </div>
     </div>
@@ -17,13 +27,16 @@
 <script>
     import { CharacterTile } from 'components/character'
     import CharacterOperator from './operators/CharacterOperator.vue'
-
+    import { ItemSearcher } from 'components/inventory'
+    import { ItemCard } from 'components/inventory'
+    
 export default {
     name : 'dm-main-component',
     
     data() {
       return {
-        selectedChars: []
+        selectedChars: [],
+        selectedItem: {}
       }
     },
     async created() {
@@ -43,6 +56,10 @@ export default {
         },
         isCharacterSelected(character) {
             return !(this.selectedChars.find(char => char.CharacterId == character.CharacterId) == undefined);
+        },
+        searchItem(item){
+            console.log(item);
+            this.selectedItem = item;
         }
     },
     computed: {
@@ -52,7 +69,9 @@ export default {
     },
     components: {
         CharacterTile,
-        CharacterOperator
+        CharacterOperator,
+        ItemSearcher,
+        ItemCard
     }
 }
 </script>
@@ -63,8 +82,10 @@ export default {
     }
     
     .dm-main-component {
-        margin: 1%;
         height: 600px;
+    }
+    .dm-character-view {
+        flex-wrap: wrap;
     }
     .dm-party-view {
         margin: 1%;
@@ -73,16 +94,29 @@ export default {
         .dm-character-cards-container {
             margin-bottom: 1%;
             border-radius: 10px;
-            
         }
     }
     .character-operations {
         margin: 1%;
         flex: 1;
-        flex-grow: 5;
         border-radius: 10px;
     }
     .selected {
         background-color: black;
+    }
+    .item-searcher{
+        flex: 1;
+        flex-grow: 3;
+    }
+    .rhs-character-ops{
+        flex: 2;
+        flex-grow: 5;
+        flex-direction:column;
+    }
+    .bottom-bar{
+        flex-direction:row;
+    }
+    .item-card{
+        flex: 1;
     }
 </style>
