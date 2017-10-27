@@ -19,6 +19,8 @@ namespace ScorchApiV2.Models
         public string Slot                      { get; set; }
         public List<string> Properties          { get; set; }
         public List<Modifiers> StatModifiers    { get; set; }
+        public bool Versatile                   { get; set; }
+        public string VersatileDamage           { get; set; }
         public int ShortRange                   { get; set; }
         public int LongRange                    { get; set; }
 
