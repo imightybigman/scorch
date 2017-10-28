@@ -1,34 +1,22 @@
 <template>
     <div class="dm-inventory-component d-flex">
-        <div class="flex-column">
-            <div class="btn-group-vertical creator-group" role="group">
-                <button class="btn btn-secondary border border-dark" type="button" v-on:click="state='createAG'">Create Adv. Gear</button>
-                <button class="btn btn-secondary border border-dark" type="button" v-on:click="state='createArmor'">Create Armor</button>
-                <button class="btn btn-secondary border border-dark" type="button" v-on:click="state='createQuiver'">Create Quiver</button>
-                <button class="btn btn-secondary border border-dark" type="button" v-on:click="state='createWeapon'">Create Weapon</button>                    
-            </div>
         <div class="item-search flex-column">
-            <div>
-              <p>search bar here...</p>
-            </div>
-        </div>
-        <div class="item-creator flex-column">
-            <div>
-              <p>results here</p>
-            </div>
+          <div class="item-searcher flex-column">
+              <item-searcher @search-item-selected="searchItem" />
+          </div>
         </div>
         <div class="flex-column item-store">
-          <button class="createAdvGear" type="button" v-on:click="state='createAG'"></button><br />
+          <button class="createAdvGear" type="button" v-on:click="state='createAdventurerGear'"></button><br />
           <button class="createArmor" type="button" v-on:click="state='createArmor'"></button><br />
           <button class="createQuiver" type="button" v-on:click="state='createQuiver'"></button><br />
           <button class="createWeapon" type="button" v-on:click="state='createWeapon'"></button>
         </div>
         <div class="flex-column item-creator">
           <div>
-              <adventurer-gear-creator v-if="state == 'createAG'" />
-              <weapon-creator v-if="state == 'createWeapon'" />
-              <armor-creator v-if="state == 'createArmor'" />
-              <quiver-creator v-if="state == 'createQuiver'" />
+              <adventurer-gear-creator :gear="this.selectedItem" v-if="state == 'createAdventurerGear'" />
+              <weapon-creator :weapon="this.selectedItem" v-if="state == 'createWeapon'" />
+              <armor-creator :armor="this.selectedItem" v-if="state == 'createArmor'" />
+              <quiver-creator :quiver="this.selectedItem" v-if="state == 'createQuiver'" />
           </div>
         </div>
     </div>
@@ -40,22 +28,32 @@
     import WeaponCreator from './operators/WeaponCreator.vue'
     import ArmorCreator from './operators/ArmorCreator.vue'
     import QuiverCreator from './operators/QuiverCreator.vue'
+    import { ItemSearcher } from 'components/inventory'
+
 
 export default {
     name : 'dm-inventory-manager-component',
 
     data() {
       return {
-        state : ''
+        state : '',
+        selectedItem: {}
       }
     },
     computed: {
 
     },
+    methods: {
+      searchItem(item){
+          this.state = 'create' + item.ItemClass;
+          this.selectedItem = item;
+      }
+    },
     components: {
         AdventurerGearCreator,
         WeaponCreator,
         ArmorCreator,
+        ItemSearcher,
         QuiverCreator
     }
 }
@@ -77,10 +75,11 @@ export default {
         border-radius: 10px;
     }
     .item-search {
-        padding: 1%;
+        margin-top: -0.5%;
         flex: 1;
         flex-grow: 2;
         border-radius: 10px;
+
     }
     .item-creator {
         flex: 1;

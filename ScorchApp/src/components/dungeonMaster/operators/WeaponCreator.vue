@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <label for="description">Description : </label>
                         <textarea rows="4" class="form-control" id="description" v-model="description" placeholder="Description" autocomplete="off" required="true"/>
-                    </div>                                    
+                    </div>
                     <div class="d-flex">
                         <div class="form-group numeric-entry">
                             <label for="damage-type">Damage Type : </label>
@@ -82,11 +82,11 @@
                             </div>
                         </div>
                         <div class="input-group">
-                            <button class="btn btn-primary" type="button" v-on:click="addProp()"><b>+</b></button>  
+                            <button class="btn btn-primary" type="button" v-on:click="addProp()"><b>+</b></button>
                             <button class="btn btn-danger" type="button" v-on:click="removeProp()"><b>-</b></button>
                             <input type="text" class="form-control" id="property-input" v-model="newProp" placeholder="Properties" autocomplete="off"/>
                         </div>
-                    </div> 
+                    </div>
                     <div class="stat-modifiers">
                         <label class="stat-modifiers-label">Stat Modifiers</label>
                         <div class="stat-modifiers-holder">
@@ -108,9 +108,9 @@
                                 <option>Proficiency</option>
                             </select>
                         </div>
-                    </div> 
-                    <button class="btn btn-primary">Submit</button>                
-                    <button class="btn btn-danger clear-button" type="button" v-on:click="clearFields()">Clear</button>           
+                    </div>
+                    <button class="btn btn-primary">Submit</button>
+                    <button class="btn btn-danger clear-button" type="button" v-on:click="clearFields()">Clear</button>
                 </form>
             </div>
         </div>
@@ -121,24 +121,45 @@
 <script>
 export default {
     name: 'dm-weapon-creator',
+    props: ['weapon'],
     data(){
         return {
             newStatModStat: 'Strength',
-            description : '',
-            damageType: '',
-            itemType : '',
+            description : this.weapon.Description || '',
+            damageType: this.weapon.DamageType || '',
+            itemType : this.weapon.ItemType || '',
             newProp: '',
-            damage : '',
-            name : '',
-            slot : 'One-Handed',
+            damage : this.weapon.Damage || '',
+            name : this.weapon.Name || '',
+            slot : this.weapon.Slot || 'One-Handed',
             newStatModAmount: 0,
-            shortRange : 0,
-            longRange : 0,
-            weight : 0,
-            cost : 0,
-            statModifiers: [],
-            properties: []
+            shortRange : this.weapon.ShortRange || 0,
+            longRange : this.weapon.LongRange || 0,
+            weight : this.weapon.Description || 0,
+            cost : this.weapon.Cost || 0,
+            statModifiers: this.weapon.StatModifiers || [],
+            properties: this.weapon.Properties || []
         }
+    },
+    watch: {
+      weapon: function () {
+        this.clearFields();
+        this.newStatModStat = 'Strength',
+        this.description = this.weapon.Description;
+        this.damageType = this.weapon.DamageType;
+        this.itemType = this.weapon.ItemType;
+        this.newProp = '';
+        this.damage = this.weapon.Damage;
+        this.name = this.weapon.Name;
+        this.slot = this.weapon.Slot;
+        this.newStatModAmount = 0;
+        this.shortRange = this.weapon.ShortRange;
+        this.longRange = this.weapon.LongRange;
+        this.weight = this.weapon.Description;
+        this.cost = this.weapon.Cost;
+        this.statModifiers = this.weapon.StatModifiers;
+        this.properties = this.weapon.Properties;
+      }
     },
     methods: {
         addProp() {
@@ -159,20 +180,20 @@ export default {
         },
         removeStatMod(){
             if(this.newStatModStat){
-                let index = this.statModifiers.findIndex(statMod => statMod.mod == this.newStatModStat);     
+                let index = this.statModifiers.findIndex(statMod => statMod.mod == this.newStatModStat);
                 if(index >= 0){
                     this.statModifiers.splice(index, 1);
                 }
-            } 
+            }
         },
         addStatMod() {
-            let updateStat = this.statModifiers.find(statMod => statMod.mod == this.newStatModStat);   
+            let updateStat = this.statModifiers.find(statMod => statMod.mod == this.newStatModStat);
             if(updateStat)
                 this.removeStatMod();
 
             if(this.newStatModStat && this.newStatModAmount != 0){
-                let statModBuilder = {}; 
-                
+                let statModBuilder = {};
+
                 statModBuilder.value = this.newStatModAmount;
                 statModBuilder.mod = this.newStatModStat;
                 this.statModifiers.push(statModBuilder);
@@ -274,6 +295,6 @@ export default {
         float: right;
     }
     .stat-modifiers{
-        margin-bottom: 3%;        
+        margin-bottom: 3%;
     }
 </style>
