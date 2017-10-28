@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <label for="description">Description : </label>
                         <textarea rows="4" class="form-control" id="description" v-model="description" placeholder="Description" autocomplete="off" required="true"/>
-                    </div>                                    
+                    </div>
                     <div class="form-group numeric-entry">
                         <label for="item-type">Item Type : </label>
                         <input type="text" class="form-control" id="item-type" v-model="itemType" placeholder="Item Type" autocomplete="off" required="true"/>
@@ -44,7 +44,7 @@
                             <ul class="list-group">
                                 <div class="max-ammo-list-items" v-for="(maxAmmo, index) in maxAmmoList" :key="index">
                                     <li class="list-group-item">{{maxAmmo.Type + " : " + maxAmmo.MaxAmount}}</li>
-                                </div>  
+                                </div>
                             </ul>
                         </div>
                         <div class="input-group">
@@ -62,13 +62,13 @@
                             </div>
                         </div>
                         <div class="input-group">
-                            <button class="btn btn-primary add-remove-btn" type="button" v-on:click="addProp()"><b>+</b></button>  
+                            <button class="btn btn-primary add-remove-btn" type="button" v-on:click="addProp()"><b>+</b></button>
                             <button class="btn btn-danger add-remove-btn" type="button" v-on:click="removeProp()"><b>-</b></button>
                             <input type="text" class="form-control" id="property-input" v-model="newProp" placeholder="Properties" autocomplete="off"/>
                         </div>
                     </div>
                     <button class="btn btn-primary">Submit</button>
-                    <button class="btn btn-danger clear-button" type="button" v-on:click="clearFields()">Clear</button>           
+                    <button class="btn btn-danger clear-button" type="button" v-on:click="clearFields()">Clear</button>
                 </form>
             </div>
         </div>
@@ -79,19 +79,36 @@
 <script>
 export default {
     name: 'dm-quiver-creator',
+    props: ['quiver'],
     data(){
         return {
-            description : '',
+            description : this.quiver.Description || '',
             newAmmoType: '',
-            itemType : '',
+            itemType : this.quiver.ItemType || '',
             newProp: '',
-            name : '',
+            name : this.quiver.Name || '',
             newAmmoMaxAmt : 0,
-            weight : 0,
-            cost : 0,
-            properties: [],
+            weight : this.quiver.Weight || 0,
+            cost : this.quiver.Cost || 0,
+            properties: this.quiver.Properties || [],
             maxAmmoList: []
         }
+    },
+    watch: {
+      quiver: function () {
+        this.clearFields();
+        this.description = this.quiver.Description;
+        this.itemType = this.quiver.ItemType;
+        this.name = this.quiver.Name;
+        this.newAmmoMaxAmt = 0;
+        this.weight = this.quiver.Weight;
+        this.cost = this.quiver.Cost;
+        this.properties = this.quiver.Properties;
+        this.maxAmmoList = [];
+        this.newAmmoType = '';
+        this.newProp = '';
+
+      }
     },
     methods: {
         addProp() {
@@ -229,7 +246,7 @@ export default {
         display: none;
         position: absolute;
         width: 88%;
-        margin-top: -4%;     
+        margin-top: -4%;
     }
     .clear-button{
         float: right;

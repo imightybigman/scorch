@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <label for="description">Description : </label>
                         <textarea class="form-control" rows="4" id="description" v-model="description" placeholder="Description" autocomplete="off" required="true"/>
-                    </div>                                    
+                    </div>
                     <div class="form-group numeric-entry">
                         <label for="item-type">Item Type : </label>
                         <input type="text" class="form-control" id="item-type" v-model="itemType" placeholder="Item Type" autocomplete="off" required="true"/>
@@ -66,11 +66,11 @@
                             </div>
                         </div>
                         <div class="input-group">
-                            <button class="btn btn-primary" type="button" v-on:click="addProp()"><b>+</b></button>  
+                            <button class="btn btn-primary" type="button" v-on:click="addProp()"><b>+</b></button>
                             <button class="btn btn-danger" type="button" v-on:click="removeProp()"><b>-</b></button>
                             <input type="text" class="form-control" id="property-input" v-model="newProp" placeholder="Properties" autocomplete="off"/>
                         </div>
-                    </div> 
+                    </div>
                     <div class="stat-modifiers">
                         <label class="stat-modifiers-label">Stat Modifiers</label>
                         <div class="stat-modifiers-holder">
@@ -92,7 +92,7 @@
                                 <option>Proficiency</option>
                             </select>
                         </div>
-                    </div> 
+                    </div>
                     <button class="btn btn-primary">Submit</button>
                     <button class="btn btn-danger clear-button" type="button" v-on:click="clearFields()">Clear</button>
                 </form>
@@ -105,22 +105,39 @@
 <script>
 export default {
     name: 'dm-armor-creator',
+    props: ['armor'],
+    currentArmor: [],
     data(){
         return {
             newStatModStat: 'Strength',
-            description : '',
-            itemType : '',
-            slot: 'Chest',
+            description : this.armor.Description || '',
+            itemType : this.armor.ItemType || '',
+            slot: this.armor.Slot || 'Chest',
             newProp: '',
-            name : '',
+            name : this.armor.Name || '',
             newStatModAmount: 0,
-            armorClass : 0,
-            weight : 0,
-            cost : 0,
-            statModifiers: [],
-            properties: [],
-            stealthAdvantage: false
+            armorClass : this.armor.AC || 0,
+            weight : this.armor.Weight || 0,
+            cost : this.armor.Cost || 0,
+            statModifiers: this.armor.statModifiers || [],
+            properties: this.armor.Properties || [],
+            stealthAdvantage: this.armor.StealthAdvantage || false
         }
+    },
+    watch: {
+      armor: function () {
+        this.clearFields();
+        this.description = this.armor.Description;
+        this.itemType = this.armor.ItemType;
+        this.slot = this.armor.Slot;
+        this.name = this.armor.Name;
+        this.armorClass = this.armor.AC;
+        this.weight = this.armor.Weight;
+        this.cost = this.armor.Cost;
+        this.statModifiers = this.armor.statModifiers;
+        this.properties = this.armor.Properties;
+        this.stealthAdvantage = this.armor.StealthAdvantage;
+      }
     },
     methods: {
         addProp() {
@@ -141,20 +158,20 @@ export default {
         },
         removeStatMod(){
             if(this.newStatModStat){
-                let index = this.statModifiers.findIndex(statMod => statMod.mod == this.newStatModStat);     
+                let index = this.statModifiers.findIndex(statMod => statMod.mod == this.newStatModStat);
                 if(index >= 0){
                     this.statModifiers.splice(index, 1);
                 }
-            } 
+            }
         },
         addStatMod() {
-            let updateStat = this.statModifiers.find(statMod => statMod.mod == this.newStatModStat);   
+            let updateStat = this.statModifiers.find(statMod => statMod.mod == this.newStatModStat);
             if(updateStat)
                 this.removeStatMod();
 
             if(this.newStatModStat && this.newStatModAmount != 0){
-                let statModBuilder = {}; 
-                
+                let statModBuilder = {};
+
                 statModBuilder.value = this.newStatModAmount;
                 statModBuilder.mod = this.newStatModStat;
                 this.statModifiers.push(statModBuilder);
@@ -229,7 +246,7 @@ export default {
         margin-bottom: 3%;
     }
     .stat-modifiers{
-        margin-bottom: 3%;        
+        margin-bottom: 3%;
     }
     .property-list-items {
         float:left;
@@ -262,4 +279,3 @@ export default {
         float: right;
     }
 </style>
-

@@ -46,13 +46,13 @@
                             </div>
                         </div>
                         <div class="input-group">
-                            <button class="btn btn-primary add-remove-btn" type="button" v-on:click="addProp()"><b>+</b></button>  
+                            <button class="btn btn-primary add-remove-btn" type="button" v-on:click="addProp()"><b>+</b></button>
                             <button class="btn btn-danger add-remove-btn" type="button" v-on:click="removeProp()"><b>-</b></button>
                             <input type="text" class="form-control" id="property-input" v-model="newProp" placeholder="Properties" autocomplete="off"/>
                         </div>
-                    </div> 
-                    <button class="btn btn-primary">Submit</button>          
-                    <button class="btn btn-danger clear-button" type="button" v-on:click="clearFields()">Clear</button>                
+                    </div>
+                    <button class="btn btn-primary">Submit</button>
+                    <button class="btn btn-danger clear-button" type="button" v-on:click="clearFields()">Clear</button>
                 </form>
             </div>
         </div>
@@ -63,16 +63,27 @@
 <script>
 export default {
     name: 'dm-adventurer-gear-creator',
+    props: ['gear'],
     data(){
         return {
-            description : '',
-            itemType : '',
+            description : this.gear.Description || '',
+            itemType : this.gear.ItemType || '',
             newProp: '',
-            name : '',
-            weight : 0,
-            cost : 0,
-            properties: []
+            name : this.gear.Name || '',
+            weight : this.gear.Weight || 0,
+            cost : this.gear.Cost || 0,
+            properties: this.gear.Properties || []
         }
+    },
+    watch: {
+      gear: function () {
+        this.description = this.gear.Description;
+        this.itemType = this.gear.ItemType;
+        this.name =  this.gear.Name;
+        this.weight = this.gear.Weight;
+        this.cost = this.gear.Cost;
+        this.properties = this.gear.Properties;
+      }
     },
     methods: {
         addProp() {
@@ -180,4 +191,3 @@ export default {
         width: 10%;
     }
 </style>
-
