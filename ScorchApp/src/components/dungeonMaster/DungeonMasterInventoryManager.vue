@@ -28,7 +28,7 @@
     import WeaponCreator from './operators/WeaponCreator.vue'
     import ArmorCreator from './operators/ArmorCreator.vue'
     import QuiverCreator from './operators/QuiverCreator.vue'
-    import { Searcher } from 'components/inventory'
+    import { Searcher } from 'components/util'
 
 
 export default {

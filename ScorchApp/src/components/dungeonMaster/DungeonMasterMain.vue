@@ -27,7 +27,7 @@
 <script>
     import { CharacterTile } from 'components/character'
     import CharacterOperator from './operators/CharacterOperator.vue'
-    import { Searcher } from 'components/inventory'
+    import { Searcher } from 'components/util'
     import { ItemCard } from 'components/inventory'
     
 export default {
