@@ -28,6 +28,9 @@ export default {
         },
         currentExp: function () {
             let expRange = LevelService.getExpRange(this.character.Level)
+            if(this.character.Exp > expRange.max) {
+                this.$emit('levelup');
+            }
             return `${this.character.Exp}/${expRange.max}`;
         },
     }
