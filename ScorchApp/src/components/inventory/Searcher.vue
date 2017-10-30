@@ -70,15 +70,41 @@ export default {
                 this.sortKey = allKeys[0];
             }
             this.objectKeys = allKeys;
+        },
+        includesAllChars(queryString, element){
+            var result = false;
+            var index = 0;
+            var qsChars = queryString.toUpperCase().split('');
+            var elemChars = element.toUpperCase().split('');
+            elemChars.forEach(elemChar => {
+                if(qsChars[index] === elemChar){
+                    index++;
+                }
+                if(qsChars.length == index){
+                    result = true;
+                }
+            });
+
+            return result;
         }
     },
     computed: {
         searchResults : function(){
             let results = this.searchData;
-            // results = filter(results, row => row.includes(this.searchTerm));
             results = orderBy(results, [this.sortKey], [this.sortDirection]);
             if(!this.keysPopulated)
                 this.populateObjectKeys(results);
+
+            results = filter(results, row => {
+                let display = this.searchTerm ? false : true;
+                for(var propKey in row){
+                    if(typeof(row[propKey]) === 'string' && this.searchTerm)
+                        display = display || this.includesAllChars(this.searchTerm, row[propKey]);
+                    else
+                        display = display || row[propKey] == this.searchTerm;                        
+                }
+                return display;
+            });
     
             return results;
         }
