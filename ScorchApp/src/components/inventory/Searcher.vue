@@ -11,18 +11,12 @@
                 <table id="search-results-table" class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th v-for="(key, index) in objectKeys" :key="index">{{key}}</th>
+                            <th v-for="(key, index) in objectKeys" :key="index" v-on:click="sortBy(key)">{{key}}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(item, index) in searchResults" :key="index" v-on:click="selectItem(item)">
-                            <td>{{item.Name}}</td>
-                            <td>{{item.ItemType}}</td>
-                            <td>{{item.ItemClass}}</td>
-                            <td>{{item.Slot}}</td>
-                            <td>{{item.AC}}</td>
-                            <td>{{item.Damage}}</td>
-                            <td>{{item.Cost}}</td>
+                        <tr v-for="(row, srIndex) in searchResults" :key="srIndex" v-on:click="selectRow(row)">
+                            <td v-for="(key, keyIndex) in objectKeys" :key="keyIndex">{{row[key]}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -45,9 +39,11 @@ export default {
     },
     props: ['searchData'],
     methods: {
-        selectItem(item){
-            this.$emit('search-row-selected', item);
-            //Name	Type	Class	Slot	AC	Dmg	Cost 
+        selectRow(row){
+            this.$emit('search-row-selected', row);
+        },
+        sortBy(key){
+
         }
     },
     computed: {
