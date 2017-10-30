@@ -11,16 +11,37 @@
                 <table id="search-results-table" class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th v-for="(key, index) in objectKeys" :key="index" v-on:click="sortByForm(key)">{{key}}</th>
+                            <th v-for="(key, index) in objectKeys" :key="index" v-on:click="sortByForm(key)">
+                                <i class="fa" v-bind:class = "{'fa-sort-desc' : (key == sortKey && sortDirection == 'desc'),
+                                                                        'fa-sort-asc' : (key == sortKey && sortDirection == 'asc'),
+                                                                        'fa-sort' : (key != sortKey)}" 
+                                                                        aria-hidden="true"/>{{key}}
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(row, srIndex) in searchResults" :key="srIndex" v-on:click="selectRow(row)">
+                        <tr v-for="(row, srIndex) in searchResults.slice((currentPage-1) * limitPerPage, currentPage * limitPerPage)" :key="srIndex" v-on:click="selectRow(row)">
                             <td v-for="(key, keyIndex) in objectKeys" :key="keyIndex">{{row[key]}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <ul class="pagination">
+                <li class="page-item clickable" v-on:click="currentPage = Math.max(currentPage-1, 1)">
+                    <a class="page-link" >
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item clickable" v-for="(page, index) in pagesToShow" :key="index" v-on:click="currentPage = page" v-bind:class ="{active : page == currentPage}">
+                    <a class="page-link" >{{page}}</a>
+                </li>
+                
+                <li class="page-item clickable" v-on:click="currentPage = Math.min(currentPage+1, numPages)">
+                    <a class="page-link" >
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
     
@@ -29,6 +50,7 @@
 <script>
     import filter from 'lodash/filter'
     import orderBy from 'lodash/orderBy'
+    import sortBy from 'lodash/sortBy'
 
 export default {
     name : 'searcher',
@@ -39,10 +61,11 @@ export default {
         sortKey : '',
         sortDirection : 'asc',
         objectKeys: [],
-        keysPopulated : false
+        keysPopulated : false,
+        currentPage : 1
       }
     },
-    props: ['searchData'],
+    props: ['searchData', 'limitPerPage'],
     methods: {
         selectRow(row){
             this.$emit('search-row-selected', row);
@@ -91,12 +114,13 @@ export default {
     computed: {
         searchResults : function(){
             let results = this.searchData;
-            results = orderBy(results, [this.sortKey], [this.sortDirection]);
-            if(!this.keysPopulated)
+            if(!this.keysPopulated && this.searchData.length > 0)
                 this.populateObjectKeys(results);
 
+            results = orderBy(results, [this.sortKey], [this.sortDirection]);
+
             results = filter(results, row => {
-                let display = this.searchTerm ? false : true;
+                var display = this.searchTerm ? false : true;
                 for(var propKey in row){
                     if(typeof(row[propKey]) === 'string' && this.searchTerm)
                         display = display || this.includesAllChars(this.searchTerm, row[propKey]);
@@ -105,8 +129,35 @@ export default {
                 }
                 return display;
             });
-    
             return results;
+        },
+        numPages : function(){
+            return Math.ceil(this.searchResults.length / this.limitPerPage);
+        },
+        pagesToShow : function(){
+            let result = [];
+            if(this.numPages > 7){
+                result.push(1);
+                result.push(this.numPages);
+            
+                result.push(this.currentPage - 1 < 2 ? this.currentPage + 4 : this.currentPage - 1);
+                result.push(this.currentPage - 2 < 2 ? this.currentPage + 3 : this.currentPage - 2);
+                result.push(this.currentPage + 1 >= this.numPages ? this.currentPage - 4 : this.currentPage + 1);
+                result.push(this.currentPage + 2 >= this.numPages ? this.currentPage - 3 : this.currentPage + 2);
+
+                if(this.currentPage == 1)
+                    result.push(this.currentPage + 5);
+                else if(this.currentPage == this.numPages)
+                    result.push(this.currentPage - 5);
+                else 
+                    result.push(this.currentPage);
+            }
+            else {
+                for(let i = 1; i < this.numPages + 1; i++){
+                    result.push(i);
+                }
+            }
+            return sortBy(result);
         }
     },
     components: {
@@ -142,5 +193,8 @@ export default {
     }
     .item-searcher-header {
         flex:1;
+    }
+    .clickable {
+        cursor: pointer;
     }
 </style>

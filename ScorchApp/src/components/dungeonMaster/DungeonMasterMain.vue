@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="item-searcher flex-column">
-                    <searcher @search-row-selected="searchItem" :search-data="searchItems"/>
+                    <searcher @search-row-selected="searchItem" :search-data="searchItems" :limit-per-page="10"/>
                 </div>
             </div>
         </div>
