@@ -34,6 +34,7 @@
     </div>
   </div>
   <div class="d-flex flex-column character-inventory border">
+    <dice-roller></dice-roller>
     <inventory :characterId="character.CharacterId"></inventory>
   </div>
 </div>
@@ -53,10 +54,9 @@
             HpBar } from 'components/character'
 
   import { Inventory } from 'components/inventory'
-
+  import { DiceRoller } from 'components/util'
   export default {
     name: 'character-view',
-
     async created() {
       await this.$store.dispatch('getParty')
     },
@@ -89,7 +89,8 @@
       CharacterBioCard,
       ExpBar,
       HpBar,
-      Inventory
+      Inventory,
+      DiceRoller
     }
   }
 
