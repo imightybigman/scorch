@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="item-searcher flex-column">
-                    <item-searcher @search-row-selected="searchItem" :search-data="searchData"/>
+                    <searcher @search-row-selected="searchItem" :search-data="searchItems"/>
                 </div>
             </div>
         </div>
@@ -27,21 +27,21 @@
 <script>
     import { CharacterTile } from 'components/character'
     import CharacterOperator from './operators/CharacterOperator.vue'
-    import { ItemSearcher } from 'components/inventory'
+    import { Searcher } from 'components/inventory'
     import { ItemCard } from 'components/inventory'
     
 export default {
     name : 'dm-main-component',
     
     data() {
-      return {
-        selectedChars: [],
-        selectedItem: {},
-        searchData : []
-      }
+        return {
+            selectedChars: [],
+            selectedItem: {}
+        }
     },
     async created() {
-      await this.$store.dispatch('getParty')
+      await this.$store.dispatch('getParty');
+      await this.$store.dispatch('getItem');   
     },
     methods: {
         toggleCharacter(character) {
@@ -65,12 +65,15 @@ export default {
     computed: {
         party() {
             return this.$store.getters.myParty;
+        },
+        searchItems() {
+            return this.$store.getters.items;
         }
     },
     components: {
         CharacterTile,
         CharacterOperator,
-        ItemSearcher,
+        Searcher,
         ItemCard
     }
 }

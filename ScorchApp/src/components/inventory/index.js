@@ -3,7 +3,7 @@ import WeaponInventory from './weapons/WeaponInventory'
 import AdventurerGearInventory from './adventurergear/AdventurerGearInventory'
 import QuiverInventory from './quiver/QuiverInventory'
 import ArmorInventory from './armor/ArmorInventory'
-import ItemSearcher from './ItemSearcher'
+import Searcher from './Searcher'
 import ItemCard from './ItemCard'
 
 export {
@@ -12,6 +12,6 @@ export {
     AdventurerGearInventory,
     QuiverInventory,
     ArmorInventory,
-    ItemSearcher,
+    Searcher,
     ItemCard
 }

@@ -36,16 +36,14 @@
     import filter from 'lodash/filter'
 
 export default {
-    name : 'item-searcher',
+    name : 'searcher',
     
     data() {
       return {
         searchTerm : ''
       }
     },
-    created() {
-        this.$store.dispatch('getItem');   
-    },
+    props: ['searchData'],
     methods: {
         selectItem(item){
             this.$emit('search-row-selected', item);
@@ -54,7 +52,7 @@ export default {
     },
     computed: {
         searchResults : function(){
-            let results = this.$store.getters.items;
+            let results = this.searchData;
             results = filter(results, item => item.Name.includes(this.searchTerm));
             return results;
         },
