@@ -11,7 +11,7 @@
                 <table id="search-results-table" class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th v-for="(key, index) in objectKeys" :key="index" v-on:click="sortBy(key)">{{key}}</th>
+                            <th v-for="(key, index) in objectKeys" :key="index" v-on:click="sortByForm(key)">{{key}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,13 +28,18 @@
 
 <script>
     import filter from 'lodash/filter'
+    import orderBy from 'lodash/orderBy'
 
 export default {
     name : 'searcher',
     
     data() {
       return {
-        searchTerm : ''
+        searchTerm : '',
+        sortKey : '',
+        sortDirection : 'asc',
+        objectKeys: [],
+        keysPopulated : false
       }
     },
     props: ['searchData'],
@@ -42,21 +47,40 @@ export default {
         selectRow(row){
             this.$emit('search-row-selected', row);
         },
-        sortBy(key){
-
+        sortByForm(key){
+            if(this.sortKey === key){
+                this.sortDirection = this.sortDirection === 'desc' ? 'asc' : 'desc';
+            }
+            else{
+                this.sortKey = key;
+                this.sortDirection = 'asc';
+            }
+        },
+        populateObjectKeys(results){
+            this.keysPopulated = true;
+            var allKeys = [];
+            results.forEach(result => {
+                Object.keys(result).forEach(key => {
+                    if(!allKeys.includes(key))
+                        allKeys.push(key);
+                });
+            });
+            if(allKeys.length > 0)
+            {
+                this.sortKey = allKeys[0];
+            }
+            this.objectKeys = allKeys;
         }
     },
     computed: {
         searchResults : function(){
             let results = this.searchData;
-            results = filter(results, item => item.Name.includes(this.searchTerm));
+            // results = filter(results, row => row.includes(this.searchTerm));
+            results = orderBy(results, [this.sortKey], [this.sortDirection]);
+            if(!this.keysPopulated)
+                this.populateObjectKeys(results);
+    
             return results;
-        },
-        objectKeys : function(){
-            if(this.searchResults.length > 0)
-                return Object.keys(this.searchResults[0]);
-            else
-                return [];
         }
     },
     components: {

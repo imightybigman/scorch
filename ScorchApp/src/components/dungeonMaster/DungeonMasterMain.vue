@@ -41,7 +41,7 @@ export default {
     },
     async created() {
       await this.$store.dispatch('getParty');
-      await this.$store.dispatch('getItem');   
+      await this.$store.dispatch('getDisplayItems');   
     },
     methods: {
         toggleCharacter(character) {
