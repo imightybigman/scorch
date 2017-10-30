@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="item-searcher flex-column">
-                    <item-searcher @search-item-selected="searchItem" />
+                    <item-searcher @search-row-selected="searchItem" :search-data="searchData"/>
                 </div>
             </div>
         </div>
@@ -36,7 +36,8 @@ export default {
     data() {
       return {
         selectedChars: [],
-        selectedItem: {}
+        selectedItem: {},
+        searchData : []
       }
     },
     async created() {
@@ -58,7 +59,6 @@ export default {
             return !(this.selectedChars.find(char => char.CharacterId == character.CharacterId) == undefined);
         },
         searchItem(item){
-            console.log(item);
             this.selectedItem = item;
         }
     },

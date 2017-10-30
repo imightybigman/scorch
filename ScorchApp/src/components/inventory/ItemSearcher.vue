@@ -5,19 +5,13 @@
                 <h4 class="item-searcher-header">Searcher</h4>
             </div>            
             <div class="input-group">
-                <input type="text" class="form-control" id="name" v-model="searchTerm" placeholder="Name To Filter By" autocomplete="off" required="true"/>
+                <input type="text" class="form-control" id="name" v-model="searchTerm" placeholder="Search" autocomplete="off" required="true"/>
             </div>
             <div class="search-results table-responsive">
                 <table id="search-results-table" class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Class</th>
-                            <th>Slot</th>
-                            <th>AC</th>
-                            <th>Dmg</th>
-                            <th>Cost</th>
+                            <th v-for="(key, index) in objectKeys" :key="index">{{key}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,14 +48,21 @@ export default {
     },
     methods: {
         selectItem(item){
-            this.$emit('search-item-selected', item);
+            this.$emit('search-row-selected', item);
+            //Name	Type	Class	Slot	AC	Dmg	Cost 
         }
     },
     computed: {
-        searchResults(){
+        searchResults : function(){
             let results = this.$store.getters.items;
             results = filter(results, item => item.Name.includes(this.searchTerm));
             return results;
+        },
+        objectKeys : function(){
+            if(this.searchResults.length > 0)
+                return Object.keys(this.searchResults[0]);
+            else
+                return [];
         }
     },
     components: {
