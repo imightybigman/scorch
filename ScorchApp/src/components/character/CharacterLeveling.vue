@@ -5,11 +5,14 @@
         <div slot="body">
             <div class="card">
             <div class="card-body">
-                <div class="stats-leveling" v-for="(statValue, stat, index) in character.Stats" :key="index">
-                    <strong>{{ stat }}:</strong>
-                    <span class="stat">{{ statValue }}</span>
-                    <button class="btn btn-primary">+</button>
-                    <button class="btn btn-danger">-</button>            
+                <div class="d-flex justify-content-between stats-leveling" v-for="(statValue, stat, index) in character.Stats" :key="index">
+                    <div>
+                        <strong>{{ stat }}:</strong>
+                        <span class="stat">{{ statValue }}</span>
+                    </div>
+                    <div class="stats-leveling-buttons">
+                        <button class="btn btn-primary" @click="increaseStat(stat)">+</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -43,7 +46,11 @@ export default {
 
 <style lang="scss" scoped>
 .stats-leveling {
-
+    width: 50%;
+    margin-bottom: 1%;
+    .stats-leveling-buttons {
+        float: right;
+    }
 }
 
 .pulse {
