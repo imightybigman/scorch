@@ -16,7 +16,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Description : </label>
-                        <input type="text" class="form-control" id="description" v-model="description" placeholder="Description" autocomplete="off" required="true"/>
+                        <textarea rows="4" class="form-control" id="description" v-model="description" placeholder="Description" autocomplete="off" required="true"/>
                     </div>
                     <div class="form-group">
                         <label for="item-type">Item Type : </label>
@@ -42,15 +42,17 @@
                         <label class="property-label">Properties</label>
                         <div class="property-holder">
                             <div class="property-list-items" v-for="(prop, index) in properties" :key="index">
-                                <span class="badge badge-pill badge-secondary">{{prop}}</span>
+                                <span class="badge-small badge-pill badge-secondary">{{prop}}</span>
                             </div>
                         </div>
                         <div class="input-group">
-                            <button class="btn btn-primary " type="button" v-on:click="addProp()"><b>+</b></button>                        
+                            <button class="btn btn-primary add-remove-btn" type="button" v-on:click="addProp()"><b>+</b></button>
+                            <button class="btn btn-danger add-remove-btn" type="button" v-on:click="removeProp()"><b>-</b></button>
                             <input type="text" class="form-control" id="property-input" v-model="newProp" placeholder="Properties" autocomplete="off"/>
                         </div>
-                    </div> 
-                    <button class="btn btn-primary">Submit</button>                
+                    </div>
+                    <button class="btn btn-primary">Submit</button>
+                    <button class="btn btn-danger clear-button" type="button" v-on:click="clearFields()">Clear</button>
                 </form>
             </div>
         </div>
@@ -61,21 +63,44 @@
 <script>
 export default {
     name: 'dm-adventurer-gear-creator',
+    props: ['gear'],
     data(){
         return {
-            description : '',
-            itemType : '',
+            description : this.gear.Description || '',
+            itemType : this.gear.ItemType || '',
             newProp: '',
-            name : '',
-            weight : 0,
-            cost : 0,
-            properties: []
+            name : this.gear.Name || '',
+            weight : this.gear.Weight || 0,
+            cost : this.gear.Cost || 0,
+            properties: this.gear.Properties || []
         }
     },
+    watch: {
+      gear: function () {
+        this.description = this.gear.Description;
+        this.itemType = this.gear.ItemType;
+        this.name =  this.gear.Name;
+        this.weight = this.gear.Weight;
+        this.cost = this.gear.Cost;
+        this.properties = this.gear.Properties;
+      }
+    },
     methods: {
-        async addProp() {
-            this.properties.push(this.newProp);
-            this.newProp = '';
+        addProp() {
+            let isPresent = this.properties.includes(this.newProp);
+            if(this.newProp && !isPresent){
+                this.properties.push(this.newProp);
+                this.newProp = '';
+            }
+        },
+        removeProp(){
+            let index = this.properties.indexOf(this.newProp);
+            if(index >= 0 && this.newProp){
+                this.properties.splice(index, 1);
+                this.newProp = '';
+            } else {
+                this.properties.pop();
+            }
         },
         async create(){
             let payload = {};
@@ -107,7 +132,7 @@ export default {
                     $('#success-adv-gear-msg').fadeOut(5000);
                 });
             }
-            
+
         },
         clearFields(){
             this.name = '';
@@ -125,7 +150,6 @@ export default {
 <style lang="scss" scoped>
     .dm-adventurer-gear-creator {
         margin: 1%;
-        margin-top: 4%;
         padding: 1%;
         border-radius: 10px;
     }
@@ -141,7 +165,7 @@ export default {
     }
     .property-holder {
         padding:1%;
-    }   
+    }
     .numeric-entry {
         padding-right:2%;
     }
@@ -155,9 +179,15 @@ export default {
         margin-top: -4%;
     }
     .failure-notification{
-        display: none;       
+        display: none;
         position: absolute;
         width: 88%;
-        margin-top: -4%; 
+        margin-top: -4%;
+    }
+    .clear-button{
+        float: right;
+    }
+    .add-remove-btn{
+        width: 10%;
     }
 </style>

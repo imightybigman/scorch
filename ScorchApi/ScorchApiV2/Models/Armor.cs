@@ -15,6 +15,7 @@ namespace ScorchApiV2.Models
         public int Weight                   { get; set; }
 
         public int AC                           { get; set; }
+        public bool DexterityBonus              { get; set; }
         public string Slot                      { get; set; }
         public bool StealthAdvantage            { get; set; }
         public List<string> Properties          { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using ScorchApiV2.Interfaces;
 
 namespace ScorchApiV2.Models
@@ -13,8 +14,8 @@ namespace ScorchApiV2.Models
         public string Race              { get; set; }
         public string Class             { get; set; }
         public string Sex               { get; set; }
-        public int Age                  { get; set; }
         public string Align             { get; set; }
+        public int Age                  { get; set; }
         public int Hp                   { get; set; }
         public int MaxHp                { get; set; }
         public int Gold                 { get; set; }
@@ -36,6 +37,54 @@ namespace ScorchApiV2.Models
             Traits = Traits.OrderBy(t => t.Name).ToList();
             Skills = Skills.OrderBy(s => s.Name).ToList();
             Spells = Spells.OrderBy(s => s.Name).ToList();
+        }
+
+        public void UpdateEquipment(IItem equipment)
+        {
+            if (Equipment.Quiver != null && Equipment.Quiver.ItemId == equipment.ItemId)
+            {
+                Equipment.Quiver = (Quiver)equipment;
+            }
+            else if (Equipment.Boots != null && Equipment.Boots.ItemId == equipment.ItemId)
+            {
+                Equipment.Boots = (Armor)equipment;
+            }
+            else if (Equipment.Chest != null && Equipment.Chest.ItemId == equipment.ItemId)
+            {
+                Equipment.Chest = (Armor)equipment;
+            }
+            else if (Equipment.Gauntlets != null && Equipment.Gauntlets.ItemId == equipment.ItemId)
+            {
+                Equipment.Gauntlets = (Armor)equipment;
+            }
+            else if (Equipment.Helm != null && Equipment.Helm.ItemId == equipment.ItemId)
+            {
+                Equipment.Helm = (Armor)equipment;
+            }
+            else if (Equipment.LeftRing != null && Equipment.LeftRing.ItemId == equipment.ItemId)
+            {
+                Equipment.LeftRing = (Accessory)equipment;
+            }
+            else if (Equipment.RightRing != null && Equipment.RightRing.ItemId == equipment.ItemId)
+            {
+                Equipment.RightRing = (Accessory)equipment;
+            }
+            else if (Equipment.Legs != null && Equipment.Legs.ItemId == equipment.ItemId)
+            {
+                Equipment.Legs = (Armor)equipment;
+            }
+            else if (Equipment.MainHand != null && Equipment.MainHand.ItemId == equipment.ItemId)
+            {
+                Equipment.MainHand = (Weapon)equipment;
+            }
+            else if (Equipment.OffHand != null && Equipment.OffHand.ItemId == equipment.ItemId)
+            {
+                Equipment.OffHand = (Weapon)equipment;
+            }
+            else if (Equipment.Necklace != null && Equipment.Necklace.ItemId == equipment.ItemId)
+            {
+                Equipment.Necklace = (Accessory)equipment;
+            }
         }
 
         public void Equip(IItem equipment)

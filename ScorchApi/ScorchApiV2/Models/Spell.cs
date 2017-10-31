@@ -15,7 +15,7 @@ namespace ScorchApiV2.Models
         public int Level            { get; set; }
         public string Range         { get; set; }
         public string School        { get; set; }
-        public string SpellType     { get; set; }
+        public string DamageType    { get; set; }
 
         public Spell() { }
     }
