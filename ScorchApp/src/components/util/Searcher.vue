@@ -1,8 +1,8 @@
 <template>
-    <div class="item-searcher border border-dark">
-        <div class="item-searcher-inner">
+    <div class="searcher border border-dark">
+        <div class="searcher-inner">
             <div class="d-flex top-bar">
-                <h4 class="item-searcher-header">Searcher</h4>
+                <h4 class="searcher-header">Searcher</h4>
             </div>            
             <div class="input-group">
                 <input type="text" class="form-control" id="name" v-model="searchTerm" placeholder="Search" autocomplete="off" required="true"/>
@@ -11,7 +11,7 @@
                 <table id="search-results-table" class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th v-for="(key, index) in objectKeys" :key="index" v-on:click="sortByForm(key)">
+                            <th v-for="(key, index) in columnKeys" :key="index" v-on:click="sortByForm(key)">
                                 <i class="fa" v-bind:class = "{'fa-sort-desc' : (key == sortKey && sortDirection == 'desc'),
                                                                         'fa-sort-asc' : (key == sortKey && sortDirection == 'asc'),
                                                                         'fa-sort' : (key != sortKey)}" 
@@ -21,7 +21,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="(row, srIndex) in searchResults.slice((currentPage-1) * limitPerPage, currentPage * limitPerPage)" :key="srIndex" v-on:click="selectRow(row)">
-                            <td v-for="(key, keyIndex) in objectKeys" :key="keyIndex">{{row[key]}}</td>
+                            <td v-for="(key, keyIndex) in columnKeys" :key="keyIndex">{{row[key]}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -60,12 +60,10 @@ export default {
         searchTerm : '',
         sortKey : '',
         sortDirection : 'asc',
-        objectKeys: [],
-        keysPopulated : false,
         currentPage : 1
       }
     },
-    props: ['searchData', 'limitPerPage'],
+    props: ['searchData', 'limitPerPage', 'columnKeys'],
     methods: {
         selectRow(row){
             this.$emit('search-row-selected', row);
@@ -80,8 +78,7 @@ export default {
             }
         },
         populateObjectKeys(results){
-            this.keysPopulated = true;
-            var allKeys = [];
+            let allKeys = [];
             results.forEach(result => {
                 Object.keys(result).forEach(key => {
                     if(!allKeys.includes(key))
@@ -92,13 +89,13 @@ export default {
             {
                 this.sortKey = allKeys[0];
             }
-            this.objectKeys = allKeys;
+            this.columnKeys = allKeys;
         },
         includesAllChars(queryString, element){
-            var result = false;
-            var index = 0;
-            var qsChars = queryString.toUpperCase().split('');
-            var elemChars = element.toUpperCase().split('');
+            let result = false;
+            let index = 0;
+            let qsChars = queryString.toUpperCase().split('');
+            let elemChars = element.toUpperCase().split('');
             elemChars.forEach(elemChar => {
                 if(qsChars[index] === elemChar){
                     index++;
@@ -114,7 +111,7 @@ export default {
     computed: {
         searchResults : function(){
             let results = this.searchData;
-            if(!this.keysPopulated && this.searchData.length > 0)
+            if(this.searchData.length > 0 && !(this.columnKeys) && this.columnKeys.length > 0)
                 this.populateObjectKeys(results);
 
             results = orderBy(results, [this.sortKey], [this.sortDirection]);
@@ -125,7 +122,7 @@ export default {
                     if(typeof(row[propKey]) === 'string' && this.searchTerm)
                         display = display || this.includesAllChars(this.searchTerm, row[propKey]);
                     else
-                        display = display || row[propKey] == this.searchTerm;                        
+                        display = display || row[propKey] === this.searchTerm;                        
                 }
                 return display;
             });
@@ -171,17 +168,17 @@ export default {
         box-sizing: border-box;
     }
     
-    .item-searcher {
+    .searcher {
         margin: 1%;
         margin-top: 2%;
         padding: 1%;
         border-radius: 10px;
     }
-    .item-searcher-inner {
+    .searcher-inner {
         padding: 1%;
         flex-direction:column;
     }
-    .item-searcher-outer {
+    .searcher-outer {
         flex-direction:row;
     }
     .top-bar {
@@ -191,7 +188,7 @@ export default {
     .filter-btn {
         float: right;
     }
-    .item-searcher-header {
+    .searcher-header {
         flex:1;
     }
     .clickable {

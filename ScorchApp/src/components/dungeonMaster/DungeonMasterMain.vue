@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="item-searcher flex-column">
-                    <searcher @search-row-selected="searchItem" :search-data="searchItems" :limit-per-page="10"/>
+                    <searcher @search-row-selected="searchItem" :search-data="searchItems" :limit-per-page="10" :column-keys="columnKeys"/>
                 </div>
             </div>
         </div>
@@ -36,7 +36,8 @@ export default {
     data() {
         return {
             selectedChars: [],
-            selectedItem: {}
+            selectedItem: {},
+            columnKeys: ['Name', 'ItemClass', 'Cost', 'AC', 'Damage']
         }
     },
     async created() {
