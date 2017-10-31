@@ -125,8 +125,7 @@ def import_equipment():
         else:
             pp.pprint(r['equipment_category'])
 
-
 if __name__ == '__main__':
     pp.pprint('Importing stuff')
-    #import_equipment()
-    create_quiver()
+    # import_equipment()
+    # create_quiver()

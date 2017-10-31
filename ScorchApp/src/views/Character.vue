@@ -1,5 +1,9 @@
 <template>
 <div class="character-view d-flex flex-wrap" v-if="character">
+  <modal v-if="showLevelingModal" v-on:close="showLevelingModal = false">
+    <div slot="header"><h3>Level Up</h3></div>
+    <div slot="body"><character-leveling :character="character"></character-leveling></div>
+  </modal>
   <div class="d-flex flex-column party-navigation border">
     <div class="character-cards-container" v-for="(char, index) in party" @click="goTo(char.CharacterId)" :key="index">
       <character-tile :character="char"></character-tile>
@@ -12,28 +16,33 @@
         <small>Lv. {{ character.Level }}</small>
       </h4>
       <div class="gold-counter"><img class="gold" src="~assets/icons/gold.png"/> {{ character.Gold }} </div>
-
       <hp-bar :character="character"></hp-bar>
-      <exp-bar :character="character"></exp-bar>
+      <exp-bar :character="character" v-on:levelup="levelingEnabled = true"></exp-bar>
     </div>
     <div class="d-flex flex-row flex-wrap character-screen">
       <div class="d-flex flex-column character-details">
         <h4>Character Info</h4>
         <character-bio-card :character="character"></character-bio-card>
-        <character-stats-card :stats="character.Stats" :proficiency="this.character.Proficiency"></character-stats-card>
+        <character-stats-card :stats="character.Stats" :proficiency="character.Proficiency"></character-stats-card>
         <character-skills-card :skills="character.Skills"></character-skills-card>
         <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
       </div>
       <div class="d-flex flex-column character-equip">
         <h4>Character Equip</h4>
-        <character-equip :character="this.character"></character-equip>
+        <character-equip :character="character"></character-equip>
       </div>
 
     </div>
     <div class="d-flex notes black-border">
     </div>
   </div>
-  <div class="d-flex flex-column character-inventory border">
+  <div class="d-flex flex-column character-other border">
+    <div class="card">
+      <div class="card-header">Utilities</div>
+      <div class="card-body">
+        <button class="level-btn btn btn-warning" :disabled="!levelingEnabled" @click="showLevelingModal = true">Level Up</button>
+      </div>
+    </div>
     <dice-roller></dice-roller>
     <inventory :characterId="character.CharacterId"></inventory>
   </div>
@@ -50,13 +59,20 @@
             CharacterSkillsCard, 
             CharacterSpellsCard,
             CharacterBioCard,
+            CharacterLeveling,
             ExpBar,
             HpBar } from 'components/character'
 
   import { Inventory } from 'components/inventory'
-  import { DiceRoller } from 'components/util'
+  import { DiceRoller, Modal } from 'components/util'
   export default {
     name: 'character-view',
+    data() {
+      return {
+        levelingEnabled : false,
+        showLevelingModal: false
+      }
+    },
     async created() {
       await this.$store.dispatch('getParty')
     },
@@ -87,10 +103,12 @@
       CharacterSpellsCard,
       CharacterEquip,
       CharacterBioCard,
+      CharacterLeveling,
       ExpBar,
       HpBar,
       Inventory,
-      DiceRoller
+      DiceRoller,
+      Modal
     }
   }
 
@@ -150,7 +168,7 @@
     }
   }
 
-  .character-inventory {
+  .character-other {
     flex: 2 0 auto;
   }
 
@@ -160,5 +178,9 @@
 }
 .gold-counter {
   float: right;
+}
+
+.level-btn {
+  color: white;
 }
 </style>
