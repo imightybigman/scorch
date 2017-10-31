@@ -11,7 +11,7 @@
                 <table id="search-results-table" class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th v-for="(key, index) in columnKeys" :key="index" v-on:click="sortByForm(key)">
+                            <th v-for="(key, index) in objectKeys" :key="index" v-on:click="sortByForm(key)">
                                 <i class="fa" v-bind:class = "{'fa-sort-desc' : (key == sortKey && sortDirection == 'desc'),
                                                                         'fa-sort-asc' : (key == sortKey && sortDirection == 'asc'),
                                                                         'fa-sort' : (key != sortKey)}" 
@@ -21,7 +21,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="(row, srIndex) in searchResults.slice((currentPage-1) * limitPerPage, currentPage * limitPerPage)" :key="srIndex" v-on:click="selectRow(row)">
-                            <td v-for="(key, keyIndex) in columnKeys" :key="keyIndex">{{row[key]}}</td>
+                            <td v-for="(key, keyIndex) in objectKeys" :key="keyIndex">{{row[key]}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -77,20 +77,6 @@ export default {
                 this.sortDirection = 'asc';
             }
         },
-        populateObjectKeys(results){
-            let allKeys = [];
-            results.forEach(result => {
-                Object.keys(result).forEach(key => {
-                    if(!allKeys.includes(key))
-                        allKeys.push(key);
-                });
-            });
-            if(allKeys.length > 0)
-            {
-                this.sortKey = allKeys[0];
-            }
-            this.columnKeys = allKeys;
-        },
         includesAllChars(queryString, element){
             let result = false;
             let index = 0;
@@ -111,9 +97,6 @@ export default {
     computed: {
         searchResults : function(){
             let results = this.searchData;
-            if(this.searchData.length > 0 && !(this.columnKeys) && this.columnKeys.length > 0)
-                this.populateObjectKeys(results);
-
             results = orderBy(results, [this.sortKey], [this.sortDirection]);
 
             results = filter(results, row => {
@@ -130,6 +113,13 @@ export default {
         },
         numPages : function(){
             return Math.ceil(this.searchResults.length / this.limitPerPage);
+        },
+        objectKeys : function(){
+            if(this.columnKeys)
+                return this.columnKeys;
+            if(this.searchResults && this.searchResults.length > 0)
+                return Object.keys(this.searchResults[0]);
+            return [];
         },
         pagesToShow : function(){
             let result = [];

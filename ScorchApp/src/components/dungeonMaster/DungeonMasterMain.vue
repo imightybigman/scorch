@@ -37,7 +37,7 @@ export default {
         return {
             selectedChars: [],
             selectedItem: {},
-            columnKeys: ['Name', 'ItemClass', 'Cost', 'AC', 'Damage']
+            columnKeys: ['Name', 'ItemClass', 'Cost', 'AC', 'Damage', 'Slot']
         }
     },
     async created() {

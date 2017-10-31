@@ -30,7 +30,7 @@ const actions = {
         try{
             response = await ItemService.getItem();
             var displayItems = [];
-            var displayProps = ['Name','ItemClass','Damage','AC','Cost', 'Slot'];
+            var displayProps = ['ItemId','Name','ItemClass','Damage','AC','Cost', 'Slot'];
 
             response.body.forEach(item => {
                 displayItems.push(pick(item, displayProps));
