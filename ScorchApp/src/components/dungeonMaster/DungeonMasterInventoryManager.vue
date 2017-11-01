@@ -2,7 +2,7 @@
     <div class="dm-inventory-component d-flex">
         <div class="item-search flex-column">
           <div class="item-searcher flex-column">
-              <searcher @search-item-selected="searchItem" :search-data="items" :limit-per-page="10"/>
+              <searcher @search-item-selected="searchItem" :search-data="items" :limit-per-page="10" :column-keys="columnKeys"/>
           </div>
         </div>
         <div class="flex-column item-store">
@@ -33,7 +33,8 @@ export default {
     data() {
       return {
         state : '',
-        selectedItem: {}
+        selectedItem: {},
+        columnKeys: ['Name', 'ItemClass', 'Cost', 'AC', 'Damage', 'Slot']
       }
     },
     async created() {
