@@ -4,6 +4,7 @@ using Amazon;
 using Amazon.DynamoDBv2;
 using Microsoft.AspNetCore.Mvc;
 using Amazon.DynamoDBv2.DocumentModel;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using ScorchApiV2.Models;
 
@@ -13,13 +14,16 @@ namespace ScorchApiV2.Controllers
     public class EntityController : Controller
     {
         private static AmazonDynamoDBClient _client = new AmazonDynamoDBClient(RegionEndpoint.USEast1);
-        private static string _entityTableName = "DnD-Entity";
+        private static IOptions<AppSettings> _appSettings;
         private static Table _entityTable;
 
-        public EntityController()
+        public EntityController(IOptions<AppSettings> appSettings)
         {
-            _entityTable = Table.LoadTable(_client, _entityTableName);
+            _appSettings = appSettings;
+            var tableName = _appSettings.Value.DynamoTables["DnD-Entity"];
+            _entityTable = Table.LoadTable(_client, tableName);
         }
+
 
         [HttpGet("{entityId}")]
         public async Task<Entity> GetEntity(Guid entityId)

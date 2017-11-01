@@ -5,6 +5,7 @@ using Amazon;
 using Amazon.DynamoDBv2;
 using Microsoft.AspNetCore.Mvc;
 using Amazon.DynamoDBv2.DocumentModel;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using ScorchApiV2.Models;
 
@@ -14,12 +15,14 @@ namespace ScorchApiV2.Controllers
     public class SpellsController : Controller
     {
         private static AmazonDynamoDBClient _client = new AmazonDynamoDBClient(RegionEndpoint.USEast1);
-        private static string _spellsTableName = "DnD-Spells";
+        private static IOptions<AppSettings> _appSettings;
         private static Table _spellsTable;
 
-        public SpellsController()
+        public SpellsController(IOptions<AppSettings> appSettings)
         {
-            _spellsTable = Table.LoadTable(_client, _spellsTableName);
+            _appSettings = appSettings;
+            var tableName = _appSettings.Value.DynamoTables["DnD-Spells"];
+            _spellsTable = Table.LoadTable(_client, tableName);
         }
 
         [HttpGet]

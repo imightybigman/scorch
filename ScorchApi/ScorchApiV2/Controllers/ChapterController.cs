@@ -4,6 +4,7 @@ using Amazon;
 using Amazon.DynamoDBv2;
 using Microsoft.AspNetCore.Mvc;
 using Amazon.DynamoDBv2.DocumentModel;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using ScorchApiV2.Models;
 
@@ -13,12 +14,14 @@ namespace ScorchApiV2.Controllers
     public class ChapterController : Controller
     {
         private static AmazonDynamoDBClient _client = new AmazonDynamoDBClient(RegionEndpoint.USEast1);
-        private static string _chapterTableName = "DnD-CampaignChapter";
+        private static IOptions<AppSettings> _appSettings;
         private static Table _chapterTable;
 
-        public ChapterController()
+        public ChapterController(IOptions<AppSettings> appSettings)
         {
-            _chapterTable = Table.LoadTable(_client, _chapterTableName);
+            _appSettings = appSettings;
+            var tableName = _appSettings.Value.DynamoTables["DnD-Chapters"];
+            _chapterTable = Table.LoadTable(_client, tableName);
         }
 
         [HttpGet("{chapterId}")]
