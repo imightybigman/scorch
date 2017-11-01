@@ -24,12 +24,8 @@
 </template>
 
 <script>
-    import AdventurerGearCreator from './operators/AdventurerGearCreator.vue'
-    import WeaponCreator from './operators/WeaponCreator.vue'
-    import ArmorCreator from './operators/ArmorCreator.vue'
-    import QuiverCreator from './operators/QuiverCreator.vue'
     import { Searcher } from 'components/util'
-
+    import { QuiverCreator, ArmorCreator, WeaponCreator, AdventurerGearCreator } from 'components/items'
 
 export default {
     name : 'dm-inventory-manager-component',

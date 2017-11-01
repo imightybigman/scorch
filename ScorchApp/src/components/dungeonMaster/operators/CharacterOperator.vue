@@ -1,17 +1,25 @@
 <template>
     <div class="dm-character-operator">
-        <form v-on:submit="apply" class="d-flex">
-            <div class="form-group">
-                <label for="modify-health">Modify Health : </label>
-                <input type="number" class="form-control" id="modify-health" v-model="deltaHealth" placeholder="Hp Change" autocomplete="off"/>
+        <form v-on:submit="apply" class="">
+            <div class = "d-flex">
+                <div class="form-group">
+                    <label for="modify-health">Modify Health : </label>
+                    <input type="number" class="form-control" id="modify-health" v-model="deltaHealth" placeholder="Hp Change" autocomplete="off"/>
+                </div>
+                <div class="form-group">
+                    <label for="modify-exp">Modify Exp : </label>
+                    <input type="number" class="form-control" id="modify-exp" v-model="deltaExp" placeholder="Exp Change" autocomplete="off"/>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="modify-exp">Modify Exp : </label>
-                <input type="number" class="form-control" id="modify-exp" v-model="deltaExp" placeholder="Exp Change" autocomplete="off"/>
-            </div>
-            <div class="form-group">
-                <label for="modify-gp">Modify Gold : </label>
-                <input type="number" class="form-control" id="modify-gold" v-model="deltaGold" placeholder="Gold Change" autocomplete="off"/>
+            <div class = "d-flex">
+                <div class="form-group">
+                    <label for="modify-gp">Modify Gold : </label>
+                    <input type="number" class="form-control" id="modify-gold" v-model="deltaGold" placeholder="Gold Change" autocomplete="off"/>
+                </div>
+                <div class="form-group">
+                    <label for="item-quantity"># Items To Give : </label>
+                    <input type="number" class="form-control" id="item-quantity" v-model="itemQty" placeholder="# Items" autocomplete="off"/>
+                </div>
             </div>
             <button class="btn btn-primary">Submit</button>
         </form>
@@ -25,7 +33,8 @@ export default {
         return {
             deltaHealth : 0,
             deltaExp : 0,
-            deltaGold : 0
+            deltaGold : 0,
+            itemQty: 0
         }
     },
     props: ['characterList'],
@@ -61,7 +70,7 @@ export default {
 <style lang="scss" scoped>
     .dm-character-operator {
         margin: 1%;
-        flex-direction: row;
+        flex-direction: column;
     }
     .form-group{
         flex: 1;
