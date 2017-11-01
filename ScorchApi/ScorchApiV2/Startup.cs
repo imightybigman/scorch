@@ -33,6 +33,9 @@ namespace ScorchApiV2
             services.AddMvc()
                     .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
+            var dynamoTables = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(dynamoTables);
+
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>

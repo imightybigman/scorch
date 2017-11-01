@@ -18,7 +18,6 @@
     },
     "ScorchApiV2": {
       "commandName": "Project",
-      "launchUrl": "",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
