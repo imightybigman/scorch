@@ -3,5 +3,5 @@ var prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  API_HOST: '"https://dnd-api.imightybigman.com/api"'
+  API_HOST: '"http://scorchapiv2-dev.us-east-1.elasticbeanstalk.com/api/character"'
 })
