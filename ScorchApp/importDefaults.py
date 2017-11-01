@@ -2,7 +2,8 @@ import json
 import requests
 import pprint 
 
-dndApi = "https://dnd-api.imightybigman.com/api/item"
+#dndApi = "https://dnd-api.imightybigman.com/api/item"
+dndApi = "http://scorchapiv2-dev.us-east-1.elasticbeanstalk.com/api/item"
 #dndApi = "http://localhost:5000/api/item"
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -127,5 +128,4 @@ def import_equipment():
 
 if __name__ == '__main__':
     pp.pprint('Importing stuff')
-    # import_equipment()
-    # create_quiver()
+    import_equipment()
