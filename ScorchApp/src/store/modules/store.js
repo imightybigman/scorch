@@ -49,7 +49,7 @@ const mutations = {
         state.items.push(item);
     },
     [types.API_ERROR] (state, error){
-        error = "Item not created : " + error;
+        error = "Item error : " + error;
         state.error = error;
     },
     [types.GET_DISPLAY_ITEMS] (state, items) {

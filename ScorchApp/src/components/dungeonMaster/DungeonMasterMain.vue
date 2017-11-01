@@ -60,9 +60,13 @@ export default {
         isCharacterSelected(character) {
             return !(this.selectedChars.find(char => char.CharacterId == character.CharacterId) == undefined);
         },
-        searchItem(item){
-            console.log(item.ItemId);
-            this.selectedItem = item;
+        async searchItem(item){
+            if(item){
+                let response = {};
+                response = await ItemService.getItemById(item.ItemId);
+                console.log(response);
+                this.selectedItem = response.body;
+            }
         }
     },
     computed: {
