@@ -2,7 +2,7 @@
     <div class="dm-inventory-component d-flex">
         <div class="item-search flex-column">
           <div class="item-searcher flex-column">
-              <item-searcher @search-item-selected="searchItem" />
+              <searcher @search-item-selected="searchItem" :search-data="items" :limit-per-page="10"/>
           </div>
         </div>
         <div class="flex-column item-store">
@@ -28,7 +28,7 @@
     import WeaponCreator from './operators/WeaponCreator.vue'
     import ArmorCreator from './operators/ArmorCreator.vue'
     import QuiverCreator from './operators/QuiverCreator.vue'
-    import { ItemSearcher } from 'components/inventory'
+    import { Searcher } from 'components/util'
 
 
 export default {
@@ -40,8 +40,13 @@ export default {
         selectedItem: {}
       }
     },
+    async created() {
+      await this.$store.dispatch('getDisplayItems');   
+    },
     computed: {
-
+        items() {
+            return this.$store.getters.items;
+        }
     },
     methods: {
       searchItem(item){
@@ -53,7 +58,7 @@ export default {
         AdventurerGearCreator,
         WeaponCreator,
         ArmorCreator,
-        ItemSearcher,
+        Searcher,
         QuiverCreator
     }
 }
