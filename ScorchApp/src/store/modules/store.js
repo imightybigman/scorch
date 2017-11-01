@@ -26,11 +26,11 @@ const actions = {
         }
     },
     async getDisplayItems({ commit }) {
-        var response = {};
+        let response = {};
         try{
             response = await ItemService.getItem();
-            var displayItems = [];
-            var displayProps = ['ItemId','Name','ItemClass','Damage','AC','Cost', 'Slot'];
+            let displayItems = [];
+            let displayProps = ['ItemId','Name','ItemClass','Damage','AC','Cost', 'Slot'];
 
             response.body.forEach(item => {
                 displayItems.push(pick(item, displayProps));

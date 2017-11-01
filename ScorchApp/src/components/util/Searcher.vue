@@ -100,8 +100,8 @@ export default {
             results = orderBy(results, [this.sortKey], [this.sortDirection]);
 
             results = filter(results, row => {
-                var display = this.searchTerm ? false : true;
-                for(var propKey in row){
+                let display = this.searchTerm ? false : true;
+                for(let propKey in row){
                     if(typeof(row[propKey]) === 'string' && this.searchTerm)
                         display = display || this.includesAllChars(this.searchTerm, row[propKey]);
                     else
@@ -132,9 +132,9 @@ export default {
                 result.push(this.currentPage + 1 >= this.numPages ? this.currentPage - 4 : this.currentPage + 1);
                 result.push(this.currentPage + 2 >= this.numPages ? this.currentPage - 3 : this.currentPage + 2);
 
-                if(this.currentPage == 1)
+                if(this.currentPage === 1)
                     result.push(this.currentPage + 5);
-                else if(this.currentPage == this.numPages)
+                else if(this.currentPage === this.numPages)
                     result.push(this.currentPage - 5);
                 else 
                     result.push(this.currentPage);
@@ -146,9 +146,6 @@ export default {
             }
             return sortBy(result);
         }
-    },
-    components: {
-        
     }
 }
 </script>
