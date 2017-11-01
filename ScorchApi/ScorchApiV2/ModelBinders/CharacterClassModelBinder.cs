@@ -27,7 +27,7 @@ namespace ScorchApiV2.ModelBinders
         private ModelBindingResult GetCharacterClass(dynamic character, string json)
         {
             var itemTypes = new[] { typeof(Fighter), typeof(Wizard) };
-            var matchedType = itemTypes.Single(x => x.Name == character.Name.toString());
+            var matchedType = itemTypes.Single(x => x.Name == character.Name.ToString());
             if (matchedType != null)
             {
                 return ModelBindingResult.Success(JsonConvert.DeserializeObject(json, matchedType));

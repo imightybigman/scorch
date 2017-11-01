@@ -7,9 +7,9 @@ using Amazon.DynamoDBv2.DocumentModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using ScorchApiV2.Interfaces;
 using ScorchApiV2.ModelBinders;
 using ScorchApiV2.Models;
+using ScorchApiV2.Abstract;
 
 namespace ScorchApiV2.Controllers
 {
@@ -95,7 +95,7 @@ namespace ScorchApiV2.Controllers
         }
 
         [HttpPost("{characterId}/inventory")]
-        public async Task PostItemInInventory(Guid characterId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))] IItem item)
+        public async Task PostItemInInventory(Guid characterId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))] Item item)
         {
             var itemController = new ItemController(_appSettings);
             var itemId = item.ItemId;
@@ -121,7 +121,7 @@ namespace ScorchApiV2.Controllers
         }
 
         [HttpPut("{characterId}/inventory")]
-        public async Task PutItemInInventory(Guid characterId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))] IItem item)
+        public async Task PutItemInInventory(Guid characterId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))] Item item)
         {
             var itemId = item.ItemId;
             // if no item id was passed in , assume it is a new item
@@ -192,7 +192,7 @@ namespace ScorchApiV2.Controllers
         }
 
         [HttpPut("{characterId}/equipment")]
-        public async Task<Equipment> PutCharacterEquipment(Guid characterId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))] IItem equipment)
+        public async Task<Equipment> PutCharacterEquipment(Guid characterId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))] Item equipment)
         {
             var character = await GetCharacter(characterId);
             character.Equip(equipment);

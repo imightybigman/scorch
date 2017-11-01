@@ -7,7 +7,7 @@ using Amazon.DynamoDBv2.DocumentModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using ScorchApiV2.Interfaces;
+using ScorchApiV2.Abstract;
 using ScorchApiV2.ModelBinders;
 using ScorchApiV2.Models;
 
@@ -29,11 +29,11 @@ namespace ScorchApiV2.Controllers
 
 
         [HttpGet]
-        public async Task<IList<IItem>> Get()
+        public async Task<IList<Item>> Get()
         {
             var scanFilter      = new ScanFilter();
             var search          = _itemTable.Scan(scanFilter);
-            var itemList        = new List<IItem>();
+            var itemList        = new List<Item>();
             do
             {
                 var documentList = await search.GetNextSetAsync();
@@ -48,7 +48,7 @@ namespace ScorchApiV2.Controllers
 
 
         [HttpGet("{itemId}")]
-        public async Task<IItem> GetItem(Guid itemId)
+        public async Task<Item> GetItem(Guid itemId)
         {
             var document = await _itemTable.GetItemAsync(itemId);
             
@@ -61,7 +61,7 @@ namespace ScorchApiV2.Controllers
         /// <param name="item">Item thingy</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IItem> PostItem([FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))]IItem item)
+        public async Task<Item> PostItem([FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))]Item item)
         {
             item.ItemId = Guid.NewGuid();
             Document doc = Document.FromJson(JsonConvert.SerializeObject(item));
@@ -71,7 +71,7 @@ namespace ScorchApiV2.Controllers
         }
 
         [HttpPut("{itemId}")]
-        public async Task<IItem> PutItem(Guid itemId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))]IItem item)
+        public async Task<Item> PutItem(Guid itemId, [FromBody, ModelBinder(BinderType = typeof(ItemModelBinder))]Item item)
         {
             item.ItemId = itemId;
             Document doc = Document.FromJson(JsonConvert.SerializeObject(item));
@@ -86,7 +86,7 @@ namespace ScorchApiV2.Controllers
             await _itemTable.DeleteItemAsync(itemId);
         }
 
-        private IItem ParseItem(Document document)
+        private Item ParseItem(Document document)
         {
             var itemJson = document.ToJson();
             if (document["ItemClass"] == "Quiver")
