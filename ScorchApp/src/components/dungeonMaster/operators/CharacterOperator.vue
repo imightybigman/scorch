@@ -17,7 +17,7 @@
                     <input type="number" class="form-control" id="modify-gold" v-model="deltaGold" placeholder="Gold Change" autocomplete="off"/>
                 </div>
                 <div class="form-group">
-                    <label for="item-quantity"># Items To Give : </label>
+                    <label for="item-quantity">Items Quantity : </label>
                     <input type="number" class="form-control" id="item-quantity" v-model="itemQty" placeholder="# Items" autocomplete="off"/>
                 </div>
             </div>
@@ -27,7 +27,9 @@
 </template>
 
 <script>
-export default {
+    import { CharacterService } from 'services'
+
+export default {    
     name: 'dm-character-operator',
     data(){
         return {
@@ -60,8 +62,20 @@ export default {
                 payload.body.Gold = newGold;
                 
                 await this.$store.dispatch('updateCharacter', payload);
+
+                if(this.item && this.itemQty > 0){
+                    let itemAdded = {};
+                    itemAdded.ItemId = this.item.ItemId;
+                    itemAdded.Count = parseInt(this.itemQty);
+                    await CharacterService.postCharacterItem(char.CharacterId, itemAdded);
+                }
+
                 this.$socket.emit('updateParty');
             });
+            this.clearFields();
+        },
+        async clearFields() {
+            this.itemQty = 0;
         }
     }
 }

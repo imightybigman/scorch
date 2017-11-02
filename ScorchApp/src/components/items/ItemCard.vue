@@ -2,7 +2,7 @@
     <div class="item-card border">
         <div class="item-card-inner">
             <div class="d-flex">
-                <h4 class="item-card-header">{{item.Name ? item.Name : "Item Card"}}</h4>
+                <h4 class="item-card-header">{{item.Name ? item.Name : "Item Card"}} <p v-if="item.Count > 0">x {{item.Count}}</p></h4>
                 <small>{{item.ItemClass}}</small>
             </div>
             <div class = "d-flex item-card-detail">
@@ -18,8 +18,9 @@
                     <span class = "entry"><i class="ra ra-hand"/> {{item.Slot}}</span>
                 </div>
                 <div class = "d-flex" v-if="item.ItemClass === 'Weapon' && item.LongRange > 0 && item.ShortRange > 0">
-                    <span class = "entry"><i class="ra ra-broadhead-arrow"/> {{item.ShortRange}}</span>
-                    <span class = "entry"><i class="ra ra-arrow-flights"/> {{item.LongRange}}</span>
+                    <span class = "entry"><i class="ra ra-broadhead-arrow"/> {{item.ShortRange}} ft</span>
+                    <span class = "entry"><i class="ra ra-arrow-flights"/> {{item.LongRange}} ft</span>
+                    <span class = "entry"></span>
                 </div>
                 
                 <div class = "d-flex" v-if="item.ItemClass === 'Armor'">
@@ -74,7 +75,6 @@ export default {
         margin-top: 2%;
         padding: 1%;
         border-radius: 10px;
-        min-height: 75%;
     }
     .item-card-inner {
         padding: 0.5%;

@@ -127,5 +127,6 @@ export default {
     }
     .item-card{
         flex: 1;
+        min-height: 75%;
     }
 </style>
