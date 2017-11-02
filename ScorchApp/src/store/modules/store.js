@@ -26,11 +26,11 @@ const actions = {
         }
     },
     async getDisplayItems({ commit }) {
-        var response = {};
+        let response = {};
         try{
             response = await ItemService.getItem();
-            var displayItems = [];
-            var displayProps = ['ItemId','Name','ItemClass','Damage','AC','Cost', 'Slot'];
+            let displayItems = [];
+            let displayProps = ['ItemId','Name','ItemClass','Damage','AC','Cost', 'Slot'];
 
             response.body.forEach(item => {
                 displayItems.push(pick(item, displayProps));
@@ -49,7 +49,7 @@ const mutations = {
         state.items.push(item);
     },
     [types.API_ERROR] (state, error){
-        error = "Item not created : " + error;
+        error = "Item error : " + error;
         state.error = error;
     },
     [types.GET_DISPLAY_ITEMS] (state, items) {
