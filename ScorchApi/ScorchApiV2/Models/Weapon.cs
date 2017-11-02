@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ScorchApiV2.Abstract;
 
 namespace ScorchApiV2.Models

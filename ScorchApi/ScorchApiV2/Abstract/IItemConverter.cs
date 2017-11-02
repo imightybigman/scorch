@@ -9,6 +9,10 @@ namespace ScorchApiV2.Abstract
     {
         protected override Item Create(Type objectType, JObject jObject)
         {
+            if (jObject["ItemClass"] == null)
+            {
+                return new AdventurerGear();
+            }
             var itemClass = jObject["ItemClass"].ToString();
             switch (itemClass)
             {

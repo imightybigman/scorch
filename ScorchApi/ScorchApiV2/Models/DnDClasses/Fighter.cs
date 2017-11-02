@@ -1,4 +1,5 @@
-﻿using ScorchApiV2.Abstract;
+﻿using System.Collections.Generic;
+using ScorchApiV2.Abstract;
 
 namespace ScorchApiV2.Models.DnDClasses
 {
@@ -6,9 +7,7 @@ namespace ScorchApiV2.Models.DnDClasses
     {
         public string MartialNess { get; set; }
         public Fighter()
-        {
-            Name = typeof(Fighter).Name;
-
+        { 
         }
     }
 }

@@ -6,13 +6,10 @@ using ScorchApiV2.Abstract;
 
 namespace ScorchApiV2.Models.DnDClasses
 {
-    public class Wizard : CharacterClass
+    public class Ranger : CharacterClass
     {
-        public int SpellSlots { get; set; }
-
-        public Wizard()
+        public Ranger()
         {
-            Name = typeof(Wizard).Name;
         }
     }
 }

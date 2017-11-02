@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using ScorchApiV2.Models;
 using ScorchApiV2.Models.DnDClasses;
 
 namespace ScorchApiV2.ModelBinders
@@ -26,7 +23,7 @@ namespace ScorchApiV2.ModelBinders
 
         private ModelBindingResult GetCharacterClass(dynamic character, string json)
         {
-            var itemTypes = new[] { typeof(Fighter), typeof(Wizard) };
+            var itemTypes = new[] { typeof(Fighter), typeof(Warlock) };
             var matchedType = itemTypes.Single(x => x.Name == character.Name.ToString());
             if (matchedType != null)
             {

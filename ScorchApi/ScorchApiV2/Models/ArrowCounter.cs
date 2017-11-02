@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ScorchApiV2.Models
+﻿namespace ScorchApiV2.Models
 {
     public class ArrowCounter
     {
