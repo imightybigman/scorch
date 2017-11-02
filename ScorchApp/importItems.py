@@ -13,6 +13,38 @@ def handle_response(r):
     else:
         pp.pprint(r.status_code)
 
+def get_weapon_slot(raw): 
+    hand = any(x['name'] == 'Two-Handed' if isinstance(x,dict) else False for x in raw['properties'])
+    if hand:
+        return 'Two-Handed'
+    return 'One-Handed'
+
+def get_weapon_short_range(raw):
+    if raw['name'] == 'Crossbow, light':
+        return 80
+    if raw['name'] == 'Shortbow':
+        return 80
+    if raw['name'] == 'Crossbow, hand':
+        return 30
+    if raw['name'] == 'Crossbow, heavy':
+        return 100
+    if raw['name'] == 'Longbow':
+        return 150
+    return raw['range']['normal'] if raw['range']['normal'] != None else 0
+
+def get_weapon_long_range(raw): 
+    if raw['name'] == 'Crossbow, light':
+        return 320
+    if raw['name'] == 'Shortbow':
+        return 320
+    if raw['name'] == 'Crossbow, hand':
+        return 120
+    if raw['name'] == 'Crossbow, heavy':
+        return 400
+    if raw['name'] == 'Longbow':
+        return 600
+    return raw['range']['long'] if raw['range']['long'] != None else 0
+
 def create_weapon(raw):
     pp.pprint('Porting weapon {0}, id: {1}'.format(raw['name'], raw['index']))
 
@@ -25,9 +57,9 @@ def create_weapon(raw):
     weapon['Weight']            = raw['weight']
     weapon['Damage']            = '{0}d{1}'.format(raw['damage']['dice_count'], raw['damage']['dice_value'])
     weapon['Versatile']         = any(x['name'] == 'Versatile' if isinstance(x,dict) else False for x in raw['properties'])
-    weapon['Slot']              = any(x['name'] == 'Two-Handed' if isinstance(x,dict) else 'One-Handed' for x in raw['properties'])
-    weapon['ShortRange']        = raw['range']['normal'] if raw['range']['normal'] != None else 0
-    weapon['LongRange']         = raw['range']['long'] if raw['range']['long'] != None else 0
+    weapon['Slot']              = get_weapon_slot(raw)
+    weapon['ShortRange']        = get_weapon_short_range(raw)
+    weapon['LongRange']         = get_weapon_long_range(raw)
 
     if 'damage_type' in raw['damage']:
         weapon['DamageType'] = raw['damage']['damage_type']['name']
