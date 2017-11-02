@@ -14,6 +14,7 @@ namespace ScorchApiV2.Abstract
         public string ItemType                  { get; set; }
         public double Cost                      { get; set; }
         public int Weight                       { get; set; }
+        public int? Count                       { get; set; }
         public List<string> Properties          { get; set; }
     }
 }
