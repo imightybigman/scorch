@@ -4,6 +4,9 @@ export default {
     getItem() {
         return Vue.http.get('item');
     },
+    getItemById(id) {
+        return Vue.http.get('item/' + id);
+    },
     postItem(item) {
         return Vue.http.post('item', item);
     },

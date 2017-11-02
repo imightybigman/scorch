@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="item-searcher flex-column">
-                    <item-searcher @search-item-selected="searchItem" />
+                    <searcher @search-row-selected="searchItem" :search-data="searchItems" :limit-per-page="10" :column-keys="columnKeys"/>
                 </div>
             </div>
         </div>
@@ -27,20 +27,23 @@
 <script>
     import { CharacterTile } from 'components/character'
     import CharacterOperator from './operators/CharacterOperator.vue'
-    import { ItemSearcher } from 'components/inventory'
-    import { ItemCard } from 'components/inventory'
+    import { Searcher } from 'components/util'
+    import { ItemCard } from 'components/items'
+    import { ItemService } from 'services'
     
 export default {
     name : 'dm-main-component',
     
     data() {
-      return {
-        selectedChars: [],
-        selectedItem: {}
-      }
+        return {
+            selectedChars: [],
+            selectedItem: {},
+            columnKeys: ['Name', 'ItemClass', 'Cost', 'AC', 'Damage', 'Slot']
+        }
     },
     async created() {
-      await this.$store.dispatch('getParty')
+      await this.$store.dispatch('getParty');
+      await this.$store.dispatch('getDisplayItems');   
     },
     methods: {
         toggleCharacter(character) {
@@ -57,20 +60,27 @@ export default {
         isCharacterSelected(character) {
             return !(this.selectedChars.find(char => char.CharacterId == character.CharacterId) == undefined);
         },
-        searchItem(item){
-            console.log(item);
-            this.selectedItem = item;
+        async searchItem(item){
+            if(item){
+                let response = {};
+                response = await ItemService.getItemById(item.ItemId);
+                console.log(response);
+                this.selectedItem = response.body;
+            }
         }
     },
     computed: {
         party() {
             return this.$store.getters.myParty;
+        },
+        searchItems() {
+            return this.$store.getters.items;
         }
     },
     components: {
         CharacterTile,
         CharacterOperator,
-        ItemSearcher,
+        Searcher,
         ItemCard
     }
 }
