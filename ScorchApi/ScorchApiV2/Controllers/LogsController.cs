@@ -6,6 +6,7 @@ using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using ScorchApiV2.Models;
 using ScorchApiV2.Static;
 
@@ -14,14 +15,17 @@ namespace ScorchApiV2.Controllers
     [Route("api/[controller]")]
     public class LogsController : Controller
     {
-        private static AmazonDynamoDBClient client = new AmazonDynamoDBClient(RegionEndpoint.USEast1);
-        private static string tableName = "DnD-Logs";
-        private static Table logsTable;
+        private static AmazonDynamoDBClient _client = new AmazonDynamoDBClient(RegionEndpoint.USEast1);
+        private static IOptions<AppSettings> _appSettings;
+        private static Table _logsTable;
 
-        public LogsController()
+        public LogsController(IOptions<AppSettings> appSettings)
         {
-            logsTable = Table.LoadTable(client, tableName);
+            _appSettings = appSettings;
+            var tableName = _appSettings.Value.DynamoTables["DnD-Logs"];
+            _logsTable = Table.LoadTable(_client, tableName);
         }
+
 
         [HttpGet]
         public async Task<List<Log>> GetLogs(DateTime? startDate, DateTime? endDate)
@@ -37,7 +41,7 @@ namespace ScorchApiV2.Controllers
         private async Task<List<Log>> GetAllLogs()
         {
             var scanFilter = new ScanFilter();
-            var search = logsTable.Scan(scanFilter);
+            var search = _logsTable.Scan(scanFilter);
             var logs = new List<Log>();
             do
             {
@@ -55,7 +59,7 @@ namespace ScorchApiV2.Controllers
         {
             ScanFilter scanFilter = new ScanFilter();
             scanFilter.AddCondition("LogDate", ScanOperator.Between, startDate.ToUnixTimestamp(), endDate.ToUnixTimestamp());
-            var scan = logsTable.Scan(scanFilter);
+            var scan = _logsTable.Scan(scanFilter);
             var allItems = await scan.GetRemainingAsync();
      
             return allItems.Select(x => new Log(x)).ToList();
@@ -65,7 +69,7 @@ namespace ScorchApiV2.Controllers
         public async Task PostLog([FromBody]Log log)
         {
             var document = log.ToDocument();
-            await logsTable.PutItemAsync(document);
+            await _logsTable.PutItemAsync(document);
         }
     }
 }

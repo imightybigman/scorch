@@ -7,27 +7,28 @@
             </div>
             <div class = "d-flex item-card-detail">
                 <small class = "description">{{item.Description}}</small>
-                <div>
-                    <span class = "entry">Cost : {{item.Cost}} GP</span>
-                    <span class = "entry">Weight : {{item.Weight}} lbs </span>
-                    <span class = "entry">Item Type : {{item.ItemType}}</span>
+                <div class = "d-flex">
+                    <span class = "entry"><i class="ra ra-gold-bar"/> {{item.Cost}} GP</span>
+                    <span class = "entry"><i class="fa fa-balance-scale"/> {{item.Weight}} lbs </span>
+                    <span class = "entry"><i class="ra ra-gears"/> {{item.ItemType}}</span>
                 </div>
-                <div v-if="item.ItemClass === 'Weapon'">
-                    <span class = "entry">Damage : {{item.Damage}}</span>
-                    <span class = "entry">DamageType : {{item.DamageType}}</span>
-                    <span class = "entry">Slot : {{item.Slot}}</span>
+                <div class = "d-flex" v-if="item.ItemClass === 'Weapon'">
+                    <span class = "entry"><i class="ra ra-axe-swing"/> {{item.Damage}}</span>
+                    <span class = "entry"><i class="ra ra-gear-hammer"/> {{item.DamageType}}</span>
+                    <span class = "entry"><i class="ra ra-hand"/> {{item.Slot}}</span>
                 </div>
-                <div v-if="item.ItemClass === 'Weapon' && item.LongRange > 0 && item.ShortRange > 0">
-                    <span class = "entry">ShortRange : {{item.ShortRange}}</span>
-                    <span class = "entry">LongRange : {{item.LongRange}}</span>
+                <div class = "d-flex" v-if="item.ItemClass === 'Weapon' && item.LongRange > 0 && item.ShortRange > 0">
+                    <span class = "entry"><i class="ra ra-broadhead-arrow"/> {{item.ShortRange}}</span>
+                    <span class = "entry"><i class="ra ra-arrow-flights"/> {{item.LongRange}}</span>
                 </div>
                 
-                <div v-if="item.ItemClass === 'Armor'">
-                    <span class = "entry">AC : {{item.AC}}</span>
-                    <span class = "entry">Slot : {{item.Slot}}</span>
+                <div class = "d-flex" v-if="item.ItemClass === 'Armor'">
+                    <span class = "entry"><i class="ra ra-shield"/> {{item.AC}} AC</span>
+                    <span class = "entry"><i class="ra ra-hand"/> {{item.Slot}}</span>
+                    <span class = "entry"></span>
                 </div>
-                <div v-if="item.ItemClass === 'Quiver'">
-                    <span class = "entry">Slot : {{item.Slot}}</span>
+                <div class = "d-flex" v-if="item.ItemClass === 'Quiver'">
+                    <span class = "entry"><i class="ra ra-hand"/> {{item.Slot}}</span>
                 </div>
                 <div class="property-holder">
                     <span class="badge badge-pill badge-primary" v-for="(prop, index) in itemPropStatMods" :key="index">{{prop}}</span>
@@ -73,6 +74,7 @@ export default {
         margin-top: 2%;
         padding: 1%;
         border-radius: 10px;
+        min-height: 75%;
     }
     .item-card-inner {
         padding: 0.5%;
@@ -88,5 +90,13 @@ export default {
     }
     .entry{
         margin-right: 5%;
+        flex: 1;
+        flex-grow: 1;
+    }
+    .ra-gold-bar{
+        color:gold;
+    }
+    .ra-axe-swing{
+        color:darkred;
     }
 </style>

@@ -1,14 +1,13 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using ScorchApiV2.Abstract;
 using ScorchApiV2.Models;
 
-namespace ScorchApiV2.Interfaces
+namespace ScorchApiV2.Abstract
 {
-    public class IItemConverter : JsonCreationConverter<IItem>
+    public class ItemConverter : JsonCreationConverter<Item>
     {
-        protected override IItem Create(Type objectType, JObject jObject)
+        protected override Item Create(Type objectType, JObject jObject)
         {
             var itemClass = jObject["ItemClass"].ToString();
             switch (itemClass)

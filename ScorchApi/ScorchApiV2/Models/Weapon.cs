@@ -1,23 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using ScorchApiV2.Interfaces;
+using ScorchApiV2.Abstract;
 
 namespace ScorchApiV2.Models
 {
-    public class Weapon : IItem
+    public class Weapon : Item
     {
-        public Guid ItemId          { get; set; }
-        public string Name          { get; set; }
-        public string Description   { get; set; }
-        public string ItemClass     { get; set; } = typeof(Weapon).Name;
-        public string ItemType      { get; set; }
-        public double Cost          { get; set; }
-        public int Weight           { get; set; }
-
+        public override string ItemClass        { get; set; } = typeof(Weapon).Name;
         public string Damage                    { get; set; }
         public string DamageType                { get; set; }
         public string Slot                      { get; set; }
-        public List<string> Properties          { get; set; }
         public List<Modifiers> StatModifiers    { get; set; }
         public bool Versatile                   { get; set; }
         public string VersatileDamage           { get; set; }

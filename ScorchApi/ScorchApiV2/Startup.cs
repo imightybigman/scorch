@@ -8,6 +8,7 @@ using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
 using ScorchApiV2.Middleware;
 using System;
+using System.Collections.Generic;
 
 namespace ScorchApiV2
 {
@@ -18,9 +19,26 @@ namespace ScorchApiV2
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile($"appsettings.{GetEnvVariableAWSBeansTalkHack(env)}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+        }
+
+        private static string GetEnvVariableAWSBeansTalkHack(IHostingEnvironment env)
+        {
+            var config = new ConfigurationBuilder()
+                .AddJsonFile(@"C:\Program Files\Amazon\ElasticBeanstalk\config\containerconfiguration", optional: true, reloadOnChange: true).Build();
+
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            foreach (IConfigurationSection pair in config.GetSection("iis:env").GetChildren())
+            {
+                string[] keypair = pair.Value.Split(new[] { '=' }, 2);
+                dict.Add(keypair[0], keypair[1]);
+            }
+
+            return dict.ContainsKey("ASPNETCORE_ENVIRONMENT")
+                ? dict["ASPNETCORE_ENVIRONMENT"]
+                : env.EnvironmentName;
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -32,6 +50,9 @@ namespace ScorchApiV2
             // Add framework services.
             services.AddMvc()
                     .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+
+            var dynamoTables = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(dynamoTables);
 
 
             // Register the Swagger generator, defining one or more Swagger documents
