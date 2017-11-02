@@ -10,6 +10,7 @@ import store from './store'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'font-awesome/scss/font-awesome.scss'
+import 'rpg-awesome/scss/rpg-awesome.scss'
 import 'styles/styles.scss'
 
 import VueSocketio from 'vue-socket.io';
