@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore.Query.Internal;
-using ScorchApiV2.Interfaces;
+using ScorchApiV2.Abstract;
 
 namespace ScorchApiV2.Models
 {
@@ -27,7 +27,7 @@ namespace ScorchApiV2.Models
         public List<Trait> Traits       { get; set; } = new List<Trait>();
         public List<Skill> Skills       { get; set; } = new List<Skill>();
         public List<Spell> Spells       { get; set; } = new List<Spell>();
-        public List<IItem> Inventory    { get; set; } = new List<IItem>();
+        public List<Item> Inventory     { get; set; } = new List<Item>();
         public List<string> Notes       { get; set; } = new List<string>();
         
         public Character() { }
@@ -39,7 +39,7 @@ namespace ScorchApiV2.Models
             Spells = Spells.OrderBy(s => s.Name).ToList();
         }
 
-        public void UpdateEquipment(IItem equipment)
+        public void UpdateEquipment(Item equipment)
         {
             if (Equipment.Quiver != null && Equipment.Quiver.ItemId == equipment.ItemId)
             {
@@ -87,7 +87,7 @@ namespace ScorchApiV2.Models
             }
         }
 
-        public void Equip(IItem equipment)
+        public void Equip(Item equipment)
         {
             var itemClass = equipment.ItemClass;
             switch (itemClass)
