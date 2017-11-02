@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ScorchApiV2.Models.DnDClasses;
@@ -22,8 +19,8 @@ namespace ScorchApiV2.Abstract
             {
                 case "Fighter":
                     return new Fighter();
-                case "Wizard":
-                    return new Wizard();
+                case "Warlock":
+                    return new Warlock();
                 default:
                     return new Fighter();
             }

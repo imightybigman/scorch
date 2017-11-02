@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 using ScorchApiV2.Abstract;
 
 namespace ScorchApiV2.Models

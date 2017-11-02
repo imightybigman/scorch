@@ -99,6 +99,7 @@ namespace ScorchApiV2.Controllers
         {
             var itemController = new ItemController(_appSettings);
             var itemId = item.ItemId;
+            var itemCount = item.Count;
             // if no item id was passed in , assume it is a new item
             if (itemId == Guid.Empty)
             {
@@ -114,6 +115,7 @@ namespace ScorchApiV2.Controllers
             }
 
             var character = await GetCharacter(characterId);
+            item.Count = itemCount;
             character.Inventory.Add(item);
             var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
 

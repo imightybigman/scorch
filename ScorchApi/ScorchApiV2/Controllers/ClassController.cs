@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using ScorchApiV2.Abstract;
 using ScorchApiV2.ModelBinders;
+using ScorchApiV2.Models.DnDClasses;
 
 namespace ScorchApiV2.Controllers
 {
@@ -25,6 +22,12 @@ namespace ScorchApiV2.Controllers
             _appSettings = appSettings;
             var tableName = _appSettings.Value.DynamoTables["DnD-Classes"];
             _classTable = Table.LoadTable(_client, tableName);
+        }
+
+        [HttpGet]
+        public IEnumerable<CharacterClass> GetCharacterClasses()
+        {
+            return new CharacterClass[] { new Fighter(), new Warlock(), new Bard(), new Ranger(), new Paladin() };
         }
 
         [HttpPost]
