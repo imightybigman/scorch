@@ -28,7 +28,8 @@
     import { CharacterTile } from 'components/character'
     import CharacterOperator from './operators/CharacterOperator.vue'
     import { Searcher } from 'components/util'
-    import { ItemCard } from 'components/inventory'
+    import { ItemCard } from 'components/items'
+    import { ItemService } from 'services'
     
 export default {
     name : 'dm-main-component',
@@ -59,8 +60,13 @@ export default {
         isCharacterSelected(character) {
             return !(this.selectedChars.find(char => char.CharacterId == character.CharacterId) == undefined);
         },
-        searchItem(item){
-            this.selectedItem = item;
+        async searchItem(item){
+            if(item){
+                let response = {};
+                response = await ItemService.getItemById(item.ItemId);
+                console.log(response);
+                this.selectedItem = response.body;
+            }
         }
     },
     computed: {
