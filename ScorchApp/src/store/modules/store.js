@@ -1,5 +1,6 @@
 import { ItemService } from 'services'
 import * as types from '../mutation-types'
+import pick from "lodash/pick";
 
 // initial state
 const state = {
@@ -24,11 +25,18 @@ const actions = {
             commit(types.API_ERROR, errorResponse.bodyText);
         }
     },
-    async getItem({ commit }) {
-        let response = {};
+    async getDisplayItems({ commit }) {
+        var response = {};
         try{
             response = await ItemService.getItem();
-            commit(types.GET_ITEM, response.body);
+            var displayItems = [];
+            var displayProps = ['ItemId','Name','ItemClass','Damage','AC','Cost', 'Slot'];
+
+            response.body.forEach(item => {
+                displayItems.push(pick(item, displayProps));
+            });
+
+            commit(types.GET_DISPLAY_ITEMS, displayItems);
         } catch(errorResponse) {
             commit(types.API_ERROR, errorResponse.bodyText);
         }
@@ -44,7 +52,7 @@ const mutations = {
         error = "Item not created : " + error;
         state.error = error;
     },
-    [types.GET_ITEM] (state, items) {
+    [types.GET_DISPLAY_ITEMS] (state, items) {
         state.items = items;
     }
 }

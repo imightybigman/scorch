@@ -1,7 +1,8 @@
 import json
 import requests
 
-apiUrl = "http://localhost:5000/api/character"
+#apiUrl = "http://localhost:5000/api/character"
+apiUrl = "http://scorchapiv2-dev.us-east-1.elasticbeanstalk.com/api/character"
 #apiUrl = "https://dnd-api.imightybigman.com/api/character"
 
 def createSkill(skill):

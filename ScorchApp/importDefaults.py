@@ -2,7 +2,8 @@ import json
 import requests
 import pprint 
 
-dndApi = "https://dnd-api.imightybigman.com/api/item"
+#dndApi = "https://dnd-api.imightybigman.com/api/item"
+dndApi = "http://scorchapiv2-dev.us-east-1.elasticbeanstalk.com/api/item"
 #dndApi = "http://localhost:5000/api/item"
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -24,7 +25,7 @@ def create_weapon(raw):
     weapon['Weight']            = raw['weight']
     weapon['Damage']            = '{0}d{1}'.format(raw['damage']['dice_count'], raw['damage']['dice_value'])
     weapon['Versatile']         = any(x['name'] == 'Versatile' if isinstance(x,dict) else False for x in raw['properties'])
-    weapon['Slot']              = 'MainHand'
+    weapon['Slot']              = any(x['name'] == 'Two-Handed' if isinstance(x,dict) else 'One-Handed' for x in raw['properties'])
     weapon['ShortRange']        = raw['range']['normal'] if raw['range']['normal'] != None else 0
     weapon['LongRange']         = raw['range']['long'] if raw['range']['long'] != None else 0
 
@@ -59,6 +60,9 @@ def create_armor(raw):
         armor['ItemType'] = raw['armor_category:']['name']
     else:
         armor['ItemType'] = raw['armor_category:']
+
+    if armor['ItemType'] == 'Shield':
+        armor['Slot'] = 'OffHand'
 
     pp.pprint('Adding armor: {0}'.format(armor['Name']))
     pp.pprint(json.dumps(armor))
@@ -127,5 +131,4 @@ def import_equipment():
 
 if __name__ == '__main__':
     pp.pprint('Importing stuff')
-    # import_equipment()
-    # create_quiver()
+    import_equipment()
