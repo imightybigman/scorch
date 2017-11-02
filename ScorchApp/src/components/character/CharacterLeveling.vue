@@ -1,7 +1,7 @@
 <template>
     <div class="character-leveling">
     <modal v-if="showLevelingModal" v-on:close="showLevelingModal = false">
-        <div slot="header"><h3>Level Up</h3></div>
+        <div slot="header"><h3>Level: <i class="fa fa-level-up"></i> {{ nextLevel }}</h3></div>
         <div slot="body">
             <div class="card">
             <div class="card-body">
@@ -36,6 +36,16 @@ export default {
         return {
             showLevelingModal: false,
             levelingEnabled: true
+        }
+    },
+    computed: {
+        nextLevel: function() {
+            return this.character.Level + 1;
+        }
+    },
+    methods: {
+        increaseStats: function(stat) {
+
         }
     },
     components: {
