@@ -26,7 +26,6 @@
                     <span class = "entry"><i class="ra ra-shield"/> {{item.AC}} AC</span>
                     <span class = "entry"><i class="ra ra-hand"/> {{item.Slot}}</span>
                     <span class = "entry"></span>
-                    
                 </div>
                 <div class = "d-flex" v-if="item.ItemClass === 'Quiver'">
                     <span class = "entry"><i class="ra ra-hand"/> {{item.Slot}}</span>
