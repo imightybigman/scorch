@@ -141,7 +141,7 @@ namespace ScorchApiV2.Models
             {
                 Equipment.RightRing = null;
             }
-            if (slot == "MainHand")
+            if (slot == "MainHand" || slot =="One-Handed" || slot =="Two-Handed")
             {
                 Equipment.MainHand = null;
             }
