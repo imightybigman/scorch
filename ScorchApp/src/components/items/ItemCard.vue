@@ -73,6 +73,7 @@ export default {
         margin-top: 2%;
         padding: 1%;
         border-radius: 10px;
+        min-height: 75%;
     }
     .item-card-inner {
         padding: 0.5%;
