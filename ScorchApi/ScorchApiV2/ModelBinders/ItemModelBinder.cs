@@ -23,6 +23,11 @@ namespace ScorchApiV2.ModelBinders
 
         private ModelBindingResult GetItemClass(dynamic item, string json)
         {
+            if (item.ItemClass == null)
+            {
+                return ModelBindingResult.Success(JsonConvert.DeserializeObject(json, typeof(AdventurerGear)));
+            }
+
             var itemTypes = new[] {typeof(Weapon), typeof(Armor), typeof(AdventurerGear), typeof(Quiver), typeof(Accessory)};
             var matchedType = itemTypes.Single(x => x.Name == item.ItemClass.ToString());
             if (matchedType != null)

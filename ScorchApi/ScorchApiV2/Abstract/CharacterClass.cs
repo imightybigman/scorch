@@ -7,10 +7,10 @@ namespace ScorchApiV2.Abstract
     [JsonConverter(typeof(CharacterClassConverter))]
     public abstract class CharacterClass
     {
-        public string Name                                  { get; set; }
-        public string HitDice                               { get; set; }
-        public int HitDiceFlat                              { get; set; }
-        public List<int> AbilityScoreImprovement            { get; set; }
-        public Dictionary<int, BonusFeature> BonusFeatures  { get; set; }
+        public string Name                                          { get; set; }
+        public string HitDice                                       { get; set; }
+        public int HitDiceFlat                                      { get; set; }
+        public List<int> AbilityScoreImprovement                    { get; set; }
+        public Dictionary<int, List<BonusFeature>> BonusFeatures    { get; set; }
     }
 }
