@@ -9,7 +9,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using ScorchApiV2.Abstract;
 using ScorchApiV2.ModelBinders;
-using ScorchApiV2.Models;
+using ScorchApiV2.Models.Items;
 
 namespace ScorchApiV2.Controllers
 {

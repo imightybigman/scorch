@@ -2,8 +2,8 @@
 
 namespace ScorchApiV2.Models.DnDClasses
 {
-    public class Paladin : CharacterClass
+    public class BaseClass : CharacterClass
     {
-        public Paladin() { }
+        public BaseClass() { }
     }
 }

@@ -14,6 +14,11 @@ namespace ScorchApiV2.Abstract
 
         protected override CharacterClass Create(Type objectType, JObject jObject)
         {
+            if (jObject["Name"] == null)
+            {
+                return new BaseClass();
+            }
+
             var characterClass = jObject["Name"].ToString();
             switch (characterClass)
             {
@@ -22,7 +27,7 @@ namespace ScorchApiV2.Abstract
                 case "Warlock":
                     return new Warlock();
                 default:
-                    return new Fighter();
+                    return new BaseClass();
             }
         }
     }

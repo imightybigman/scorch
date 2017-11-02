@@ -1,4 +1,6 @@
-﻿namespace ScorchApiV2.Models
+﻿using ScorchApiV2.Models.Items;
+
+namespace ScorchApiV2.Models
 {
     public class Equipment
     {
