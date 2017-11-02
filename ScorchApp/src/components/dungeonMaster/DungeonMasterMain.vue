@@ -9,7 +9,7 @@
             <div class="rhs-character-ops">
                 <div class="d-flex bottom-bar">
                     <div class="character-operations">
-                        <character-operator :character-list="selectedChars"></character-operator>
+                        <character-operator :character-list="selectedChars" :item="selectedItem"></character-operator>
                     </div>
                     <div class ="item-card" >
                         <item-card :item="selectedItem"></item-card>
@@ -64,7 +64,6 @@ export default {
             if(item){
                 let response = {};
                 response = await ItemService.getItemById(item.ItemId);
-                console.log(response);
                 this.selectedItem = response.body;
             }
         }
@@ -128,5 +127,6 @@ export default {
     }
     .item-card{
         flex: 1;
+        min-height: 75%;
     }
 </style>
