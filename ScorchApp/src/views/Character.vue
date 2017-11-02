@@ -1,9 +1,5 @@
 <template>
 <div class="character-view d-flex flex-wrap" v-if="character">
-  <modal v-if="showLevelingModal" v-on:close="showLevelingModal = false">
-    <div slot="header"><h3>Level Up</h3></div>
-    <div slot="body"><character-leveling :character="character"></character-leveling></div>
-  </modal>
   <div class="d-flex flex-column party-navigation border">
     <div class="character-cards-container" v-for="(char, index) in party" @click="goTo(char.CharacterId)" :key="index">
       <character-tile :character="char"></character-tile>
@@ -37,12 +33,7 @@
     </div>
   </div>
   <div class="d-flex flex-column character-other border">
-    <div class="card">
-      <div class="card-header">Utilities</div>
-      <div class="card-body">
-        <button class="level-btn btn btn-warning" :disabled="!levelingEnabled" @click="showLevelingModal = true">Level Up</button>
-      </div>
-    </div>
+     <character-leveling :character="character"></character-leveling>
     <dice-roller></dice-roller>
     <inventory :characterId="character.CharacterId"></inventory>
   </div>
@@ -67,12 +58,6 @@
   import { DiceRoller, Modal } from 'components/util'
   export default {
     name: 'character-view',
-    data() {
-      return {
-        levelingEnabled : false,
-        showLevelingModal: false
-      }
-    },
     async created() {
       await this.$store.dispatch('getParty')
     },
