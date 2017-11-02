@@ -37,7 +37,7 @@ export default {
             itemQty: 0
         }
     },
-    props: ['characterList'],
+    props: ['characterList', 'item'],
     methods: {
         async apply() {
             this.characterList.forEach(async(char) =>

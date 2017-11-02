@@ -15,6 +15,10 @@ export default {
         let endpoint = `character/${id}/inventory`;
         return Vue.http.put(endpoint, item);
     },
+    postCharacterItem(id, item) {
+        let endpoint = `character/${id}/inventory`;
+        return Vue.http.post(endpoint, item);
+    },
     equipItem(id, item) {
         let endpoint = `character/${id}/equipment`;
         return Vue.http.put(endpoint, item);
