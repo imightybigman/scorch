@@ -212,6 +212,8 @@ export default {
             body.Damage = this.damage;
             body.ItemType = this.itemType;
             body.DamageType = this.damageType;
+            body.ShortRange = this.shortRange;
+            body.LongRange = this.longRange;
             body.Properties = this.properties;
             body.Description = this.description;
             body.StatModifiers = this.statModifiers;
