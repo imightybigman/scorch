@@ -2,14 +2,14 @@
     <div class="dm-inventory-component d-flex">
         <div class="item-search flex-column">
           <div class="item-searcher flex-column">
-              <searcher @search-item-selected="searchItem" :search-data="items" :limit-per-page="10" :column-keys="columnKeys"/>
+            <searcher @search-row-selected="searchItem" :search-data="searchItems" :limit-per-page="10" :column-keys="columnKeys"/>
           </div>
         </div>
         <div class="flex-column item-store">
-          <button class="createAdvGear" type="button" v-on:click="state='createAdventurerGear'"></button><br />
-          <button class="createArmor" type="button" v-on:click="state='createArmor'"></button><br />
-          <button class="createQuiver" type="button" v-on:click="state='createQuiver'"></button><br />
-          <button class="createWeapon" type="button" v-on:click="state='createWeapon'"></button>
+          <button class="createAdvGear" type="button" v-on:click="state='createAdventurerGear';selectedItem=''"></button><br />
+          <button class="createArmor" type="button" v-on:click="state='createArmor';selectedItem=''"></button><br />
+          <button class="createQuiver" type="button" v-on:click="state='createQuiver';selectedItem=''"></button><br />
+          <button class="createWeapon" type="button" v-on:click="state='createWeapon';selectedItem=''"></button>
         </div>
         <div class="flex-column item-creator">
           <div>
@@ -26,6 +26,8 @@
 <script>
     import { Searcher } from 'components/util'
     import { QuiverCreator, ArmorCreator, WeaponCreator, AdventurerGearCreator } from 'components/items'
+    import { ItemService } from 'services'
+
 
 export default {
     name : 'dm-inventory-manager-component',
@@ -38,17 +40,21 @@ export default {
       }
     },
     async created() {
-      await this.$store.dispatch('getDisplayItems');   
+      await this.$store.dispatch('getDisplayItems');
     },
     computed: {
-        items() {
+        searchItems() {
             return this.$store.getters.items;
         }
     },
     methods: {
-      searchItem(item){
-          this.state = 'create' + item.ItemClass;
-          this.selectedItem = item;
+      async searchItem(item){
+          if(item){
+              let response = {};
+              response = await ItemService.getItemById(item.ItemId);
+              this.selectedItem = response.body;
+              this.state = "create" + this.selectedItem.ItemClass;
+          }
       }
     },
     components: {
