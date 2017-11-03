@@ -28,7 +28,7 @@ namespace ScorchApiV2.ModelBinders
                 return ModelBindingResult.Success(JsonConvert.DeserializeObject(json, typeof(BaseClass)));
             }
 
-            var itemTypes = new[] { typeof(Fighter), typeof(Warlock) };
+            var itemTypes = new[] { typeof(Fighter), typeof(Warlock), typeof(Bard), typeof(Paladin), typeof(Ranger) };
             var matchedType = itemTypes.Single(x => x.Name == character.Name.ToString());
             if (matchedType != null)
             {

@@ -26,6 +26,12 @@ namespace ScorchApiV2.Abstract
                     return new Fighter();
                 case "Warlock":
                     return new Warlock();
+                case "Paladin":
+                    return new Paladin();
+                case "Ranger":
+                    return new Ranger();
+                case "Bard":
+                    return new Bard();
                 default:
                     return new BaseClass();
             }

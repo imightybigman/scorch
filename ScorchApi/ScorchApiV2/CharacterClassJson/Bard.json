@@ -1,0 +1,703 @@
+{
+    "Name": "Bard",
+    "HitDice": "1d8",
+    "HitDiceFlat": 5,
+    "AbilityScoreImprovement": [
+        4,
+        8,
+        12,
+        16,
+        19
+    ],
+    "BardCollege": {
+        "Name": "College of Glamour",
+        "Description": "The College of Glamour is open to those bards who mastered their craft in the vibrant, deadly realm of the Feywild. Tutored by satyrs, eladrin, and other fey, these bards learn to use their magic to delight and captivate others"
+     },
+    "CollegeFeatures": {
+        "Name": "College of Glamour",
+        "Features": {
+            "Level_3": [
+                {
+                    "Name": "Mantle of Inspiration",
+                    "Description": "As a bonus action, you can expend a use of Bardic Inspiration to grant yourself a wondrous, otherworldly appearance. When you do so, choose a number of allies you can see and who can see you within 60 feet of you, up to a number of them equal to your Charisma modifier (minimum of one). Each target gains 2d6 temporary hit points."
+                },
+                {
+                    "Name": "Enthralling Performance",
+                    "Description": "If you perform for at least 10 minutes, you can attempt to inspire wonder in your audience by singing, reciting a poem, or dancing. At the end of the performance, choose a number of humanoids within 60 feet of you who watched and listened to all of it, up to a number of them equal to your Charisma modifier (minimum of one). Each target must succeed on a Wisdom saving throw against your spell save DC or be charmed by you. While charmed in this way, the target idolizes you, it speaks glowingly of you to anyone who speaks to it, and it hinders anyone who opposes you, avoiding violence unless it was already inclined to fight on your behalf."
+                }
+            ],
+            "Level_6": [
+                {
+                    "Name": "Mantle of Majesty",
+                    "Description": "As a bonus action, you take on an appearance of unearthly beauty for 1 minute. During this time, you can cast command as a bonus action on each of your turns, without using a spell slot. This effect lasts for 1 minute, and any creature charmed by you automatically fails its saving throw against the spell.Once you use this feature, you can’t use it again until you finish a long rest."
+                }
+            ],
+            "Level_14": [
+                {
+                    "Name": "Unbreakable Majesty",
+                    "Description": "In addition, through this feature, you can cast sanctuary on yourself. If a creature fails its saving throw against the spell, you also gain advantage on all Charisma checks against the creature for 1 minute, and it has disadvantage on any saving throw it makes against your spells on your next turn.Once you cast sanctuary using this feature, you can’t do so again until you finish a short or long rest."
+                }
+            ]
+        }
+     },
+    "CantripsKnown": {
+        "Level_1": 2,
+        "Level_2": 2,
+        "Level_3": 2,
+        "Level_4": 3,
+        "Level_5": 3,
+        "Level_6": 3,
+        "Level_7": 3,
+        "Level_8": 3,
+        "Level_9": 3,
+        "Level_10": 4,
+        "Level_11": 4,
+        "Level_12": 4,
+        "Level_13": 4,
+        "Level_14": 4,
+        "Level_15": 4,
+        "Level_16": 4,
+        "Level_17": 4,
+        "Level_18": 4,
+        "Level_19": 4,
+        "Level_20": 4
+    },
+    "SpellsKnown": {
+        "Level_1": 4,
+        "Level_2": 5,
+        "Level_3": 6,
+        "Level_4": 7,
+        "Level_5": 8,
+        "Level_6": 9,
+        "Level_7": 10,
+        "Level_8": 11,
+        "Level_9": 12,
+        "Level_10": 14,
+        "Level_11": 15,
+        "Level_12": 15,
+        "Level_13": 16,
+        "Level_14": 18,
+        "Level_15": 19,
+        "Level_16": 19,
+        "Level_17": 20,
+        "Level_18": 22,
+        "Level_19": 22,
+        "Level_20": 22
+    },
+    "SpellSlots": {
+        "Level_1": [
+            {
+                "SpellLevel": 1,
+                "Count": 2
+            }
+        ],
+        "Level_2": [
+            {
+                "SpellLevel": 1,
+                "Count": 3
+            }
+        ],
+        "Level_3": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 2
+            }
+        ],
+        "Level_4": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            }
+        ],
+        "Level_5": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 2
+            }
+        ],
+        "Level_6": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 3
+            }
+        ],
+        "Level_7": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 4,
+                "Count": 1
+            }
+        ],
+        "Level_8": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 4,
+                "Count": 2
+            }
+        ],
+        "Level_9": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 4,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 5,
+                "Count": 1
+            }
+        ],
+        "Level_10": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 4,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 5,
+                "Count": 2
+            }
+        ],
+        "Level_11": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 4,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 5,
+                "Count": 2
+            },
+            {
+                "SpellLevel": 6,
+                "Count": 1
+            }
+        ],
+        "Level_12": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 4,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 5,
+                "Count": 2
+            },
+            {
+                "SpellLevel": 6,
+                "Count": 1
+            }
+        ],
+        "Level_13": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 4,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 5,
+                "Count": 2
+            },
+            {
+                "SpellLevel": 6,
+                "Count": 1
+            },
+            {
+                "SpellLevel": 7,
+                "Count": 1
+            }
+        ],
+        "Level_14": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 4,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 5,
+                "Count": 2
+            },
+            {
+                "SpellLevel": 6,
+                "Count": 1
+            },
+            {
+                "SpellLevel": 7,
+                "Count": 1
+            }
+        ],
+        "Level_15": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 4,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 5,
+                "Count": 2
+            },
+            {
+                "SpellLevel": 6,
+                "Count": 1
+            },
+            {
+                "SpellLevel": 7,
+                "Count": 1
+            },
+            {
+                "SpellLevel": 8,
+                "Count": 1
+            }
+        ],
+        "Level_16": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 4,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 5,
+                "Count": 2
+            },
+            {
+                "SpellLevel": 6,
+                "Count": 1
+            },
+            {
+                "SpellLevel": 7,
+                "Count": 1
+            },
+            {
+                "SpellLevel": 8,
+                "Count": 1
+            }
+        ],
+        "Level_17": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 4,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 5,
+                "Count": 2
+            },
+            {
+                "SpellLevel": 6,
+                "Count": 1
+            },
+            {
+                "SpellLevel": 7,
+                "Count": 1
+            },
+            {
+                "SpellLevel": 8,
+                "Count": 1
+            },
+            {
+                "SpellLevel": 9,
+                "Count": 1
+            }
+        ],
+        "Level_18": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 4,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 5,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 6,
+                "Count": 1
+            },
+            {
+                "SpellLevel": 7,
+                "Count": 1
+            },
+            {
+                "SpellLevel": 8,
+                "Count": 1
+            },
+            {
+                "SpellLevel": 9,
+                "Count": 1
+            }
+        ],
+        "Level_19": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 4,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 5,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 6,
+                "Count": 2
+            },
+            {
+                "SpellLevel": 7,
+                "Count": 1
+            },
+            {
+                "SpellLevel": 8,
+                "Count": 1
+            },
+            {
+                "SpellLevel": 9,
+                "Count": 1
+            }
+        ],
+        "Level_20": [
+            {
+                "SpellLevel": 1,
+                "Count": 4
+            },
+            {
+                "SpellLevel": 2,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 3,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 4,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 5,
+                "Count": 3
+            },
+            {
+                "SpellLevel": 6,
+                "Count": 2
+            },
+            {
+                "SpellLevel": 7,
+                "Count": 2
+            },
+            {
+                "SpellLevel": 8,
+                "Count": 1
+            },
+            {
+                "SpellLevel": 9,
+                "Count": 1
+            }
+        ]    
+    },
+    "BonusFeatures": {
+        "Level_1": [
+            {
+                "Name": "Spellcasting",
+                "Description": "You have learned to untangle and reshape the fabric of reality in harmony with your wishes and music. Your Spells are part of your vast repertoire, magic that you can tune to different situations. See chapter 10 for the general rules of spellcasting and chapter 11 for the bard spell list."
+            },
+            {
+                "Name": "Bardic Inspiration (d6)",
+                "Description": "You can inspire others through stirring words or music. To do so, you use a Bonus Action on Your Turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d6. Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, Attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the DM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time. You can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a Long Rest."
+            }
+        ],
+        "Level_2": [
+            {
+                "Name": "Jack of All Trades",
+                "Description": "You can add half your proficiency bonus, rounded down, to any ability check you make that doesn't already include your proficiency bonus."
+            },
+            {
+                "Name": "Song of Rest (d6)",
+                "Description": "You can use soothing music or oration to help revitalize your wounded allies during a Short Rest. If you or any friendly creatures who can hear your performance regain hit points by spending Hit Dice at the end of the Short Rest, each of those creatures regains an extra 1d6 hit points."
+            }
+        ],
+        "Level_3": [
+            {
+                "Name": "Bard College",
+                "Description": "You delve into the advanced techniques of a bard college of your choice, such as the College of Lore. "
+            },
+            {
+                "Name": "Expertise",
+                "Description" : "You choose two of your skill proficiencies. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies."
+            }
+        ],
+        "Level_4": [
+            {
+                "Name": "Ability Score Improvement",
+                "Description": ""
+            }
+        ],
+        "Level_5": [
+            {
+                "Name": "Bardic Inspiration (d8)",
+                "Description": "You can inspire others through stirring words or music. To do so, you use a Bonus Action on Your Turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d8. Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, Attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the DM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time. You can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a Long Rest."
+            },
+            {
+                "Name": "Font of Inspiration",
+                "Description": "You regain all of your expended uses of Bardic Inspiration when you finish a short or Long Rest."
+            }
+        ],
+        "Level_6": [
+            {
+                "Name": "Countercharm",
+                "Description": "You gain the ability to use musical notes or words of power to disrupt mind-influencing effects. As an action, you can start a performance that lasts until the end of your next turn. During that time, you and any friendly creatures within 30 feet of you have advantage on saving throws against being Frightened or Charmed. A creature must be able to hear you to gain this benefit. The performance ends early if you are Incapacitated or silenced or if you voluntarily end it (no action required)."
+            },
+            {
+                "Name": "Bard College feature",
+                "Description": ""
+            }
+        ],
+        "Level_8": [
+            {
+                "Name": "Ability Score Improvement",
+                "Description": ""
+            }
+        ],
+        "Level_9": [
+            {
+                "Name": "Song of Rest (d8)",
+                "Description": "You can use soothing music or oration to help revitalize your wounded allies during a Short Rest. If you or any friendly creatures who can hear your performance regain hit points by spending Hit Dice at the end of the Short Rest, each of those creatures regains an extra 1d8 hit points."
+            }
+        ],
+        "Level_10": [
+            {
+                "Name": "Bardic Inspiration (d10)",
+                "Description": "You can inspire others through stirring words or music. To do so, you use a Bonus Action on Your Turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d10. Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, Attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the DM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.You can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a Long Rest."
+            },
+            {
+                "Name": "Expertise",
+                "Description": "Choose two of your skill proficiencies. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies."
+            },
+            {
+                "Name": "Magical Secrets",
+                "Description": "You have plundered magical knowledge from a wide spectrum of disciplines. Choose two Spells from any class, including this one. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip. The chosen Spells count as bard Spells for you and are included in the number in the Spells Known column of the Bard table."
+            }
+        ],
+        "Level_12": [
+            {
+                "Name": "Ability Score Improvement",
+                "Description": ""
+            }
+        ],
+        "Level_13": [
+            {
+                "Name": "Song of Rest (d10)",
+                "Description": "You can use soothing music or oration to help revitalize your wounded allies during a Short Rest. If you or any friendly creatures who can hear your performance regain hit points by spending Hit Dice at the end of the Short Rest, each of those creatures regains an extra 1d10 hit points."
+            }
+        ],
+        "Level_14": [
+            {
+                "Name": "Magical Secrets",
+                "Description": "You have plundered magical knowledge from a wide spectrum of disciplines. Choose two Spells from any class, including this one. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip. The chosen Spells count as bard Spells for you and are included in the number in the Spells Known column of the Bard table."
+            },
+            {
+                "Name": "Bard College feature",
+                "Description": ""
+            }
+        ],
+        "Level_15": [
+            {
+                "Name": "Bardic Inspiration (d12)",
+                "Description": "You can inspire others through stirring words or music. To do so, you use a Bonus Action on Your Turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d12. Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, Attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the DM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.You can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a Long Rest."
+            }
+        ],
+        "Level_16": [
+            {
+                "Name": "Ability Score Improvement",
+                "Description": ""
+            }
+        ],
+        "Level_17": [
+            {
+                "Name": "Song of Rest (d12)",
+                "Description": "You can use soothing music or oration to help revitalize your wounded allies during a Short Rest. If you or any friendly creatures who can hear your performance regain hit points by spending Hit Dice at the end of the Short Rest, each of those creatures regains an extra 1d12 hit points."
+            }
+        ],
+        "Level_18": [
+            {
+                "Name": "Magical Secrets",
+                "Description": "You have plundered magical knowledge from a wide spectrum of disciplines. Choose two Spells from any class, including this one. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip. The chosen Spells count as bard Spells for you and are included in the number in the Spells Known column of the Bard table."
+            }
+        ],
+        "Level_19": [
+            {
+                "Name": "Ability Score Improvement",
+                "Description": ""
+            }
+        ],
+        "Level_20": [
+            {
+                "Name": "Superior Inspiration",
+                "Description": "When you roll initiative and have no uses of Bardic Inspiration left, you regain one use."
+            }
+        ]
+    }
+}

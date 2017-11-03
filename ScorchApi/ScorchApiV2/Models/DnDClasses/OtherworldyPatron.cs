@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ScorchApiV2.Abstract;
 
 namespace ScorchApiV2.Models.DnDClasses
 {
-    public class Champion : MartialArchetype
+    public class OtherworldyPatron
     {
-        public Champion() { }
+        public string Name { get; set; }
+        public Dictionary<string, List<BonusFeature>> Features { get; set; }
     }
 }
