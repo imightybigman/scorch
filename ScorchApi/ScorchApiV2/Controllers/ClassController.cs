@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using ScorchApiV2.Abstract;
 using ScorchApiV2.ModelBinders;
 using ScorchApiV2.Models.DnDClasses;
@@ -31,10 +33,13 @@ namespace ScorchApiV2.Controllers
         }
 
         [HttpPost]
-        public CharacterClass PostClass([FromBody, ModelBinder(BinderType = typeof(CharacterClassModelBinder))] CharacterClass characterClass)
+        public async Task<CharacterClass> PostClass([FromBody, ModelBinder(BinderType = typeof(CharacterClassModelBinder))] CharacterClass characterClass)
         {
-            var x = characterClass;
-            return x;
+            var document = Document.FromJson(JsonConvert.SerializeObject(characterClass));
+
+            await _classTable.PutItemAsync(document);
+
+            return characterClass;
         }
     }
 }

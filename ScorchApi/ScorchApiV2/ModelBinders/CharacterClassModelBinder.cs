@@ -23,6 +23,11 @@ namespace ScorchApiV2.ModelBinders
 
         private ModelBindingResult GetCharacterClass(dynamic character, string json)
         {
+            if (character.Name == null)
+            {
+                return ModelBindingResult.Success(JsonConvert.DeserializeObject(json, typeof(BaseClass)));
+            }
+
             var itemTypes = new[] { typeof(Fighter), typeof(Warlock) };
             var matchedType = itemTypes.Single(x => x.Name == character.Name.ToString());
             if (matchedType != null)
@@ -30,7 +35,7 @@ namespace ScorchApiV2.ModelBinders
                 return ModelBindingResult.Success(JsonConvert.DeserializeObject(json, matchedType));
             }
 
-            return ModelBindingResult.Success(JsonConvert.DeserializeObject(json, typeof(Fighter)));
+            return ModelBindingResult.Success(JsonConvert.DeserializeObject(json, typeof(BaseClass)));
 
         }
 

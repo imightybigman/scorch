@@ -1,6 +1,6 @@
 ﻿using ScorchApiV2.Abstract;
 
-namespace ScorchApiV2.Models
+namespace ScorchApiV2.Models.Items
 {
     public class Accessory : Item
     {

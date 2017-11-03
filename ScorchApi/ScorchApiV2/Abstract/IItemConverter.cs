@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using ScorchApiV2.Models;
+using ScorchApiV2.Models.Items;
 
 namespace ScorchApiV2.Abstract
 {

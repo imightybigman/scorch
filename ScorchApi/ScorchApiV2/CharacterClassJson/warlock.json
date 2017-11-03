@@ -1,0 +1,118 @@
+{
+    "Name": "Warlock",
+    "HitDice": "1d8",
+    "HitDiceFlat": 5,
+    "AbilityScoreImprovement": [
+      4,
+      8,
+      12,
+      16,
+      19
+    ],
+    "Pact" : {
+        "Name" : "Pact of the Tome",
+        "Description": "Gain Book of Shadows, gives you three cantrips of any type, if Book of Shadows is lost, takes 1 hour to create new one. Your Book of Shadows could be a weighty tome bound in demon hide studded with iron, holding Spells of Conjuration and a wealth of forbidden lore about the sinister regions of the cosmos, a gift of the Fiend."
+    },
+    "OtherworldyPatron" : {
+        "Name": "The Fiend",
+        "BonusFeatures" : {
+        "Level_1": [{
+            "Name": "Dark One’s Blessing",
+            "Description": "When you reduce a hostile creature to 0 hit points, you gain temporary hit points equal to your Charisma modifier + your warlock level (minimum of 1)."
+          }],
+          "Level_6": [{
+            "Name": "Dark One’s Own Luck",
+            "Description": "You can call on your patron to alter fate in your favor. When you make an ability check or a saving throw, you can use this feature to add a d10 to your roll. You can do so after seeing the initial roll but before any of the roll’s effects occur. Once you use this feature, you can’t use it again until you finish a short or long rest."
+          }],
+          "Level_10": [{
+            "Name": "Fiendish Resilience",
+            "Description": "You can choose one damage type when you finish a short or long rest. You gain resistance to that damage type until you choose a different one with this feature. Damage from magical weapons or silver weapons ignores this resistance."
+          }],
+          "Level_14": [{
+            "Name": "Hurl Through Hell",
+            "Description": "When you hit a creature with an attack, you can use this feature to instantly transport the target through the lower planes. The creature disappears and hurtles through a nightmare landscape. At the end of your next turn, the target returns to the space it previously occupied, or the nearest unoccupied space. If the target is not a fiend, it takes 10d10 psychic damage as it reels from its horrific experience."
+          }]
+        }
+    },
+    "CantripsKnown" : {
+        "Level_1" : 2
+    },
+    "SpellsKnown" : {   
+        "Level_1" : 2
+    },
+    "SpellSlots" : {
+        "Level_1" : [{ "SpellLevel" : 1, "Count" :1 }]
+    },
+    "BonusFeatures": {
+      "Level_1": [{
+          "Name": "Otherworldly Patron",
+          "Description": "You have struck a bargain with an otherworldly being of your choice, such as the Fiend."
+        },
+        {
+          "Name": "Pact Magic",
+          "Description": "Your arcane research and the magic bestowed on you by your patron have given you facility with Spells"
+        }
+      ],
+      "Level_2": [{
+        "Name": "Eldritch Invocations",
+        "Description": "In your study of occult lore, you have unearthed eldritch invocations, fragments of forbidden knowledge that imbue you with an abiding magical ability."
+      }],
+      "Level_3": [{
+        "Name": "Pact Boon",
+        "Description": "Your otherworldly patron bestows a gift upon you for your loyal service. You gain one of the following features of your choice: Pact of the Chain, Pact of the Blade, Pact of the Tome"
+      }],
+      "Level_4": [{
+        "Name": "Ability Score Improvement",
+        "Description": ""
+      }],
+      "Level_6": [{
+        "Name": "Otherworldly Patron feature",
+        "Description": ""
+      }],
+      "Level_8": [{
+        "Name": "Ability Score Improvement",
+        "Description": ""
+      }],
+      "Level_10": [{
+        "Name": "Otherworldly Patron feature",
+        "Description": ""
+      }],
+      "Level_11": [{
+        "Name": "Mystic Arcanum",
+        "Description": "Your patron bestows upon you a magical secret called an arcanum. Choose one 6th-level spell from the warlock spell list as this arcanum. You can cast your arcanum spell once without expending a spell slot. You must finish a Long Rest before you can do so again."
+      }],
+      "Level_12": [{
+        "Name": "Ability Score Improvement",
+        "Description": ""
+      }],
+      "Level_13": [{
+        "Name": "Mystic Arcanum (7th level)",
+        "Description": "You gain additional Arcanum. Choose one 7th-level spell from the warlock spell list as this arcanum. You can cast your arcanum spell once without expending a spell slot. You must finish a Long Rest before you can do so again."
+      }],
+      "Level_14": [{
+        "Name": "Otherworldly Patron feature",
+        "Description": ""
+      }],
+      "Level_15": [{
+        "Name": "Mystic Arcanum (8th level)",
+        "Description": "You gain additional Arcanum. Choose one 8th-level spell from the warlock spell list as this arcanum. You can cast your arcanum spell once without expending a spell slot. You must finish a Long Rest before you can do so again."
+      }],
+      "Level_16": [{
+        "Name": "Ability Score Improvement",
+        "Description": ""
+      }],
+      "Level_17": [{
+          "Name": "Mystic Arcanum (9th level)",
+          "Description": "You gain additional Arcanum. Choose one 9th-level spell from the warlock spell list as this arcanum. You can cast your arcanum spell once without expending a spell slot. You must finish a Long Rest before you can do so again."
+        }
+      ],
+      "Level_19": [{
+        "Name": "Ability Score Improvement",
+        "Description": ""
+      }],
+      "Level_20": [{
+        "Name": "Eldritch Master",
+        "Description": "You can draw on your inner reserve of mystical power while entreating your patron to regain expended Spell Slots. You can spend 1 minute entreating your patron for aid to regain all your expended Spell Slots from your Pact Magic feature. Once you regain Spell Slots with this feature, you must finish a Long Rest before you can do so again."
+      }]
+    }
+  }

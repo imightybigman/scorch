@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using ScorchApiV2.Models;
+using ScorchApiV2.Models.Items;
 
 namespace ScorchApiV2.ModelBinders
 {

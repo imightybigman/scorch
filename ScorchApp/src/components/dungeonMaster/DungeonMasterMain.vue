@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    
+
 </template>
 
 <script>
@@ -30,10 +30,10 @@
     import { Searcher } from 'components/util'
     import { ItemCard } from 'components/items'
     import { ItemService } from 'services'
-    
+
 export default {
     name : 'dm-main-component',
-    
+
     data() {
         return {
             selectedChars: [],
@@ -43,12 +43,12 @@ export default {
     },
     async created() {
       await this.$store.dispatch('getParty');
-      await this.$store.dispatch('getDisplayItems');   
+      await this.$store.dispatch('getDisplayItems');
     },
     methods: {
         toggleCharacter(character) {
-            var foundChar = this.selectedChars.find(char => char.CharacterId == character.CharacterId); 
-            
+            var foundChar = this.selectedChars.find(char => char.CharacterId == character.CharacterId);
+
             if(foundChar){
                 var index = this.selectedChars.findIndex(char => char.CharacterId == character.CharacterId);
                 this.selectedChars.splice(index, 1);
@@ -89,7 +89,7 @@ export default {
     div {
         box-sizing: border-box;
     }
-    
+
     .dm-main-component {
         height: 600px;
     }

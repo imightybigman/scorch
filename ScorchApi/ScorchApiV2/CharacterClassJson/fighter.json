@@ -1,0 +1,105 @@
+  {
+    "Name": "Fighter",
+    "HitDice": "1d10",
+    "HitDiceFlat": 6,
+    "AbilityScoreImprovement": [
+      4,
+      6,
+      8,
+      12,
+      16,
+      19
+    ],
+    "BonusFeatures": {
+      "Level_1": [{
+          "Name": "Fighting Style",
+          "Description": "You adopt a particular style of fighting as your specialty. Choose a fighting style from the list of optional features. You can't take the same Fighting Style option more than once, even if you get to choose again."
+        },
+        {
+          "Name": "Second Wind",
+          "Description": "You have a limited well of stamina that you can draw on to protect yourself from harm. On Your Turn, you can use a Bonus Action to regain hit points equal to 1d10 + your fighter level. Once you use this feature, you must finish a short or Long Rest before you can use it again."
+        }
+      ],
+      "Level_2": [{
+        "Name": "Action Surge (one use)",
+        "Description": "On Your Turn, you can take one additional action on top of your regular action and a possible Bonus Action."
+      }],
+      "Level_3": [{
+        "Name": "Martial Archetype",
+        "Description": "At 3rd level, you choose an archetype that you strive to emulate in your Combat styles and techniques, such as Champion. The archetype you choose grants you features at 3rd level and again at 7th, 10th, 15th, and 18th level."
+      }],
+      "Level_4": [{
+        "Name": "Ability Score Improvement",
+        "Description": "Increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+      }],
+      "Level_5": [{
+        "Name": "Extra Attack",
+        "Description": "You can Attack twice, instead of once, whenever you take the Attack action on Your Turn."
+      }],
+      "Level_6": [{
+        "Name": "Ability Score Improvement",
+        "Description": "Increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+      }],
+      "Level_7": [{
+        "Name": "Martial Archetype feature",
+        "Description": ""
+      }],
+      "Level_8": [{
+        "Name": "Ability Score Improvement",
+        "Description": "Increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+      }],
+      "Level_9": [{
+        "Name": "Indomitable (one use)",
+        "Description": "You can reroll a saving throw that you fail. If you do so, you must use the new roll, and you can't use this feature again until you finish a Long Rest."
+      }],
+      "Level_10": [{
+        "Name": "Martial Archetype feature",
+        "Description": ""
+      }],
+      "Level_11": [{
+        "Name": "Extra Attack (2)",
+        "Description": "You can Attack three times, instead of once, whenever you take the Attack action on Your Turn."
+      }],
+      "Level_12": [{
+        "Name": "Ability Score Improvement",
+        "Description": "Increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+      }],
+      "Level_13": [{
+        "Name": "Indomitable (two uses)",
+        "Description": "You can reroll a saving throw that you fail. If you do so, you must use the new roll, and you can't use this feature again until you finish a Long Rest."
+      }],
+      "Level_14": [{
+        "Name": "Ability Score Improvement",
+        "Description": "Increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+      }],
+      "Level_15": [{
+        "Name": "Martial Archetype feature",
+        "Description": ""
+      }],
+      "Level_16": [{
+        "Name": "Ability Score Improvement",
+        "Description": "Increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+      }],
+      "Level_17": [{
+          "Name": "Action Surge (two uses)",
+          "Description": "On Your Turn, you can take one additional action on top of your regular action and a possible Bonus Action."
+        },
+        {
+          "Name": "Indomitable (three uses)",
+          "Description": "You can reroll a saving throw that you fail. If you do so, you must use the new roll, and you can't use this feature again until you finish a Long Rest."
+        }
+      ],
+      "Level_18": [{
+        "Name": "Martial Archetype feature",
+        "Description": ""
+      }],
+      "Level_19": [{
+        "Name": "Ability Score Improvement",
+        "Description": "Increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+      }],
+      "Level_20": [{
+        "Name": "Extra Attack (3)",
+        "Description": "You can Attack four times, instead of once, whenever you take the Attack action on Your Turn."
+      }]
+    }
+  }

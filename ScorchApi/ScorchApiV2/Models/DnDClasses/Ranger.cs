@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ScorchApiV2.Abstract;
+﻿using ScorchApiV2.Abstract;
 
 namespace ScorchApiV2.Models.DnDClasses
 {
     public class Ranger : CharacterClass
     {
-        public Ranger()
-        {
-        }
+        public Ranger() { }
     }
 }
