@@ -1,8 +1,8 @@
-import AdventurerGearCreator from './AdventurerGearCreator.vue'
-import QuiverCreator from './QuiverCreator.vue'
-import ArmorCreator from './ArmorCreator.vue'
-import WeaponCreator from './WeaponCreator.vue'
-import AccessoryCreator from './AccessoryCreator.vue'
+import AdventurerGearCreator from './AdventurerGearCreator'
+import QuiverCreator from './QuiverCreator'
+import ArmorCreator from './ArmorCreator'
+import WeaponCreator from './WeaponCreator'
+import AccessoryCreator from './AccessoryCreator'
 import ItemCard from './ItemCard'
 
 export {
