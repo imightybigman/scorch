@@ -8,7 +8,7 @@
         </a>
         </h5>
     </div>
-    <div id="quiverInventory" class="collapse" role="tabpanel" aria-labelledby="quiver" data-parent="#accordion">
+    <div id="quiverInventory" class="collapse" role="tabpanel" aria-labelledby="quiver" data-parent="#inventory">
         <div class="card-body item-list">
         <div v-for="(quiver, index) in quivers" 
                  :key="index" 

@@ -1,15 +1,14 @@
 <template>
     <div class="card d-flex inventory-card">
     <accessory-detail :accessory="selectedAccessory" :showModal="showDetail" v-on:close="showDetail = false"></accessory-detail>
-
-        <div class="card-header" role="tab" id="accessory">
+        <div class="card-header" role="accessorytab" >
             <h5 class="mb-0">
             <a data-toggle="collapse" href="#accessoryInventory" aria-expanded="false" aria-controls="accessoryInventory">
                 Accessories
             </a>
             </h5>
         </div>
-        <div id="accessoryInventory" class="collapse" role="tabpanel" aria-labelledby="accessory" data-parent="#accordion">
+        <div id="accessoryInventory" class="collapse" role="accessorytabpanel" aria-labelledby="accessory" data-parent="#inventory">
             <div class="card-body item-list">
                 <div v-for="(accessory, index) in accessories"  
                     :key="index" 

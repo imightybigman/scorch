@@ -6,7 +6,7 @@
         <a data-toggle="collapse" href="#bios" aria-expanded="false" aria-controls="bios">Bio</a>
       </h5>
     </div>
-    <div id="bios" class="collapse" role="tabpanel" aria-labelledby="character-bios" data-parent="#accordion">
+    <div id="bios" class="collapse" role="tabpanel" aria-labelledby="character-bios" data-parent="#character-details">
       <div class="card-body">
         <div>
           <strong>Race:</strong>

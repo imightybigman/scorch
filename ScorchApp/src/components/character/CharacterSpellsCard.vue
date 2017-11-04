@@ -23,7 +23,7 @@
         <a href="#spells" data-toggle="collapse" aria-expanded="false" aria-controls="spells">Spell</a>
       </h5>
     </div>
-    <div id="spells" class="collapse" role="tabpanel" aria-labelledby="character-spells" data-parent="#accordion">
+    <div id="spells" class="collapse" role="tabpanel" aria-labelledby="character-spells" data-parent="#character-details">
       <div class="card-body">
         <div v-for="(spell, index) in spells" @click="spellClick(spell)" :key="index" class="list-group-item list-group-item-action">
           <h6>{{ spell.Name }}</h6>

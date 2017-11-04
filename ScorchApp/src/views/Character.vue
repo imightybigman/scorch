@@ -16,12 +16,16 @@
       <exp-bar :character="character"></exp-bar>
     </div>
     <div class="d-flex flex-row flex-wrap character-screen">
-      <div class="d-flex flex-column character-details">
+      <div id="character-details" class="d-flex flex-column character-details">
         <h4>Character Info</h4>
         <character-stats-card :stats="character.Stats" :proficiency="character.Proficiency"></character-stats-card>
         <character-bio-card :character="character"></character-bio-card>
         <character-skills-card :skills="character.Skills"></character-skills-card>
         <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
+        <div v-if="character.Class === 'Fighter'">
+          <bonus-features :feature="characterClass" :displayName="'Fighter(Champion)'"></bonus-features>
+
+        </div>
       </div>
       <div class="d-flex flex-column character-equip">
         <h4>Character Equip</h4>
@@ -55,6 +59,7 @@
 
   import { Inventory } from 'components/inventory'
   import { DiceRoller, Modal } from 'components/util'
+  import { BonusFeatures } from 'components/classFeatures'
   export default {
     name: 'character-view',
     async created() {
@@ -102,7 +107,8 @@
       HpBar,
       Inventory,
       DiceRoller,
-      Modal
+      Modal,
+      BonusFeatures
     }
   }
 

@@ -16,7 +16,7 @@
                     </a>
                 </h5>
             </div>
-            <div id="skills" class="collapse" role="tabpanel" aria-labelledby="character-skills" data-parent="#accordion">
+            <div id="skills" class="collapse" role="tabpanel" aria-labelledby="character-skills" data-parent="#character-details">
 
             <div class="card-body">
             <div v-for="(skill, index) in skills" 

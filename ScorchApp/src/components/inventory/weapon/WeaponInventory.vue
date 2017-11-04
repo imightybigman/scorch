@@ -8,7 +8,7 @@
             </a>
             </h5>
         </div>
-        <div id="weaponInventory" class="collapse show" role="tabpanel" aria-labelledby="weapons" data-parent="#accordion">
+        <div id="weaponInventory" class="collapse show" role="tabpanel" aria-labelledby="weapons" data-parent="#inventory">
             <div class="card-body item-list">
                 <div v-for="(weapon, index) in weapons" 
                     :key="index" 
