@@ -30,22 +30,22 @@ export default {
   name: 'character-stat-card',
   props: ['stats', 'proficiency'], 
   computed: {
-    strength: function() {
+    strength() {
       return `Str: ${this.stats.Strength}`;
     },
-    dexterity: function() {
+    dexterity() {
       return `Dex: ${this.stats.Dexterity}`;
     },
-    constitution: function() {
+    constitution() {
       return `Con: ${this.stats.Constitution}`;
     },
-    intelligence: function() {
+    intelligence() {
       return `Int: ${this.stats.Intelligence}`;
     },
-    wisdom: function() {
+    wisdom() {
       return `Wis: ${this.stats.Wisdom}`;
     },
-    charisma: function() {
+    charisma() {
       return `Cha: ${this.stats.Charisma}`;
     }   
   },

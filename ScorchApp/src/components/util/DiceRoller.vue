@@ -38,22 +38,22 @@ export default{
         }
     },
     methods: {
-        rollD4: function() {
+        rollD4() {
             this.rolledValue = Math.floor(Math.random() * 4) + 1;
         },
-        rollD6: function() {
+        rollD6() {
             this.rolledValue = Math.floor(Math.random() * 6) + 1;
         },
-        rollD8: function() {
+        rollD8() {
             this.rolledValue = Math.floor(Math.random() * 8) + 1;
         },
-        rollD10: function() {
+        rollD10() {
             this.rolledValue = Math.floor(Math.random() * 10) + 1;
         },
-        rollD12: function() {
+        rollD12() {
             this.rolledValue = Math.floor(Math.random() * 12) + 1;
         },
-        rollD20: function() {
+        rollD20() {
             this.rolledValue = Math.floor(Math.random() * 20) + 1;
         }
     }, 

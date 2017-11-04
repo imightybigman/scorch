@@ -22,11 +22,11 @@ export default {
     name: 'exp-bar',
     props: ['character'],
     computed: {
-        progressWidth: function() {
+        progressWidth() {
             let expRange = LevelService.getExpRange(this.character.Level)
             return `width: ${this.character.Exp/expRange.max * 100}%`;
         },
-        currentExp: function () {
+        currentExp() {
             let expRange = LevelService.getExpRange(this.character.Level)
             if(this.character.Exp > expRange.max) {
                 this.$emit('levelup');

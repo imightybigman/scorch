@@ -44,10 +44,10 @@ export default {
     },
     props: ['skills'],
     methods: {
-        displaySkillName: function(skill) {
+        displaySkillName(skill) {
             return `${skill.Name} (${skill.Stat})`;
         },
-        skillClick: function(skill) {
+        skillClick(skill) {
             this.selectedSkill = skill;
             this.showModal = true;
         }

@@ -31,7 +31,7 @@
 import { Modal } from 'components/util'
 export default {
     name: 'character-leveling',
-    props: ['character'],
+    props: ['character', 'characterClass'],
     data() {
         return {
             showLevelingModal: false,
@@ -39,12 +39,15 @@ export default {
         }
     },
     computed: {
-        nextLevel: function() {
+        nextLevel() {
             return this.character.Level + 1;
+        },
+        doStatIncrease() {
+
         }
     },
     methods: {
-        increaseStats: function(stat) {
+        increaseStats(stat) {
 
         }
     },

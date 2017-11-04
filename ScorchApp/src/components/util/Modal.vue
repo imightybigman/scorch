@@ -37,11 +37,11 @@
 export default {
     name: 'modal',
     methods: {
-        close: function() {
+        close() {
             this.$emit('close');
         }
     },
-    mounted: function () {
+    mounted() {
         document.addEventListener("keydown", (e) => {
         if (e.keyCode === 27) {
             this.close();

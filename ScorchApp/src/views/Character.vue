@@ -33,12 +33,11 @@
     </div>
   </div>
   <div class="d-flex flex-column character-other border">
-     <character-leveling :character="character"></character-leveling>
+     <character-leveling :character="character" :characterClass="characterClass"></character-leveling>
     <dice-roller></dice-roller>
     <inventory :characterId="character.CharacterId"></inventory>
   </div>
 </div>
-
 </template>
 
 <script>
@@ -86,7 +85,7 @@
       }
     },
     watch: {
-      character: async function(newCharacter) {
+      async character(newCharacter) {
         await this.$store.dispatch('loadClass', newCharacter.Class);
       }
     },
