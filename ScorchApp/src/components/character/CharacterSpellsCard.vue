@@ -27,8 +27,8 @@
       <div class="card-body">
         <div v-for="(spell, index) in spells" @click="spellClick(spell)" :key="index" class="list-group-item list-group-item-action">
           <h6>{{ spell.Name }}</h6>
-          <small>Damage: {{ spell.Damage }}</small>
-          <small>Damage Type: {{ spell.DamageType }}</small>
+          <small v-if="spell.Damage">Damage: {{ spell.Damage }}</small>
+          <small v-if="spell.DamageType">Damage Type: {{ spell.DamageType }}</small>
         </div>
         <div class="list-group-item list-group-item-action">
           <button class="btn btn-block btn-primary" @click="showSpellAddModal = true">+</button>

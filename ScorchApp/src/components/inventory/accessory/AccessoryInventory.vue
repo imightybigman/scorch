@@ -20,6 +20,9 @@
                         <button class="btn btn-primary dropdown-toggle" type="button" id="accessoryEquip" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Equip
                         </button>
+                        <button class="btn btn-danger" @click="sellAccessory(accessory)">
+                            Sell
+                        </button>
                         <div class="dropdown-menu" aria-labelledby="accessoryEquip">
                             <a class="dropdown-item" @click="equipAccessory(accessory, 'Necklace')" v-if="accessory.Slot === 'Necklace'">Necklace</a>
                             <a class="dropdown-item" @click="equipAccessory(accessory, 'LeftRing')" v-if="accessory.Slot.indexOf('Ring') !== -1">Left Ring</a>
@@ -55,6 +58,9 @@ export default {
         equipAccessory(accessory, slot) {
             accessory.Slot = slot;
             this.$emit('equip', accessory);
+        },
+        sellAccessory(accessory){
+            this.$emit('sell', accessory);
         }
     },
     components: {

@@ -41,7 +41,7 @@
     </div>
     <div class="d-flex notes black-border" style="overflow: scroll;">
       <ul style="padding: 0;">
-        <li v-for="log in logs" class="list-unstyled">
+        <li v-for="(log, index) in logs" class="list-unstyled" :key="index">
           {{ log.message }} <br />
         </li>
       </ul>

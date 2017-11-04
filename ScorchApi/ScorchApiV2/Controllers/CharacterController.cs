@@ -165,7 +165,9 @@ namespace ScorchApiV2.Controllers
         public async Task DeleteItemFromInventory(Guid characterId, Guid itemId)
         {
             var character = await GetCharacter(characterId);
+            var item = character.Inventory.Find(x => x.ItemId == itemId);
             character.Inventory.RemoveAll(x => x.ItemId == itemId);
+            character.Gold += Convert.ToInt32(item.Cost);
 
             var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
             await _characterTable.UpdateItemAsync(updateDocument);

@@ -20,6 +20,9 @@
                         <button class="btn btn-primary" @click="equipArmor(armor)">
                             Equip
                         </button>
+                        <button class="btn btn-danger" @click="sellArmor(armor)">
+                            Sell
+                        </button>
                     </div>
                 </div>
             </div>
@@ -46,6 +49,9 @@ export default {
         },
         equipArmor(armor) {
             this.$emit('equip', armor);
+        },
+        sellArmor(armor) {
+            this.$emit('sell', armor);
         }
     },
     components: {

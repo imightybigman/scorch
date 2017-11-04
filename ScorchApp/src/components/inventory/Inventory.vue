@@ -5,11 +5,11 @@
   </div>
   <div class="card-body">
     <div id="inventory" role="tablist">
-      <weapon-inventory @equip="equipItem" :characterId="characterId" :weapons="weapons"></weapon-inventory>
-      <armor-inventory @equip="equipItem" :armors="armors"></armor-inventory>
-      <accessory-inventory @equip="equipItem" :accessories="accessories"></accessory-inventory>      
-      <quiver-inventory @equip="equipItem" :characterId="characterId" :quivers="quivers"></quiver-inventory>
-      <adventurer-gear-inventory :adventurerGears="adventurerGears"></adventurer-gear-inventory>
+      <weapon-inventory @equip="equipItem" @sell="sellItem" :characterId="characterId" :weapons="weapons"></weapon-inventory>
+      <armor-inventory @equip="equipItem" @sell="sellItem" :armors="armors"></armor-inventory>
+      <accessory-inventory @equip="equipItem" @sell="sellItem" :accessories="accessories"></accessory-inventory>      
+      <quiver-inventory @equip="equipItem" @sell="sellItem" :characterId="characterId" :quivers="quivers"></quiver-inventory>
+      <adventurer-gear-inventory @sell="sellItem" :adventurerGears="adventurerGears"></adventurer-gear-inventory>
     </div>
   </div>
 </div>
@@ -53,6 +53,13 @@ export default {
           item: item
         }
         await this.$store.dispatch('equipItem', equipPayload);
+      },
+      async sellItem(item) {
+        let sellPayload = {
+          characterId: this.characterId,
+          itemId: item.ItemId
+        }
+        await this.$store.dispatch('sellItem', sellPayload);
       }
     },
     components: {
