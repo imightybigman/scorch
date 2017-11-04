@@ -1,6 +1,6 @@
 <template>
   <div class="character-companion-card">
-    <modal v-if="showDetailModal" v-on:close="showDetailModal = false">
+    <modal v-if="showDetailModal" v-on:close="close">
       <div slot="header">
         <h4>Attack Details</h4>
       </div>
@@ -58,6 +58,10 @@
       attackClick(attack) {
         this.selectedAttack = attack;
         this.showDetailModal = true;
+      },
+      close() {
+          $("body").removeClass("modal-open");
+          this.showDetailModal = false;
       }
     },
     components: {

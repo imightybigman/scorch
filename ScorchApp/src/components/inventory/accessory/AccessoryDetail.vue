@@ -57,6 +57,7 @@ export default {
     props: ['accessory', 'showModal'],
     methods: {
         close() {
+            $("body").removeClass("modal-open");
             this.$emit('close');
         }
     },

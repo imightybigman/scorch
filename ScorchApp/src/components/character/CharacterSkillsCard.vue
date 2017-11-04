@@ -1,6 +1,6 @@
 <template>
     <div class="d-flex flex-column character-skill">
-        <modal v-if="showModal" v-on:close="showModal = false">
+        <modal v-if="showModal" v-on:close="close">
             <h3 slot="header">
                 {{ displaySkillName(selectedSkill) }}
             </h3>
@@ -50,6 +50,10 @@ export default {
         skillClick(skill) {
             this.selectedSkill = skill;
             this.showModal = true;
+        },
+        close() {
+            $("body").removeClass("modal-open")
+            this.showModal = false;
         }
     },
     components: {

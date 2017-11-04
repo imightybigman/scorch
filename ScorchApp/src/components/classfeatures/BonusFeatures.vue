@@ -1,6 +1,6 @@
 <template>
 <div class="card card-width character-bonus-features-card">
-  <modal v-if="showDetailModal" v-on:close="showDetailModal = false">
+  <modal v-if="showDetailModal" v-on:close="close">
     <div slot="header">
       <h4>Feature Details</h4>
     </div>
@@ -56,6 +56,10 @@ export default {
       },
       getLevel(levelKey) {
         return parseInt(levelKey.split('_')[1]);
+      },
+      close() {
+          $("body").removeClass("modal-open");
+          this.showDetailModal = false;
       }
     },
     computed: {

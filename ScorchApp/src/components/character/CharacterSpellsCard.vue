@@ -1,6 +1,6 @@
 <template>
 <div class="d-flex flex-column character-spell">
-  <modal v-if="showSpellDescription" v-on:close="showSpellDescription = false">
+  <modal v-if="showSpellDescription" v-on:close="closeDescription">
     <h3 slot="header">
       {{ selectedSpell.Name }}
     </h3>
@@ -8,7 +8,7 @@
       <spell-readonly :spell="selectedSpell"></spell-readonly>
     </div>
   </modal>
-  <modal v-if="showSpellAddModal" v-on:close="showSpellAddModal = false">
+  <modal v-if="showSpellAddModal" v-on:close="closeAdd">
     <h3 slot="header">
       Add New Spell
     </h3>
@@ -65,6 +65,14 @@ export default {
                 body: spell
             }
             await this.$store.dispatch('addSpell', payload);
+            this.showSpellAddModal = false;
+        },
+        closeDescription() {
+            $("body").removeClass("modal-open");
+            this.showSpellDescription = false;
+        },
+        closeAdd() {
+            $("body").removeClass("modal-open");
             this.showSpellAddModal = false;
         }
     },

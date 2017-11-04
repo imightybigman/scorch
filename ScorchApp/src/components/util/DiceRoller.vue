@@ -1,6 +1,6 @@
 <template>
 <div class="card dice-roller">
-    <modal v-if="showModal" v-on:close="showModal = false">
+    <modal v-if="showModal" v-on:close="close">
         <h3 slot="header">Dice Roller</h3>
         <div slot="body" class="d-flex flex-column">
             <div class="d-flex dices">
@@ -125,6 +125,10 @@ export default {
         },
         logAction(message) {
           this.$socket.emit('newLog', message);
+        },
+        close(){
+            $("body").removeClass("modal-open");
+            this.showModal = false;
         }
     },
     computed: {
