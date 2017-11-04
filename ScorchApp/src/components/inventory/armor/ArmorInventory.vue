@@ -17,7 +17,7 @@
                         <item-card :item="armor"></item-card>
                     </div>
                     <div>
-                        <button class="btn btn-primary" @click="equipArmor(armor, $event)">
+                        <button class="btn btn-primary" @click="equipArmor(armor)">
                             Equip
                         </button>
                     </div>
@@ -44,10 +44,7 @@ export default {
             this.selectedArmor = armor;
             this.showDetail = true;
         },
-        equipArmor(armor, event) {
-         if (event) {
-                event.stopPropagation();
-            }
+        equipArmor(armor) {
             this.$emit('equip', armor);
         }
     },

@@ -130,6 +130,7 @@ const mutations = {
     [types.EQUIP_ITEM] (state, payload) {
         let id = payload.characterId;
         let item = payload.item;
+        let slot = (item.Slot == 'One-Handed' || item.Slot == 'Two-Handed') ? 'MainHand' : item.Slot;
         for(let i = 0; i < state.party.length; i++) {
             let ch = state.party[i];
             if(ch.CharacterId === id) {
@@ -137,14 +138,14 @@ const mutations = {
                     state.party[i].Equipment = {};
                 }
                 let equipment = state.party[i].Equipment;
-                state.party[i].Equipment = { ...state.party[i].Equipment, [item.Slot] : item };
+                state.party[i].Equipment = { ...state.party[i].Equipment, [slot] : item };
                 break;                
             }
         }
     },
     [types.UNEQUIP_ITEM] (state, payload) {
         let id = payload.characterId;
-        let slot = payload.slot;
+        let slot = (payload.slot == 'One-Handed' || payload.slot == 'Two-Handed') ? 'MainHand' : payload.slot;        
         for(let i = 0; i < state.party.length; i++) {
             let ch = state.party[i];
             if(ch.CharacterId === id) {

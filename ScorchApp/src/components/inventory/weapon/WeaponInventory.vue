@@ -17,7 +17,7 @@
                         <item-card :item="weapon"></item-card>
                     </div>
                     <div>
-                        <button class="btn btn-primary" @click="equipWeapon(weapon, $event)">
+                        <button class="btn btn-primary" @click="equipWeapon(weapon)">
                             Equip
                         </button>
                     </div>
@@ -34,7 +34,7 @@ import { ItemCard } from 'components/items'
 
 export default {
     name: 'weapon-inventory',
-    props: ['weapons'],
+    props: ['characterId', 'weapons'],
     data() {
         return {
             showDetail: false,
@@ -46,14 +46,11 @@ export default {
             this.selectedWeapon = weapon;
             this.showDetail = true;
         },
-        equipWeapon(weapon, event) {
-            if (event) {
-                event.stopPropagation();
-            }
+        equipWeapon(weapon) {
             if(weapon.Slot == 'Two-Handed') {
                 // Need unequip the off hand item
                 let payload = {
-                    characterId: this.character.CharacterId,
+                    characterId: this.characterId,
                     slot: 'OffHand'
                 };
                 this.$store.dispatch('unequipItem', payload);

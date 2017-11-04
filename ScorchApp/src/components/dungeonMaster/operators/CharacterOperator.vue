@@ -1,6 +1,6 @@
 <template>
     <div class="dm-character-operator">
-        <form v-on:submit="apply" class="">
+        <form>
             <div class = "d-flex">
                 <div class="form-group">
                     <label for="modify-health">Modify Health : </label>
@@ -21,7 +21,7 @@
                     <input type="number" class="form-control" id="item-quantity" v-model="itemQty" placeholder="# Items" autocomplete="off"/>
                 </div>
             </div>
-            <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary" @click="apply">Submit</button>
         </form>
     </div>
 </template>

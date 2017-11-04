@@ -5,7 +5,7 @@
   </div>
   <div class="card-body">
     <div id="accordion" role="tablist">
-      <weapon-inventory @equip="equipItem" :weapons="weapons"></weapon-inventory>
+      <weapon-inventory @equip="equipItem" :characterId="characterId" :weapons="weapons"></weapon-inventory>
       <armor-inventory @equip="equipItem" :armors="armors"></armor-inventory>
       <accessory-inventory @equip="equipItem" :accessories="accessories"></accessory-inventory>      
       <quiver-inventory @equip="equipItem" :characterId="characterId" :quivers="quivers"></quiver-inventory>

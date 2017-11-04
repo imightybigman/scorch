@@ -157,7 +157,7 @@ namespace ScorchApiV2.Models
 
         private void EquipWeapon(Weapon weapon)
         {
-            if(weapon.Slot == "MainHand")
+            if(weapon.Slot == "One-Handed" || weapon.Slot == "Two-Handed")
             {
                 Equipment.MainHand = weapon;
             }

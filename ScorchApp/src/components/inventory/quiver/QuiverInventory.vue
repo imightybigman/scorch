@@ -17,7 +17,7 @@
                     <item-card :item="quiver"></item-card>
                 </div>
                 <div>
-                    <button class="btn btn-primary" @click="equipQuiver(quiver, $event)">
+                    <button class="btn btn-primary" @click="equipQuiver(quiver)">
                         Equip
                     </button>
                 </div>
@@ -25,8 +25,8 @@
                     <div class="projectiles d-flex" v-for="(count, projectile, index) in quiver.Projectiles" :key="index">
                         <strong>{{projectile}} : {{ getArrowCount(count) }}</strong>
                         <div class="d-flex flex-row ml-auto">
-                        <button class="projectile-mod btn btn-primary btn-sm" @click="decrementProjectile(count, quiver, $event)"><i class="fa fa-minus"></i></button>                        
-                        <button class="projectile-mod btn btn-primary btn-sm" @click="incrementProjectile(count, quiver, $event)"><i class="fa fa-plus"></i></button>
+                        <button class="projectile-mod btn btn-primary btn-sm" @click="decrementProjectile(count, quiver)"><i class="fa fa-minus"></i></button>                        
+                        <button class="projectile-mod btn btn-primary btn-sm" @click="incrementProjectile(count, quiver)"><i class="fa fa-plus"></i></button>
                         <button class="projectile-mod btn btn-primary" @click="updateCount(quiver, $event)">Update Arrows</button>
                         </div>
                    </div>
@@ -55,10 +55,7 @@ export default {
             this.selectedQuiver = quiver;
             this.showDetail = true;
         },
-        incrementProjectile(projectile, quiver, event) {
-            if (event) {
-                event.stopPropagation();
-            }
+        incrementProjectile(projectile, quiver) {
             projectile.CurrentAmount++;
             if(projectile.CurrentAmount >= projectile.MaxAmount) {
                 projectile.CurrentAmount = projectile.MaxAmount;
@@ -66,9 +63,6 @@ export default {
             
         },
         decrementProjectile(projectile) {
-            if (event) {
-                event.stopPropagation();
-            }
             projectile.CurrentAmount--;
             if(projectile.CurrentAmount <= 0){
                 projectile.CurrentAmount = 0;
@@ -77,10 +71,8 @@ export default {
         getArrowCount(projectile) {
             return `${projectile.CurrentAmount}/${projectile.MaxAmount}`;
         },
-        equipQuiver(quiver, event) {
-            if (event) {
-                event.stopPropagation();
-            }
+        equipQuiver(quiver) {
+
             this.$emit('equip', quiver);
         },
         async updateCount(quiver, event) {
