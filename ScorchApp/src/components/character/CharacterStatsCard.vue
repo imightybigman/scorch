@@ -17,11 +17,11 @@
           <span class="stat">{{ proficiency }}</span>
         </div>
         <hr> <!-- Break line for spell stuff -->
-        <div v-if="characterClass && characterClass.Name.indexOf(['Bard', 'Warlock']) !== -1">
+        <div v-if="characterClass && ['Bard', 'Warlock'].indexOf(characterClass.Name) !== -1">
           <strong>Known Cantrips:</strong>
           <span class="stat">{{ knownCantrips }}</span>
         </div>
-        <div v-if="characterClass && characterClass.Name.indexOf(['Bard', 'Warlock', 'Ranger']) !== -1">
+        <div v-if="characterClass && ['Bard', 'Warlock', 'Ranger'].indexOf(characterClass.Name) !== -1">
           <strong>Known Spells:</strong>
           <span class="stat">{{ knownSpells }}</span>
         </div>
