@@ -13,7 +13,7 @@
       </h4>
       <div class="gold-counter"><img class="gold" src="~assets/icons/gold.png"/> {{ character.Gold }} </div>
       <hp-bar :character="character"></hp-bar>
-      <exp-bar :character="character" v-on:levelup="levelingEnabled = true"></exp-bar>
+      <exp-bar :character="character"></exp-bar>
     </div>
     <div class="d-flex flex-row flex-wrap character-screen">
       <div class="d-flex flex-column character-details">
@@ -33,7 +33,7 @@
     </div>
   </div>
   <div class="d-flex flex-column character-other border">
-     <character-leveling :character="character" :characterClass="characterClass"></character-leveling>
+    <character-leveling :character="character" :characterClass="characterClass"></character-leveling>
     <dice-roller></dice-roller>
     <inventory :characterId="character.CharacterId"></inventory>
   </div>

@@ -44,7 +44,7 @@
         </div>
     </modal>
     <div class="card">
-      <div class="card-header">Leveling</div>
+      <div class="card-header">{{ levelingEnabled ? 'Level +1' : 'Need More Exp' }} </div>
       <div class="card-body">
         <button class="level-btn btn btn-warning" :class="{ pulse:levelingEnabled } ":disabled="!levelingEnabled" @click="showLevelingModal = true">Level Up</button>
       </div>
@@ -54,7 +54,7 @@
 
 <script>
 import { Modal } from 'components/util'
-import { AbilityModifierService } from 'services'
+import { AbilityModifierService, LevelService } from 'services'
 
 export default {
     name: 'character-leveling',
@@ -62,7 +62,6 @@ export default {
     data() {
         return {
             showLevelingModal: false,
-            levelingEnabled: true,
             increaseHpBaseValue: 0,
             hpRolled: false, 
             statPointsAvailable: 2
@@ -91,6 +90,10 @@ export default {
         },
         baseHitDice() {
             return this.increaseHpBaseValue || this.characterClass.HitDiceFlat;
+        }, 
+        levelingEnabled() {
+            let expRange = LevelService.getExpRange(this.character.Level)
+            return this.character.Exp > expRange.max;
         }
     },
     methods: {
@@ -112,12 +115,14 @@ export default {
             let payload = {
                 characterId : this.character.CharacterId,
                 body: {
-                    MaxHp: this.newHp, 
+                    MaxHp: this.newHp,
+                    Level: this.nextLevel,
                     Stats: this.character.Stats
                 }
             };
             await this.$store.dispatch('updateCharacter', payload);
             this.$socket.emit('updateParty');
+            this.showLevelingModal = false;
         }
     },
     components: {
