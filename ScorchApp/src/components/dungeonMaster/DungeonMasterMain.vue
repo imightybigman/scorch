@@ -11,7 +11,7 @@
                     <div class="character-operations">
                         <character-operator :character-list="selectedChars" :item="selectedItem"></character-operator>
                     </div>
-                    <div class ="item-card" >
+                    <div class ="item-card border" >
                         <item-card :item="selectedItem"></item-card>
                     </div>
                 </div>

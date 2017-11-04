@@ -2,8 +2,8 @@ import json
 import requests
 
 #apiUrl = "http://localhost:5000/api/character"
-apiUrl = "http://scorchapiv2-dev.us-east-1.elasticbeanstalk.com/api/character"
-#apiUrl = "https://dnd-api.imightybigman.com/api/character"
+#apiUrl = "http://scorchapiv2-dev.us-east-1.elasticbeanstalk.com/api/character"
+apiUrl = "https://dnd-api.imightybigman.com/api/character"
 
 def createSkill(skill):
     skill = list(skill)[0]
@@ -145,9 +145,9 @@ def loadCharacters(url):
         print("Error: " + r.text)
 
 if __name__ == '__main__':
-    loadCharacters("http://tjedens.com/chars/Kiliso.json")
+    # loadCharacters("http://tjedens.com/chars/Kiliso.json")
     loadCharacters("http://tjedens.com/chars/iMightyJun.json")
-    loadCharacters("http://tjedens.com/chars/Nightwing.json")
-    loadCharacters("http://tjedens.com/chars/Scooty.json")
-    loadCharacters("http://tjedens.com/chars/Redtail.json")
-    loadCharacters("http://tjedens.com/chars/Fyreblood.json")
+    # loadCharacters("http://tjedens.com/chars/Nightwing.json")
+    # loadCharacters("http://tjedens.com/chars/Scooty.json")
+    # loadCharacters("http://tjedens.com/chars/Redtail.json")
+    # loadCharacters("http://tjedens.com/chars/Fyreblood.json")
