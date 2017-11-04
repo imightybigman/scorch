@@ -11,10 +11,11 @@
         <div id="adventurerGearInventory" class="collapse" role="tabpanel" aria-labelledby="adventurergear" data-parent="#accordion">
             <div class="card-body item-list">
                 <div v-for="(adventurerGear, index) in adventurerGears" 
-                    @click="adventurerGearClick(adventurerGear)" 
                     :key="index" 
                     class="d-flex flex-wrap flex-column list-item border">
-                    <item-card :item="adventurerGear"></item-card>
+                    <div @click="adventurerGearClick(adventurerGear)">
+                        <item-card :item="adventurerGear"></item-card>
+                    </div>
                 </div>
             </div>
             </div>

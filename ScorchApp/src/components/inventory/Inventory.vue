@@ -7,6 +7,7 @@
     <div id="accordion" role="tablist">
       <weapon-inventory @equip="equipItem" :weapons="weapons"></weapon-inventory>
       <armor-inventory @equip="equipItem" :armors="armors"></armor-inventory>
+      <accessory-inventory @equip="equipItem" :accessories="accessories"></accessory-inventory>      
       <quiver-inventory @equip="equipItem" :characterId="characterId" :quivers="quivers"></quiver-inventory>
       <adventurer-gear-inventory :adventurerGears="adventurerGears"></adventurer-gear-inventory>
     </div>
@@ -17,10 +18,12 @@
 </template>
 
 <script>
-import WeaponInventory from './weapons/WeaponInventory'
+import WeaponInventory from './weapon/WeaponInventory'
 import AdventurerGearInventory from './adventurergear/AdventurerGearInventory'
 import QuiverInventory from './quiver/QuiverInventory'
 import ArmorInventory from './armor/ArmorInventory'
+import AccessoryInventory from './accessory/AccessoryInventory'
+
 import { mapGetters } from 'vuex'
 
 export default {
@@ -38,6 +41,9 @@ export default {
       },
       adventurerGears() {
         return this.$store.getters.getCharacterAdventurerGears(this.characterId);        
+      },
+      accessories(){
+        return this.$store.getters.getCharacterAccessories(this.characterId);        
       }
     },
     methods: {
@@ -53,7 +59,8 @@ export default {
       WeaponInventory,
       AdventurerGearInventory,
       QuiverInventory,
-      ArmorInventory
+      ArmorInventory,
+      AccessoryInventory
     }
 }
 

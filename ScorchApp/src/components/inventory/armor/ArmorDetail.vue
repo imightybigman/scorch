@@ -20,6 +20,10 @@
             <textarea type="text" rows="3" id="description" class="form-control" v-model="armor.Description" readonly />
           </div>
           <div class="form-group">
+            <label for="slot">Slot</label>
+            <input type="text" id="slot" class="form-control" v-model="armor.Slot" readonly />
+          </div>
+          <div class="form-group">
             <label for="AC">AC</label>
             <input type="text" id="AC" class="form-control" v-model="armor.AC" readonly />
           </div>

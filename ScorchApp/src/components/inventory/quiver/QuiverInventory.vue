@@ -11,14 +11,16 @@
     <div id="quiverInventory" class="collapse" role="tabpanel" aria-labelledby="quiver" data-parent="#accordion">
         <div class="card-body item-list">
         <div v-for="(quiver, index) in quivers" 
-                 @click="quiverClick(quiver)" 
                  :key="index" 
                     class="d-flex flex-column list-item border">
-                <item-card :item="quiver"></item-card>
-                <button class="btn btn-primary" @click="equipQuiver(quiver, $event)">
-                    Equip
-                </button>
-
+                <div  @click="quiverClick(quiver)" >
+                    <item-card :item="quiver"></item-card>
+                </div>
+                <div>
+                    <button class="btn btn-primary" @click="equipQuiver(quiver, $event)">
+                        Equip
+                    </button>
+                </div>
                 <div class="projectile-count d-flex flex-column">
                     <div class="projectiles d-flex" v-for="(count, projectile, index) in quiver.Projectiles" :key="index">
                         <strong>{{projectile}} : {{ getArrowCount(count) }}</strong>

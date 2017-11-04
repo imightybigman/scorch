@@ -35,6 +35,10 @@ const getters = {
         let inventory = state.party.find(char => char.CharacterId === id).Inventory;
         return inventory.filter(item => item.ItemClass === 'Quiver');
     },
+    getCharacterAccessories: (state, getters) => (id) => {
+        let inventory = state.party.find(char => char.CharacterId === id).Inventory;
+        return inventory.filter(item => item.ItemClass === 'Accessory');
+    },
     getCharacterEquipment: (state, getters) => (id) => {
         return state.party.find(char => char.CharacterId === id).Equipment || { };
     }
@@ -61,10 +65,16 @@ const actions = {
         }
     },
     async equipItem({ commit }, payload) {
-        let response = await CharacterService.equipItem(payload.characterId, payload.item);
-        if(response.status === 200) {
-            commit(types.EQUIP_ITEM, payload);
+        try {
+            let response = await CharacterService.equipItem(payload.characterId, payload.item);
+            if(response.status === 200) {
+                commit(types.EQUIP_ITEM, payload);
+            }
         }
+        catch(ex){
+            console.error('EQUIP ERROR: ' + ex.body.error)
+        }
+
     },
     async updateItem({ commit }, payload) {
         let response = await CharacterService.putCharacterItem(payload.characterId, payload.item);

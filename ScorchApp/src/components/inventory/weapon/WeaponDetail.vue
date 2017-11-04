@@ -21,6 +21,10 @@
               readonly />
           </div>
           <div class="form-group">
+            <label for="slot">Slot</label>
+            <input type="text" id="slot" class="form-control" v-model="weapon.Slot" readonly />
+          </div>
+          <div class="form-group">
             <label for="damage">Damage</label>
             <input type="text" id="damage" class="form-control" v-model="weapon.Damage" readonly />
           </div>

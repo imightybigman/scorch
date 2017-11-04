@@ -11,13 +11,16 @@
         <div id="weaponInventory" class="collapse show" role="tabpanel" aria-labelledby="weapons" data-parent="#accordion">
             <div class="card-body item-list">
                 <div v-for="(weapon, index) in weapons" 
-                    @click="weaponClick(weapon)" 
                     :key="index" 
                     class="d-flex flex-column list-item border">
-                    <item-card :item="weapon"></item-card>
-                    <button class="btn btn-primary" @click="equipWeapon(weapon, $event)">
-                        Equip
-                    </button>
+                    <div @click="weaponClick(weapon)">
+                        <item-card :item="weapon"></item-card>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" @click="equipWeapon(weapon, $event)">
+                            Equip
+                        </button>
+                    </div>
                     </div>
                 </div>
             </div>

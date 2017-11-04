@@ -198,10 +198,19 @@ namespace ScorchApiV2.Models
             }
             else if (accessory.Slot == "RightRing")
             {
+                if (Equipment.LeftRing != null && Equipment.LeftRing.ItemId == accessory.ItemId)
+                {
+                    throw new InvalidOperationException("Can't equip the same ring twice.");
+                }
                 Equipment.RightRing = accessory;
             }
             else if (accessory.Slot == "LeftRing")
             {
+                if (Equipment.RightRing != null && Equipment.RightRing.ItemId == accessory.ItemId)
+                {
+                    throw new InvalidOperationException("Can't equip the same ring twice.");
+
+                }
                 Equipment.LeftRing = accessory;
             }
         }
