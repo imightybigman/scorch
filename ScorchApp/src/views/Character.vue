@@ -100,7 +100,7 @@
     },
     methods: {
       goTo(characterId) {
-        this.$router.set('/character/' + characterId)
+        this.$router.push('/character/' + characterId)
       }
     },
     watch: {
