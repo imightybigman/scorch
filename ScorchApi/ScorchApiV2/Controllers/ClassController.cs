@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2;
@@ -8,7 +9,9 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using ScorchApiV2.Abstract;
 using ScorchApiV2.ModelBinders;
+using ScorchApiV2.Models;
 using ScorchApiV2.Models.DnDClasses;
+using Document = Amazon.DynamoDBv2.DocumentModel.Document;
 
 namespace ScorchApiV2.Controllers
 {
@@ -26,10 +29,56 @@ namespace ScorchApiV2.Controllers
             _classTable = Table.LoadTable(_client, tableName);
         }
 
-        [HttpGet]
-        public IEnumerable<CharacterClass> GetCharacterClasses()
+        private CharacterClass ParseCharacter(Document document)
         {
-            return new CharacterClass[] { new Fighter(), new Warlock(), new Bard(), new Ranger(), new Paladin() };
+            var classJson = document.ToJson();
+            if (document["Name"] == "Paladin")
+            {
+                return JsonConvert.DeserializeObject<Paladin>(classJson);
+            }
+            if (document["Name"] == "Warlock")
+            {
+                return JsonConvert.DeserializeObject<Warlock>(classJson);
+            }
+            if (document["Name"] == "Ranger")
+            {
+                return JsonConvert.DeserializeObject<Ranger>(classJson);
+            }
+            if (document["Name"] == "Fighter")
+            {
+                return JsonConvert.DeserializeObject<Fighter>(classJson);
+            }
+            if (document["Name"] == "Bard")
+            {
+                return JsonConvert.DeserializeObject<Bard>(classJson);
+            }
+            return JsonConvert.DeserializeObject<BaseClass>(classJson);
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<CharacterClass>> GetCharacterClasses()
+        {
+            var scanFilter = new ScanFilter();
+            var search = _classTable.Scan(scanFilter);
+            var classes = new List<CharacterClass>();
+            do
+            {
+                var documentList = await search.GetNextSetAsync();
+                foreach (var document in documentList)
+                {
+                    classes.Add(ParseCharacter(document));
+                }
+            } while (!search.IsDone);
+
+            return classes;
+        }
+
+        [HttpGet("{name}")]
+        public async Task<CharacterClass> GetCharacterClasses(string name)
+        {
+            var document = await _classTable.GetItemAsync(name);
+
+            return ParseCharacter(document);
         }
 
         [HttpPost]

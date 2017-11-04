@@ -6,3 +6,6 @@ export const ADD_ITEM           = 'ADD_ITEM';
 export const EQUIP_ITEM         = 'EQUIP_ITEM';
 export const UNEQUIP_ITEM       = 'UNEQUIP_ITEM';
 export const API_ERROR          = 'API_ERROR';
+
+// Classes
+export const LOAD_CLASS         = 'LOAD_CLASS';

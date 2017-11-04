@@ -59,7 +59,9 @@
   export default {
     name: 'character-view',
     async created() {
-      await this.$store.dispatch('getParty')
+      await this.$store.dispatch('getParty');
+      // we want to load each class when we need them cuz they are biiiiiiiggggggg
+      await this.$store.dispatch('loadClass', this.character.Class);
     },
     props: ['characterId'],
     computed: {
@@ -73,11 +75,19 @@
       },
       character() {
         return this.$store.getters.getCharacterById(this.characterId);
+      },
+      characterClass() {
+        return this.$store.getters.getClass(this.character.Class)
       }
     },
     methods: {
       goTo(characterId) {
         this.$router.push('/character/' + characterId)
+      }
+    },
+    watch: {
+      character: async function(newCharacter) {
+        await this.$store.dispatch('loadClass', newCharacter.Class);
       }
     },
     components: {
