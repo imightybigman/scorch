@@ -1,14 +1,14 @@
 <template>
     <div>
-        <div class="alert alert-success success-notification" id='success-adv-gear-msg'>
+        <div class="alert alert-success success-notification" id='success-accessory-msg'>
             <strong>Success Item Added!</strong>
         </div>
-        <div class="alert alert-danger failure-notification" id='failure-adv-gear-msg'>
+        <div class="alert alert-danger failure-notification" id='failure-accessory-msg'>
             <strong>Error creating Item!</strong>
         </div>
-        <div class="dm-adventurer-gear-creator border border-dark">
-            <h4> Adventurer Gear </h4>
-            <div class="adv-gear-form">
+        <div class="dm-acessory-creator border border-dark">
+            <h4>Accessory</h4>
+            <div class="accessory-form">
                 <form v-on:submit="create">
                     <div class="form-group">
                         <label for="name">Name : </label>
@@ -18,9 +18,19 @@
                         <label for="description">Description : </label>
                         <textarea rows="4" class="form-control" id="description" v-model="description" placeholder="Description" autocomplete="off" required="true"/>
                     </div>
-                    <div class="form-group">
-                        <label for="item-type">Item Type : </label>
-                        <input type="text" class="form-control" id="item-type" v-model="itemType" placeholder="Item Type" autocomplete="off" required="true"/>
+ 
+                    <div class="d-flex">
+                        <div class="form-group numeric-entry">
+                            <label for="item-type">Item Type : </label>
+                            <input type="text" class="form-control" id="item-type" v-model="itemType" placeholder="Item Type" autocomplete="off" required="true"/>
+                        </div>
+                        <div class="form-group numeric-entry">
+                            <label for="slot">Slot : </label>
+                            <select class="form-control" v-model="slot">
+                                <option>Ring</option>
+                                <option>Necklace</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="d-flex">
                         <div class="form-group numeric-entry">
@@ -62,27 +72,29 @@
 
 <script>
 export default {
-    name: 'dm-adventurer-gear-creator',
-    props: ['gear'],
+    name: 'dm-acessory-creator',
+    props: ['accessory'],
     data(){
         return {
-            description : this.gear.Description || '',
-            itemType : this.gear.ItemType || '',
+            description : this.accessory.Description || '',
+            itemType : this.accessory.ItemType || '',
             newProp: '',
-            name : this.gear.Name || '',
-            weight : this.gear.Weight || 0,
-            cost : this.gear.Cost || 0,
-            properties: this.gear.Properties || []
+            name : this.accessory.Name || '',
+            weight : this.accessory.Weight || 0,
+            cost : this.accessory.Cost || 0,
+            properties: this.accessory.Properties || [],
+            slot: this.accessory.Slot || ''
         }
     },
     watch: {
-      gear: function () {
-        this.description = this.gear.Description;
-        this.itemType = this.gear.ItemType;
-        this.name =  this.gear.Name;
-        this.weight = this.gear.Weight;
-        this.cost = this.gear.Cost;
-        this.properties = this.gear.Properties;
+      accessory: function () {
+        this.description = this.accessory.Description;
+        this.itemType = this.accessory.ItemType;
+        this.name =  this.accessory.Name;
+        this.weight = this.accessory.Weight;
+        this.cost = this.accessory.Cost;
+        this.properties = this.accessory.Properties;
+        this.slot = this.accessory.Slot;
       }
     },
     methods: {
@@ -105,7 +117,7 @@ export default {
         async create(){
             let payload = {};
             let body = {};
-            body.ItemClass = 'AdventurerGear';
+            body.ItemClass = 'Accessory';
 
             body.Description = this.description;
             body.Properties = this.properties;
@@ -113,23 +125,24 @@ export default {
             body.Weight = this.weight;
             body.Cost = this.cost;
             body.Name = this.name;
+            body.Slot = this.slot;
 
             payload.body = body;
             await this.$store.dispatch('addItem', payload);
             if(this.$store.getters.error){
                 console.log("Encountered an error during item creation : " + this.error);
 
-                $('#failure-adv-gear-msg').fadeIn(0);
+                $('#failure-accessory-msg').fadeIn(0);
                 setTimeout(13000, () => {
-                    $('#failure-adv-gear-msg').fadeOut(5000);
+                    $('#failure-accessory-msg').fadeOut(5000);
                 });
             }
             else{
                 this.clearFields();
 
-                $('#success-adv-gear-msg').fadeIn(0);
+                $('#success-accessory-msg').fadeIn(0);
                 setTimeout(13000, () => {
-                    $('#success-adv-gear-msg').fadeOut(5000);
+                    $('#success-accessory-msg').fadeOut(5000);
                 });
             }
 
@@ -142,18 +155,19 @@ export default {
             this.weight = 0;
             this.properties = [];
             this.newProp = '';
+            this.slot = '';
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-    .dm-adventurer-gear-creator {
+    .dm-acessory-creator {
         margin: 1%;
         padding: 1%;
         border-radius: 10px;
     }
-    .adv-gear-form{
+    .accessory-form{
         margin : 3%;
     }
     .properties{

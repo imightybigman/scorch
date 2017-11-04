@@ -3,20 +3,41 @@
     <modal v-if="showLevelingModal" v-on:close="showLevelingModal = false">
         <div slot="header"><h3>Level: <i class="fa fa-level-up"></i> {{ nextLevel }}</h3></div>
         <div slot="body">
-            <div class="card">
-            <div class="card-body">
-                <div class="d-flex justify-content-between stats-leveling" v-for="(statValue, stat, index) in character.Stats" :key="index">
+            <div class="card modify-stats">
+                <div class="card-header">
+                    Increase Hp
+                </div>
+                <div class="card-body">
+                    <p class="hp-leveling">
+                        <strong>{{ hpLevelText }}</strong>
+                    </p>
                     <div>
-                        <strong>{{ stat }}:</strong>
-                        <span class="stat">{{ statValue }}</span>
+                        <strong>{{ currentHp }}</strong>
+                        <input class="hp-input" type="text" v-model="increaseHpBaseValue"/>
+                        <button class="btn btn-primary" @click="rollForHp" :disabled="hpRolled">Roll</button>
                     </div>
-                    <div class="stats-leveling-buttons">
-                        <button class="btn btn-primary" @click="increaseStat(stat)">+</button>
+                </div>
+            </div>
+            <div class="card modify-stats" v-if="doStatIncrease">
+                <div class="card-header">
+                    Increase Stats
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between stats-leveling" v-if="doStatIncrease" v-for="(statValue, stat, index) in character.Stats" :key="index">
+                        <div>
+                            <strong>{{ stat }}:</strong>
+                            <span class="stat">{{ statValue }}</span>
+                        </div>
+                        <div class="stats-leveling-buttons">
+                            <button class="btn btn-primary" @click="increaseStat(stat)">+</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <div slot="footer">
+            <button class="btn btn-primary">Level Up</button>
+        </div>
     </modal>
     <div class="card">
       <div class="card-header">Leveling</div>
@@ -35,7 +56,9 @@ export default {
     data() {
         return {
             showLevelingModal: false,
-            levelingEnabled: true
+            levelingEnabled: true,
+            increaseHpBaseValue: 0,
+            hpRolled: false
         }
     },
     computed: {
@@ -43,12 +66,26 @@ export default {
             return this.character.Level + 1;
         },
         doStatIncrease() {
-
+            return this.characterClass.AbilityScoreImprovement.indexOf(this.nextLevel) !== -1;
+        },
+        hpLevelText() {
+            let hitDice = this.characterClass.HitDice,
+                hitDiceFlat = this.characterClass.HitDiceFlat;
+            return `${hitDice} OR ${hitDiceFlat} + ${this.character.Stats.Constitution} (Constitution Modifier)`;
+        },
+        currentHp() {
+            return `Hp: ${ this.character.Hp } +`
         }
     },
     methods: {
         increaseStats(stat) {
 
+        },
+        rollForHp() {
+            let hitDice = this.characterClass.HitDice;
+            let diceValue = hitDice.split('d')[1];
+            this.increaseHpBaseValue = Math.floor(Math.random() * diceValue) + 1;
+            this.hpRolled = true;
         }
     },
     components: {
@@ -64,6 +101,15 @@ export default {
     .stats-leveling-buttons {
         float: right;
     }
+}
+
+.modify-stats {
+    margin-bottom: 1%;
+}
+
+.hp-input {
+    width: 5%;
+    border-radius: 5px;
 }
 
 .pulse {

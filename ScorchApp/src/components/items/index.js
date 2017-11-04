@@ -2,6 +2,7 @@ import AdventurerGearCreator from './AdventurerGearCreator.vue'
 import QuiverCreator from './QuiverCreator.vue'
 import ArmorCreator from './ArmorCreator.vue'
 import WeaponCreator from './WeaponCreator.vue'
+import AccessoryCreator from './AccessoryCreator.vue'
 import ItemCard from './ItemCard'
 
 export {
@@ -9,5 +10,6 @@ export {
     QuiverCreator,
     ArmorCreator,
     WeaponCreator,
+    AccessoryCreator,
     ItemCard
 }

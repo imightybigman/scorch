@@ -101,6 +101,10 @@ namespace ScorchApiV2.Controllers
             {
                 return JsonConvert.DeserializeObject<Armor>(itemJson);
             }
+            if (document["ItemClass"] == "Accessory")
+            {
+                return JsonConvert.DeserializeObject<Accessory>(itemJson);
+            }
 
             return JsonConvert.DeserializeObject<AdventurerGear>(itemJson);
         }
