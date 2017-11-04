@@ -41,7 +41,10 @@
             <div class="card new-abilities">
                 <div class="card-header">New Abilities</div>
                 <div class="card-body">
-                    
+                    <div class="list-item new-ability" v-for="(feature, index) in bonusFeature" :key="index">
+                        <h4>{{ feature.Name }}</h4>
+                        <small v-if="feature.Description">{{ feature.Description }}</small>
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,6 +103,10 @@ export default {
         levelingEnabled() {
             let expRange = LevelService.getExpRange(this.character.Level)
             return this.character.Exp > expRange.max;
+        },
+        bonusFeature() {
+            let level = `Level_${this.nextLevel}`;
+            return this.characterClass.BonusFeatures[level];
         }
     },
     methods: {
@@ -146,6 +153,9 @@ export default {
     }
 }
 
+.new-ability {
+    margin-bottom: 1%;
+}
 .modify-stats {
     margin-bottom: 1%;
 }
