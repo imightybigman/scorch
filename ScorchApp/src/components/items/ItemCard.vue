@@ -1,5 +1,5 @@
 <template>
-    <div class="item-card border">
+    <div class="item-card">
         <div class="item-card-inner">
             <div class="d-flex">
                 <h4 class="item-card-header">{{item.Name ? item.Name : "Item Card"}} <span v-if="item.Count > 0">x {{item.Count}}</span></h4>
