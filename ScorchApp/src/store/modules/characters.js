@@ -1,5 +1,6 @@
 import { CharacterService } from 'services'
 import sortBy from 'lodash/sortBy'
+import findIndex from 'lodash/findIndex'
 import * as types from '../mutation-types'
 import Vue from 'vue'
 
@@ -67,6 +68,9 @@ const actions = {
     },
     async updateItem({ commit }, payload) {
         let response = await CharacterService.putCharacterItem(payload.characterId, payload.item);
+        if(response.status === 200){
+            commit(types.UPDATE_ITEM, payload)
+        }
     },
     async unequipItem({ commit }, payload) {
         let response = await CharacterService.unequipItem(payload.characterId, payload.slot);
@@ -135,6 +139,23 @@ const mutations = {
             let ch = state.party[i];
             if(ch.CharacterId === id) {
                 state.party[i].Equipment = { ...state.party[i].Equipment, [slot] : null };
+                break;                
+            }
+        }
+    },
+    [types.UPDATE_ITEM] (state, payload) {
+        // this really only exists for quivers....
+        let id = payload.characterId;
+        let item = payload.item;
+        for(let i = 0; i < state.party.length; i++) {
+            let ch = state.party[i];
+            if(ch.CharacterId === id) {
+                let equipment = state.party[i].Equipment;
+                if(equipment.Quiver) {
+                    state.party[i].Equipment = { ...state.party[i].Equipment, Quiver : item };
+                }
+                let index = findIndex(state.party[i].Inventory,(i) => i.ItemId === item.ItemId);
+                state.party[i].Inventory.splice(index, 1, item);
                 break;                
             }
         }

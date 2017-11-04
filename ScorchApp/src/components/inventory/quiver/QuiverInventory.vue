@@ -18,12 +18,14 @@
                 <button class="btn btn-primary" @click="equipQuiver(quiver, $event)">
                     Equip
                 </button>
+
                 <div class="projectile-count d-flex flex-column">
                     <div class="projectiles d-flex" v-for="(count, projectile, index) in quiver.Projectiles" :key="index">
                         <strong>{{projectile}} : {{ getArrowCount(count) }}</strong>
                         <div class="d-flex flex-row ml-auto">
-                        <button class="projectile-minus btn btn-primary btn-sm" @click="decrementProjectile(count, quiver, $event)"><i class="fa fa-minus"></i></button>                        
-                        <button class="projectile-add btn btn-primary btn-sm" @click="incrementProjectile(count, quiver, $event)"><i class="fa fa-plus"></i></button>
+                        <button class="projectile-mod btn btn-primary btn-sm" @click="decrementProjectile(count, quiver, $event)"><i class="fa fa-minus"></i></button>                        
+                        <button class="projectile-mod btn btn-primary btn-sm" @click="incrementProjectile(count, quiver, $event)"><i class="fa fa-plus"></i></button>
+                        <button class="projectile-mod btn btn-primary" @click="updateCount(quiver, $event)">Update Arrows</button>
                         </div>
                    </div>
                 </div>
@@ -78,6 +80,16 @@ export default {
                 event.stopPropagation();
             }
             this.$emit('equip', quiver);
+        },
+        async updateCount(quiver, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            let payload = {
+                characterId: this.characterId,
+                item: quiver
+            };
+            await this.$store.dispatch('updateItem', payload);
         }
     },
     components : {
@@ -92,8 +104,8 @@ export default {
 .projectile-count {
     margin-top: 1%;
 }
-.projectile-add, .projectile-minus {
-    margin-left: 2%;
+.projectile-mod {
+    margin-right: 1%;
 }
 .projectiles {
     margin-bottom: 1%;
