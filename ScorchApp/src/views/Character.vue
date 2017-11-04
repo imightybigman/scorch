@@ -29,7 +29,7 @@
       </div>
 
     </div>
-    <div class="d-flex notes black-border">
+    <div class="d-flex notes black-border" style="overflow: scroll;">
       <ul style="padding: 0;">
         <li v-for="log in logs" class="list-unstyled">
           {{ log.message }} <br />
