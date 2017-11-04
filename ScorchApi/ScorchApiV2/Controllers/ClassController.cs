@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2;
@@ -9,7 +8,6 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using ScorchApiV2.Abstract;
 using ScorchApiV2.ModelBinders;
-using ScorchApiV2.Models;
 using ScorchApiV2.Models.DnDClasses;
 using Document = Amazon.DynamoDBv2.DocumentModel.Document;
 

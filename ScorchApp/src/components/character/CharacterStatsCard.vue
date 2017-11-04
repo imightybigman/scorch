@@ -52,6 +52,7 @@ export default {
   methods: {
     getABM(val) {
       let mod = AbilityModifierService.getAbilityModifier(val);
+      mod = mod > -1 ? `+${mod}` : mod;
       return mod ? `(${mod})` : '';
     }
   }
