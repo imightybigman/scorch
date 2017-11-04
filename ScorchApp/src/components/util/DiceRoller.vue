@@ -3,6 +3,9 @@
     <modal v-if="showModal" v-on:close="showModal = false">
         <h3 slot="header">Dice Roller</h3>
         <div slot="body" class="d-flex flex-column">
+            <div class="d-flex dices">
+                <button class="btn btn-danger" @click="clear">Clear Rolls</button>            
+            </div>
             <div class="d-flex justify-content-between dices">
                 <div class="d-flex text-center flex-column">
                     <button id="d4" class="btn btn-primary" @click="rollD4">D4</button>
@@ -35,7 +38,6 @@
             <div class="d-flex">
                 <h4>Rolled Total: <u>{{ rollTotal }}</u></h4>
             </div>
-
         </div>
     </modal>
     <div class="card-header">
@@ -63,7 +65,12 @@ export default {
             rollD8Count: 0, 
             rollD10Count: 0,
             rollD12Count: 0,
-            rollD20Count: 0,
+            rollD20Count: 0
+        }
+    },
+    watch: {
+        showModal: function(newValue) {
+            this.clear();
         }
     },
     methods: {
@@ -90,6 +97,15 @@ export default {
         rollD20() {
             this.rolledValues.push(Math.floor(Math.random() * 20) + 1);
             this.rollD20Count++;
+        },
+        clear() {
+            this.rolledValues = [];
+            this.rollD4Count = 0;
+            this.rollD6Count = 0;
+            this.rollD8Count = 0;
+            this.rollD10Count = 0;
+            this.rollD12Count = 0;
+            this.rollD20Count = 0;
         }
     },
     computed: {
