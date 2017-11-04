@@ -41,7 +41,7 @@
             <div class="card new-abilities">
                 <div class="card-header">New Abilities</div>
                 <div class="card-body">
-                    Things!!!
+                    
                 </div>
             </div>
         </div>

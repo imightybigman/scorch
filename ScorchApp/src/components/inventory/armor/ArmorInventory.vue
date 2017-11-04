@@ -10,7 +10,7 @@
             </h5>
         </div>
         <div id="armorInventory" class="collapse" role="tabpanel" aria-labelledby="armor" data-parent="#accordion">
-            <div class="card-body armor-list">
+            <div class="card-body item-list">
             <div v-for="(armor, index) in armors" 
                     @click="armorClick(armor)" 
                     :key="index" 
