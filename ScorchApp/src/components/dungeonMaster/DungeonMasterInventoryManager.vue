@@ -2,7 +2,7 @@
     <div class="dm-inventory-component d-flex">
         <div class="item-search flex-column">
           <div class="item-searcher flex-column">
-            <searcher @search-row-selected="searchItem" :search-data="searchItems" :limit-per-page="10" :column-keys="columnKeys"/>
+            <searcher v-on:search-row-selected="searchItem" :search-data="searchItems" :limit-per-page="10" :column-keys="columnKeys"/>
           </div>
         </div>
         <div class="flex-row item-store">

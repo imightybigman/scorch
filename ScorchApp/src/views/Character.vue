@@ -18,8 +18,8 @@
     <div class="d-flex flex-row flex-wrap character-screen">
       <div class="d-flex flex-column character-details">
         <h4>Character Info</h4>
-        <character-bio-card :character="character"></character-bio-card>
         <character-stats-card :stats="character.Stats" :proficiency="character.Proficiency"></character-stats-card>
+        <character-bio-card :character="character"></character-bio-card>
         <character-skills-card :skills="character.Skills"></character-skills-card>
         <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
       </div>

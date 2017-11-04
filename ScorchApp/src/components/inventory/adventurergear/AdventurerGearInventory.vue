@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import AdventurerGearDetails from './AdventurerGearDetails';
+
 export default {
     name: 'adventurerGear-inventory',
     props: ['adventurerGears'],
@@ -36,6 +38,9 @@ export default {
                 event.stopPropagation();
             }
         }   
+    },
+    components: {
+        AdventurerGearDetails
     }
 }
 </script>

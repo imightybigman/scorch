@@ -6,7 +6,7 @@
         <a data-toggle="collapse" href="#stats" aria-expanded="false" aria-controls="stats">Stats</a>
       </h5>
     </div>
-    <div id="stats" class="collapse" role="tabpanel" aria-labelledby="character-stats" data-parent="#accordion">
+    <div id="stats" class="collapse show" role="tabpanel" aria-labelledby="character-stats" data-parent="#accordion">
       <div class="card-body">
         <div v-for="(statValue, stat, index) in stats" :key="index">
           <strong>{{ stat }}:</strong>

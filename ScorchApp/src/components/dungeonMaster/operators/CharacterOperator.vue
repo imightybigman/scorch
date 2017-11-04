@@ -42,7 +42,7 @@ export default {
     props: ['characterList', 'item'],
     methods: {
         async apply() {
-            this.characterList.forEach(async(char) =>
+            for(let char of this.characterList)
             {
                 let payload = {};
                 payload.body = {};
@@ -62,19 +62,17 @@ export default {
                 payload.body.Gold = newGold;
                 
                 await this.$store.dispatch('updateCharacter', payload);
-
                 if(this.item && this.itemQty > 0){
                     let itemAdded = {};
                     itemAdded.ItemId = this.item.ItemId;
                     itemAdded.Count = parseInt(this.itemQty);
                     await CharacterService.postCharacterItem(char.CharacterId, itemAdded);
                 }
-
-                this.$socket.emit('updateParty');
-            });
+            };
+            this.$socket.emit('updateParty');            
             this.clearFields();
         },
-        async clearFields() {
+        clearFields() {
             this.itemQty = 0;
         }
     }
