@@ -20,7 +20,7 @@
   <div class="card spell-card card-width">
     <div class="card-header" data-toggle="collapse" role="tab" id="character-spells">
       <h5 class="mb-0" >
-        <a href="#spells" data-toggle="collapse" aria-expanded="false" aria-controls="spells">Spell</a>
+        <a href="#spells" data-toggle="collapse" aria-expanded="false" aria-controls="spells">Spells/Cantrips</a>
       </h5>
     </div>
     <div id="spells" class="collapse" role="tabpanel" aria-labelledby="character-spells" data-parent="#character-details">

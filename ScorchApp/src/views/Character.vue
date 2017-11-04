@@ -18,13 +18,19 @@
     <div class="d-flex flex-row flex-wrap character-screen">
       <div id="character-details" class="d-flex flex-column character-details">
         <h4>Character Info</h4>
-        <character-stats-card :stats="character.Stats" :proficiency="character.Proficiency"></character-stats-card>
+        <character-stats-card :stats="character.Stats" :proficiency="character.Proficiency" :characterClass="characterClass" :level="character.Level"></character-stats-card>
         <character-bio-card :character="character"></character-bio-card>
         <character-skills-card :skills="character.Skills"></character-skills-card>
         <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
-        <div v-if="character.Class === 'Fighter'">
-          <bonus-features :feature="characterClass" :displayName="'Fighter(Champion)'"></bonus-features>
-
+        <div v-if="characterClass">
+            <spell-slots v-if="characterClass.SpellSlots" :level="character.Level" :spellSlots="characterClass.SpellSlots"></spell-slots>
+            <bonus-features :level="character.Level" :feature="characterClass.BonusFeatures" :displayName="characterClass.Name"></bonus-features>
+            <bonus-features v-if="character.Class === 'Fighter'" :level="character.Level" :feature="characterClass.MartialArchetype.Features" :displayName="characterClass.MartialArchetype.Name"></bonus-features>
+            <bonus-features v-if="character.Class === 'Paladin'" :level="character.Level" :feature="characterClass.SacredOath.Features" :displayName="characterClass.SacredOath.Name"></bonus-features>
+            <bonus-features v-if="character.Class === 'Bard'" :level="character.Level" :feature="characterClass.CollegeFeatures.Features" :displayName="characterClass.CollegeFeatures.Name"></bonus-features>
+            <bonus-features v-if="character.Class === 'Ranger'" :level="character.Level" :feature="characterClass.Archetype.Features" :displayName="characterClass.Archetype.Name"></bonus-features>
+            <bonus-features v-if="character.Class === 'Warlock'" :level="character.Level" :feature="characterClass.OtherworldyPatron.Features" :displayName="characterClass.OtherworldyPatron.Name"></bonus-features>
+            <companion v-if="character.Class === 'Ranger'" :companion="characterClass.Companion"></companion>
         </div>
       </div>
       <div class="d-flex flex-column character-equip">
@@ -59,7 +65,7 @@
 
   import { Inventory } from 'components/inventory'
   import { DiceRoller, Modal } from 'components/util'
-  import { BonusFeatures } from 'components/classFeatures'
+  import { BonusFeatures, SpellSlots, Companion } from 'components/classFeatures'
   export default {
     name: 'character-view',
     async created() {
@@ -81,7 +87,7 @@
         return this.$store.getters.getCharacterById(this.characterId);
       },
       characterClass() {
-        return this.$store.getters.getClass(this.character.Class)
+        return this.$store.getters.getClass(this.character.Class);
       }
     },
     methods: {
@@ -108,7 +114,9 @@
       Inventory,
       DiceRoller,
       Modal,
-      BonusFeatures
+      BonusFeatures,
+      SpellSlots,
+      Companion
     }
   }
 
@@ -147,7 +155,7 @@
       }
 
       .character-details {
-        flex: 1 0 auto;
+        flex: 1 0;
         > div {
           margin-bottom: 1%;
         }

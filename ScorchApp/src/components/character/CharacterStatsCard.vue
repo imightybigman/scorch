@@ -16,6 +16,20 @@
           <strong>Proficiency:</strong>
           <span class="stat">{{ proficiency }}</span>
         </div>
+        <hr> <!-- Break line for spell stuff -->
+        <div v-if="characterClass && characterClass.Name.indexOf(['Bard', 'Warlock']) !== -1">
+          <strong>Known Cantrips:</strong>
+          <span class="stat">{{ knownCantrips }}</span>
+        </div>
+        <div v-if="characterClass && characterClass.Name.indexOf(['Bard', 'Warlock', 'Ranger']) !== -1">
+          <strong>Known Spells:</strong>
+          <span class="stat">{{ knownSpells }}</span>
+        </div>
+        <div v-if="characterClass && characterClass.Name === 'Warlock'">
+          <strong>Known Invocations:</strong>
+          <span class="stat">{{ knownInvocations }}</span>
+        </div>
+
       </div>
     </div>
   </div>
@@ -28,26 +42,20 @@ import { AbilityModifierService } from 'services'
 
 export default {
   name: 'character-stat-card',
-  props: ['stats', 'proficiency'], 
+  props: ['stats', 'proficiency', 'characterClass', 'level'], 
   computed: {
-    strength() {
-      return `Str: ${this.stats.Strength}`;
+    knownSpells() {
+      return this.characterClass && this.characterClass.SpellsKnown[this.levelKey];
     },
-    dexterity() {
-      return `Dex: ${this.stats.Dexterity}`;
+    knownCantrips() {
+      return this.characterClass && this.characterClass.CantripsKnown[this.levelKey];
     },
-    constitution() {
-      return `Con: ${this.stats.Constitution}`;
+    knownInvocations() {
+      return this.characterClass && this.characterClass.InvocationsKnown[this.levelKey];
     },
-    intelligence() {
-      return `Int: ${this.stats.Intelligence}`;
-    },
-    wisdom() {
-      return `Wis: ${this.stats.Wisdom}`;
-    },
-    charisma() {
-      return `Cha: ${this.stats.Charisma}`;
-    }   
+    levelKey() {
+      return `Level_${this.level}`;
+    }
   },
   methods: {
     getABM(val) {
