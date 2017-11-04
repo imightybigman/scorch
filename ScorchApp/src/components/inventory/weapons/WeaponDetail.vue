@@ -13,7 +13,7 @@
           </div>
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea type="text" rows="3" id="description" class="form-control" v-model="weapon.Description"
+            <textarea type="text" rows="8" id="description" class="form-control" v-model="weapon.Description"
               readonly />
           </div>
           <div class="form-group">

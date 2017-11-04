@@ -1,14 +1,14 @@
 <template>
-<div class="card">
+<div class="card d-flex inventory">
   <div class="card-header">
     Inventory
   </div>
   <div class="card-body">
     <div id="accordion" role="tablist">
-      <adventurer-gear-inventory :adventurerGears="adventurerGears"></adventurer-gear-inventory>
       <weapon-inventory @equip="equipItem" :weapons="weapons"></weapon-inventory>
       <armor-inventory @equip="equipItem" :armors="armors"></armor-inventory>
       <quiver-inventory @equip="equipItem" :quivers="quivers"></quiver-inventory>
+      <adventurer-gear-inventory :adventurerGears="adventurerGears"></adventurer-gear-inventory>
     </div>
   </div>
 </div>
@@ -59,4 +59,8 @@ export default {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.inventory {
+  flex: 1 0 auto;
+}
+</style>

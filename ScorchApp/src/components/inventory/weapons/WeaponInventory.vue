@@ -1,5 +1,5 @@
 <template>
-    <div class="card weapon-card">
+    <div class="card inventory-card">
         <weapon-detail :weapon="selectedWeapon" :showModal="showDetail" v-on:close="showDetail = false"></weapon-detail>
         <div class="card-header" role="tab" id="weapons">
             <h5 class="mb-0">
@@ -13,16 +13,11 @@
                 <div v-for="(weapon, index) in weapons" 
                     @click="weaponClick(weapon)" 
                     :key="index" 
-                    class="list-item border">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex flex-column">
-                            <span>{{ weapon.Name }}</span>
-                            <small>{{ weapon.Slot }}</small>
-                            <small>Damage: {{ weapon.Damage }} </small>        
-                        </div>
-                        <button class="btn btn-primary" @click="equipWeapon(weapon, $event)">
-                            <i class="fa fa-level-up" aria-hidden="true"></i>
-                        </button>
+                    class="d-flex flex-column list-item border">
+                    <item-card :item="weapon"></item-card>
+                    <button class="btn btn-primary" @click="equipWeapon(weapon, $event)">
+                        Equip
+                    </button>
                     </div>
                 </div>
             </div>
@@ -32,6 +27,7 @@
 
 <script>
 import WeaponDetail from './WeaponDetail'
+import { ItemCard } from 'components/items'
 
 export default {
     name: 'weapon-inventory',
@@ -63,7 +59,8 @@ export default {
         }
     },
     components: {
-        WeaponDetail
+        WeaponDetail,
+        ItemCard
     }
 }
 </script>

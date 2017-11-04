@@ -132,7 +132,7 @@
 
   .character-info {
     flex: 2 0 auto;
-
+  
     .character-screen {
       flex: 1 0 auto;
 
@@ -163,7 +163,7 @@
   }
 
   .character-other {
-    flex: 2 0 auto;
+    flex: 4;
   }
 
 .gold {

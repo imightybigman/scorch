@@ -4,15 +4,19 @@
 
 .item-list {
     height: 400px;
+    overflow-y:scroll;
 }
-
+.inventory-card {
+    flex: 1 0 auto;
+}
 .list-item {
     padding: 3%;
     border-radius: 10px;
     margin-bottom: 1%;
 }
+
 .list-item:hover {
-    background-color:#e6e6e6;
+    cursor: pointer;
 }
 
 body.modal-open {

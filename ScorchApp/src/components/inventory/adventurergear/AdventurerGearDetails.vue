@@ -13,20 +13,21 @@
           </div>
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea type="text" rows="3" id="description" class="form-control" v-model="adventurergear.Description" readonly />
+            <textarea type="text" rows="8" id="description" class="form-control" v-model="adventurergear.Description" readonly />
           </div>
-        <div class="form-group">
+          <div class="form-group">
             <label for="cost">Cost</label>
-            <textarea type="text" rows="3" id="cost" class="form-control" v-model="adventurergear.Cost" readonly />
+            <input type="text" rows="3" id="cost" class="form-control" v-model="adventurergear.Cost" readonly />
           </div>
-        <div class="form-group">
+          <div class="form-group">
             <label for="weight">Weight</label>
-            <textarea type="text" rows="3" id="weight" class="form-control" v-model="adventurergear.Weight" readonly />
+            <input type="text" rows="3" id="weight" class="form-control" v-model="adventurergear.Weight" readonly />
           </div>
-                <div class="form-group">
+          <div class="form-group">
             <label for="count">Count</label>
-            <textarea type="text" rows="3" id="count" class="form-control" v-model="adventurergear.Count" readonly />
+            <input type="text" rows="3" id="count" class="form-control" v-model="adventurergear.Count" readonly />
           </div>
+        </div>
         <div class="adventurergear-props d-flex flex-column">
             <h5>Properties</h5>
             <div v-for="(props, index) in adventurergear.Properties" v-bind:key="index">
@@ -34,7 +35,6 @@
             </div>
         </div>
       </div>
-</div>
     </div>
   </modal>
 </div>
