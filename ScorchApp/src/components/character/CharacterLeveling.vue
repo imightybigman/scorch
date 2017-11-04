@@ -38,6 +38,12 @@
                     </div>
                 </div>
             </div>
+            <div class="card new-abilities">
+                <div class="card-header">New Abilities</div>
+                <div class="card-body">
+                    Things!!!
+                </div>
+            </div>
         </div>
         <div slot="footer">
             <button class="btn btn-primary" @click="levelUp">Level Up</button>

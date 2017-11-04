@@ -14,3 +14,7 @@
 .list-item:hover {
     background-color:#e6e6e6;
 }
+
+body.modal-open {
+    overflow: hidden;
+}

@@ -39,9 +39,11 @@ export default {
     methods: {
         close() {
             this.$emit('close');
+            $("body").removeClass("modal-open")
         }
     },
     mounted() {
+        $("body").addClass("modal-open");
         document.addEventListener("keydown", (e) => {
         if (e.keyCode === 27) {
             this.close();
@@ -78,6 +80,8 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;
+  max-height: 650px;
+  overflow-y: scroll;
 }
 
 .modal-header h3 {
