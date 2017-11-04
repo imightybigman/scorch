@@ -65,6 +65,7 @@ export default {
                 body: spell
             }
             await this.$store.dispatch('addSpell', payload);
+            $("body").removeClass("modal-open");            
             this.showSpellAddModal = false;
         },
         closeDescription() {
