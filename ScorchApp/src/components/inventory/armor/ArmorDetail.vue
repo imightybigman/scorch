@@ -55,6 +55,7 @@ export default {
     props: ['armor', 'showModal'],
     methods: {
         close() {
+            $("body").removeClass("modal-open");
             this.$emit('close');
         }
     },

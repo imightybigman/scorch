@@ -53,6 +53,7 @@ export default {
     props: ['adventurergear', 'showModal'],
     methods: {
         close() {
+            $("body").removeClass("modal-open");
             this.$emit('close');
         }
     },

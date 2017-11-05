@@ -39,12 +39,17 @@
       </div>
 
     </div>
-    <div class="d-flex notes black-border">
+    <div class="d-flex notes black-border" style="overflow: scroll;">
+      <ul style="padding: 0;">
+        <li v-for="(log, index) in logs" class="list-unstyled" :key="index">
+          {{ log.message }} <br />
+        </li>
+      </ul>
     </div>
   </div>
   <div class="d-flex flex-column character-other border">
     <character-leveling :character="character" :characterClass="characterClass"></character-leveling>
-    <dice-roller></dice-roller>
+    <dice-roller :name="this.user"></dice-roller>
     <inventory :characterId="character.CharacterId"></inventory>
   </div>
 </div>
@@ -52,11 +57,11 @@
 
 <script>
 
-  import {  CharacterTile, 
-            CharacterEquip, 
-            CharacterStatsCard, 
-            CharacterDetailCard, 
-            CharacterSkillsCard, 
+  import {  CharacterTile,
+            CharacterEquip,
+            CharacterStatsCard,
+            CharacterDetailCard,
+            CharacterSkillsCard,
             CharacterSpellsCard,
             CharacterBioCard,
             CharacterLeveling,
@@ -68,17 +73,31 @@
   import { BonusFeatures, SpellSlots, Companion } from 'components/classFeatures'
   export default {
     name: 'character-view',
+    user: '',
+    data() {
+      return {
+        logs: [
+
+        ]
+      }
+    },
     async created() {
       await this.$store.dispatch('getParty');
       // we want to load each class when we need them cuz they are biiiiiiiggggggg
       await this.$store.dispatch('loadClass', this.character.Class);
     },
     props: ['characterId'],
+    sockets: {
+      newLog: function(message) {
+        this.logs.unshift({ message: message });
+      }
+    },
     computed: {
       name() {
           let firstName = this.character.Firstname || '';
           let lastName = this.character.Lastname || '';
-          return `${firstName} ${lastName}`; 
+          this.user = `${firstName} ${lastName}`;
+          return `${firstName} ${lastName}`;
       },
       party() {
         return this.$store.getters.myParty;
@@ -136,7 +155,7 @@
     padding: 1%;
     flex: 1 0 auto;
     overflow-y: scroll;
-    
+
     .character-cards-container {
       margin-bottom: 1%;
       border-radius: 10px;
@@ -146,7 +165,7 @@
 
   .character-info {
     flex: 2 0 auto;
-  
+
     .character-screen {
       flex: 1 0 auto;
 

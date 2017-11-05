@@ -87,7 +87,13 @@ const actions = {
         if(response.status === 200){
             commit(types.UNEQUIP_ITEM, payload);
         }
-    }, 
+    },
+    async sellItem({commit}, payload){
+        let response = await CharacterService.sellItem(payload.characterId, payload.itemId);
+        if(response.status === 200){
+            commit(types.SOLD_ITEM, payload);
+        }
+    },
     async socket_getParty({ commit }, message) {
         let response = await CharacterService.getParty();
         let myParty = sortBy(response.body, (c) => c.Firstname);
@@ -167,6 +173,19 @@ const mutations = {
                 }
                 let index = findIndex(state.party[i].Inventory,(i) => i.ItemId === item.ItemId);
                 state.party[i].Inventory.splice(index, 1, item);
+                break;                
+            }
+        }
+    },
+    [types.SOLD_ITEM] (state, payload) {
+        let id = payload.characterId;
+        let itemId = payload.itemId;
+        for(let i = 0; i < state.party.length; i++) {
+            let ch = state.party[i];
+            if(ch.CharacterId === id) {
+                let index = findIndex(state.party[i].Inventory,(i) => i.ItemId === itemId);
+                state.party[i].Gold += state.party[i].Inventory[i].Cost || 0;
+                state.party[i].Inventory.splice(index, 1);
                 break;                
             }
         }

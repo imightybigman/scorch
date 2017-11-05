@@ -1,6 +1,6 @@
 <template>
     <div class="character-leveling">
-    <modal v-if="showLevelingModal" v-on:close="showLevelingModal = false">
+    <modal v-if="showLevelingModal" v-on:close="close">
         <div slot="header"><h3>Level: <i class="fa fa-level-up"></i> {{ nextLevel }}</h3></div>
         <div slot="body">
             <div class="card modify-stats">
@@ -135,7 +135,12 @@ export default {
             };
             await this.$store.dispatch('updateCharacter', payload);
             this.$socket.emit('updateParty');
+            $("body").removeClass("modal-open")            
             this.showLevelingModal = false;
+        }, 
+        close(){
+            $("body").removeClass("modal-open")
+            this.showLevelingModal = false
         }
     },
     components: {

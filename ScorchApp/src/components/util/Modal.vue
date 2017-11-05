@@ -38,8 +38,8 @@ export default {
     name: 'modal',
     methods: {
         close() {
+          $("body").removeClass("modal-open")
             this.$emit('close');
-            $("body").removeClass("modal-open")
         }
     },
     mounted() {

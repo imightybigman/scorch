@@ -55,6 +55,7 @@ export default {
     props: ['weapon', 'showModal'],
     methods: {
         close() {
+            $("body").removeClass("modal-open");
             this.$emit('close');
         }
     },

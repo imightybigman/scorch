@@ -49,6 +49,7 @@ export default {
     props: ['quiver', 'showModal'],
     methods: {
         close() {
+            $("body").removeClass("modal-open");
             this.$emit('close');
         },
         getArrowCount(projectile) {

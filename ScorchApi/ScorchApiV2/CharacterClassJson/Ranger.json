@@ -3,527 +3,493 @@
     "HitDice": "1d10",
     "HitDiceFlat": 6,
     "AbilityScoreImprovement": [
-        4,
-        8,
-        12,
-        16,
-        19
+      4,
+      8,
+      12,
+      16,
+      19
     ],
-    "BardCollege": {
-        "Name": "College of Glamour",
-        "Description": "The College of Glamour is open to those bards who mastered their craft in the vibrant, deadly realm of the Feywild. Tutored by satyrs, eladrin, and other fey, these bards learn to use their magic to delight and captivate others"
-     },
-    "CollegeFeatures": {
-        "Name": "College of Glamour",
-        "Features": {
-            "Level_3": [
-                {
-                    "Name": "Mantle of Inspiration",
-                    "Description": "As a bonus action, you can expend a use of Bardic Inspiration to grant yourself a wondrous, otherworldly appearance. When you do so, choose a number of allies you can see and who can see you within 60 feet of you, up to a number of them equal to your Charisma modifier (minimum of one). Each target gains 2d6 temporary hit points."
-                },
-                {
-                    "Name": "Enthralling Performance",
-                    "Description": "If you perform for at least 10 minutes, you can attempt to inspire wonder in your audience by singing, reciting a poem, or dancing. At the end of the performance, choose a number of humanoids within 60 feet of you who watched and listened to all of it, up to a number of them equal to your Charisma modifier (minimum of one). Each target must succeed on a Wisdom saving throw against your spell save DC or be charmed by you. While charmed in this way, the target idolizes you, it speaks glowingly of you to anyone who speaks to it, and it hinders anyone who opposes you, avoiding violence unless it was already inclined to fight on your behalf."
-                }
-            ],
-            "Level_6": [
-                {
-                    "Name": "Mantle of Majesty",
-                    "Description": "As a bonus action, you take on an appearance of unearthly beauty for 1 minute. During this time, you can cast command as a bonus action on each of your turns, without using a spell slot. This effect lasts for 1 minute, and any creature charmed by you automatically fails its saving throw against the spell.Once you use this feature, you can’t use it again until you finish a long rest."
-                }
-            ],
-            "Level_14": [
-                {
-                    "Name": "Unbreakable Majesty",
-                    "Description": "In addition, through this feature, you can cast sanctuary on yourself. If a creature fails its saving throw against the spell, you also gain advantage on all Charisma checks against the creature for 1 minute, and it has disadvantage on any saving throw it makes against your spells on your next turn.Once you cast sanctuary using this feature, you can’t do so again until you finish a short or long rest."
-                }
-            ]
+    "BonusFeatures": {
+      "Level_1": [{
+          "Name": "Favored Enemy",
+          "Description": "Beginning at 1st level, you have significant experience studying, tracking, hunting, and even talking to a certain type of enemy. You have advantage on Wisdom (Survival) checks to track your favored enemies, as well as on Intelligence Checks to recall information about them. When you gain this feature, you also learn one Language of your choice that is spoken by your favored enemies, if they speak one at all."
+        },
+        {
+          "Name": "Natural Explorer",
+          "Description": "You are particularly familiar with one type of natural Environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, swamp, or The Underdark. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you're proficient in."
         }
-     },
-    "CantripsKnown": {
-        "Level_1": 2,
-        "Level_2": 2,
-        "Level_3": 2,
-        "Level_4": 3,
-        "Level_5": 3,
-        "Level_6": 3,
-        "Level_7": 3,
-        "Level_8": 3,
-        "Level_9": 3,
-        "Level_10": 4,
-        "Level_11": 4,
-        "Level_12": 4,
-        "Level_13": 4,
-        "Level_14": 4,
-        "Level_15": 4,
-        "Level_16": 4,
-        "Level_17": 4,
-        "Level_18": 4,
-        "Level_19": 4,
-        "Level_20": 4
+      ],
+      "Level_2": [{
+          "Name": "Fighting Style",
+          "Description": "At 2nd level, you adopt a style of fighting as your specialty. Choose one of the following options. You can’t take a Fighting Style option more than once, even if you later get to choose again."
+        },
+        {
+          "Name": "Spellcasting",
+          "Description": "By the time you reach 2nd level, you have learned to use the magical essence of nature to cast Spells, much as a druid does. "
+        }
+      ],
+      "Level_3": [{
+          "Name": "Ranger Archetype",
+          "Description": "At 3rd level, you choose an archetype that you strive to emulate, such as the Hunter. Your choice grants features at 3rd level, and again at 7th, 11th, and 15th level."
+        },
+        {
+          "Name": "Primeval Awareness",
+          "Description": "Beginning at 3rd level, you can use your action and expend one ranger spell slot to focus your awareness on the region around you. For 1 minute per level of the spell slot you expend, you can sense whether the following types of creatures are present within 1 mile of you (or within up to 6 miles if you are in your favored terrain): Aberrations, Celestials, dragons, elementals, fey, Fiends, and Undead. This feature doesn't reveal the creatures' location or number."
+        }
+      ],
+      "Level_4": [{
+        "Name": "Ability Score Improvement",
+        "Description": "Increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+      }],
+      "Level_5": [{
+          "Name": "Extra Attack",
+          "Description": "You can attack twice, instead of once, whenever you take the attack action on your turn."
+        },
+        {
+          "Name": "Spell Slot Increase",
+          "Description": "You gain a new spell slot level (2)."
+        }
+      ],
+      "Level_6": [{
+        "Name": "Favored Enemy Improvements",
+        "Description": ""
+      },
+      {
+        "Name": "Natural Explorer Improvements",
+        "Description": ""
+      }],
+      "Level_7": [{
+        "Name": "Ranger Archetype Feature",
+        "Description": ""
+      }],
+      "Level_8": [{
+        "Name": "Ability Score Improvement",
+        "Description": "Increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+      },
+      {
+        "Name": "Land’s Stride",
+        "Description": "Starting at 8th level, moving through nonmagical difficult terrain costs you no extra Movement. You can also pass through nonmagical Plants without being slowed by them and without taking damage from them if they have thorns, spines, or a similar hazard."
+      }],
+      "Level_9": [{
+        "Name": "Spell Slot Increase",
+        "Description": "You gain a new spell slot level (3)."
+      }],
+      "Level_10": [{
+        "Name": "Natural Explorer Improvement",
+        "Description": ""
+      },
+      {
+        "Name": "Hide in Plain Sight",
+        "Description": "Starting at 10th level, you can spend 1 minute creating camouflage for yourself. You must have access to fresh mud, dirt, Plants, soot, and other naturally occurring materials with which to create your camouflage. Once you are camouflaged in this way, you can try to hide by pressing yourself up against a solid surface, such as a tree or wall, that is at least as tall and wide as you are. You gain a +10 bonus to Dexterity (Stealth) checks as long as you remain there without moving or taking actions. Once you move or take an action or a reaction, you must camouflage yourself again to gain this benefit."
+      }],
+      "Level_11": [{
+        "Name": "Ranger Archetype Feature",
+        "Description": "Y"
+      }],
+      "Level_12": [{
+        "Name": "Ability Score Improvement",
+        "Description": "Increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+      }],
+      "Level_13": [{
+        "Name": "Spell Slot Increase",
+        "Description": "You gain a new spell slot level (4)."
+      }],
+      "Level_14": [{
+        "Name": "Favored Enemy Improvement",
+        "Description": ""
+      },
+      {
+        "Name": "Vanish",
+        "Description": "Beginning at 14th level, you can use your action to end one spell on yourself or on one willing creature that you touch. You can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain expended uses when you finish a Long Rest."
+      }],
+      "Level_15": [{
+        "Name": "Ranger Archetype feature",
+        "Description": ""
+      }],
+      "Level_16": [{
+        "Name": "Ability Score Improvement",
+        "Description": "Increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+      }],
+      "Level_17": [{
+        "Name": "Spell Slot Increase",
+        "Description": "You gain a new spell slot level (5)."
+      }],
+      "Level_18": [{
+        "Name": "Feral Senses",
+        "Description": "At 18th level, you gain preternatural senses that help you fight creatures you can't see. When you Attack a creature you can't see, your inability to see it doesn't impose disadvantage on your Attack rolls against it. You are also aware of the location of any Invisible creature within 30 feet of you, provided that the creature isn't hidden from you and you aren't Blinded or Deafened."
+      }],
+      "Level_19": [{
+        "Name": "Ability Score Improvement",
+        "Description": "Increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+      }],
+      "Level_20": [{
+        "Name": "Foe Slayer",
+        "Description": "At 20th level, you become an unparalleled hunter of your enemies. Once on each of your turns, you can add your Wisdom modifier to the Attack roll or the damage roll of an Attack you make against one of your favored enemies. You can choose to use this feature before or after the roll, but before any effects of the roll are applied."
+      }]
     },
-    "SpellsKnown": {
-        "Level_1": 4,
-        "Level_2": 5,
-        "Level_3": 6,
-        "Level_4": 7,
-        "Level_5": 8,
-        "Level_6": 9,
-        "Level_7": 10,
-        "Level_8": 11,
-        "Level_9": 12,
-        "Level_10": 14,
-        "Level_11": 15,
-        "Level_12": 15,
-        "Level_13": 16,
-        "Level_14": 18,
-        "Level_15": 19,
-        "Level_16": 19,
-        "Level_17": 20,
-        "Level_18": 22,
-        "Level_19": 22,
-        "Level_20": 22
-    },
-    "SpellSlots": {
-        "Level_2": [
-            {
-                "SpellLevel": 1,
-                "Count": 2
-            }
-        ],
+    "Archetype": {
+      "Name": "Beast Master",
+      "Features": {
         "Level_3": [
-            {
-                "SpellLevel": 1,
-                "Count": 3
-            }
-        ],
-        "Level_4": [
-            {
-                "SpellLevel": 1,
-                "Count": 3
-            }
-        ],
-        "Level_5": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 2
-            }
-        ],
-        "Level_6": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 2
-            }
+          {
+            "Name": "Ranger's Companion",
+            "Description": "At 3rd level, you gain a beast companion that accompanies you on your adventures and is trained to fight alongside you. Choose a beast that is no larger than Medium and that has a challenge rating of 1/4 or lower (appendix D presents statistics for the hawk, mastiff, and panther as examples). Add your proficiency bonus to the beast’s AC, attack rolls, and damage rolls, as well as to any saving throws and skills it is proficient in. Its hit point maximum equals its norm al maximum or four times your ranger level, whichever is higher."
+          }
         ],
         "Level_7": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 3
-            }
-        ],
-        "Level_8": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 3
-            }
-        ],
-        "Level_9": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 3,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 4,
-                "Count": 2
-            }
-        ],
-        "Level_10": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 3,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 4,
-                "Count": 2
-            }
+          {
+            "Name": "Exceptional Training",
+            "Description": "Beginning at 7th level, on any of your turns when your beast com panion doesn’t attack, you can use a bonus action to command the beast to take the Dash, Disengage, Dodge, or Help action on its turn."
+          }
         ],
         "Level_11": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 3,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 4,
-                "Count": 3
-            }
-        ],
-        "Level_12": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 3,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 4,
-                "Count": 3
-            }
-        ],
-        "Level_13": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 3,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 4,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 5,
-                "Count": 1
-            }
-        ],
-        "Level_14": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 3,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 4,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 5,
-                "Count": 1
-            }
+          {
+            "Name": "Bestial Fury",
+            "Description": "Starting at 11th level, your beast companion can make two attacks when you command it to use the Attack action."
+          }
         ],
         "Level_15": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 3,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 4,
-                "Count": 2
-            }
-        ],
-        "Level_16": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 3,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 4,
-                "Count": 2
-            }
-        ],
-        "Level_17": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 3,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 4,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 5,
-                "Count": 1
-            }
-        ],
-        "Level_18": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 3,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 4,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 5,
-                "Count": 1
-            }
-        ],
-        "Level_19": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 3,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 4,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 5,
-                "Count": 2
-            }
-        ],
-        "Level_20": [
-            {
-                "SpellLevel": 1,
-                "Count": 4
-            },
-            {
-                "SpellLevel": 2,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 3,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 4,
-                "Count": 3
-            },
-            {
-                "SpellLevel": 5,
-                "Count": 2
-            }
-        ]    
-    },
-    "BonusFeatures": {
-        "Level_1": [
-            {
-                "Name": "Favored Enemy",
-                "Description": ""
-            },
-            {
-                "Name": "Natural Explorer",
-                "Description": ""
-            }
-        ],
-        "Level_2": [
-            {
-                "Name": "Fighting Style",
-                "Description": ""
-            },
-            {
-                "Name": "Spellcasting",
-                "Description": ""
-            }
-        ],
-        "Level_3": [
-            {
-                "Name": "Bard College",
-                "Description": ""
-            },
-            {
-                "Name": "Expertise",
-                "Description" :""
-            }
-        ],
-        "Level_4": [
-            {
-                "Name": "Ability Score Improvement",
-                "Description": ""
-            }
-        ],
-        "Level_5": [
-            {
-                "Name": "Bardic Inspiration (d8)",
-                "Description": ""
-            },
-            {
-                "Name": "Font of Inspiration",
-                "Description": ""
-            }
-        ],
-        "Level_6": [
-            {
-                "Name": "Countercharm",
-                "Description": ""
-            },
-            {
-                "Name": "Bard College feature",
-                "Description": ""
-            }
-        ],
-        "Level_8": [
-            {
-                "Name": "Ability Score Improvement",
-                "Description": ""
-            }
-        ],
-        "Level_9": [
-            {
-                "Name": "Song of Rest (d8)",
-                "Description": ""
-            }
-        ],
-        "Level_10": [
-            {
-                "Name": "Bardic Inspiration (d10)",
-                "Description": ""
-            },
-            {
-                "Name": "Expertise",
-                "Description": ""
-            },
-            {
-                "Name": "Magical Secrets",
-                "Description": ""
-            }
-        ],
-        "Level_12": [
-            {
-                "Name": "Ability Score Improvement",
-                "Description": ""
-            }
-        ],
-        "Level_13": [
-            {
-                "Name": "Song of Rest (d10)",
-                "Description": ""
-            }
-        ],
-        "Level_14": [
-            {
-                "Name": "Magical Secrets",
-                "Description": ""
-            },
-            {
-                "Name": "Bard College feature",
-                "Description": ""
-            }
-        ],
-        "Level_15": [
-            {
-                "Name": "Bardic Inspiration (d12)",
-                "Description": ""
-            }
-        ],
-        "Level_16": [
-            {
-                "Name": "Ability Score Improvement",
-                "Description": ""
-            }
-        ],
-        "Level_17": [
-            {
-                "Name": "Song of Rest (d12)",
-                "Description": ""
-            }
-        ],
-        "Level_18": [
-            {
-                "Name": "Magical Secrets",
-                "Description": ""
-            }
-        ],
-        "Level_19": [
-            {
-                "Name": "Ability Score Improvement",
-                "Description": ""
-            }
-        ],
-        "Level_20": [
-            {
-                "Name": "Superior Inspiration",
-                "Description": ""
-            }
+          {
+            "Name": "Banishment,",
+            "Description": "Beginning at 15th level, when you cast a spell targeting yourself, you can also affect your beast companion with the spell if the beast is within 30 feet of you."
+          }
         ]
+      }
+    },
+    "SpellSlots": {
+      "Level_1": [
+        {
+          "SpellLevel": 0,
+          "Count": 0
+        }
+      ],
+      "Level_2": [
+        {
+          "SpellLevel": 1,
+          "Count": 2
+        }
+      ],
+      "Level_3": [
+        {
+          "SpellLevel": 1,
+          "Count": 3
+        }
+      ],
+      "Level_4": [
+        {
+          "SpellLevel": 1,
+          "Count": 3
+        }
+      ],
+      "Level_5": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 2
+        }
+      ],
+      "Level_6": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 2
+        }
+      ],
+      "Level_7": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 3
+        }
+      ],
+      "Level_8": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 3
+        }
+      ],
+      "Level_9": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 3,
+          "Count": 2
+        }
+      ],
+      "Level_10": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 3,
+          "Count": 2
+        }
+      ],
+      "Level_11": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 3,
+          "Count": 3
+        }
+      ],
+      "Level_12": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 3,
+          "Count": 3
+        }
+      ],
+      "Level_13": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 3,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 4,
+          "Count": 1
+        }
+      ],
+      "Level_14": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 3,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 4,
+          "Count": 1
+        }
+      ],
+      "Level_15": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 3,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 4,
+          "Count": 2
+        }
+      ],
+      "Level_16": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 3,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 4,
+          "Count": 2
+        }
+      ],
+      "Level_17": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 3,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 4,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 5,
+          "Count": 1
+        }
+      ],
+      "Level_18": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 3,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 4,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 5,
+          "Count": 1
+        }
+      ],
+      "Level_19": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 3,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 4,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 5,
+          "Count": 2
+        }
+      ],
+      "Level_20": [
+        {
+          "SpellLevel": 1,
+          "Count": 4
+        },
+        {
+          "SpellLevel": 2,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 3,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 4,
+          "Count": 3
+        },
+        {
+          "SpellLevel": 5,
+          "Count": 2
+        }
+      ]
+    },
+    "SpellsKnown" : {   
+      "Level_1": 0,
+      "Level_2": 2,
+      "Level_3": 3,
+      "Level_4": 3,
+      "Level_5": 4,
+      "Level_6": 4,
+      "Level_7": 5,
+      "Level_8": 5,
+      "Level_9": 6,
+      "Level_10": 6,
+      "Level_11": 7,
+      "Level_12": 7,
+      "Level_13": 8,
+      "Level_14": 8,
+      "Level_15": 9,
+      "Level_16": 9,
+      "Level_17": 10,
+      "Level_18": 10,
+      "Level_19": 11,
+      "Level_20": 11
+    },
+    "Companion": {
+      "Type": "Flying Panther",
+      "Size": "Medium",
+      "Hp": 10,
+      "AC": 12,
+      "Attacks": [
+        {
+          "Name": "Bite",
+          "Description": "The companion's maw is full of razor-sharp teeth, giving it a bite attack. The bite deals 1d6 + str mod points of piercing damage. If the companion already has a bite attack, this evolution allows it to deal 1-1/2 times its Strength modifier on damage rolls made with its bite. This evolution can be selected more than once, but the companion must possess an equal number of the head evolution."
+        },
+        {
+          "Name": "Claws/Talons",
+          "Description": "The companion has a pair of vicious claws at the end of its limbs, giving it two claws. The claws deal 1d4+str or dex mod points of slashing damage. A claw attack can me made as a bonus action when the attack action is made, dealing 1d4 points of damage with no ability modifier. The companion must have the limbs evolution to take this evolution. This evolution can only be applied to the limbs (legs) evolution once. This evolution can be selected more than once, but the companion must possess an equal number of the limbs evolution."
+        },
+        {
+          "Name": "Scent",
+          "Description": "The companion's sense of smell becomes quite acute. The companion gains the scent special quality, allowing it to detect opponents within 30 feet by sense of smell. If the opponent is upwind, the range increases to 60 feet; if downwind, it drops to 15 feet. Strong scents can be detected at twice the normal range. Scent does not allow the companion to precisely locate the creature, only to detect its presence. It can detect the direction with a move action. The companion can pinpoint the creature's location if it is within 5 feet. The companion can use scent to track creatures."
+        },
+        {
+          "Name": "Rake",
+          "Description": "The companion grows dangerous claws on its feet, allowing it to make 2 rake attacks on foes it is grappling. These attacks are primary attacks. The companion receives these additional attacks each time it succeeds on a grapple check against the target. These rake attacks deal 1d4 points of slashing damage. This evolution is only available to companions of the quadruped base form. The wildwalker must be at least 4th level before selecting this evolution."
+        },
+        {
+          "Name": "Rend",
+          "Description": "The companion learns to rip and tear the flesh of those it attacks with its claws, gaining the rend ability. Whenever the companion makes two successful claw attacks against the same target in 1 round, its claws latch onto the flesh and deal extra damage. This damage is equal to the damage dealt by one claw attack plus 1.5 times the companion's Strength or Dex modifier. The companion must possess the claws evolution to select this evolution. The wildwalker must be at least 6th level before selecting this evolution."
+        },
+        {
+          "Name": "Spiritual Link",
+          "Description": "The companion and the wildwalker may become linked together, connecting the two permanently. If the companion dies, the wildwalker may perform a 10 minute ritual to call upon the spirit of their late companion to help them for 24 hours. The companion’s spirit still retains all of the evolutions and abilities they had before they died but no new evolutions may be added to them. After the 24 hour period of time is up, the companion's spirit must return back to the afterlife and the wildwalker cannot summon them again for 7 days. This evolution doesn't cost any points but the wildwalker must be at least level 10. This evolution may only be used on one companion."
+        }
+      ]
     }
-}
+  }

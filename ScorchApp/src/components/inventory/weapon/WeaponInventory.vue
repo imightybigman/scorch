@@ -20,6 +20,9 @@
                         <button class="btn btn-primary" @click="equipWeapon(weapon)">
                             Equip
                         </button>
+                        <button class="btn btn-danger" @click="sellWeapon(weapon)">
+                            Sell
+                        </button>
                     </div>
                     </div>
                 </div>
@@ -56,6 +59,9 @@ export default {
                 this.$store.dispatch('unequipItem', payload);
             }
             this.$emit('equip', weapon);
+        },
+        sellWeapon(weapon) {
+            this.$emit('sell', weapon);
         }
     },
     components: {

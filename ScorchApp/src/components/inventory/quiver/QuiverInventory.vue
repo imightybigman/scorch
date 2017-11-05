@@ -20,6 +20,9 @@
                     <button class="btn btn-primary" @click="equipQuiver(quiver)">
                         Equip
                     </button>
+                    <button class="btn btn-danger" @click="sellQuiver(quiver)">
+                        Sell
+                    </button>
                 </div>
                 <div class="projectile-count d-flex flex-column">
                     <div class="projectiles d-flex" v-for="(count, projectile, index) in quiver.Projectiles" :key="index">
@@ -72,8 +75,11 @@ export default {
             return `${projectile.CurrentAmount}/${projectile.MaxAmount}`;
         },
         equipQuiver(quiver) {
-
             this.$emit('equip', quiver);
+        },
+        sellQuiver(quiver) {
+
+            this.$emit('sell', quiver);
         },
         async updateCount(quiver, event) {
             if (event) {

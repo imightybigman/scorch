@@ -6,7 +6,7 @@
         <a data-toggle="collapse" href="#spell-slots" aria-expanded="false" aria-controls="spell-slots">Spell Slots</a>
       </h5>
     </div>
-    <div id="spell-slots" class="collapse show" role="tabpanel" aria-labelledby="character-spell-slots" data-parent="#character-details">
+    <div id="spell-slots" class="collapse" role="tabpanel" aria-labelledby="character-spell-slots" data-parent="#character-details">
       <div class="card-body">
         <div v-for="(spell, index) in slots" :key="index">
           <strong>Spell Level: {{ spell.SpellLevel }}</strong>

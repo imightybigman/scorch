@@ -16,6 +16,11 @@
                     <div @click="adventurerGearClick(adventurerGear)">
                         <item-card :item="adventurerGear"></item-card>
                     </div>
+                    <div>
+                        <button class="btn btn-danger" @click="sellAdventurerGear(adventurerGear)">
+                            Sell
+                        </button>
+                    </div>
                 </div>
             </div>
             </div>
@@ -41,6 +46,9 @@ export default {
         adventurerGearClick(adventurerGear) {
             this.selectedAdvGear = adventurerGear;
             this.showDetail = true;
+        },
+        sellAdventurerGear(adventurerGear) {
+            this.$emit('sell', adventurerGear);
         }
     },
     components: {
