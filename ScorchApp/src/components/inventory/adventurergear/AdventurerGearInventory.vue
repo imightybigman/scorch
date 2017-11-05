@@ -10,16 +10,19 @@
         </div>
         <div id="adventurerGearInventory" class="collapse" role="tabpanel" aria-labelledby="adventurergear" data-parent="#inventory">
             <div class="card-body item-list">
-                <div v-for="(adventurerGear, index) in adventurerGears" 
-                    :key="index" 
+                <div v-for="(adventurerGear, index) in adventurerGears"
+                    :key="index"
                     class="d-flex flex-wrap flex-column list-item border">
                     <div @click="adventurerGearClick(adventurerGear)">
                         <item-card :item="adventurerGear"></item-card>
                     </div>
                     <div>
-                        <button class="btn btn-danger" @click="sellAdventurerGear(adventurerGear)">
+                        <button class="btn btn-warning" @click="sellAdventurerGear(adventurerGear)">
                             Sell
                         </button>
+                        <button class="btn btn-danger" @click="deleteAdventureGear(adventurergear)">
+                            Delete
+                        </delete>
                     </div>
                 </div>
             </div>
@@ -40,7 +43,7 @@ export default {
             selectedAdvGear: {},
             showDetail: false
         }
-    }, 
+    },
     props: ['adventurerGears'],
     methods: {
         adventurerGearClick(adventurerGear) {
@@ -49,6 +52,10 @@ export default {
         },
         sellAdventurerGear(adventurerGear) {
             this.$emit('sell', adventurerGear);
+        },
+        deleteAdventureGear(adventureGear) {
+          this.$emit('delete', adventurerGear);
+
         }
     },
     components: {
