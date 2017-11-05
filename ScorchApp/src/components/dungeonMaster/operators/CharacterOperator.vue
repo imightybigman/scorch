@@ -52,22 +52,21 @@ export default {
                 newHealth = newHealth > char.MaxHp ? char.MaxHp : newHealth;
                 newHealth = newHealth < 0 ? 0 : newHealth;
                 payload.body.Hp = newHealth;
-                if (newHealth) {
+                if (this.deltaHealth > 0) {
                   this.logAction(char.Firstname + " " + char.Lastname + " has gained/taken " + this.deltaHealth + " HP.");
                 }
 
                 let newExp = char.Exp + parseInt(this.deltaExp);
                 newExp = newExp < 0 ? 0 : newExp;
                 payload.body.Exp = newExp;
-                if (newExp) {
+                if (this.deltaExp > 0) {
                   this.logAction(char.Firstname + " " + char.Lastname + " has gained " + this.deltaExp + " XP.");
                 }
 
                 let newGold = char.Gold + parseInt(this.deltaGold);
                 newGold = newGold< 0 ? 0: newGold;
                 payload.body.Gold = newGold;
-
-                if (newGold) {
+                if (this.deltaGold > 0) {
                   this.logAction(char.Firstname + " " + char.Lastname + " has gained/paid " + this.deltaGold + " Gold.");
                 }
 

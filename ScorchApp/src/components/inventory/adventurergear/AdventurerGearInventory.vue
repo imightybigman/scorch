@@ -22,7 +22,7 @@
                         </button>
                         <button class="btn btn-danger" @click="deleteAdventureGear(adventurergear)">
                             Delete
-                        </delete>
+                        </button>
                     </div>
                 </div>
             </div>
