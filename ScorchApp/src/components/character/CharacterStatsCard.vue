@@ -16,6 +16,10 @@
           <strong>Proficiency:</strong>
           <span class="stat">{{ proficiency }}</span>
         </div>
+                <div>
+          <strong>HitDice:</strong>
+          <span class="stat">{{ characterClass.HitDice }}</span>
+        </div>
         <hr> <!-- Break line for spell stuff -->
         <div v-if="characterClass && ['Bard', 'Warlock'].indexOf(characterClass.Name) !== -1">
           <strong>Known Cantrips:</strong>

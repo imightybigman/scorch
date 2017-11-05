@@ -89,7 +89,7 @@
     props: ['characterId'],
     sockets: {
       newLog: function(message) {
-        this.logs.push({ message: message });
+        this.logs.unshift({ message: message });
       }
     },
     computed: {

@@ -135,6 +135,7 @@ export default {
             };
             await this.$store.dispatch('updateCharacter', payload);
             this.$socket.emit('updateParty');
+            $("body").removeClass("modal-open")            
             this.showLevelingModal = false;
         }, 
         close(){
