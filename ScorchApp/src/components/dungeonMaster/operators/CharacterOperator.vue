@@ -36,7 +36,7 @@ export default {
             deltaHealth : 0,
             deltaExp : 0,
             deltaGold : 0,
-            itemQty: 0
+            itemQty: 1
         }
     },
     props: ['characterList', 'item'],
@@ -73,7 +73,9 @@ export default {
             this.clearFields();
         },
         clearFields() {
-            this.itemQty = 0;
+            this.itemQty = 1;
+            this.deltaExp = 0;
+            this.deltaHealth = 0;
         }
     }
 }
