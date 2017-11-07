@@ -12,5 +12,8 @@ export default {
     },
     deleteItem(id) {
         return Vue.http.delete('item/' + id);
+    },
+    putItem(id, item) {
+        return Vue.http.put('item/' + id, item);
     }
 }
