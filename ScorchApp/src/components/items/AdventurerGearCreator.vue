@@ -120,7 +120,7 @@ export default {
                 console.log("Encountered an error during item creation : " + this.error);
 
                 $('#failure-adv-gear-msg').fadeIn(0);
-                setTimeout(13000, new function(){
+                setTimeout(13000, () => {
                     $('#failure-adv-gear-msg').fadeOut(5000);
                 });
             }
@@ -128,7 +128,7 @@ export default {
                 this.clearFields();
 
                 $('#success-adv-gear-msg').fadeIn(0);
-                setTimeout(13000, new function(){
+                setTimeout(13000, () => {
                     $('#success-adv-gear-msg').fadeOut(5000);
                 });
             }

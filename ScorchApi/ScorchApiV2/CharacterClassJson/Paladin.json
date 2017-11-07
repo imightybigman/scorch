@@ -1,0 +1,455 @@
+{
+  "Name": "Paladin",
+  "HitDice": "1d10",
+  "HitDiceFlat": 6,
+  "AbilityScoreImprovement": [
+    4,
+    8,
+    12,
+    16,
+    19
+  ],
+  "BonusFeatures": {
+    "Level_1": [{
+        "Name": "Divine Sense",
+        "Description": "The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears. As an action, you can open your awareness to detect such forces. Until the end of your next turn, you know the location of any celestial, fiend, or Undead within 60 feet of you that is not behind total cover."
+      },
+      {
+        "Name": "Lay on Hands",
+        "Description": "You have a pool of Healing power that replenishes during a Long Rest. You can restore a total number of hit points equal to your paladin level x 5. As an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature, up to the maximum amount remaining in your pool. Alternatively, you can expend 5 hit points from your pool of Healing to cure the target of one disease or neutralize one poison affecting it. This feature has no effect on Undead and constructs."
+      }
+    ],
+    "Level_2": [{
+        "Name": "Fighting Style",
+        "Description": "At 2nd level, you adopt a style of fighting as your specialty. Choose one of the following options. You can’t take a Fighting Style option more than once, even if you later get to choose again."
+      },
+      {
+        "Name": "Divine Smite",
+        "Description": "When you hit a creature with a melee weapon Attack, you can expend one spell slot to deal radiant damage to the target, in addition to the weapon's damage. The extra damage is 2d8 for a 1st-level spell slot, plus 1d8 for each Spell Level higher than 1st, to a maximum of 5d8. The damage increases by 1d8 if the target is an Undead or a fiend."
+      },
+      {
+        "Name": "Spellcasting",
+        "Description": "By 2nd level, you have learned to draw on Divine Magic through meditation and prayer to cast Spells as a Cleric does. See chapter 10 for the general rules of spellcasting and chapter 11 for the paladin spell list."
+      }
+    ],
+    "Level_3": [{
+        "Name": "Divine Health",
+        "Description": "By 3rd level, the Divine Magic flowing through you makes you immune to disease."
+      },
+      {
+        "Name": "Sacred Oath",
+        "Description": "When you reach 3rd level, you swear the oath that binds you as a paladin forever. Up to this time you have been in a preparatory stage, committed to the path but not yet sworn to it. Now you choose an oath, such as the Oath of Devotion."
+      }
+    ],
+    "Level_4": [{
+      "Name": "Ability Score Improvement",
+      "Description": "Increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+    }],
+    "Level_5": [{
+        "Name": "Extra Attack",
+        "Description": "You can attack twice, instead of once, whenever you take the attack action on your turn."
+      },
+      {
+        "Name": "Spell Slot Increase",
+        "Description": "You gain a new spell slot level (2)."
+      }
+    ],
+    "Level_6": [{
+      "Name": "Aura of Protection",
+      "Description": "Starting at 6th level, whenever you or a friendly creature within 10 feet of you must make a saving throw, the creature gains a bonus to the saving throw equal to your Charisma modifier (with a minimum bonus of +1). You must be conscious to grant this bonus. At 18th level, the range of this aura increases to 30 feet."
+    }],
+    "Level_7": [{
+      "Name": "Sacred Oath feature",
+      "Description": ""
+    }],
+    "Level_8": [{
+      "Name": "Ability Score Improvement",
+      "Description": "Increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+    }],
+    "Level_9": [{
+      "Name": "Spell Slot Increase",
+      "Description": "You gain a new spell slot level (3)."
+    }],
+    "Level_10": [{
+      "Name": "Aura of Courage",
+      "Description": "Starting at 10th level, you and friendly creatures within 10 feet of you can't be frightened while you are conscious. At 18th level, the range of this aura increases to 30 feet."
+    }],
+    "Level_11": [{
+      "Name": "Improved Divine Smite",
+      "Description": "You are so suffused with righteous might that all your melee weapon strikes carry divine power with them. Whenever you hit a creature with a melee weapon, the creature takes an extra 1d8 radiant damage. If you also use your Divine Smite with an Attack, you add this damage to the extra damage of your Divine Smite."
+    }],
+    "Level_12": [{
+      "Name": "Ability Score Improvement",
+      "Description": "Increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+    }],
+    "Level_13": [{
+      "Name": "Spell Slot Increase",
+      "Description": "You gain a new spell slot level (4)."
+    }],
+    "Level_14": [{
+      "Name": "Cleansing Touch",
+      "Description": "Beginning at 14th level, you can use your action to end one spell on yourself or on one willing creature that you touch. You can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain expended uses when you finish a Long Rest."
+    }],
+    "Level_15": [{
+      "Name": "Sacred Oath feature",
+      "Description": ""
+    }],
+    "Level_16": [{
+      "Name": "Ability Score Improvement",
+      "Description": "Increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+    }],
+    "Level_17": [{
+      "Name": "Spell Slot Increase",
+      "Description": "You gain a new spell slot level (5)."
+    }],
+    "Level_18": [{
+      "Name": "Aura improvements",
+      "Description": ""
+    }],
+    "Level_19": [{
+      "Name": "Ability Score Improvement",
+      "Description": "Increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature."
+    }],
+    "Level_20": [{
+      "Name": "Sacred Oath feature",
+      "Description": "You can Attack four times, instead of once, whenever you take the Attack action on Your Turn."
+    }]
+  },
+  "SacredOath": {
+    "Name": "Oath of Vengence",
+    "Features": {
+      "Level_3": [
+        {
+          "Name": "Bane",
+          "Description": "Up to three creatures of your choice that you can see within range must make Charisma saving throws. Whenever a target that fails this saving throw makes an Attack roll or a saving throw before the spell ends, the target must roll a d4 and subtract the number rolled from the Attack roll or saving throw."
+        },
+        {
+          "Name": "Hunter's Mark",
+          "Description": "You choose a creature you can see within range and mystically mark it as your quarry. Until the spell ends, you deal an extra 1d6 damage to the target whenever you hit it with a weapon Attack, and you have advantage on any Wisdom (Perception) or Wisdom (Survival) check you make to find it. If the target drops to 0 hit points before this spell ends, you can use a Bonus Action on a subsequent turn of yours to mark a new creature."
+        }
+      ],
+      "Level_5": [
+        {
+          "Name": "Hold Person",
+          "Description": "Choose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw or be Paralyzed for the Duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target."
+        },
+        {
+          "Name": "Misty Step",
+          "Description": "Briefly surrounded by silvery mist, you Teleport up to 30 feet to an unoccupied space that you can see."
+        }
+      ],
+      "Level_9": [
+        {
+          "Name": "Haste",
+          "Description": "Choose a willing creature that you can see within range. Until the spell ends, the target's speed is doubled, it gains a +2 bonus to AC, it has advantage on Dexterity saving throws, and it gains an additional action on each of its turns. That action can be used only to take the Attack (one weapon Attack only), Dash, Disengage, Hide, or Use an Object action."
+        },
+        {
+          "Name": "Protection from Energy",
+          "Description": "For the Duration, the willing creature you touch has Resistance to one damage type of your choice - acid, cold, fire, lightning, or thunder."
+        }
+      ],
+      "Level_13": [
+        {
+          "Name": "Banishment,",
+          "Description": "You attempt to send one creature that you can see within range to another place of existence. The target must succeed on a Charisma saving throw or be banished. If the target is native to the plane of existence you're on, you banish the target to a harmless Demiplane. While there, the target is Incapacitated. The target remains there until the spell ends, at which point the target reappears in the space it left or in the nearest unoccupied space if that space is occupied. If the target is native to a different plane of existence that the one you're on, the target is banished with a faint popping noise, returning to its home plane. If the spell ends before 1 minute has passed, the target reappears in the space it left or in the nearest unoccupied space if that space is occupied. Otherwise, the target doesn't return."
+        },
+        {
+          "Name": "Dimension Door",
+          "Description": "You Teleport yourself from your current location to any other spot within range. You arrive at exactly the spot desired. It can be a place you can see, one you can visualize, or one you can describe by stating distance and direction, such as 200 feet straight downward or upward to the northwest at a 45-degree angle, 300 feet."
+        }
+      ],
+      "Level_17": [
+        {
+          "Name": "Hold Monster",
+          "Description": "Choose a creature that you can see within range. The target must succeed on a Wisdom saving throw or be Paralyzed for the Duration. This spell has no effect on Undead. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target."
+        },
+        {
+          "Name": "Scrying",
+          "Description": "You can see and hear a particular creature you choose that is on the same plane of existence as you. The target must make a Wisdom saving throw, which is modified by how well you know the target and the sort of physical connection you have to it. If a target knows you're casting this spell, it can fail the saving throw voluntarily if it wants to be observed. Way more info (https://roll20.net/compendium/dnd5e/Scrying#h-Scrying)."
+        }
+      ]
+    }
+  },
+  "SpellSlots": {
+    "Level_1": [
+      {
+        "SpellLevel": 0,
+        "Count": 0
+      }
+    ],
+    "Level_2": [
+      {
+        "SpellLevel": 1,
+        "Count": 2
+      }
+    ],
+    "Level_3": [
+      {
+        "SpellLevel": 1,
+        "Count": 3
+      }
+    ],
+    "Level_4": [
+      {
+        "SpellLevel": 1,
+        "Count": 3
+      }
+    ],
+    "Level_5": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 2
+      }
+    ],
+    "Level_6": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 2
+      }
+    ],
+    "Level_7": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 3
+      }
+    ],
+    "Level_8": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 3
+      }
+    ],
+    "Level_9": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 3,
+        "Count": 2
+      }
+    ],
+    "Level_10": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 3,
+        "Count": 2
+      }
+    ],
+    "Level_11": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 3,
+        "Count": 3
+      }
+    ],
+    "Level_12": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 3,
+        "Count": 3
+      }
+    ],
+    "Level_13": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 3,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 4,
+        "Count": 1
+      }
+    ],
+    "Level_14": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 3,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 4,
+        "Count": 1
+      }
+    ],
+    "Level_15": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 3,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 4,
+        "Count": 2
+      }
+    ],
+    "Level_16": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 3,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 4,
+        "Count": 2
+      }
+    ],
+    "Level_17": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 3,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 4,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 5,
+        "Count": 1
+      }
+    ],
+    "Level_18": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 3,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 4,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 5,
+        "Count": 1
+      }
+    ],
+    "Level_19": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 3,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 4,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 5,
+        "Count": 2
+      }
+    ],
+    "Level_20": [
+      {
+        "SpellLevel": 1,
+        "Count": 4
+      },
+      {
+        "SpellLevel": 2,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 3,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 4,
+        "Count": 3
+      },
+      {
+        "SpellLevel": 5,
+        "Count": 2
+      }
+    ]
+ }
+}

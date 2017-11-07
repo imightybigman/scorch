@@ -3,10 +3,10 @@
   <div class="card card-width">
     <div class="card-header" role="tab" id="character-bios">
       <h5 class="mb-0">
-        <a data-toggle="collapse" href="#bios" aria-expanded="false" aria-controls="bios">Character Bio</a>
+        <a data-toggle="collapse" href="#bios" aria-expanded="false" aria-controls="bios">Bio</a>
       </h5>
     </div>
-    <div id="bios" class="collapse show" role="tabpanel" aria-labelledby="character-bios" data-parent="#accordion">
+    <div id="bios" class="collapse" role="tabpanel" aria-labelledby="character-bios" data-parent="#character-details">
       <div class="card-body">
         <div>
           <strong>Race:</strong>

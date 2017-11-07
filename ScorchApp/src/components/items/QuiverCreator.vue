@@ -175,7 +175,7 @@ export default {
                 console.log("Encountered an error during item creation : " + this.error);
 
                 $('#success-quiver-msg').fadeIn(0);
-                setTimeout(13000, new function(){
+                setTimeout(13000, () => {
                     $('#success-quiver-msg').fadeOut(5000);
                 });
             }
@@ -183,7 +183,7 @@ export default {
                 this.clearFields();
 
                 $('#success-quiver-msg').fadeIn(0);
-                setTimeout(13000, new function(){
+                setTimeout(13000, () => {
                     $('#success-quiver-msg').fadeOut(5000);
                 });
             }

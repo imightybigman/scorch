@@ -1,6 +1,6 @@
 <template>
 <div class="d-flex flex-column character-spell">
-  <modal v-if="showSpellDescription" v-on:close="showSpellDescription = false">
+  <modal v-if="showSpellDescription" v-on:close="closeDescription">
     <h3 slot="header">
       {{ selectedSpell.Name }}
     </h3>
@@ -8,7 +8,7 @@
       <spell-readonly :spell="selectedSpell"></spell-readonly>
     </div>
   </modal>
-  <modal v-if="showSpellAddModal" v-on:close="showSpellAddModal = false">
+  <modal v-if="showSpellAddModal" v-on:close="closeAdd">
     <h3 slot="header">
       Add New Spell
     </h3>
@@ -20,15 +20,15 @@
   <div class="card spell-card card-width">
     <div class="card-header" data-toggle="collapse" role="tab" id="character-spells">
       <h5 class="mb-0" >
-        <a href="#spells" data-toggle="collapse" aria-expanded="false" aria-controls="spells">Spell</a>
+        <a href="#spells" data-toggle="collapse" aria-expanded="false" aria-controls="spells">Spells/Cantrips</a>
       </h5>
     </div>
-    <div id="spells" class="collapse" role="tabpanel" aria-labelledby="character-spells" data-parent="#accordion">
+    <div id="spells" class="collapse" role="tabpanel" aria-labelledby="character-spells" data-parent="#character-details">
       <div class="card-body">
         <div v-for="(spell, index) in spells" @click="spellClick(spell)" :key="index" class="list-group-item list-group-item-action">
           <h6>{{ spell.Name }}</h6>
-          <small>Damage: {{ spell.Damage }}</small>
-          <small>Damage Type: {{ spell.DamageType }}</small>
+          <small v-if="spell.Damage">Damage: {{ spell.Damage }}</small>
+          <small v-if="spell.DamageType">Damage Type: {{ spell.DamageType }}</small>
         </div>
         <div class="list-group-item list-group-item-action">
           <button class="btn btn-block btn-primary" @click="showSpellAddModal = true">+</button>
@@ -65,6 +65,15 @@ export default {
                 body: spell
             }
             await this.$store.dispatch('addSpell', payload);
+            $("body").removeClass("modal-open");            
+            this.showSpellAddModal = false;
+        },
+        closeDescription() {
+            $("body").removeClass("modal-open");
+            this.showSpellDescription = false;
+        },
+        closeAdd() {
+            $("body").removeClass("modal-open");
             this.showSpellAddModal = false;
         }
     },

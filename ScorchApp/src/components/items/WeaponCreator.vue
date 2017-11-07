@@ -224,7 +224,7 @@ export default {
                 console.log("Encountered an error during item creation : " + this.error);
 
                 $('#success-weapon-msg').fadeIn(0);
-                setTimeout(13000, new function(){
+                setTimeout(13000, () => {
                     $('#success-weapon-msg').fadeOut(5000);
                 });
             }
@@ -232,7 +232,7 @@ export default {
                 this.clearFields();
 
                 $('#success-weapon-msg').fadeIn(0);
-                setTimeout(13000, new function(){
+                setTimeout(13000, () => {
                     $('#success-weapon-msg').fadeOut(5000);
                 });
             }

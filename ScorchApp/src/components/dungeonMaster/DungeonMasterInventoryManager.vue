@@ -2,14 +2,15 @@
     <div class="dm-inventory-component d-flex">
         <div class="item-search flex-column">
           <div class="item-searcher flex-column">
-            <searcher @search-row-selected="searchItem" :search-data="searchItems" :limit-per-page="10" :column-keys="columnKeys"/>
+            <searcher v-on:search-row-selected="searchItem" :search-data="searchItems" :limit-per-page="10" :column-keys="columnKeys"/>
           </div>
         </div>
-        <div class="flex-column item-store">
-          <button class="createAdvGear" type="button" v-on:click="state='createAdventurerGear';selectedItem=''"></button><br />
-          <button class="createArmor" type="button" v-on:click="state='createArmor';selectedItem=''"></button><br />
-          <button class="createQuiver" type="button" v-on:click="state='createQuiver';selectedItem=''"></button><br />
+        <div class="flex-row item-store">
+          <button class="createAdvGear" type="button" v-on:click="state='createAdventurerGear';selectedItem=''"></button>
+          <button class="createArmor" type="button" v-on:click="state='createArmor';selectedItem=''"></button>
+          <button class="createQuiver" type="button" v-on:click="state='createQuiver';selectedItem=''"></button>
           <button class="createWeapon" type="button" v-on:click="state='createWeapon';selectedItem=''"></button>
+          <button class="createAccessory" type="button" v-on:click="state='createAccessory';selectedItem=''"></button>          
         </div>
         <div class="flex-column item-creator">
           <div>
@@ -17,6 +18,7 @@
               <weapon-creator :weapon="this.selectedItem" v-if="state == 'createWeapon'" />
               <armor-creator :armor="this.selectedItem" v-if="state == 'createArmor'" />
               <quiver-creator :quiver="this.selectedItem" v-if="state == 'createQuiver'" />
+              <accessory-creator :accessory="this.selectedItem" v-if="state == 'createAccessory'" />              
           </div>
         </div>
     </div>
@@ -25,7 +27,7 @@
 
 <script>
     import { Searcher } from 'components/util'
-    import { QuiverCreator, ArmorCreator, WeaponCreator, AdventurerGearCreator } from 'components/items'
+    import { QuiverCreator, ArmorCreator, WeaponCreator, AdventurerGearCreator, AccessoryCreator } from 'components/items'
     import { ItemService } from 'services'
 
 
@@ -62,7 +64,8 @@ export default {
         WeaponCreator,
         ArmorCreator,
         Searcher,
-        QuiverCreator
+        QuiverCreator,
+        AccessoryCreator
     }
 }
 </script>
@@ -134,6 +137,15 @@ export default {
       width: 150px;
       height: 150px;
       background-image: url("~assets/dmIcons/weapons.png");
+      background-size: 130px 130px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .createAccessory {
+      background-color: #4CAF50;
+      width: 150px;
+      height: 150px;
       background-size: 130px 130px;
       background-position: center;
       background-repeat: no-repeat;

@@ -2,8 +2,8 @@ import json
 import requests
 import pprint 
 
-#dndApi = "https://dnd-api.imightybigman.com/api/item"
-dndApi = "http://scorchapiv2-dev.us-east-1.elasticbeanstalk.com/api/item"
+dndApi = "https://dnd-api.imightybigman.com/api/item"
+#dndApi = "http://scorchapiv2-dev.us-east-1.elasticbeanstalk.com/api/item"
 #dndApi = "http://localhost:5000/api/item"
 pp = pprint.PrettyPrinter(indent=4)
 

@@ -1,6 +1,6 @@
 <template>
     <div class="dm-character-operator">
-        <form v-on:submit="apply" class="">
+        <form>
             <div class = "d-flex">
                 <div class="form-group">
                     <label for="modify-health">Modify Health : </label>
@@ -21,7 +21,7 @@
                     <input type="number" class="form-control" id="item-quantity" v-model="itemQty" placeholder="# Items" autocomplete="off"/>
                 </div>
             </div>
-            <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary" @click="apply">Submit</button>
         </form>
     </div>
 </template>
@@ -42,7 +42,7 @@ export default {
     props: ['characterList', 'item'],
     methods: {
         async apply() {
-            this.characterList.forEach(async(char) =>
+            for(let char of this.characterList)
             {
                 let payload = {};
                 payload.body = {};
@@ -62,19 +62,17 @@ export default {
                 payload.body.Gold = newGold;
                 
                 await this.$store.dispatch('updateCharacter', payload);
-
                 if(this.item && this.itemQty > 0){
                     let itemAdded = {};
                     itemAdded.ItemId = this.item.ItemId;
                     itemAdded.Count = parseInt(this.itemQty);
                     await CharacterService.postCharacterItem(char.CharacterId, itemAdded);
                 }
-
-                this.$socket.emit('updateParty');
-            });
+            };
+            this.$socket.emit('updateParty');            
             this.clearFields();
         },
-        async clearFields() {
+        clearFields() {
             this.itemQty = 0;
         }
     }

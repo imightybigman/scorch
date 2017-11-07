@@ -7,14 +7,22 @@
     <div slot="body">
       <div class="d-flex">
         <div class="weapon-basic d-flex flex-column">
+            <div class="form-group">
+            <label for="itemId">ItemId</label>
+            <input type="text" id="itemId" class="form-control" v-model="weapon.ItemId" readonly />
+          </div>
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" class="form-control" v-model="weapon.Name" readonly />
           </div>
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea type="text" rows="3" id="description" class="form-control" v-model="weapon.Description"
+            <textarea type="text" rows="8" id="description" class="form-control" v-model="weapon.Description"
               readonly />
+          </div>
+          <div class="form-group">
+            <label for="slot">Slot</label>
+            <input type="text" id="slot" class="form-control" v-model="weapon.Slot" readonly />
           </div>
           <div class="form-group">
             <label for="damage">Damage</label>
@@ -47,6 +55,7 @@ export default {
     props: ['weapon', 'showModal'],
     methods: {
         close() {
+            $("body").removeClass("modal-open");
             this.$emit('close');
         }
     },

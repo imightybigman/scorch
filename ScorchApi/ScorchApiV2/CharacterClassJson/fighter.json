@@ -10,6 +10,45 @@
       16,
       19
     ],
+    "MartialArchetype" :{
+      "Name": "Champion",
+      "Features": {
+          "Level_3": [
+            {
+            "Name": "Improved Critical",
+            "Description": "Your weapon attacks score a critical hit on a roll of 19 or 20"
+            }
+          ],
+          "Level_7": [
+            {
+            "Name": "Remarkable Athlete",
+            "Description": "You can add half your proficiency bonus (round up) to any Strength, Dexterity, or Constitution check you make that doesn’t already use your proficiency bonus."
+            },
+            {
+              "Name": "Far Jump",
+              "Description": "When you make a running long jump, the distance you can cover increases by a number of feet equal to your Strength modifier."
+              }
+          ],
+          "Level_10": [
+            {
+            "Name": "Additional Fighting Style",
+            "Description": "You can choose a second option from the Fighting Style class feature."
+            }
+          ],
+          "Level_15": [
+            {
+            "Name": "Superior Critical",
+            "Description": "Your weapon attacks score a critical hit on a roll of 18-20"
+            }
+          ],
+          "Level_18": [
+            {
+            "Name": "Survivor",
+            "Description": "You attain the pinnacle of resilience in battle. At the start of each of your turns, you regain hit points equal to 5 + your Constitution modifier if you have no more than half of your hit points left. You don’t gain this benefit if you have 0 hit points."
+            }
+          ]
+      }
+    },
     "BonusFeatures": {
       "Level_1": [{
           "Name": "Fighting Style",

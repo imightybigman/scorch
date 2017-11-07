@@ -26,12 +26,12 @@ export default {
     name: 'character-tile',
     props: ['character'],
     computed: {
-        name: function() {
+        name() {
             let firstName = this.character.Firstname || '';
             let lastName = this.character.Lastname || '';
             return `${firstName} ${lastName}`;
         },
-        classIcon: function() {
+        classIcon() {
             return this.character.Class.toLowerCase();
         }
     }, 

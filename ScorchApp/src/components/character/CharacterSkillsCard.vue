@@ -1,6 +1,6 @@
 <template>
     <div class="d-flex flex-column character-skill">
-        <modal v-if="showModal" v-on:close="showModal = false">
+        <modal v-if="showModal" v-on:close="close">
             <h3 slot="header">
                 {{ displaySkillName(selectedSkill) }}
             </h3>
@@ -16,7 +16,7 @@
                     </a>
                 </h5>
             </div>
-            <div id="skills" class="collapse" role="tabpanel" aria-labelledby="character-skills" data-parent="#accordion">
+            <div id="skills" class="collapse" role="tabpanel" aria-labelledby="character-skills" data-parent="#character-details">
 
             <div class="card-body">
             <div v-for="(skill, index) in skills" 
@@ -44,12 +44,16 @@ export default {
     },
     props: ['skills'],
     methods: {
-        displaySkillName: function(skill) {
+        displaySkillName(skill) {
             return `${skill.Name} (${skill.Stat})`;
         },
-        skillClick: function(skill) {
+        skillClick(skill) {
             this.selectedSkill = skill;
             this.showModal = true;
+        },
+        close() {
+            $("body").removeClass("modal-open")
+            this.showModal = false;
         }
     },
     components: {

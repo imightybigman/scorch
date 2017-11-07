@@ -95,7 +95,7 @@ export default {
         }
     },
     computed: {
-        searchResults : function(){
+        searchResults() {
             let results = this.searchData;
             results = orderBy(results, [this.sortKey], [this.sortDirection]);
 
@@ -111,17 +111,17 @@ export default {
             });
             return results;
         },
-        numPages : function(){
+        numPages() {
             return Math.ceil(this.searchResults.length / this.limitPerPage);
         },
-        objectKeys : function(){
+        objectKeys() {
             if(this.columnKeys)
                 return this.columnKeys;
             if(this.searchResults && this.searchResults.length > 0)
                 return Object.keys(this.searchResults[0]);
             return [];
         },
-        pagesToShow : function(){
+        pagesToShow() {
             let result = [];
             if(this.numPages > 7){
                 result.push(1);

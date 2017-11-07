@@ -1,7 +1,6 @@
 <template>
-    <div class="card">
+    <div class="card inventory-card">
         <armor-detail :armor="selectedArmor" :showModal="showDetail" v-on:close="showDetail = false"></armor-detail>
-
         <div class="card-header" role="tab" id="armor">
             <h5 class="mb-0">
             <a data-toggle="collapse" href="#armorInventory" aria-expanded="false" aria-controls="armorInventory">
@@ -9,20 +8,20 @@
             </a>
             </h5>
         </div>
-        <div id="armorInventory" class="collapse" role="tabpanel" aria-labelledby="armor" data-parent="#accordion">
-            <div class="card-body armor-list">
+        <div id="armorInventory" class="collapse" role="tabpanel" aria-labelledby="armor" data-parent="#inventory">
+            <div class="card-body item-list">
             <div v-for="(armor, index) in armors" 
-                    @click="armorClick(armor)" 
                     :key="index" 
-                    class="list-item border">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex flex-column">
-                            <span>{{ armor.Name }}</span>
-                            <small>{{ armor.Slot }}</small>
-                            <small>AC {{ armor.AC }} </small>        
-                        </div>          
-                        <button class="btn btn-primary" @click="equipArmor(armor, $event)">
-                            <i class="fa fa-level-up" aria-hidden="true"></i>
+                    class="d-flex flex-column list-item border">
+                    <div @click="armorClick(armor)">
+                        <item-card :item="armor"></item-card>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" @click="equipArmor(armor)">
+                            Equip
+                        </button>
+                        <button class="btn btn-danger" @click="sellArmor(armor)">
+                            Sell
                         </button>
                     </div>
                 </div>
@@ -33,7 +32,7 @@
 
 <script>
 import ArmorDetail from './ArmorDetail';
-
+import { ItemCard } from 'components/items'
 export default {
     name: 'armor-inventory',
     data() {
@@ -48,15 +47,16 @@ export default {
             this.selectedArmor = armor;
             this.showDetail = true;
         },
-        equipArmor(armor, event) {
-         if (event) {
-                event.stopPropagation();
-            }
+        equipArmor(armor) {
             this.$emit('equip', armor);
+        },
+        sellArmor(armor) {
+            this.$emit('sell', armor);
         }
     },
     components: {
-        ArmorDetail
+        ArmorDetail,
+        ItemCard
     }
 }
 </script>

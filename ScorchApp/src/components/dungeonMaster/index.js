@@ -1,7 +1,7 @@
-import DungeonMasterMain from './DungeonMasterMain.vue'
-import DungeonMasterStory from './DungeonMasterStory.vue'
-import DungeonMasterInventoryManager from './DungeonMasterInventoryManager.vue'
-import CharacterOperator from './operators/CharacterOperator.vue'
+import DungeonMasterMain from './DungeonMasterMain'
+import DungeonMasterStory from './DungeonMasterStory'
+import DungeonMasterInventoryManager from './DungeonMasterInventoryManager'
+import CharacterOperator from './operators/CharacterOperator'
 
 export {
     DungeonMasterMain,

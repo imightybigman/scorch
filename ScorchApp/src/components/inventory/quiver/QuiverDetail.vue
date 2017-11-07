@@ -7,6 +7,10 @@
     <div slot="body">
       <div class="d-flex">
         <div class="quiver-basic d-flex flex-column">
+            <div class="form-group">
+            <label for="itemId">ItemId</label>
+            <input type="text" id="itemId" class="form-control" v-model="quiver.ItemId" readonly />
+          </div>
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" class="form-control" v-model="quiver.Name" readonly />
@@ -45,6 +49,7 @@ export default {
     props: ['quiver', 'showModal'],
     methods: {
         close() {
+            $("body").removeClass("modal-open");
             this.$emit('close');
         },
         getArrowCount(projectile) {

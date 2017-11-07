@@ -13,15 +13,25 @@
       </h4>
       <div class="gold-counter"><img class="gold" src="~assets/icons/gold.png"/> {{ character.Gold }} </div>
       <hp-bar :character="character"></hp-bar>
-      <exp-bar :character="character" v-on:levelup="levelingEnabled = true"></exp-bar>
+      <exp-bar :character="character"></exp-bar>
     </div>
     <div class="d-flex flex-row flex-wrap character-screen">
-      <div class="d-flex flex-column character-details">
+      <div id="character-details" class="d-flex flex-column character-details">
         <h4>Character Info</h4>
+        <character-stats-card :stats="character.Stats" :proficiency="character.Proficiency" :characterClass="characterClass" :level="character.Level"></character-stats-card>
         <character-bio-card :character="character"></character-bio-card>
-        <character-stats-card :stats="character.Stats" :proficiency="character.Proficiency"></character-stats-card>
         <character-skills-card :skills="character.Skills"></character-skills-card>
         <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
+        <div v-if="characterClass">
+            <spell-slots v-if="characterClass.SpellSlots" :level="character.Level" :spellSlots="characterClass.SpellSlots"></spell-slots>
+            <bonus-features :level="character.Level" :feature="characterClass.BonusFeatures" :displayName="characterClass.Name"></bonus-features>
+            <bonus-features v-if="character.Class === 'Fighter'" :level="character.Level" :feature="characterClass.MartialArchetype.Features" :displayName="characterClass.MartialArchetype.Name"></bonus-features>
+            <bonus-features v-if="character.Class === 'Paladin'" :level="character.Level" :feature="characterClass.SacredOath.Features" :displayName="characterClass.SacredOath.Name"></bonus-features>
+            <bonus-features v-if="character.Class === 'Bard'" :level="character.Level" :feature="characterClass.CollegeFeatures.Features" :displayName="characterClass.CollegeFeatures.Name"></bonus-features>
+            <bonus-features v-if="character.Class === 'Ranger'" :level="character.Level" :feature="characterClass.Archetype.Features" :displayName="characterClass.Archetype.Name"></bonus-features>
+            <bonus-features v-if="character.Class === 'Warlock'" :level="character.Level" :feature="characterClass.OtherworldyPatron.Features" :displayName="characterClass.OtherworldyPatron.Name"></bonus-features>
+            <companion v-if="character.Class === 'Ranger'" :companion="characterClass.Companion"></companion>
+        </div>
       </div>
       <div class="d-flex flex-column character-equip">
         <h4>Character Equip</h4>
@@ -29,25 +39,29 @@
       </div>
 
     </div>
-    <div class="d-flex notes black-border">
+    <div class="d-flex notes black-border" style="overflow: scroll;">
+      <ul style="padding: 0;">
+        <li v-for="(log, index) in logs" class="list-unstyled" :key="index">
+          {{ log.message }} <br />
+        </li>
+      </ul>
     </div>
   </div>
   <div class="d-flex flex-column character-other border">
-     <character-leveling :character="character"></character-leveling>
-    <dice-roller></dice-roller>
+    <character-leveling :character="character" :characterClass="characterClass"></character-leveling>
+    <dice-roller :name="this.user"></dice-roller>
     <inventory :characterId="character.CharacterId"></inventory>
   </div>
 </div>
-
 </template>
 
 <script>
 
-  import {  CharacterTile, 
-            CharacterEquip, 
-            CharacterStatsCard, 
-            CharacterDetailCard, 
-            CharacterSkillsCard, 
+  import {  CharacterTile,
+            CharacterEquip,
+            CharacterStatsCard,
+            CharacterDetailCard,
+            CharacterSkillsCard,
             CharacterSpellsCard,
             CharacterBioCard,
             CharacterLeveling,
@@ -56,28 +70,53 @@
 
   import { Inventory } from 'components/inventory'
   import { DiceRoller, Modal } from 'components/util'
+  import { BonusFeatures, SpellSlots, Companion } from 'components/classFeatures'
   export default {
     name: 'character-view',
+    user: '',
+    data() {
+      return {
+        logs: [
+
+        ]
+      }
+    },
     async created() {
-      await this.$store.dispatch('getParty')
+      await this.$store.dispatch('getParty');
+      // we want to load each class when we need them cuz they are biiiiiiiggggggg
+      await this.$store.dispatch('loadClass', this.character.Class);
     },
     props: ['characterId'],
+    sockets: {
+      newLog: function(message) {
+        this.logs.unshift({ message: message });
+      }
+    },
     computed: {
       name() {
           let firstName = this.character.Firstname || '';
           let lastName = this.character.Lastname || '';
-          return `${firstName} ${lastName}`; 
+          this.user = `${firstName} ${lastName}`;
+          return `${firstName} ${lastName}`;
       },
       party() {
         return this.$store.getters.myParty;
       },
       character() {
         return this.$store.getters.getCharacterById(this.characterId);
+      },
+      characterClass() {
+        return this.$store.getters.getClass(this.character.Class);
       }
     },
     methods: {
       goTo(characterId) {
         this.$router.push('/character/' + characterId)
+      }
+    },
+    watch: {
+      async character(newCharacter) {
+        await this.$store.dispatch('loadClass', newCharacter.Class);
       }
     },
     components: {
@@ -93,7 +132,10 @@
       HpBar,
       Inventory,
       DiceRoller,
-      Modal
+      Modal,
+      BonusFeatures,
+      SpellSlots,
+      Companion
     }
   }
 
@@ -113,7 +155,7 @@
     padding: 1%;
     flex: 1 0 auto;
     overflow-y: scroll;
-    
+
     .character-cards-container {
       margin-bottom: 1%;
       border-radius: 10px;
@@ -132,7 +174,7 @@
       }
 
       .character-details {
-        flex: 1 0 auto;
+        flex: 1 0;
         > div {
           margin-bottom: 1%;
         }
@@ -154,7 +196,7 @@
   }
 
   .character-other {
-    flex: 2 0 auto;
+    flex: 4;
   }
 
 .gold {

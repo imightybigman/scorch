@@ -1,4 +1,4 @@
-import SpellForm from './SpellForm.vue'
+import SpellForm from './SpellForm'
 import SpellReadonly from './SpellReadonly'
 
 export {

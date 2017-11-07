@@ -16,7 +16,7 @@ export default {
   name: 'character-card',
   props: ['characterInfo'],
   computed: {
-    description: function() {
+    description() {
       return `Lvl: ${this.characterInfo.Level}, Race: ${this.characterInfo.Race}, Class: ${this.characterInfo.Class}`
     }
   }

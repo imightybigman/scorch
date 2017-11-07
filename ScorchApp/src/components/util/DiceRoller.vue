@@ -1,18 +1,42 @@
 <template>
 <div class="card dice-roller">
-    <modal v-if="showModal" v-on:close="showModal = false">
-        <h3 slot="header">Dice Roll</h3>
+    <modal v-if="showModal" v-on:close="close">
+        <h3 slot="header">Dice Roller</h3>
         <div slot="body" class="d-flex flex-column">
-            <div class="d-flex">
-                <h4>Rolled Value: <u>{{ rolledValue }}</u></h4>
+            <div class="d-flex dices">
+                <button class="btn btn-danger" @click="clear">Clear Rolls</button>
             </div>
-            <div class="d-flex justify-content-between">
-                <button class="btn btn-primary" @click="rollD4">D4</button>
-                <button class="btn btn-primary" @click="rollD6">D6</button>
-                <button class="btn btn-primary" @click="rollD8">D8</button>
-                <button class="btn btn-primary" @click="rollD10">D10</button>
-                <button class="btn btn-primary" @click="rollD12">D12</button>
-                <button class="btn btn-primary" @click="rollD20">D20</button>
+            <div class="d-flex justify-content-between dices">
+                <div class="d-flex text-center flex-column">
+                    <button id="d4" class="btn btn-primary" @click="rollD4">D4</button>
+                    <span>x{{ rollD4Count}}</span>
+                </div>
+                <div class="d-flex text-center flex-column">
+                    <button class="btn btn-primary" @click="rollD6">D6</button>
+                    <span>x{{ rollD6Count }}</span>
+                </div>
+                <div class="d-flex text-center flex-column">
+                    <button class="btn btn-primary" @click="rollD8">D8</button>
+                    <span>x{{ rollD8Count }}</span>
+                </div>
+                <div class="d-flex text-center flex-column">
+                    <button class="btn btn-primary" @click="rollD10">D10</button>
+                    <span>x{{ rollD10Count }}</span>
+                </div>
+                <div class="d-flex text-center flex-column">
+                    <button class="btn btn-primary" @click="rollD12">D12</button>
+                    <span>x{{ rollD12Count }}</span>
+                </div>
+                <div class="d-flex text-center flex-column">
+                    <button class="btn btn-primary" @click="rollD20">D20</button>
+                    <span>x{{ rollD20Count }}</span>
+                </div>
+            </div>
+            <div class="d-flex">
+                <h4>Rolled: {{ rolledValues }}</h4>
+            </div>
+            <div class="d-flex">
+                <h4>Rolled Total: <u>{{ rollTotal }}</u></h4>
             </div>
         </div>
     </modal>
@@ -28,35 +52,90 @@
 
 <script>
 import Modal from './Modal'
+import sum from 'lodash/sum'
 
-export default{
-    name: "dice-roller",
+export default {
+    name: 'dice-roller',
+    props: ['name'],
     data() {
         return {
             showModal: false,
-            rolledValue: ''
+            rolledValues: [],
+            rollD4Count: 0,
+            rollD6Count: 0,
+            rollD8Count: 0,
+            rollD10Count: 0,
+            rollD12Count: 0,
+            rollD20Count: 0
+        }
+    },
+    watch: {
+        showModal: function(newValue) {
+          let total = sum(this.rolledValues);
+          if (total !== 0){
+            this.logAction("Combining all of " + this.name + "'s rolls came up to " + total);
+          }
+          this.clear();
         }
     },
     methods: {
-        rollD4: function() {
-            this.rolledValue = Math.floor(Math.random() * 4) + 1;
+        rollD4() {
+            let currentRoll = Math.floor(Math.random() * 4) + 1;
+            this.rolledValues.push(currentRoll);
+            this.rollD4Count++;
+            this.logAction(this.name + " rolled a D4 and got a " + currentRoll);
         },
-        rollD6: function() {
-            this.rolledValue = Math.floor(Math.random() * 6) + 1;
+        rollD6() {
+              let currentRoll = Math.floor(Math.random() * 6) + 1
+              this.rolledValues.push(currentRoll);
+              this.rollD6Count++;
+              this.logAction(this.name + " rolled a D6 and got a " + currentRoll);
         },
-        rollD8: function() {
-            this.rolledValue = Math.floor(Math.random() * 8) + 1;
+        rollD8() {
+            let currentRoll = Math.floor(Math.random() * 8) + 1
+            this.rolledValues.push(currentRoll);
+            this.rollD8Count++;
+            this.logAction(this.name + " rolled a D8 and got a " + currentRoll);
         },
-        rollD10: function() {
-            this.rolledValue = Math.floor(Math.random() * 10) + 1;
+        rollD10() {
+            let currentRoll = Math.floor(Math.random() * 10) + 1
+            this.rolledValues.push(currentRoll);
+            this.rollD10Count++;
+            this.logAction(this.name + " rolled a D10 and got a " + currentRoll);        },
+        rollD12() {
+            let currentRoll = Math.floor(Math.random() * 12) + 1
+            this.rolledValues.push(currentRoll);
+            this.rollD12Count++;
+            this.logAction(this.name + " rolled a D12 and got a " + currentRoll);
+              },
+        rollD20() {
+            let currentRoll = Math.floor(Math.random() * 20) + 1
+            this.rolledValues.push(currentRoll);
+            this.rollD20Count++;
+            this.logAction(this.name + " rolled a D20 and got a " + currentRoll);
         },
-        rollD12: function() {
-            this.rolledValue = Math.floor(Math.random() * 12) + 1;
+        clear() {
+            this.rolledValues = [];
+            this.rollD4Count = 0;
+            this.rollD6Count = 0;
+            this.rollD8Count = 0;
+            this.rollD10Count = 0;
+            this.rollD12Count = 0;
+            this.rollD20Count = 0;
         },
-        rollD20: function() {
-            this.rolledValue = Math.floor(Math.random() * 20) + 1;
+        logAction(message) {
+          this.$socket.emit('newLog', message);
+        },
+        close(){
+            $("body").removeClass("modal-open");
+            this.showModal = false;
         }
-    }, 
+    },
+    computed: {
+        rollTotal() {
+            return sum(this.rolledValues)
+        }
+    },
     components: {
         Modal
     }
@@ -64,5 +143,7 @@ export default{
 </script>
 
 <style lang="scss" scoped>
-
+.dices {
+    margin-bottom: 5%;
+}
 </style>

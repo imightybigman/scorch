@@ -1,8 +1,8 @@
 <template>
-    <div class="item-card border">
+    <div class="item-card">
         <div class="item-card-inner">
             <div class="d-flex">
-                <h4 class="item-card-header">{{item.Name ? item.Name : "Item Card"}} <p v-if="item.Count > 0">x {{item.Count}}</p></h4>
+                <h4 class="item-card-header">{{item.Name ? item.Name : "Item Card"}} <span v-if="item.Count > 0">x {{item.Count}}</span></h4>
                 <small>{{item.ItemClass}}</small>
             </div>
             <div class = "d-flex item-card-detail">
@@ -80,7 +80,7 @@ export default {
         padding: 0.5%;
     }
     .item-card-header {
-        flex:1;
+        flex:1 0 auto;
     }
     .item-card-detail {
         flex-direction: column;
@@ -91,7 +91,6 @@ export default {
     .entry{
         margin-right: 5%;
         flex: 1;
-        flex-grow: 1;
     }
     .ra-gold-bar{
         color:gold;
