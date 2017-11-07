@@ -1,6 +1,6 @@
 <template>
-    <div>
-        Exp: 
+    <div class="d-flex exp-holder">
+        <span class="exp-header">EXP</span> 
         <div class="progress">
             <div 
                 class="progress-bar bg-warning" 
@@ -9,7 +9,7 @@
                 :style="progressWidth" 
                 aria-valuemin="0" 
                 aria-valuemax="100">
-                <span>{{ currentExp }}</span>
+                <span class="exp-text">{{ currentExp }}</span>
             </div>
         </div>
     </div>
@@ -37,6 +37,20 @@ export default {
 <style lang="scss" scoped>
 .progress {
     position: relative;
+    flex: 1;
+}
+
+.exp-text{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
+}
+
+.exp-holder{
+    align-items: center;
+}
+
+.exp-header{
+    margin-right: 2%;
 }
 
 .progress span {
