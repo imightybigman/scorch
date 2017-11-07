@@ -18,9 +18,15 @@
     <div class="d-flex flex-row flex-wrap character-screen">
       <div id="character-details" class="d-flex flex-column character-details">
         <h4>Character Info</h4>
-        <character-stats-card :stats="character.Stats" :proficiency="character.Proficiency" :characterClass="characterClass" :level="character.Level"></character-stats-card>
-        <character-bio-card :character="character"></character-bio-card>
-        <character-skills-card :skills="character.Skills"></character-skills-card>
+        <accordian :id="'character-stats'" :header="'Stats'">
+            <character-stats-card slot="body" :stats="character.Stats" :proficiency="character.Proficiency" :characterClass="characterClass || {}" :level="character.Level"></character-stats-card>                
+        </accordian>
+        <accordian :id="'character-bio'" :header="'Bio'">
+          <character-bio-card slot="body" :character="character"></character-bio-card>
+        </accordian>
+        <accordian :id="'character-skills'" :header="'Skills'">
+          <character-skills-card slot="body" :skills="character.Skills"></character-skills-card>
+        </accordian>
         <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
         <div v-if="characterClass">
             <spell-slots v-if="characterClass.SpellSlots" :level="character.Level" :spellSlots="characterClass.SpellSlots"></spell-slots>
@@ -57,87 +63,89 @@
 
 <script>
 
-  import {  CharacterTile,
-            CharacterEquip,
-            CharacterStatsCard,
-            CharacterDetailCard,
-            CharacterSkillsCard,
-            CharacterSpellsCard,
-            CharacterBioCard,
-            CharacterLeveling,
-            ExpBar,
-            HpBar } from 'components/character'
+import {  CharacterTile,
+          CharacterEquip,
+          CharacterStatsCard,
+          CharacterDetailCard,
+          CharacterSkillsCard,
+          CharacterSpellsCard,
+          CharacterBioCard,
+          CharacterLeveling,
+          ExpBar,
+          HpBar } from 'components/character'
 
-  import { Inventory } from 'components/inventory'
-  import { DiceRoller, Modal } from 'components/util'
-  import { BonusFeatures, SpellSlots, Companion } from 'components/classFeatures'
-  export default {
-    name: 'character-view',
-    user: '',
-    data() {
-      return {
-        logs: [
+import { Inventory } from 'components/inventory'
+import { DiceRoller, Modal, Accordian } from 'components/util'
+import { BonusFeatures, SpellSlots, Companion } from 'components/classFeatures'
 
-        ]
-      }
-    },
-    async created() {
-      await this.$store.dispatch('getParty');
-      // we want to load each class when we need them cuz they are biiiiiiiggggggg
-      await this.$store.dispatch('loadClass', this.character.Class);
-    },
-    props: ['characterId'],
-    sockets: {
-      newLog: function(message) {
-        this.logs.unshift({ message: message });
-      }
-    },
-    computed: {
-      name() {
-          let firstName = this.character.Firstname || '';
-          let lastName = this.character.Lastname || '';
-          this.user = `${firstName} ${lastName}`;
-          return `${firstName} ${lastName}`;
-      },
-      party() {
-        return this.$store.getters.myParty;
-      },
-      character() {
-        return this.$store.getters.getCharacterById(this.characterId);
-      },
-      characterClass() {
-        return this.$store.getters.getClass(this.character.Class);
-      }
-    },
-    methods: {
-      goTo(characterId) {
-        this.$router.push('/character/' + characterId)
-      }
-    },
-    watch: {
-      async character(newCharacter) {
-        await this.$store.dispatch('loadClass', newCharacter.Class);
-      }
-    },
-    components: {
-      CharacterTile,
-      CharacterStatsCard,
-      CharacterDetailCard,
-      CharacterSkillsCard,
-      CharacterSpellsCard,
-      CharacterEquip,
-      CharacterBioCard,
-      CharacterLeveling,
-      ExpBar,
-      HpBar,
-      Inventory,
-      DiceRoller,
-      Modal,
-      BonusFeatures,
-      SpellSlots,
-      Companion
+export default {
+  name: 'character-view',
+  user: '',
+  data() {
+    return {
+      logs: [
+
+      ]
     }
+  },
+  async created() {
+    await this.$store.dispatch('getParty');
+    // we want to load each class when we need them cuz they are biiiiiiiggggggg
+    await this.$store.dispatch('loadClass', this.character.Class);
+  },
+  props: ['characterId'],
+  sockets: {
+    newLog: function(message) {
+      this.logs.unshift({ message: message });
+    }
+  },
+  computed: {
+    name() {
+        let firstName = this.character.Firstname || '';
+        let lastName = this.character.Lastname || '';
+        this.user = `${firstName} ${lastName}`;
+        return `${firstName} ${lastName}`;
+    },
+    party() {
+      return this.$store.getters.myParty;
+    },
+    character() {
+      return this.$store.getters.getCharacterById(this.characterId);
+    },
+    characterClass() {
+      return this.$store.getters.getClass(this.character.Class);
+    }
+  },
+  methods: {
+    goTo(characterId) {
+      this.$router.push('/character/' + characterId)
+    }
+  },
+  watch: {
+    async character(newCharacter) {
+      await this.$store.dispatch('loadClass', newCharacter.Class);
+    }
+  },
+  components: {
+    CharacterTile,
+    CharacterStatsCard,
+    CharacterDetailCard,
+    CharacterSkillsCard,
+    CharacterSpellsCard,
+    CharacterEquip,
+    CharacterBioCard,
+    CharacterLeveling,
+    ExpBar,
+    HpBar,
+    Inventory,
+    DiceRoller,
+    Modal,
+    Accordian,
+    BonusFeatures,
+    SpellSlots,
+    Companion
   }
+}
 
 </script>
 

@@ -1,41 +1,29 @@
 <template>
 <div class="character-stat-card">
-  <div class="card card-width">
-    <div class="card-header" role="tab" id="character-stats">
-      <h5 class="mb-0">
-        <a data-toggle="collapse" href="#stats" aria-expanded="false" aria-controls="stats">Stats</a>
-      </h5>
-    </div>
-    <div id="stats" class="collapse show" role="tabpanel" aria-labelledby="character-stats" data-parent="#character-details">
-      <div class="card-body">
-        <div v-for="(statValue, stat, index) in stats" :key="index">
-          <strong>{{ stat }}:</strong>
-          <span class="stat">{{ statValue }} {{ getABM(statValue) }}</span>
-        </div>
-        <div>
-          <strong>Proficiency:</strong>
-          <span class="stat">{{ proficiency }}</span>
-        </div>
-                <div>
-          <strong>HitDice:</strong>
-          <span class="stat">{{ characterClass.HitDice }}</span>
-        </div>
-        <hr> <!-- Break line for spell stuff -->
-        <div v-if="characterClass && ['Bard', 'Warlock'].indexOf(characterClass.Name) !== -1">
-          <strong>Known Cantrips:</strong>
-          <span class="stat">{{ knownCantrips }}</span>
-        </div>
-        <div v-if="characterClass && ['Bard', 'Warlock', 'Ranger'].indexOf(characterClass.Name) !== -1">
-          <strong>Known Spells:</strong>
-          <span class="stat">{{ knownSpells }}</span>
-        </div>
-        <div v-if="characterClass && characterClass.Name === 'Warlock'">
-          <strong>Known Invocations:</strong>
-          <span class="stat">{{ knownInvocations }}</span>
-        </div>
-
-      </div>
-    </div>
+  <div v-for="(statValue, stat, index) in stats" :key="index">
+    <strong>{{ stat }}:</strong>
+    <span class="stat">{{ statValue }} {{ getABM(statValue) }}</span>
+  </div>
+  <div>
+    <strong>Proficiency:</strong>
+    <span class="stat">{{ proficiency }}</span>
+  </div>
+  <div>
+    <strong>Hit Dice:</strong>
+    <span class="stat">{{ characterClass.HitDice }}</span>
+  </div>
+  <hr> <!-- Break line for spell stuff -->
+  <div v-if="characterClass && ['Bard', 'Warlock'].indexOf(characterClass.Name) !== -1">
+    <strong>Known Cantrips:</strong>
+    <span class="stat">{{ knownCantrips }}</span>
+  </div>
+  <div v-if="characterClass && ['Bard', 'Warlock', 'Ranger'].indexOf(characterClass.Name) !== -1">
+    <strong>Known Spells:</strong>
+    <span class="stat">{{ knownSpells }}</span>
+  </div>
+  <div v-if="characterClass && characterClass.Name === 'Warlock'">
+    <strong>Known Invocations:</strong>
+    <span class="stat">{{ knownInvocations }}</span>
   </div>
 </div>
 
@@ -43,7 +31,6 @@
 
 <script>
 import { AbilityModifierService } from 'services'
-
 export default {
   name: 'character-stat-card',
   props: ['stats', 'proficiency', 'characterClass', 'level'], 
@@ -78,5 +65,9 @@ export default {
   float: right;
 }
 
+hr {
+    color: white;
+    background-color: white;
+}
 
 </style>
