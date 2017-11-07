@@ -1,5 +1,5 @@
 <template>
-    <div class="searcher border border-dark">
+    <div class="searcher">
         <div class="searcher-inner">
             <div class="d-flex top-bar">
                 <h4 class="searcher-header">Searcher</h4>
@@ -8,7 +8,7 @@
                 <input type="text" class="form-control" id="name" v-model="searchTerm" placeholder="Search" autocomplete="off" required="true"/>
             </div>
             <div class="search-results table-responsive">
-                <table id="search-results-table" class="table table-hover table-bordered">
+                <table id="search-results-table" class="table table-hover">
                     <thead>
                         <tr>
                             <th v-for="(key, index) in objectKeys" :key="index" v-on:click="sortByForm(key)">
@@ -32,8 +32,8 @@
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li class="page-item clickable" v-for="(page, index) in pagesToShow" :key="index" v-on:click="currentPage = page" v-bind:class ="{active : page == currentPage}">
-                    <a class="page-link" >{{page}}</a>
+                <li class="page-item clickable" v-for="(page, index) in pagesToShow" :key="index" v-on:click="currentPage = page" >
+                    <a class="page-link" v-bind:class ="{activated : page == currentPage}" >{{page}}</a>
                 </li>
                 
                 <li class="page-item clickable" v-on:click="currentPage = Math.min(currentPage+1, numPages)">
@@ -160,6 +160,9 @@ export default {
         margin-top: 2%;
         padding: 1%;
         border-radius: 10px;
+        background-image: url('~assets/cardBackground.png');
+        border-style: solid;
+        box-shadow: 5px 5px 5px grey;
     }
     .searcher-inner {
         padding: 1%;
@@ -180,5 +183,17 @@ export default {
     }
     .clickable {
         cursor: pointer;
+    }
+    .table-bordered {
+        border: black;
+    }
+    .activated {
+        background-color: orange;
+    }
+    input{
+        background-color: #E8E8E8;
+    }
+    a{
+        background-color: #E8E8E8;
     }
 </style>
