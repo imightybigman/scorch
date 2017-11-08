@@ -21,7 +21,7 @@
                     <input type="number" class="form-control" id="item-quantity" v-model="itemQty" placeholder="# Items" autocomplete="off"/>
                 </div>
             </div>
-            <button class="btn btn-primary" @click="apply">Submit</button>
+            <button class="btn btn-warning" @click="apply">Submit</button>
         </form>
     </div>
 </template>
@@ -36,7 +36,7 @@ export default {
             deltaHealth : 0,
             deltaExp : 0,
             deltaGold : 0,
-            itemQty: 0
+            itemQty: 1
         }
     },
     props: ['characterList', 'item'],
@@ -83,9 +83,12 @@ export default {
         },
         clearFields() {
             this.itemQty = 0;
+            this.itemQty = 1;
+            this.deltaExp = 0;
+            this.deltaHealth = 0;
         },
         logAction(message) {
-          this.$socket.emit('newLog', message);
+            this.$socket.emit('newLog', message);
         }
     }
 }
@@ -100,5 +103,7 @@ export default {
         flex: 1;
         margin-right: 1%;
     }
-
+    input{
+        background-color: #E8E8E8
+    }
 </style>
