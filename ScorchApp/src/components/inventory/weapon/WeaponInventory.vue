@@ -10,8 +10,8 @@
         </div>
         <div id="weaponInventory" class="collapse show" role="tabpanel" aria-labelledby="weapons" data-parent="#inventory">
             <div class="card-body item-list">
-                <div v-for="(weapon, index) in weapons" 
-                    :key="index" 
+                <div v-for="(weapon, index) in weapons"
+                    :key="index"
                     class="d-flex flex-column list-item border">
                     <div @click="weaponClick(weapon)">
                         <item-card :item="weapon"></item-card>
@@ -20,8 +20,11 @@
                         <button class="btn btn-primary" @click="equipWeapon(weapon)">
                             Equip
                         </button>
-                        <button class="btn btn-danger" @click="sellWeapon(weapon)">
+                        <button class="btn btn-warning" @click="sellWeapon(weapon)">
                             Sell
+                        </button>
+                        <button class="btn btn-danger" @click="deleteWeapon(weapon)">
+                          Delete
                         </button>
                     </div>
                     </div>
@@ -62,6 +65,9 @@ export default {
         },
         sellWeapon(weapon) {
             this.$emit('sell', weapon);
+        },
+        deleteWeapon(weapon) {
+            this.$emit('delete', weapon);
         }
     },
     components: {
