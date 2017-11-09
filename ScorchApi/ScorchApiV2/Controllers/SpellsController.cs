@@ -22,7 +22,10 @@ namespace ScorchApiV2.Controllers
         {
             _appSettings = appSettings;
             var tableName = _appSettings.Value.DynamoTables["DnD-Spells"];
-            _spellsTable = Table.LoadTable(_client, tableName);
+            AmazonDynamoDBConfig clientConfig = new AmazonDynamoDBConfig();
+            clientConfig.ServiceURL = "http://localhost:8000";
+            _client = new AmazonDynamoDBClient(clientConfig);
+            _spellsTable = Table.LoadTable(_client, "DnD-Spells");
         }
 
         [HttpGet]
