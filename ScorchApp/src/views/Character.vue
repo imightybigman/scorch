@@ -28,16 +28,27 @@
           <character-skills-card slot="body" :skills="character.Skills"></character-skills-card>
         </accordian>
         <div v-if="characterClass">
-            <spell-slots v-if="characterClass.SpellSlots" :level="character.Level" :spellSlots="characterClass.SpellSlots"></spell-slots>
-            <accordian :header="'Skills'">
+            <accordian :header="characterClass.Name">
+              <bonus-features slot="body" :level="character.Level" :feature="characterClass.BonusFeatures"></bonus-features>
             </accordian>
-            <bonus-features :level="character.Level" :feature="characterClass.BonusFeatures" :displayName="characterClass.Name"></bonus-features>
-            <bonus-features v-if="character.Class === 'Fighter'" :level="character.Level" :feature="characterClass.MartialArchetype.Features" :displayName="characterClass.MartialArchetype.Name"></bonus-features>
-            <bonus-features v-if="character.Class === 'Paladin'" :level="character.Level" :feature="characterClass.SacredOath.Features" :displayName="characterClass.SacredOath.Name"></bonus-features>
-            <bonus-features v-if="character.Class === 'Bard'" :level="character.Level" :feature="characterClass.CollegeFeatures.Features" :displayName="characterClass.CollegeFeatures.Name"></bonus-features>
-            <bonus-features v-if="character.Class === 'Ranger'" :level="character.Level" :feature="characterClass.Archetype.Features" :displayName="characterClass.Archetype.Name"></bonus-features>
-            <bonus-features v-if="character.Class === 'Warlock'" :level="character.Level" :feature="characterClass.OtherworldyPatron.Features" :displayName="characterClass.OtherworldyPatron.Name"></bonus-features>
-            <companion v-if="character.Class === 'Ranger'" :companion="characterClass.Companion"></companion>
+            <accordian v-if="character.Class === 'Fighter'" :header="characterClass.MartialArchetype.Name">
+              <bonus-features slot="body" :level="character.Level" :feature="characterClass.MartialArchetype.Features"></bonus-features>
+            </accordian>
+            <accordian v-if="character.Class === 'Paladin'" :header="characterClass.SacredOath.Name">
+              <bonus-features slot="body" :level="character.Level" :feature="characterClass.SacredOath.Features"></bonus-features>
+            </accordian>
+            <accordian v-if="character.Class === 'Bard'" :header="characterClass.CollegeFeatures.Name">
+              <bonus-features slot="body" :level="character.Level" :feature="characterClass.CollegeFeatures.Features"></bonus-features>
+            </accordian>
+            <accordian v-if="character.Class === 'Ranger'" :header="characterClass.Archetype.Name">
+              <bonus-features slot="body" :level="character.Level" :feature="characterClass.Archetype.Features"></bonus-features>
+            </accordian>
+            <accordian v-if="character.Class === 'Warlock'" :header="characterClass.OtherworldyPatron.Name">
+              <bonus-features slot="body" :level="character.Level" :feature="characterClass.OtherworldyPatron.Features"></bonus-features>
+            </accordian>
+            <accordian v-if="character.Class === 'Ranger'" :header="'Companion'">
+              <companion slot="body" :companion="characterClass.Companion"></companion>
+            </accordian>            
         </div>
       </div>
       <div class="d-flex flex-column character-equip">
@@ -208,7 +219,7 @@ export default {
   }
 
   .character-other {
-    flex: 4;
+    flex: 3;
   }
 
 .gold {

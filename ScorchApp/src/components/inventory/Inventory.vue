@@ -5,11 +5,21 @@
   </div>
   <div class="card-body">
     <div id="inventory" role="tablist">
-      <weapon-inventory @equip="equipItem" @delete="deleteItem" @sell="sellItem" :characterId="characterId" :weapons="weapons"></weapon-inventory>
-      <armor-inventory @equip="equipItem" @delete="deleteItem" @sell="sellItem" :armors="armors"></armor-inventory>
-      <accessory-inventory @equip="equipItem" @delete="deleteItem" @sell="sellItem" :accessories="accessories"></accessory-inventory>
-      <quiver-inventory @equip="equipItem" @delete="deleteItem" @sell="sellItem" :characterId="characterId" :quivers="quivers"></quiver-inventory>
-      <adventurer-gear-inventory @sell="sellItem" :adventurerGears="adventurerGears"></adventurer-gear-inventory>
+      <accordian :header="'Weapons'">
+        <weapon-inventory slot="body" @equip="equipItem" @delete="deleteItem" @sell="sellItem" :characterId="characterId" :weapons="weapons"></weapon-inventory>
+      </accordian>
+      <accordian :header="'Armors'">
+        <armor-inventory slot="body" @equip="equipItem" @delete="deleteItem" @sell="sellItem" :armors="armors"></armor-inventory>
+      </accordian>
+      <accordian :header="'Accessories'">
+        <accessory-inventory slot="body" @equip="equipItem" @delete="deleteItem" @sell="sellItem" :accessories="accessories"></accessory-inventory>
+      </accordian>
+      <accordian :header="'Quivers'">
+        <quiver-inventory slot="body" @equip="equipItem" @delete="deleteItem" @sell="sellItem" :characterId="characterId" :quivers="quivers"></quiver-inventory>
+      </accordian>
+      <accordian :header="'Adventurer Gear'">
+        <adventurer-gear-inventory slot="body" @sell="sellItem" :adventurerGears="adventurerGears"></adventurer-gear-inventory>
+      </accordian>    
     </div>
   </div>
 </div>
@@ -23,7 +33,7 @@ import AdventurerGearInventory from './adventurergear/AdventurerGearInventory'
 import QuiverInventory from './quiver/QuiverInventory'
 import ArmorInventory from './armor/ArmorInventory'
 import AccessoryInventory from './accessory/AccessoryInventory'
-
+import { Accordian } from 'components/util'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -75,7 +85,8 @@ export default {
       AdventurerGearInventory,
       QuiverInventory,
       ArmorInventory,
-      AccessoryInventory
+      AccessoryInventory,
+      Accordian
     }
 }
 

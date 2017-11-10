@@ -32,6 +32,7 @@ export default {
 .accordian {
     display: flex;
     flex-direction: column;
+    margin-bottom: 1%;
 }
 
 .accordian-header-background {
@@ -40,7 +41,6 @@ export default {
     background: #EB5757;
     background: -webkit-linear-gradient(to top, #000000, #EB5757);
     background: linear-gradient(to top, #000000, #EB5757);
-    margin-bottom: 1%;
 }
 
 .accordian-header {
@@ -67,6 +67,10 @@ export default {
     background: -webkit-linear-gradient(to top, #6f0000, #200122);
     background: linear-gradient(to top, #6f0000, #200122);
     color: white;
+}
+
+.accordian-body-container {
+    margin-top: 1%;
 }
 
 </style>
