@@ -49,7 +49,7 @@
   </div>
   <div class="d-flex flex-column character-other border">
     <character-leveling :character="character" :characterClass="characterClass"></character-leveling>
-    <dice-roller :name="this.user"></dice-roller>
+    <dice-roller :name="this.user" :dex="getDexMod()"></dice-roller>
     <inventory :characterId="character.CharacterId"></inventory>
   </div>
 </div>
@@ -71,6 +71,7 @@
   import { Inventory } from 'components/inventory'
   import { DiceRoller, Modal } from 'components/util'
   import { BonusFeatures, SpellSlots, Companion } from 'components/classFeatures'
+  import { AbilityModifierService } from 'services'
   export default {
     name: 'character-view',
     user: '',
@@ -112,6 +113,9 @@
     methods: {
       goTo(characterId) {
         this.$router.push('/character/' + characterId)
+      },
+      getDexMod() {
+        return AbilityModifierService.getAbilityModifier(this.character.Stats.Dexterity);
       }
     },
     watch: {
