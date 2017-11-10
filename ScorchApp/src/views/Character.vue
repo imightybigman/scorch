@@ -6,21 +6,17 @@
     </div>
   </div>
   <div class="d-flex flex-column character-info border">
-    <div class="d-flex flex-column character-basic-info">
-      <h4>
-        <strong>{{ name }}</strong>
-        <small>Lv. {{ character.Level }}</small>
-      </h4>
-      <div class="gold-counter"><img class="gold" src="~assets/icons/gold.png"/> {{ character.Gold }} </div>
-      <hp-bar :character="character"></hp-bar>
-      <exp-bar :character="character"></exp-bar>
+    <div class="d-flex flex-row character-basic-info">
+      <div class="d-flex">
+        <character-tile :character="character"></character-tile>
+      </div>
+      <div class="d-flex">
+        <character-stats-card slot="body" :stats="character.Stats" :proficiency="character.Proficiency" :characterClass="characterClass || {}" :level="character.Level"></character-stats-card>                
+      </div>
     </div>
     <div class="d-flex flex-row flex-wrap character-screen">
       <div id="character-details" class="d-flex flex-column character-details">
         <h4>Character Info</h4>
-        <accordian :header="'Stats'">
-            <character-stats-card slot="body" :stats="character.Stats" :proficiency="character.Proficiency" :characterClass="characterClass || {}" :level="character.Level"></character-stats-card>                
-        </accordian>
         <accordian :header="'Bio'">
           <character-bio-card slot="body" :character="character"></character-bio-card>
         </accordian>
@@ -176,7 +172,7 @@ export default {
 
   .party-navigation {
     padding: 1%;
-    flex: 1 0 auto;
+    flex: 1 1 auto;
     overflow-y: scroll;
 
     .character-cards-container {
@@ -187,7 +183,7 @@ export default {
   }
 
   .character-info {
-    flex: 2 0 auto;
+    flex: 4 0 auto;
 
     .character-screen {
       flex: 1 0 auto;
@@ -219,16 +215,8 @@ export default {
   }
 
   .character-other {
-    flex: 3;
+    flex: 5;
   }
-
-.gold {
-  width: 2%;
-  height: 2%;
-}
-.gold-counter {
-  float: right;
-}
 
 .level-btn {
   color: white;

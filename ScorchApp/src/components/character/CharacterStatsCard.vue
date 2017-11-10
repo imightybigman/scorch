@@ -1,6 +1,20 @@
 <template>
-<div class="character-stat-card">
-  <div v-for="(statValue, stat, index) in stats" :key="index">
+<div class="character-stat-card card">
+  <div class="card-body">
+    <div class="d-flex">
+        <span>Str: {{ stats.Strength }} {{ getABM(stats.Strength) }}</span>
+        <span>Dex: {{ stats.Dexterity }} {{ getABM(stats.Dexterity) }}</span>
+        <span>Con: {{ stats.Constitution }} {{ getABM(stats.Constitution) }}</span>
+      </div>
+      <div class="d-flex">
+        <span>Int: {{ stats.Intelligence }} {{ getABM(stats.Intelligence) }}</span>
+        <span>Wis: {{ stats.Wisdom }} {{ getABM(stats.Wisdom) }}</span>
+        <span>Cha: {{ stats.Charisma }} {{ getABM(stats.Charisma) }}</span>
+      </div>
+    <span>Pro: {{ proficiency }}</span>
+  </div>
+</div>
+  <!-- <div v-for="(statValue, stat, index) in stats" :key="index">
     <strong>{{ stat }}:</strong>
     <span class="stat">{{ statValue }} {{ getABM(statValue) }}</span>
   </div>
@@ -12,7 +26,7 @@
     <strong>Hit Dice:</strong>
     <span class="stat">{{ characterClass.HitDice }}</span>
   </div>
-  <hr> <!-- Break line for spell stuff -->
+  
   <div v-if="characterClass && ['Bard', 'Warlock'].indexOf(characterClass.Name) !== -1">
     <strong>Known Cantrips:</strong>
     <span class="stat">{{ knownCantrips }}</span>
@@ -24,7 +38,7 @@
   <div v-if="characterClass && characterClass.Name === 'Warlock'">
     <strong>Known Invocations:</strong>
     <span class="stat">{{ knownInvocations }}</span>
-  </div>
+  </div> -->
 </div>
 
 </template>
