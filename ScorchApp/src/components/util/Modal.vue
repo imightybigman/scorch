@@ -82,6 +82,7 @@ export default {
   font-family: Helvetica, Arial, sans-serif;
   max-height: 650px;
   overflow-y: scroll;
+  color: black;
 }
 
 .modal-header h3 {

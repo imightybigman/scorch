@@ -14,11 +14,16 @@
 </template>
 
 <script>
+
+import { v4 as createGuid } from 'uuid' 
+
 export default {
     id: 'accordian',
-    props: ['id', 'parent', 'header'],
+    props: ['parent', 'header'],
     computed: {
-
+        id() {
+            return createGuid();
+        }
     }
 }
 </script>

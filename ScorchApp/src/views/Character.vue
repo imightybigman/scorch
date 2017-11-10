@@ -18,18 +18,19 @@
     <div class="d-flex flex-row flex-wrap character-screen">
       <div id="character-details" class="d-flex flex-column character-details">
         <h4>Character Info</h4>
-        <accordian :id="'character-stats'" :header="'Stats'">
+        <accordian :header="'Stats'">
             <character-stats-card slot="body" :stats="character.Stats" :proficiency="character.Proficiency" :characterClass="characterClass || {}" :level="character.Level"></character-stats-card>                
         </accordian>
-        <accordian :id="'character-bio'" :header="'Bio'">
+        <accordian :header="'Bio'">
           <character-bio-card slot="body" :character="character"></character-bio-card>
         </accordian>
-        <accordian :id="'character-skills'" :header="'Skills'">
+        <accordian :header="'Skills'">
           <character-skills-card slot="body" :skills="character.Skills"></character-skills-card>
         </accordian>
-        <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
         <div v-if="characterClass">
             <spell-slots v-if="characterClass.SpellSlots" :level="character.Level" :spellSlots="characterClass.SpellSlots"></spell-slots>
+            <accordian :header="'Skills'">
+            </accordian>
             <bonus-features :level="character.Level" :feature="characterClass.BonusFeatures" :displayName="characterClass.Name"></bonus-features>
             <bonus-features v-if="character.Class === 'Fighter'" :level="character.Level" :feature="characterClass.MartialArchetype.Features" :displayName="characterClass.MartialArchetype.Name"></bonus-features>
             <bonus-features v-if="character.Class === 'Paladin'" :level="character.Level" :feature="characterClass.SacredOath.Features" :displayName="characterClass.SacredOath.Name"></bonus-features>
@@ -63,7 +64,6 @@
 
 <script>
 
-<<<<<<< HEAD
 import {  CharacterTile,
           CharacterEquip,
           CharacterStatsCard,
@@ -78,7 +78,7 @@ import {  CharacterTile,
 import { Inventory } from 'components/inventory'
 import { DiceRoller, Modal, Accordian } from 'components/util'
 import { BonusFeatures, SpellSlots, Companion } from 'components/classFeatures'
-
+import { AbilityModifierService } from 'services'
 export default {
   name: 'character-view',
   user: '',
@@ -110,9 +110,6 @@ export default {
     party() {
       return this.$store.getters.myParty;
     },
-    getDexMod() {
-        return AbilityModifierService.getAbilityModifier(this.character.Stats.Dexterity);
-    },
     character() {
       return this.$store.getters.getCharacterById(this.characterId);
     },
@@ -123,7 +120,10 @@ export default {
   methods: {
     goTo(characterId) {
       this.$router.push('/character/' + characterId)
-    }
+    },
+    getDexMod() {
+        return AbilityModifierService.getAbilityModifier(this.character.Stats.Dexterity);
+    },
   },
   watch: {
     async character(newCharacter) {
