@@ -9,7 +9,7 @@
       <div class="home-message">
         <h1>{{ msg }}</h1>
       </div>
-      <div class="character-card-container">
+      <div class="character-card-container d-flex">
         <div class="card" v-for="(char, index) in characters" :key="index">
           <character-card :characterInfo="char"></character-card>
         </div>
@@ -25,7 +25,7 @@ export default {
   name: 'home',
   data () {
     return {
-      msg: 'Welcome to Your DnD App',
+      msg: 'Welcome to Scorch',
     }
   },
   created() {
@@ -48,14 +48,17 @@ export default {
     text-align: center;
   }
   .card {
-    width: 45%;
     margin: 1%;
+    flex:1;
+    min-width: 45%;
+    min-height: 10%;
+    max-height: 100%;
   }
   .character-card-container {
     margin: 0 auto;
-    width: 70%;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    width: 75%;
   }
 </style>
