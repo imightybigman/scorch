@@ -1,11 +1,18 @@
 <template>
-  <div class="home container">
-    <div class="home-message">
-      <h1>{{ msg }}</h1>
+  <div>
+    <div class="home-logo-container">
+      <router-link :to="'/'">
+        <img class="home-logo" src="../assets/DnD_transparent.png">
+      </router-link>
     </div>
-    <div class="character-card-container">
-      <div class="card" v-for="(char, index) in characters" :key="index">
-        <character-card :characterInfo="char"></character-card>
+    <div class="home container">
+      <div class="home-message">
+        <h1>{{ msg }}</h1>
+      </div>
+      <div class="character-card-container">
+        <div class="card" v-for="(char, index) in characters" :key="index">
+          <character-card :characterInfo="char"></character-card>
+        </div>
       </div>
     </div>
   </div>

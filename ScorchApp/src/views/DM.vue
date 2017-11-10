@@ -1,6 +1,6 @@
 <template>
     <div class="dm-view">
-        <vue-tabs>
+        <vue-tabs class="testtemp" activeTabColor="white">
             <v-tab title="Party">
                 <dungeon-master-main></dungeon-master-main>
             </v-tab>
@@ -16,7 +16,6 @@
             <v-tab title="Log">
                 This'll be the log... too many tabs?
             </v-tab>
-
         </vue-tabs>
     </div>
 </template>
@@ -42,5 +41,6 @@ export default {
 .dm-view {
     margin: 0 auto;
     width: 90%;
+    
 }
 </style>

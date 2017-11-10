@@ -12,18 +12,32 @@
 </template>
 
 <script>
+  import find from 'lodash/find'
+
 export default {
   name: 'character-card',
   props: ['characterInfo'],
   computed: {
     description() {
       return `Lvl: ${this.characterInfo.Level}, Race: ${this.characterInfo.Race}, Class: ${this.characterInfo.Class}`
+    },
+    imageUrl() {
+      let characterMap = [{"id" : "84674b34-b513-497f-8909-dc8d5dfffe86",  "url" : "evil-paladin.jpg"}];
+      let myChar = find(characterMap, {"id" : this.characterInfo.CharacterId});
+      if(myChar){
+        console.log("~assets/" + myChar.url);
+        return "~assets/" + myChar.url;
+      }
+      else
+        return "~assets/blank-background.jpg";
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+  .card{
+    text-align:center;
+  }
 
 </style>
