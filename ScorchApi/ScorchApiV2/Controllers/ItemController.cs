@@ -75,7 +75,7 @@ namespace ScorchApiV2.Controllers
         {
             item.ItemId = itemId;
             Document doc = Document.FromJson(JsonConvert.SerializeObject(item));
-            await _itemTable.PutItemAsync(doc);
+            await _itemTable.UpdateItemAsync(doc);
 
             return item;
         }

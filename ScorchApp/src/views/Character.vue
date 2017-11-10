@@ -55,7 +55,7 @@
   </div>
   <div class="d-flex flex-column character-other border">
     <character-leveling :character="character" :characterClass="characterClass"></character-leveling>
-    <dice-roller :name="this.user"></dice-roller>
+    <dice-roller :name="this.user" :dex="getDexMod()"></dice-roller>
     <inventory :characterId="character.CharacterId"></inventory>
   </div>
 </div>
@@ -63,6 +63,7 @@
 
 <script>
 
+<<<<<<< HEAD
 import {  CharacterTile,
           CharacterEquip,
           CharacterStatsCard,
@@ -108,6 +109,9 @@ export default {
     },
     party() {
       return this.$store.getters.myParty;
+    },
+    getDexMod() {
+        return AbilityModifierService.getAbilityModifier(this.character.Stats.Dexterity);
     },
     character() {
       return this.$store.getters.getCharacterById(this.characterId);

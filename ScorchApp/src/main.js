@@ -22,7 +22,6 @@ Vue.url.options.root = 'http://localhost:5000/api';
 
 Vue.use(VueSocketio, process.env.SOCKET_HOST, store);
 
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
