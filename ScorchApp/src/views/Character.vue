@@ -8,9 +8,9 @@
   <div class="d-flex flex-column character-info border">
     <div class="d-flex flex-row character-basic-info">
         <character-tile :character="character"></character-tile>
-        <character-stats-card slot="body" :stats="character.Stats" :proficiency="character.Proficiency" :characterClass="characterClass || {}" :level="character.Level"></character-stats-card>                
+        <character-stats-card slot="body" :stats="character.Stats" :proficiency="character.Proficiency" :characterClass="characterClass || {}"></character-stats-card>                
     </div>
-    <div class="d-flex flex-row flex-wrap character-screen">
+    <div class="d-flex flex-row justify-content-between character-screen">
       <div id="character-details" class="d-flex flex-column character-details">
         <h4>Character Info</h4>
         <accordian :header="'Bio'">
@@ -49,14 +49,16 @@
             <character-equip :character="character"></character-equip>
           </v-tab>
           <v-tab title="Spells">
-            things
+            <div class="d-flex">
+            <spell-info :characterClass="characterClass || {}" :level="character.Level"></spell-info>
+            <spell-list></spell-list>
+            </div>           
           </v-tab>
         </vue-tabs>
       </div>
-
     </div>
-    <div class="d-flex notes black-border" style="overflow: scroll;">
-      <ul style="padding: 0;">
+    <div class="d-flex notes black-border">
+      <ul>
         <li v-for="(log, index) in logs" class="list-unstyled" :key="index">
           {{ log.message }} <br />
         </li>
@@ -85,6 +87,7 @@ import {  CharacterTile,
           HpBar } from 'components/character'
 
 import { Inventory } from 'components/inventory'
+import { SpellInfo, SpellList } from 'components/spells'
 import { DiceRoller, Modal, Accordian } from 'components/util'
 import { BonusFeatures, SpellSlots, Companion } from 'components/classFeatures'
 import { AbilityModifierService } from 'services'
@@ -161,7 +164,9 @@ export default {
     SpellSlots,
     Companion,
     VueTabs,
-    VTab
+    VTab,
+    SpellInfo,
+    SpellList
   }
 }
 
@@ -186,7 +191,6 @@ export default {
       margin-bottom: 1%;
       border-radius: 10px;
     }
-
   }
 
   .character-info {

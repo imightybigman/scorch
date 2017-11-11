@@ -4,11 +4,14 @@
 
 .item-list {
     max-height: 500px;
-    overflow-y:scroll;
+    overflow: auto;
 }
+
 .inventory-card {
     flex: 1 0 auto;
+    overflow: hidden;
 }
+
 .list-item {
     padding: 3%;
     border-radius: 10px;

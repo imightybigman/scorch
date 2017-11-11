@@ -12,7 +12,7 @@
         <span class="stat">Wis: {{ stats.Wisdom }} <strong>{{ getABM(stats.Wisdom) }}</strong></span>
         <span class="stat">Cha: {{ stats.Charisma }} <strong>{{ getABM(stats.Charisma) }}</strong></span>
         <span class="stat">Proficiency: {{ proficiency }}</span>
-        <span class="stat">HitDice: {{ characterClass.HitDice }}</span>
+        <span class="stat">Hit Die: {{ characterClass.HitDice }}</span>
       </div>
   </div>
 </div>
@@ -22,21 +22,7 @@
 import { AbilityModifierService } from 'services'
 export default {
   name: 'character-stat-card',
-  props: ['stats', 'proficiency', 'characterClass', 'level'], 
-  computed: {
-    knownSpells() {
-      return this.characterClass && this.characterClass.SpellsKnown[this.levelKey];
-    },
-    knownCantrips() {
-      return this.characterClass && this.characterClass.CantripsKnown[this.levelKey];
-    },
-    knownInvocations() {
-      return this.characterClass && this.characterClass.InvocationsKnown[this.levelKey];
-    },
-    levelKey() {
-      return `Level_${this.level}`;
-    }
-  },
+  props: ['stats', 'proficiency', 'characterClass'], 
   methods: {
     getABM(val) {
       let mod = AbilityModifierService.getAbilityModifier(val);
