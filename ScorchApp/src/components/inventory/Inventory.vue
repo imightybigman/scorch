@@ -70,6 +70,14 @@ export default {
           itemId: item.ItemId
         }
         await this.$store.dispatch('sellItem', sellPayload);
+      },
+      async deleteItem(item){
+        let deletePayload = {
+          characterId: this.characterId,
+          itemId: item.ItemId
+        }
+        console.log(item);
+        await this.$store.dispatch('deleteItem', deletePayload);
       }
     },
     components: {

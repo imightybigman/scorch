@@ -50,7 +50,7 @@
           </v-tab>
           <v-tab title="Spells">
           <div class="d-flex flex-column spells card">
-            <spell-slots v-if="characterClass.SpellSlots" :level="character.Level" :spellSlots="characterClass.SpellSlots"></spell-slots>
+            <spell-slots v-if="characterClass && characterClass.SpellSlots" :level="character.Level" :spellSlots="characterClass.SpellSlots"></spell-slots>
             <spell-info :characterClass="characterClass || {}" :level="character.Level"></spell-info>
             <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
           </div>   

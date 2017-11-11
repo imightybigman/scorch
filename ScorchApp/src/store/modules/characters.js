@@ -195,6 +195,18 @@ const mutations = {
                 break;
             }
         }
+    },
+    [types.DELETE_ITEM] (state, payload) {
+        let id = payload.characterId;
+        let itemId = payload.itemId;
+        for(let i = 0; i < state.party.length; i++) {
+            let ch = state.party[i];
+            if(ch.CharacterId === id) {
+                let index = findIndex(state.party[i].Inventory,(i) => i.ItemId === itemId);
+                state.party[i].Inventory.splice(index, 1);
+                break;
+            }
+        }
     }
 }
 
