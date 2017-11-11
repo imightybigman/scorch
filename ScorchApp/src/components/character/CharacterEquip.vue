@@ -114,7 +114,7 @@
     </div>
     <context-menu id="context-menu" @ctx-open="onCtxOpen" ref="ctxMenu">
       <li class="ctx-item" @click="unequip($event, item)">Unequip</li>
-    </context-menu>
+    </context-menu> 
 </div>
 </template>
 

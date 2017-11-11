@@ -38,6 +38,7 @@ export default {
 
 .character-stat-card {
   flex: 1 0;
+  max-height: 115px;
 }
 
 .stat {

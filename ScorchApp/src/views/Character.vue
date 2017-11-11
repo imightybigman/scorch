@@ -49,10 +49,11 @@
             <character-equip :character="character"></character-equip>
           </v-tab>
           <v-tab title="Spells">
-            <div class="d-flex flex-column">
+          <div class="d-flex flex-column spells card">
+            <spell-slots v-if="characterClass.SpellSlots" :level="character.Level" :spellSlots="characterClass.SpellSlots"></spell-slots>
             <spell-info :characterClass="characterClass || {}" :level="character.Level"></spell-info>
-            <spell-list></spell-list>
-            </div>           
+            <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
+          </div>   
           </v-tab>
         </vue-tabs>
       </div>
@@ -197,7 +198,7 @@ export default {
     flex: 2 0 auto;
 
     .character-screen {
-      flex: 1 0 auto;
+      flex: 4 0 auto;
 
       >div {
         margin: 1%;
@@ -220,7 +221,7 @@ export default {
       padding: 1% 1% 0 1%;
     }
     .notes {
-      flex: 1 0 auto;
+      flex: 2 0 auto;
       height: 200px;
     }
   }
@@ -231,5 +232,13 @@ export default {
 
 .level-btn {
   color: white;
+}
+
+.spells {
+  background: white;
+  padding: 3%;
+  flex: 1 0;
+  height: 100%;
+  width: 100%;
 }
 </style>
