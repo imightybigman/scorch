@@ -12,7 +12,7 @@
                         <character-operator :character-list="selectedChars" :item="selectedItem"></character-operator>
                     </div>
                     <div class="item-card">
-                        <div v-if="selectedItem.ItemId" class ="border item-card-inner" >
+                        <div v-if="selectedItem.ItemId" class ="border border-dark item-card-inner" >
                             <item-card :item="selectedItem"></item-card>
                         </div>
                     </div>
@@ -131,6 +131,6 @@ export default {
         flex: 1;
     }
     .item-card-inner{
-        min-height: 75%;
+        min-height: 95%;
     }
 </style>
