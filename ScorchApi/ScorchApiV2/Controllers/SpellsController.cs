@@ -44,6 +44,33 @@ namespace ScorchApiV2.Controllers
             return spellList;
         }
 
+        [HttpGet("sparse")]
+        public async Task<IList<Spell>> GetSparse()
+        {
+            var scanFilter = new ScanFilter();
+            var search = _spellsTable.Scan(scanFilter);
+            var spellList = new List<Spell>();
+            do
+            {
+                var documentList = await search.GetNextSetAsync();
+                foreach (var document in documentList)
+                {
+                    var json = document.ToJson();
+                    var spell = JsonConvert.DeserializeObject<Spell>(json);
+                    spellList.Add(new Spell
+                    {
+                        SpellId = spell.SpellId,
+                        Level = spell.Level,
+                        Name = spell.Name,
+                        DamageType = spell.DamageType,
+
+                    });
+                }
+            } while (!search.IsDone);
+
+            return spellList;
+        }
+
 
         [HttpGet("{spellId}")]
         public async Task<Spell> GetSpell(Guid spellId)

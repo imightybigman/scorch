@@ -49,7 +49,7 @@
             <character-equip :character="character"></character-equip>
           </v-tab>
           <v-tab title="Spells">
-            <div class="d-flex">
+            <div class="d-flex flex-column">
             <spell-info :characterClass="characterClass || {}" :level="character.Level"></spell-info>
             <spell-list></spell-list>
             </div>           
