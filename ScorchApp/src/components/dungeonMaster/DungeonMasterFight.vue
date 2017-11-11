@@ -1,24 +1,28 @@
 <template>
-    <div class="dm-main-component">
+    <div class="dm-fight-component">
         <div class="d-flex dm-character-view">
             <div class="flex-column dm-party-view">
                 <div class="dm-character-cards-container" v-for="(char, index) in party" @click="toggleCharacter(char)" :key="index">
                     <character-tile :character="char" v-bind:class="{ selected: isCharacterSelected(char) }"></character-tile>
                 </div>
             </div>
-            <div class="rhs-character-ops">
+            <div class="dm-fight-view">
                 <div class="d-flex bottom-bar">
                     <div class="character-operations">
-                        <character-operator :character-list="selectedChars" :item="selectedItem"></character-operator>
-                    </div>
-                    <div class="item-card">
-                        <div v-if="selectedItem.ItemId" class ="border border-dark item-card-inner" >
-                            <item-card :item="selectedItem"></item-card>
-                        </div>
+                        <fight-operator :character-list="selectedChars"></fight-operator>
                     </div>
                 </div>
-                <div class="item-searcher flex-column">
-                    <searcher @search-row-selected="searchItem" :search-data="searchItems" :limit-per-page="10" :column-keys="columnKeys"/>
+            </div>
+            <div class="d-flex dm-initiative-view">
+                <div class="flex-column">
+                    <div class="initiative">
+                      <h3>
+                          Initiative
+                      </h3>
+                        <div v-for="user in party">
+                            <ul>0 : {{user.Firstname}} {{user.Lastname}}</ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -29,23 +33,17 @@
 <script>
     import { CharacterTile } from 'components/character'
     import CharacterOperator from './operators/CharacterOperator.vue'
-    import { Searcher } from 'components/util'
-    import { ItemCard } from 'components/items'
-    import { ItemService } from 'services'
+    import FightOperator from './operators/FightOperator'
 
 export default {
-    name : 'dm-main-component',
-
+    name : 'dm-fight-component',
     data() {
         return {
             selectedChars: [],
-            selectedItem: {},
-            columnKeys: ['Name', 'ItemClass', 'Cost', 'AC', 'Damage', 'Slot']
         }
     },
     async created() {
       await this.$store.dispatch('getParty');
-      await this.$store.dispatch('getDisplayItems');
     },
     methods: {
         toggleCharacter(character) {
@@ -61,28 +59,17 @@ export default {
         },
         isCharacterSelected(character) {
             return !(this.selectedChars.find(char => char.CharacterId == character.CharacterId) == undefined);
-        },
-        async searchItem(item){
-            if(item){
-                let response = {};
-                response = await ItemService.getItemById(item.ItemId);
-                this.selectedItem = response.body;
-            }
         }
     },
     computed: {
         party() {
             return this.$store.getters.myParty;
-        },
-        searchItems() {
-            return this.$store.getters.items;
         }
     },
     components: {
         CharacterTile,
-        CharacterOperator,
-        Searcher,
-        ItemCard
+        FightOperator,
+        CharacterOperator
     }
 }
 </script>
@@ -106,6 +93,12 @@ export default {
             margin-bottom: 1%;
             border-radius: 10px;
         }
+    }
+    .dm-initiative-view {
+        flex: 2;
+    }
+    .dm-fight-view {
+      flex: 3;
     }
     .character-operations {
         margin: 1%;
@@ -131,6 +124,6 @@ export default {
         flex: 1;
     }
     .item-card-inner{
-        min-height: 95%;
+        min-height: 75%;
     }
 </style>

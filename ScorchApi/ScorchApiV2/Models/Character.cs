@@ -29,6 +29,7 @@ namespace ScorchApiV2.Models
         public List<Spell> Spells       { get; set; } = new List<Spell>();
         public List<Item> Inventory     { get; set; } = new List<Item>();
         public List<string> Notes       { get; set; } = new List<string>();
+        public int Initiation           { get; set; }
         
         public Character() { }
 

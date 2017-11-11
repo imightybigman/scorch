@@ -160,9 +160,8 @@ export default {
         margin-top: 2%;
         padding: 1%;
         border-radius: 10px;
-        background-image: url('~assets/cardBackground.png');
+
         border-style: solid;
-        box-shadow: 5px 5px 5px grey;
     }
     .searcher-inner {
         padding: 1%;

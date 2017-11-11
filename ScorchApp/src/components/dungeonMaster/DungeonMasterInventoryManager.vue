@@ -10,7 +10,7 @@
           <button class="createArmor" type="button" v-on:click="state='createArmor';selectedItem=''"></button>
           <button class="createQuiver" type="button" v-on:click="state='createQuiver';selectedItem=''"></button>
           <button class="createWeapon" type="button" v-on:click="state='createWeapon';selectedItem=''"></button>
-          <button class="createAccessory" type="button" v-on:click="state='createAccessory';selectedItem=''"></button>
+          <button class="createAccessory" type="button" v-on:click="state='createAccessory';selectedItem=''"></button>          
         </div>
         <div class="flex-column item-creator">
           <div>
@@ -18,7 +18,7 @@
               <weapon-creator :weapon="this.selectedItem" v-if="state == 'createWeapon'" />
               <armor-creator :armor="this.selectedItem" v-if="state == 'createArmor'" />
               <quiver-creator :quiver="this.selectedItem" v-if="state == 'createQuiver'" />
-              <accessory-creator :accessory="this.selectedItem" v-if="state == 'createAccessory'" />
+              <accessory-creator :accessory="this.selectedItem" v-if="state == 'createAccessory'" />              
           </div>
         </div>
     </div>
