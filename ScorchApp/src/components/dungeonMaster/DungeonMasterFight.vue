@@ -6,18 +6,21 @@
                     <character-tile :character="char" v-bind:class="{ selected: isCharacterSelected(char) }"></character-tile>
                 </div>
             </div>
-            <div class="rhs-character-ops">
+            <div class="dm-fight-view">
                 <div class="d-flex bottom-bar">
                     <div class="character-operations">
                         <fight-operator :character-list="selectedChars"></fight-operator>
                     </div>
                 </div>
             </div>
-            <div class="d-flex">
+            <div class="d-flex dm-initiative-view">
                 <div class="flex-column">
                     <div class="initiative">
+                      <h3>
+                          Initiative
+                      </h3>
                         <div v-for="user in party">
-                            <ul>{{user.LastName}}: 0</ul>
+                            <ul>0 : {{user.Firstname}} {{user.Lastname}}</ul>
                         </div>
                     </div>
                 </div>
@@ -29,12 +32,12 @@
 
 <script>
     import { CharacterTile } from 'components/character'
+    import CharacterOperator from './operators/CharacterOperator.vue'
     import FightOperator from './operators/FightOperator'
 
 export default {
     name : 'dm-fight-component',
     data() {
-      console.log(party);
         return {
             selectedChars: [],
         }
@@ -65,7 +68,8 @@ export default {
     },
     components: {
         CharacterTile,
-        FightOperator
+        FightOperator,
+        CharacterOperator
     }
 }
 </script>
@@ -89,6 +93,12 @@ export default {
             margin-bottom: 1%;
             border-radius: 10px;
         }
+    }
+    .dm-initiative-view {
+        flex: 2;
+    }
+    .dm-fight-view {
+      flex: 3;
     }
     .character-operations {
         margin: 1%;
