@@ -154,7 +154,7 @@ namespace ScorchApiV2.Controllers
             await _characterTable.UpdateItemAsync(updateDocument);
         }
 
-
+         
         [HttpDelete("{characterId}")]
         public async Task DeleteCharacter(Guid characterId)
         {
