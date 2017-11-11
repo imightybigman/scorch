@@ -45,6 +45,7 @@
     </div>
     <div class="card-body">
         <button class="btn btn-primary" @click="showModal = true">Do Dice Roller</button>
+        <button class="btn btn-primary" @click="rollInitiative()" :disabled="initRolled">Roll Initiative</button>
     </div>
 </div>
 
@@ -56,7 +57,7 @@ import sum from 'lodash/sum'
 
 export default {
     name: 'dice-roller',
-    props: ['name'],
+    props: ['name', 'dex'],
     data() {
         return {
             showModal: false,
@@ -66,7 +67,8 @@ export default {
             rollD8Count: 0,
             rollD10Count: 0,
             rollD12Count: 0,
-            rollD20Count: 0
+            rollD20Count: 0,
+            initRolled: false
         }
     },
     watch: {
@@ -129,7 +131,13 @@ export default {
         close(){
             $("body").removeClass("modal-open");
             this.showModal = false;
+        },
+        rollInitiative() {
+          let currentRoll = Math.floor(Math.random() * 20) + 1
+          this.logAction(this.name + " rolled for initiative (d20 + Dexterity modifier) and got a " + (currentRoll + this.dex));
+          this.initRolled = true;
         }
+
     },
     computed: {
         rollTotal() {

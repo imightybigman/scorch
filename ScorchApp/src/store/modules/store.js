@@ -25,6 +25,15 @@ const actions = {
             commit(types.API_ERROR, errorResponse.bodyText);
         }
     },
+    async updateInventory({ commit }, payload) {
+      let response = {};
+      try{
+          response = await ItemService.putItem(payload.body.ItemId, payload.body);
+          commit(types.UPDATE_ITEM, response.body);
+      } catch(errorResponse) {
+          commit(types.API_ERROR, errorResponse.bodyText);
+      }
+    },
     async getDisplayItems({ commit }) {
         let response = {};
         try{

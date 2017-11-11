@@ -161,13 +161,23 @@ namespace ScorchApiV2.Controllers
             await _characterTable.DeleteItemAsync(characterId);
         }
 
-        [HttpDelete("{characterId}/inventory")]
-        public async Task DeleteItemFromInventory(Guid characterId, Guid itemId)
+        [HttpDelete("{characterId}/inventory/sell")]
+        public async Task SellItemFromInventory(Guid characterId, Guid itemId)
         {
             var character = await GetCharacter(characterId);
             var item = character.Inventory.Find(x => x.ItemId == itemId);
             character.Inventory.RemoveAll(x => x.ItemId == itemId);
             character.Gold += Convert.ToInt32(item.Cost);
+
+            var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
+            await _characterTable.UpdateItemAsync(updateDocument);
+        }
+
+        [HttpDelete("{characterId}/inventory/delete")]
+        public async Task RemoveItemFromInventory(Guid characterId, Guid itemId)
+        {
+            var character = await GetCharacter(characterId);
+            character.Inventory.RemoveAll(x => x.ItemId == itemId);
 
             var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
             await _characterTable.UpdateItemAsync(updateDocument);

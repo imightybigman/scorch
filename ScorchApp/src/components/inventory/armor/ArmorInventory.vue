@@ -10,8 +10,8 @@
         </div>
         <div id="armorInventory" class="collapse" role="tabpanel" aria-labelledby="armor" data-parent="#inventory">
             <div class="card-body item-list">
-            <div v-for="(armor, index) in armors" 
-                    :key="index" 
+            <div v-for="(armor, index) in armors"
+                    :key="index"
                     class="d-flex flex-column list-item border">
                     <div @click="armorClick(armor)">
                         <item-card :item="armor"></item-card>
@@ -20,8 +20,11 @@
                         <button class="btn btn-primary" @click="equipArmor(armor)">
                             Equip
                         </button>
-                        <button class="btn btn-danger" @click="sellArmor(armor)">
+                        <button class="btn btn-warning" @click="sellArmor(armor)">
                             Sell
+                        </button>
+                        <button class="btn btn-danger" @click="deleteArmor(armor)">
+                          Delete
                         </button>
                     </div>
                 </div>
@@ -52,6 +55,9 @@ export default {
         },
         sellArmor(armor) {
             this.$emit('sell', armor);
+        },
+        deleteArmor(armor) {
+            this.$emit('delete', armor);
         }
     },
     components: {

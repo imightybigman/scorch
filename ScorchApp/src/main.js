@@ -20,7 +20,7 @@ Vue.config.productionTip = false
 Vue.url.options.root = process.env.API_HOST;
 //Vue.url.options.root = 'http://localhost:5000/api';
 
-Vue.use(VueSocketio, 'http://54.234.179.234:3000/', store);
+Vue.use(VueSocketio, 'https://54.234.179.234:3000/', store);
 
 
 /* eslint-disable no-new */
