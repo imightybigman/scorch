@@ -7,12 +7,8 @@
   </div>
   <div class="d-flex flex-column character-info border">
     <div class="d-flex flex-row character-basic-info">
-      <div class="d-flex">
         <character-tile :character="character"></character-tile>
-      </div>
-      <div class="d-flex">
         <character-stats-card slot="body" :stats="character.Stats" :proficiency="character.Proficiency" :characterClass="characterClass || {}" :level="character.Level"></character-stats-card>                
-      </div>
     </div>
     <div class="d-flex flex-row flex-wrap character-screen">
       <div id="character-details" class="d-flex flex-column character-details">
@@ -47,9 +43,15 @@
             </accordian>            
         </div>
       </div>
-      <div class="d-flex flex-column character-equip">
-        <h4>Character Equip</h4>
-        <character-equip :character="character"></character-equip>
+      <div class="d-flex flex-column character-advanced-info">
+        <vue-tabs>
+          <v-tab title="Equip">
+            <character-equip :character="character"></character-equip>
+          </v-tab>
+          <v-tab title="Spells">
+            things
+          </v-tab>
+        </vue-tabs>
       </div>
 
     </div>
@@ -63,7 +65,7 @@
   </div>
   <div class="d-flex flex-column character-other border">
     <character-leveling :character="character" :characterClass="characterClass"></character-leveling>
-    <dice-roller :name="this.user" :dex="getDexMod()"></dice-roller>
+    <dice-roller :name="user" :dex="getDexMod()"></dice-roller>
     <inventory :characterId="character.CharacterId"></inventory>
   </div>
 </div>
@@ -86,11 +88,14 @@ import { Inventory } from 'components/inventory'
 import { DiceRoller, Modal, Accordian } from 'components/util'
 import { BonusFeatures, SpellSlots, Companion } from 'components/classFeatures'
 import { AbilityModifierService } from 'services'
+import { VueTabs, VTab } from 'vue-nav-tabs'
+import 'vue-nav-tabs/themes/vue-tabs.css'
+
 export default {
   name: 'character-view',
-  user: '',
   data() {
     return {
+      user: '',
       logs: [
 
       ]
@@ -154,7 +159,9 @@ export default {
     Accordian,
     BonusFeatures,
     SpellSlots,
-    Companion
+    Companion,
+    VueTabs,
+    VTab
   }
 }
 
@@ -183,7 +190,7 @@ export default {
   }
 
   .character-info {
-    flex: 4 0 auto;
+    flex: 2 0 auto;
 
     .character-screen {
       flex: 1 0 auto;
@@ -199,7 +206,7 @@ export default {
         }
       }
 
-      .character-equip {
+      .character-advanced-info {
         flex: 1 0 auto;
       }
 

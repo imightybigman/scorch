@@ -1,46 +1,21 @@
 <template>
-<div class="character-stat-card card">
+<div class="character-stat-card d-flex card">
   <div class="card-body">
+    <h5>Character Stats</h5>
     <div class="d-flex">
-        <span>Str: {{ stats.Strength }} {{ getABM(stats.Strength) }}</span>
-        <span>Dex: {{ stats.Dexterity }} {{ getABM(stats.Dexterity) }}</span>
-        <span>Con: {{ stats.Constitution }} {{ getABM(stats.Constitution) }}</span>
+        <span class="stat">Str: {{ stats.Strength }} <strong>{{ getABM(stats.Strength) }}</strong></span>
+        <span class="stat">Dex: {{ stats.Dexterity }} <strong>{{ getABM(stats.Dexterity) }}</strong></span>
+        <span class="stat">Con: {{ stats.Constitution }} <strong>{{ getABM(stats.Constitution) }}</strong></span>
+        <span class="stat">Int: {{ stats.Intelligence }} <strong>{{ getABM(stats.Intelligence) }}</strong></span>
       </div>
       <div class="d-flex">
-        <span>Int: {{ stats.Intelligence }} {{ getABM(stats.Intelligence) }}</span>
-        <span>Wis: {{ stats.Wisdom }} {{ getABM(stats.Wisdom) }}</span>
-        <span>Cha: {{ stats.Charisma }} {{ getABM(stats.Charisma) }}</span>
+        <span class="stat">Wis: {{ stats.Wisdom }} <strong>{{ getABM(stats.Wisdom) }}</strong></span>
+        <span class="stat">Cha: {{ stats.Charisma }} <strong>{{ getABM(stats.Charisma) }}</strong></span>
+        <span class="stat">Proficiency: {{ proficiency }}</span>
+        <span class="stat">HitDice: {{ characterClass.HitDice }}</span>
       </div>
-    <span>Pro: {{ proficiency }}</span>
   </div>
 </div>
-  <!-- <div v-for="(statValue, stat, index) in stats" :key="index">
-    <strong>{{ stat }}:</strong>
-    <span class="stat">{{ statValue }} {{ getABM(statValue) }}</span>
-  </div>
-  <div>
-    <strong>Proficiency:</strong>
-    <span class="stat">{{ proficiency }}</span>
-  </div>
-  <div>
-    <strong>Hit Dice:</strong>
-    <span class="stat">{{ characterClass.HitDice }}</span>
-  </div>
-  
-  <div v-if="characterClass && ['Bard', 'Warlock'].indexOf(characterClass.Name) !== -1">
-    <strong>Known Cantrips:</strong>
-    <span class="stat">{{ knownCantrips }}</span>
-  </div>
-  <div v-if="characterClass && ['Bard', 'Warlock', 'Ranger'].indexOf(characterClass.Name) !== -1">
-    <strong>Known Spells:</strong>
-    <span class="stat">{{ knownSpells }}</span>
-  </div>
-  <div v-if="characterClass && characterClass.Name === 'Warlock'">
-    <strong>Known Invocations:</strong>
-    <span class="stat">{{ knownInvocations }}</span>
-  </div> -->
-</div>
-
 </template>
 
 <script>
@@ -75,13 +50,11 @@ export default {
 <style lang="scss" scoped>
 @import "~styles/shared.scss";
 
+.character-stat-card {
+  flex: 1 0;
+}
+
 .stat {
-  float: right;
+  flex: 1;
 }
-
-hr {
-    color: white;
-    background-color: white;
-}
-
 </style>
