@@ -50,7 +50,7 @@
           </v-tab>
           <v-tab title="Spells">
           <div class="d-flex flex-column spells card">
-            <spell-card :characterId="characterId" :spells="character.Spells"></spell-card>
+            <spell-card :character="character" :spells="character.Spells"></spell-card>
           </div>   
           </v-tab>
         </vue-tabs>

@@ -7,6 +7,8 @@
             <div v-if="selectedSpell">
                 <spell-detail-card :spell="selectedSpell"></spell-detail-card>
                 <button  class="add-spell-btn btn btn-primary" @click="addSpell">Add Spell</button>
+                <i v-if="successfulAdd" class="fa fa-check-circle-o"></i>
+
             </div>
         </div>
     </modal>
@@ -26,17 +28,19 @@ import SpellList from './SpellList'
 
 export default {
     name: 'spell-card',
-    props: ['spells', 'characterId'],
+    props: ['spells', 'character'],
     data() {
         return {
             showModal: false,
-            selectedSpell: undefined
+            selectedSpell: undefined,
+            successfulAdd: false
         }
     },
     methods: {
         close() {
             $("body").removeClass("modal-open");
             this.showModal = false;
+            this.successfulAdd = false;
         },
         async showSpellSearcher(){
             await this.$store.dispatch('getSpells');
@@ -44,17 +48,26 @@ export default {
         },
         showSpellDetail(spell) {
             this.selectedSpell = spell;
+            this.successfulAdd = false;            
         },
         async addSpell() {
             if(!this.selectedSpell){
                 return;
             }
+            if(!(this.character.Level >= this.selectedSpell.Level)){
+                alert('You are not high level enough for this spell');
+                return;
+            }
+            if(this.selectedSpell.Classes.indexOf(this.character.Class) == -1) {
+                alert('This spell cant be used by your class');
+                return;
+            }
             let payload = {
-                characterId : this.characterId,
+                characterId : this.character.CharacterId,
                 body: this.selectedSpell
             };
             await this.addSpellToCharacter(payload);
-
+            this.successfulAdd = true;
         },
         ...mapActions([
             'addSpellToCharacter'
@@ -78,4 +91,8 @@ export default {
     padding: 3%;
 }
 
+.fa-check-circle-o {
+    color: green;
+    font-size: 1.5em;
+}
 </style>

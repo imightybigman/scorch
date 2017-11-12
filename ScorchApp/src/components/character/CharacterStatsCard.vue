@@ -2,13 +2,13 @@
 <div class="character-stat-card d-flex card">
   <div class="card-body">
     <h5>Character Stats</h5>
-    <div class="d-flex">
+    <div class="d-flex stats">
         <span class="stat">Str: {{ stats.Strength }} <strong>{{ getABM(stats.Strength) }}</strong></span>
         <span class="stat">Dex: {{ stats.Dexterity }} <strong>{{ getABM(stats.Dexterity) }}</strong></span>
         <span class="stat">Con: {{ stats.Constitution }} <strong>{{ getABM(stats.Constitution) }}</strong></span>
         <span class="stat">Int: {{ stats.Intelligence }} <strong>{{ getABM(stats.Intelligence) }}</strong></span>
       </div>
-      <div class="d-flex">
+      <div class="d-flex stats">
         <span class="stat">Wis: {{ stats.Wisdom }} <strong>{{ getABM(stats.Wisdom) }}</strong></span>
         <span class="stat">Cha: {{ stats.Charisma }} <strong>{{ getABM(stats.Charisma) }}</strong></span>
         <span class="stat">Prof: {{ getProf(level) }}</span>
@@ -43,7 +43,9 @@ export default {
   flex: 1 0;
   max-height: 115px;
 }
-
+.stats{
+  padding-bottom: 1%;
+}
 .stat {
   flex: 1;
 }
