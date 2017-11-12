@@ -12,3 +12,7 @@ export const DELETE_ITEM          = 'DELETE_ITEM';
 
 // Classes
 export const LOAD_CLASS         = 'LOAD_CLASS';
+
+// Spells
+export const GET_SPELLS         = 'GET_SPELLS';
+export const GET_SPELL_DETAIL   = 'GET_SPELL_DETAIL';

@@ -1,12 +1,13 @@
 <template>
 <div class="spell-list">
-thigns
+    {{ spells.length }}
 </div>
 </template>
 
 <script>
 export default {
-    name: 'spell-list'
+    name: 'spell-list',
+    props: ['spells']
 }
 </script>
 

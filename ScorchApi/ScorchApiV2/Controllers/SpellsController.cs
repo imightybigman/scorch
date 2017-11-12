@@ -60,9 +60,10 @@ namespace ScorchApiV2.Controllers
                     spellList.Add(new Spell
                     {
                         SpellId = spell.SpellId,
+                        Classes = spell.Classes,
                         Level = spell.Level,
                         Name = spell.Name,
-                        DamageType = spell.DamageType,
+                        DamageType = spell.DamageType ?? "None",
 
                     });
                 }

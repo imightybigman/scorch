@@ -11,7 +11,7 @@
         <character-stats-card slot="body" :stats="character.Stats" :level="character.Level" :characterClass="characterClass || {}"></character-stats-card>                
     </div>
     <div class="d-flex flex-row justify-content-between character-screen">
-      <div id="character-details" class="d-flex flex-column character-details">
+      <div class="d-flex flex-column character-details">
         <h4>Character Info</h4>
         <accordian :header="'Bio'">
           <character-bio-card slot="body" :character="character"></character-bio-card>
@@ -50,9 +50,7 @@
           </v-tab>
           <v-tab title="Spells">
           <div class="d-flex flex-column spells card">
-            <spell-slots v-if="characterClass && characterClass.SpellSlots" :level="character.Level" :spellSlots="characterClass.SpellSlots"></spell-slots>
-            <spell-info :characterClass="characterClass || {}" :level="character.Level"></spell-info>
-            <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
+            <spell-card :characterId="characterId" :spells="character.Spells"></spell-card>
           </div>   
           </v-tab>
         </vue-tabs>
@@ -88,7 +86,7 @@ import {  CharacterTile,
           HpBar } from 'components/character'
 
 import { Inventory } from 'components/inventory'
-import { SpellInfo, SpellList } from 'components/spells'
+import { SpellInfo, SpellList, SpellCard } from 'components/spells'
 import { DiceRoller, Modal, Accordian } from 'components/util'
 import { BonusFeatures, SpellSlots, Companion } from 'components/classFeatures'
 import { AbilityModifierService } from 'services'
@@ -167,7 +165,8 @@ export default {
     VueTabs,
     VTab,
     SpellInfo,
-    SpellList
+    SpellList,
+    SpellCard
   }
 }
 
@@ -212,7 +211,8 @@ export default {
       }
 
       .character-advanced-info {
-        flex: 1 0 auto;
+        flex: 2 0;
+        min-height: 600px;
       }
 
     }
@@ -235,11 +235,4 @@ export default {
   color: white;
 }
 
-.spells {
-  background: white;
-  padding: 3%;
-  flex: 1 0;
-  height: 100%;
-  width: 100%;
-}
 </style>

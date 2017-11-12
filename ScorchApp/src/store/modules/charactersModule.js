@@ -57,8 +57,8 @@ const actions = {
             commit(types.PATCH_CHARACTER, payload);
         }
     },
-    async addSpell({ commit }, payload) {
-        let response = await CharacterService.putCharacterSpell(payload.characterId, payload.body);
+    async addSpellToCharacter({ commit }, payload) {
+        let response = await CharacterService.putCharacterSpell(payload.characterId, payload.body.SpellId);
         if(response.status === 200){
             payload.addedSpell = response.body;
             commit(types.ADD_SPELL, payload);

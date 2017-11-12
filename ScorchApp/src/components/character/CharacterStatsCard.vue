@@ -11,7 +11,7 @@
       <div class="d-flex">
         <span class="stat">Wis: {{ stats.Wisdom }} <strong>{{ getABM(stats.Wisdom) }}</strong></span>
         <span class="stat">Cha: {{ stats.Charisma }} <strong>{{ getABM(stats.Charisma) }}</strong></span>
-        <span class="stat">Proficiency: {{ getProf(level) }}</span>
+        <span class="stat">Prof: {{ getProf(level) }}</span>
         <span class="stat">Hit Die: {{ characterClass.HitDice }}</span>
       </div>
   </div>
