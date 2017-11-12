@@ -8,7 +8,7 @@
   <div class="d-flex flex-column character-info border">
     <div class="d-flex flex-row character-basic-info">
         <character-tile :character="character"></character-tile>
-        <character-stats-card slot="body" :stats="character.Stats" :proficiency="character.Proficiency" :characterClass="characterClass || {}"></character-stats-card>                
+        <character-stats-card slot="body" :stats="character.Stats" :level="character.Level" :characterClass="characterClass || {}"></character-stats-card>                
     </div>
     <div class="d-flex flex-row justify-content-between character-screen">
       <div id="character-details" class="d-flex flex-column character-details">
@@ -68,7 +68,7 @@
   </div>
   <div class="d-flex flex-column character-other border">
     <character-leveling :character="character" :characterClass="characterClass"></character-leveling>
-    <dice-roller :name="user" :dex="getDexMod()"></dice-roller>
+    <dice-roller :name="name" :dex="getDexMod()"></dice-roller>
     <inventory :characterId="character.CharacterId"></inventory>
   </div>
 </div>
@@ -223,6 +223,7 @@ export default {
     .notes {
       flex: 2 0 auto;
       height: 200px;
+      overflow-y: scroll;
     }
   }
 

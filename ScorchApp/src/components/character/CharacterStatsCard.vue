@@ -11,7 +11,7 @@
       <div class="d-flex">
         <span class="stat">Wis: {{ stats.Wisdom }} <strong>{{ getABM(stats.Wisdom) }}</strong></span>
         <span class="stat">Cha: {{ stats.Charisma }} <strong>{{ getABM(stats.Charisma) }}</strong></span>
-        <span class="stat">Proficiency: {{ proficiency }}</span>
+        <span class="stat">Proficiency: {{ getProf(level) }}</span>
         <span class="stat">Hit Die: {{ characterClass.HitDice }}</span>
       </div>
   </div>
@@ -19,15 +19,18 @@
 </template>
 
 <script>
-import { AbilityModifierService } from 'services'
+import { AbilityModifierService, LevelService } from 'services'
 export default {
   name: 'character-stat-card',
-  props: ['stats', 'proficiency', 'characterClass'], 
+  props: ['stats', 'level', 'characterClass'], 
   methods: {
     getABM(val) {
       let mod = AbilityModifierService.getAbilityModifier(val);
       mod = mod > -1 ? `+${mod}` : mod;
       return mod ? `(${mod})` : '';
+    }, 
+    getProf(level) {
+      return LevelService.getProficienyBonus(level)
     }
   }
 }
