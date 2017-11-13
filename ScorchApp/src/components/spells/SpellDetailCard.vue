@@ -3,7 +3,7 @@
         <div class="spell-detail-card-inner">
             <div class="d-flex">
                 <h4 class="spell-detail-card-header">{{spell.Name ? spell.Name : "Spell Details"}}</h4>
-                <small>Level: {{ spell.Level }}</small>
+                <strong>Level: {{ spell.Level }}</strong>
             </div>
             <div class = "d-flex spell-detail-card-detail">
                 <div class = "d-flex">
@@ -12,7 +12,6 @@
                     <span class = "entry"><i class="ra ra-archery-target"/> {{ spell.Range }}</span>
                 </div>
                 <small class = "description">{{ spell.Description }}</small>
-
             </div>
         </div>
     </div>

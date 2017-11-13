@@ -50,7 +50,7 @@
           </v-tab>
           <v-tab title="Spells">
           <div class="d-flex flex-column spells card">
-            <spell-card :character="character" :spells="character.Spells"></spell-card>
+            <spell-card :character="character" :spells="character.Spells" :characterClass="characterClass || {}"></spell-card>
           </div>   
           </v-tab>
         </vue-tabs>
@@ -198,10 +198,6 @@ export default {
 
     .character-screen {
       flex: 4 0 auto;
-
-      >div {
-        margin: 1%;
-      }
 
       .character-details {
         flex: 1 0;

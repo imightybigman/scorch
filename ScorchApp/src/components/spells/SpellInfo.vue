@@ -1,5 +1,9 @@
 <template>
 <div class="spell-info">
+    <div v-for="(spell, index) in slots" :key="index">
+      <strong>Level {{ spell.SpellLevel }} Spell Slots</strong>
+      <span class="stat">{{ spell.Count }} Slots</span>
+    </div>
     <div v-if="characterClass && ['Bard', 'Warlock'].indexOf(characterClass.Name) !== -1">
         <strong>Known Cantrips:</strong>
         <span class="stat">{{ knownCantrips }}</span>
@@ -29,6 +33,13 @@ export default {
     knownInvocations() {
       return this.characterClass && this.characterClass.InvocationsKnown[this.levelKey];
     },
+    slots() {
+      if(!this.characterClass.SpellSlots){
+        return []
+      }
+      let levelKey = `Level_${this.level}`;
+      return this.characterClass.SpellSlots[levelKey] || [];
+    },
     levelKey() {
       return `Level_${this.level}`;
     }
@@ -38,5 +49,7 @@ export default {
 
 
 <style lang="scss">
-
+.stat {
+  float: right;
+}
 </style>

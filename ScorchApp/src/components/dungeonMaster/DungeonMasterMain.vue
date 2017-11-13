@@ -118,6 +118,11 @@ export default {
     .item-searcher{
         flex: 1;
         flex-grow: 3;
+        border-radius: 10px;
+        border-style: solid;
+        input{
+            background-color: #E8E8E8;
+        }
     }
     .rhs-character-ops{
         flex: 2;

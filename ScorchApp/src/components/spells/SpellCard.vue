@@ -8,13 +8,15 @@
                 <spell-detail-card :spell="selectedSpell"></spell-detail-card>
                 <button  class="add-spell-btn btn btn-primary" @click="addSpell">Add Spell</button>
                 <i v-if="successfulAdd" class="fa fa-check-circle-o"></i>
-
             </div>
         </div>
     </modal>
-    
-    <button @click="showSpellSearcher">Search Spell Glossary</button>
-    <spell-list :spells="spells"></spell-list>
+    <spell-info :characterClass="characterClass" :level="character.Level"></spell-info>
+    <div class="spell-list">
+        <h5>Spells</h5>
+        <spell-list :spells="spells"></spell-list>
+    </div>
+    <button class="btn btn-primary" @click="showSpellSearcher">Add Spell</button>
 </div>
 </template>
 
@@ -25,10 +27,11 @@ import { mapActions } from 'vuex'
 import SpellSearcher from './SpellSearcher'
 import SpellDetailCard from './SpellDetailCard'
 import SpellList from './SpellList'
+import SpellInfo from './SpellInfo'
 
 export default {
     name: 'spell-card',
-    props: ['spells', 'character'],
+    props: ['spells', 'character', 'characterClass'],
     data() {
         return {
             showModal: false,
@@ -77,7 +80,8 @@ export default {
         Modal,
         SpellSearcher,
         SpellDetailCard,
-        SpellList
+        SpellList,
+        SpellInfo
     }
 }
 </script>
@@ -89,10 +93,17 @@ export default {
     width: 95%;
     margin: 0 auto;
     padding: 3%;
+    flex-direction: column;
+}
+
+.spell-list {
+    margin: 1% 0;
+
 }
 
 .fa-check-circle-o {
     color: green;
     font-size: 1.5em;
 }
+
 </style>

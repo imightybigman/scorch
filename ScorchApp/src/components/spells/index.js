@@ -1,12 +1,13 @@
 import SpellInfo from './SpellInfo'
 import SpellList from './SpellList'
-import SpellForm from './SpellForm'
 import SpellReadonly from './SpellReadonly'
 import SpellCard from './SpellCard'
+import SpellSlots from './SpellSlots'
+
 export {
     SpellInfo,
     SpellList,
-    SpellForm,
     SpellReadonly,
-    SpellCard
+    SpellCard,
+    SpellSlots
 }

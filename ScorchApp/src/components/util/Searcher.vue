@@ -5,7 +5,7 @@
                 <h4 class="searcher-header">Searcher</h4>
             </div>            
             <div class="input-group">
-                <input type="text" class="form-control" id="name" v-model="searchTerm" placeholder="Search" autocomplete="off" required="true"/>
+                <input type="text" class="form-control search-box" id="name" v-model="searchTerm" placeholder="Search" autocomplete="off" required="true"/>
             </div>
             <div class="search-results table-responsive">
                 <table id="search-results-table" class="table table-hover">
@@ -159,9 +159,6 @@ export default {
         margin: 1%;
         margin-top: 2%;
         padding: 1%;
-        border-radius: 10px;
-
-        border-style: solid;
     }
     .searcher-inner {
         padding: 1%;
@@ -189,9 +186,7 @@ export default {
     .activated {
         background-color: orange;
     }
-    input{
-        background-color: #E8E8E8;
-    }
+
     a{
         background-color: #E8E8E8;
     }

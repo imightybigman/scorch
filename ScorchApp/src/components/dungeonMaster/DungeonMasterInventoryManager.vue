@@ -92,6 +92,13 @@ export default {
         border-radius: 10px;
 
     }
+    .item-searcher {
+        border-radius: 10px;
+        border-style: solid;
+        input{
+            background-color: #E8E8E8;
+        }
+    }
     .item-creator {
         flex: 1;
         flex-grow: 1;

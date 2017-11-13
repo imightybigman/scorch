@@ -30,6 +30,9 @@ export default {
 
 <style lang="scss" scoped>
 
+.accordian {
+    margin-bottom: 1%;
+}
 
 // .accordian {
 //     display: flex;
