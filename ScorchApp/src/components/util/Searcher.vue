@@ -35,7 +35,7 @@
                 <li class="page-item clickable" v-for="(page, index) in pagesToShow" :key="index" v-on:click="currentPage = page" >
                     <a class="page-link" v-bind:class ="{activated : page == currentPage}" >{{page}}</a>
                 </li>
-                
+               
                 <li class="page-item clickable" v-on:click="currentPage = Math.min(currentPage+1, numPages)">
                     <a class="page-link" >
                         <span aria-hidden="true">&raquo;</span>
@@ -157,7 +157,7 @@ export default {
     
     .searcher {
         margin: 1%;
-        margin-top: 2%;
+        margin-top: 1%;
         padding: 1%;
     }
     .searcher-inner {
@@ -171,9 +171,6 @@ export default {
         flex-direction:row;
         margin-bottom:0.5%;
     }
-    .filter-btn {
-        float: right;
-    }
     .searcher-header {
         flex:1;
     }
@@ -186,7 +183,6 @@ export default {
     .activated {
         background-color: orange;
     }
-
     a{
         background-color: #E8E8E8;
     }
