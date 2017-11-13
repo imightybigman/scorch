@@ -8,7 +8,7 @@
   <div class="d-flex flex-column character-info border">
     <div class="d-flex flex-row character-basic-info">
         <character-tile :character="character"></character-tile>
-        <character-stats-card slot="body" :stats="character.Stats" :level="character.Level" :characterClass="characterClass || {}"></character-stats-card>                
+        <character-stats-card slot="body" :stats="character.Stats" :level="character.Level" :characterClass="characterClass || {}"></character-stats-card>
     </div>
     <div class="d-flex flex-row justify-content-between character-screen">
       <div class="d-flex flex-column character-details">
@@ -40,7 +40,7 @@
             </accordian>
             <accordian v-if="character.Class === 'Ranger'" :header="'Companion'">
               <companion slot="body" :companion="characterClass.Companion"></companion>
-            </accordian>            
+            </accordian>
         </div>
       </div>
       <div class="d-flex flex-column character-advanced-info">
@@ -51,7 +51,7 @@
           <v-tab title="Spells">
           <div class="d-flex flex-column spells card">
             <spell-card :character="character" :spells="character.Spells" :characterClass="characterClass || {}"></spell-card>
-          </div>   
+          </div>
           </v-tab>
         </vue-tabs>
       </div>
@@ -229,6 +229,5 @@ export default {
 
 .level-btn {
   color: white;
-}
-
+  }
 </style>

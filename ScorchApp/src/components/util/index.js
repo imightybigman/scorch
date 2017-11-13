@@ -5,7 +5,7 @@ import Accordian from './Accordian'
 
 export {
     Modal,
-    Searcher,  
+    Searcher,
     DiceRoller,
     Accordian
 }

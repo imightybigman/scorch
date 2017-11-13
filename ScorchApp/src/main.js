@@ -14,7 +14,6 @@ import 'rpg-awesome/scss/rpg-awesome.scss'
 import 'styles/styles.scss'
 
 import VueSocketio from 'vue-socket.io';
-
 Vue.use(VueResource);
 Vue.config.productionTip = false
 //Vue.url.options.root = 'https://dnd-api.imightybigman.com/api';
