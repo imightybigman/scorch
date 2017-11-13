@@ -57,8 +57,8 @@ const actions = {
             commit(types.PATCH_CHARACTER, payload);
         }
     },
-    async addSpell({ commit }, payload) {
-        let response = await CharacterService.putCharacterSpell(payload.characterId, payload.body);
+    async addSpellToCharacter({ commit }, payload) {
+        let response = await CharacterService.putCharacterSpell(payload.characterId, payload.body.SpellId);
         if(response.status === 200){
             payload.addedSpell = response.body;
             commit(types.ADD_SPELL, payload);
@@ -191,6 +191,18 @@ const mutations = {
             if(ch.CharacterId === id) {
                 let index = findIndex(state.party[i].Inventory,(i) => i.ItemId === itemId);
                 state.party[i].Gold += state.party[i].Inventory[i].Cost || 0;
+                state.party[i].Inventory.splice(index, 1);
+                break;
+            }
+        }
+    },
+    [types.DELETE_ITEM] (state, payload) {
+        let id = payload.characterId;
+        let itemId = payload.itemId;
+        for(let i = 0; i < state.party.length; i++) {
+            let ch = state.party[i];
+            if(ch.CharacterId === id) {
+                let index = findIndex(state.party[i].Inventory,(i) => i.ItemId === itemId);
                 state.party[i].Inventory.splice(index, 1);
                 break;
             }

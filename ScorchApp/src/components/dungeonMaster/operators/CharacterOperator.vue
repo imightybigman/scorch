@@ -77,7 +77,7 @@ export default {
                 }
 
                 await this.$store.dispatch('updateCharacter', payload);
-                if(this.item.ItemID && this.itemQty > 0){
+                if(this.item.ItemId && this.itemQty > 0){
                     let itemAdded = {};
                     itemAdded.ItemId = this.item.ItemId;
                     itemAdded.Count = parseInt(this.itemQty);
