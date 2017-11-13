@@ -1,71 +1,36 @@
 <template>
-<div class="character-stat-card">
-  <div class="card card-width">
-    <div class="card-header" role="tab" id="character-stats">
-      <h5 class="mb-0">
-        <a data-toggle="collapse" href="#stats" aria-expanded="false" aria-controls="stats">Stats</a>
-      </h5>
-    </div>
-    <div id="stats" class="collapse show" role="tabpanel" aria-labelledby="character-stats" data-parent="#character-details">
-      <div class="card-body">
-        <div v-for="(statValue, stat, index) in stats" :key="index">
-          <strong>{{ stat }}:</strong>
-          <span class="stat">{{ statValue }} {{ getABM(statValue) }}</span>
-        </div>
-        <div>
-          <strong>Proficiency:</strong>
-          <span class="stat">{{ proficiency }}</span>
-        </div>
-                <div>
-          <strong>HitDice:</strong>
-          <span class="stat">{{ characterClass.HitDice }}</span>
-        </div>
-        <hr> <!-- Break line for spell stuff -->
-        <div v-if="characterClass && ['Bard', 'Warlock'].indexOf(characterClass.Name) !== -1">
-          <strong>Known Cantrips:</strong>
-          <span class="stat">{{ knownCantrips }}</span>
-        </div>
-        <div v-if="characterClass && ['Bard', 'Warlock', 'Ranger'].indexOf(characterClass.Name) !== -1">
-          <strong>Known Spells:</strong>
-          <span class="stat">{{ knownSpells }}</span>
-        </div>
-        <div v-if="characterClass && characterClass.Name === 'Warlock'">
-          <strong>Known Invocations:</strong>
-          <span class="stat">{{ knownInvocations }}</span>
-        </div>
-
+<div class="character-stat-card d-flex card">
+  <div class="card-body">
+    <h5>Character Stats</h5>
+    <div class="d-flex stats">
+        <span class="stat">Str: {{ stats.Strength }} <strong>{{ getABM(stats.Strength) }}</strong></span>
+        <span class="stat">Dex: {{ stats.Dexterity }} <strong>{{ getABM(stats.Dexterity) }}</strong></span>
+        <span class="stat">Con: {{ stats.Constitution }} <strong>{{ getABM(stats.Constitution) }}</strong></span>
+        <span class="stat">Int: {{ stats.Intelligence }} <strong>{{ getABM(stats.Intelligence) }}</strong></span>
       </div>
-    </div>
+      <div class="d-flex stats">
+        <span class="stat">Wis: {{ stats.Wisdom }} <strong>{{ getABM(stats.Wisdom) }}</strong></span>
+        <span class="stat">Cha: {{ stats.Charisma }} <strong>{{ getABM(stats.Charisma) }}</strong></span>
+        <span class="stat">Prof: {{ getProf(level) }}</span>
+        <span class="stat">Hit Die: {{ characterClass.HitDice }}</span>
+      </div>
   </div>
 </div>
-
 </template>
 
 <script>
-import { AbilityModifierService } from 'services'
-
+import { AbilityModifierService, LevelService } from 'services'
 export default {
   name: 'character-stat-card',
-  props: ['stats', 'proficiency', 'characterClass', 'level'], 
-  computed: {
-    knownSpells() {
-      return this.characterClass && this.characterClass.SpellsKnown[this.levelKey];
-    },
-    knownCantrips() {
-      return this.characterClass && this.characterClass.CantripsKnown[this.levelKey];
-    },
-    knownInvocations() {
-      return this.characterClass && this.characterClass.InvocationsKnown[this.levelKey];
-    },
-    levelKey() {
-      return `Level_${this.level}`;
-    }
-  },
+  props: ['stats', 'level', 'characterClass'], 
   methods: {
     getABM(val) {
       let mod = AbilityModifierService.getAbilityModifier(val);
       mod = mod > -1 ? `+${mod}` : mod;
       return mod ? `(${mod})` : '';
+    }, 
+    getProf(level) {
+      return LevelService.getProficienyBonus(level)
     }
   }
 }
@@ -74,9 +39,13 @@ export default {
 <style lang="scss" scoped>
 @import "~styles/shared.scss";
 
-.stat {
-  float: right;
+.character-stat-card {
+  flex: 1 0;
 }
-
-
+.stats{
+  padding-bottom: 1%;
+}
+.stat {
+  flex: 1;
+}
 </style>

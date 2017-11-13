@@ -45,7 +45,7 @@
     </div>
     <div class="card-body">
         <button class="btn btn-primary" @click="showModal = true">Do Dice Roller</button>
-        <button class="btn btn-primary" @click="rollInitiative()" :disabled="initRolled">Roll Initiative</button>
+        <button class="btn btn-primary" @click="rollInitiative()">Roll Initiative</button>
     </div>
 </div>
 

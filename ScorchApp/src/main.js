@@ -17,10 +17,9 @@ import VueSocketio from 'vue-socket.io';
 
 Vue.use(VueResource);
 Vue.config.productionTip = false
-Vue.url.options.root = process.env.API_HOST;
-//Vue.url.options.root = 'http://localhost:5000/api';
-
-Vue.use(VueSocketio, 'https://54.234.179.234:3000/', store);
+//Vue.url.options.root = 'https://dnd-api.imightybigman.com/api';
+Vue.url.options.root = 'http://localhost:5000/api';
+Vue.use(VueSocketio, process.env.SOCKET_HOST, store);
 
 
 /* eslint-disable no-new */
