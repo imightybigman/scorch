@@ -15,15 +15,16 @@ export default {
     animation: fade 4s linear;
 }
 .invisible{
-    visibility: visible;
+    visibility: hidden;
+    z-index: -1;
 }
 .visible{
-    visibility: hidden;
+    visibility: visible;
+    z-index: 9999;
 }
 .notification{
     position: absolute;
     width: 100%;
-    z-index: 9999;
 }
 @keyframes fade {
     100% { opacity: 0 }
