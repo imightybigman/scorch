@@ -23,7 +23,6 @@ export default {
 .notification{
     position: absolute;
     width: 100%;
-    // opacity: 0;
     z-index: 9999;
 }
 @keyframes fade {
