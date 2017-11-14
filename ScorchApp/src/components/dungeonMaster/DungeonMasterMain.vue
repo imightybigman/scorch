@@ -1,11 +1,5 @@
 <template>
     <div class="dm-main-component">
-        <div class="alert alert-success success-notification" id='success-msg' v-bind:class="{'notify-active' : displaySuccess}">
-            <strong>{{successMsg}}</strong>
-        </div>
-        <div class="alert alert-danger failure-notification" id="failure-msg" v-bind:class="{'notify-active' : displayError}">
-            <strong>{{errorMsg}}</strong>
-        </div>
         <div class="d-flex dm-character-view">
                 <div class="item-searcher border border-dark flex-column">
                     <searcher @search-row-selected="searchItem" :search-data="searchItems" :limit-per-page="10" :column-keys="columnKeys"/>
@@ -46,8 +40,7 @@
     import CharacterOperator from './operators/CharacterOperator.vue'
     import { Searcher } from 'components/util'
     import { ItemCard } from 'components/items'
-    import { ItemService } from 'services'
-    import { CharacterService } from 'services'
+    import { ItemService, CharacterService } from 'services'
 
 export default {
     name : 'dm-main-component',
@@ -57,11 +50,7 @@ export default {
             selectedChars: [],
             selectedItem: {},
             columnKeys: ['Name', 'ItemClass', 'Cost', 'AC', 'Damage', 'Slot'],
-            itemQty: 1,
-            successMsg: '',
-            errorMsg: '' ,
-            displaySuccess: false,
-            displayError: false
+            itemQty: 1
         }
     },
     async created() {
@@ -92,9 +81,8 @@ export default {
         },
         async giveItem(){
             let success = true;
-            
-            this.successMsg = 'Successfully gave ' + this.itemQty + ' ' + this.selectedItem.Name + 
-                ' to ' + this.selectedChars.map(char => {return char.Firstname + ' ' + char.Lastname}).join(', ');
+            let nameList = this.selectedChars.map(char => {return char.Firstname + ' ' + char.Lastname}).join(', ');
+            let successMsg = `Successfully gave ${this.itemQty} ${this.selectedItem.Name} to ${nameList}`;
             for(let char of this.selectedChars){
                 if(this.selectedItem.ItemId && this.itemQty > 0){
                     let itemAdded = {};
@@ -105,21 +93,12 @@ export default {
                     }
                     catch(errorResponse){
                         console.log('Failed to add item to char : ' + char.CharacterId + ' error : ' + errorResponse.bodyText);
-                        
-                        success = false;
-                        this.errorMsg = 'Failed to give item to characters';
-                        this.displayError = true;
-                        setTimeout(() => {
-                            this.displayError = false;
-                        }, 6000);
+                        this.$notify('Failed to give item to characters', 'failure');
                     }
                 }
             }
             if(success){
-               this.displaySuccess = true; 
-                setTimeout(() => {
-                    this.displaySuccess = false;
-                }, 6000);
+                this.$notify(successMsg, 'success');    
                 this.$socket.emit('updateParty'); 
             }
         }
@@ -207,23 +186,5 @@ export default {
     }
     .btn-warning{
         border-radius: 0;
-    }
-    .success-notification{
-        position: absolute;
-        width: 88%;
-        opacity: 0;
-    }
-    .notify-active{
-        display:inherit;
-        animation: fade 5s linear;
-    }
-    .failure-notification{
-        position: absolute;
-        width: 88%;
-        opacity: 0;
-    }
-    @keyframes fade {
-        100% { opacity: 0 }
-        0%,60% { opacity: 1 }
     }
 </style>
