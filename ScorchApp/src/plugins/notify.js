@@ -18,7 +18,7 @@ const Notify = {
         document.getElementById("notification-container").classList.remove('alert-danger');
         document.getElementById("notification-container").classList.remove('alert-success');
         document.getElementById("notification-container").classList.remove('notify-active'); 
-      }, 4000);
+      }, 4500);
     }
 
     Vue.prototype.$success = function (msg) {
