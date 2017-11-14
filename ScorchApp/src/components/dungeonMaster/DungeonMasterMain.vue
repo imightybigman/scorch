@@ -80,6 +80,9 @@ export default {
             }
         },
         async giveItem(){
+            if(this.selectedChars.length === 0){
+                this.$warning('Please select at least one character.');
+            }
             let success = true;
             let nameList = this.selectedChars.map(char => {return char.Firstname + ' ' + char.Lastname}).join(', ');
             let successMsg = `Successfully gave ${this.itemQty} ${this.selectedItem.Name} to ${nameList}`;
@@ -97,7 +100,7 @@ export default {
                     }
                 }
             }
-            if(success){
+            if(success && this.selectedChars.length > 0 && this.selectedItem.ItemId){
                 this.$success(successMsg);    
                 this.$socket.emit('updateParty'); 
             }
