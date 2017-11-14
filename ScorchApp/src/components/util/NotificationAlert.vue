@@ -14,10 +14,16 @@ export default {
 .notify-active{
     animation: fade 4s linear;
 }
+.invisible{
+    visibility: visible;
+}
+.visible{
+    visibility: hidden;
+}
 .notification{
     position: absolute;
     width: 100%;
-    opacity: 0;
+    // opacity: 0;
     z-index: 9999;
 }
 @keyframes fade {

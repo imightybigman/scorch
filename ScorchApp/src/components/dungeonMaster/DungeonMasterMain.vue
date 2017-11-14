@@ -93,12 +93,12 @@ export default {
                     }
                     catch(errorResponse){
                         console.log('Failed to add item to char : ' + char.CharacterId + ' error : ' + errorResponse.bodyText);
-                        this.$notify('Failed to give item to characters', 'failure');
+                        this.$failure('Failed to give item to characters');
                     }
                 }
             }
             if(success){
-                this.$notify(successMsg, 'success');    
+                this.$success(successMsg);    
                 this.$socket.emit('updateParty'); 
             }
         }
