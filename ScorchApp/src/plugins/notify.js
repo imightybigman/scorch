@@ -21,31 +21,33 @@ const Notify = {
       }, 3950);
     }
 
-    Vue.prototype.$success = function (msg) {
+    Vue.prototype.$notify = {};
+
+    Vue.prototype.$notify.success = function (msg) {
       baseNotification(msg);
       document.getElementById("notification-container").classList.add('alert-success');      
       clearClasses();
-    }
+    };
 
-    Vue.prototype.$failure = function (msg) {
+    Vue.prototype.$notify.failure = function (msg) {
       baseNotification(msg);
       document.getElementById("notification-container").classList.add('alert-danger');      
       clearClasses();
-    }
+    };
 
-    Vue.prototype.$warning = function (msg) {
+    Vue.prototype.$notify.warning = function (msg) {
       baseNotification(msg);
       document.getElementById("notification-container").classList.add('alert-warning');    
       clearClasses();
-    }
+    };
 
-    Vue.prototype.$info = function (msg) {
+    Vue.prototype.$notify.info = function (msg) {
       baseNotification(msg);
       document.getElementById("notification-container").classList.add('alert-info');      
       clearClasses();
-    }
+    };
 
-    Vue.component('NotificationAlert', NotificationAlert)
+    Vue.component('NotificationAlert', NotificationAlert);
   }
 }
 

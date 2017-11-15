@@ -95,13 +95,13 @@ export default {
                         await CharacterService.postCharacterItem(char.CharacterId, itemAdded);
                     }
                     catch(errorResponse){
-                        console.log('Failed to add item to char : ' + char.CharacterId + ' error : ' + errorResponse.bodyText);
-                        this.$failure('Failed to give item to characters');
+                        console.log(`Failed to add item to char : ${char.CharacterId} error : ${errorResponse.bodyText}`);
+                        this.$notify.failure('Failed to give item to characters');
                     }
                 }
             }
             if(success && this.selectedChars.length > 0 && this.selectedItem.ItemId){
-                this.$success(successMsg);    
+                this.$notify.success(successMsg);    
                 this.$socket.emit('updateParty'); 
             }
         }
@@ -139,7 +139,8 @@ export default {
         flex: 1;
         flex-grow: 2;
         .dm-character-cards-container {
-            margin-bottom: 1%;
+     box-sizing:border-box;
+           margin-bottom: 1%;
             border-radius: 10px;
         }
     }
@@ -149,7 +150,7 @@ export default {
         border-radius: 10px;
     }
     .selected {
-        border-style: solid;
+        box-shadow: 0 0 0 3px black;
     }
     .item-searcher{
         flex: 1;
