@@ -15,6 +15,10 @@ export default {
         let endpoint = `character/${id}/spells?spellId=${spellId}`;
         return Vue.http.put(endpoint)
     },
+    deleteCharacterSpell(id, spellId) {
+        let endpoint = `character/${id}/spells?spellId=${spellId}`;
+        return Vue.http.delete(endpoint)
+    },
     putCharacterItem(id, item) {
         let endpoint = `character/${id}/inventory`;
         return Vue.http.put(endpoint, item);

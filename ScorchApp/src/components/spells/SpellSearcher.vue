@@ -13,7 +13,7 @@ export default {
     name: 'spell-searcher',
     data() {
         return {
-            columns: ['Level', 'Name', 'Classes', 'DamageType']
+            columns: ['Level', 'Name', 'Class', 'DamageType']
         }
     },
     methods: {

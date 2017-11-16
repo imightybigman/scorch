@@ -34,7 +34,6 @@ import QuiverInventory from './quiver/QuiverInventory'
 import ArmorInventory from './armor/ArmorInventory'
 import AccessoryInventory from './accessory/AccessoryInventory'
 import { Accordian } from 'components/util'
-import { mapGetters } from 'vuex'
 
 export default {
     name: 'character-inventory',
@@ -76,7 +75,6 @@ export default {
           characterId: this.characterId,
           itemId: item.ItemId
         }
-        console.log(item);
         await this.$store.dispatch('deleteItem', deletePayload);
       }
     },
