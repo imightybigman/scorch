@@ -39,12 +39,11 @@ const mutations = {
     [types.GET_SPELLS] (state, spells) {
         let organizedSpells = _.chain(spells)
             .forEach((s) => {
-                s.Classes = s.Classes.join();
+                s['Class'] = s.Classes.join();
             })
             .sortBy(['Level'])
             .keyBy((s) => { return s.SpellId; })
             .valueOf();
-
         state.spells = organizedSpells;
     },
     [types.GET_SPELL_DETAIL] (state, spell) {
