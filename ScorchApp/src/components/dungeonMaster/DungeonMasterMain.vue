@@ -81,7 +81,7 @@ export default {
         },
         async giveItem(){
             if(this.selectedChars.length === 0){
-                this.$warning('Please select at least one character.');
+                this.$notify.warning('Please select at least one character.');
             }
             let success = true;
             let nameList = this.selectedChars.map(char => {return char.Firstname + ' ' + char.Lastname}).join(', ');
@@ -93,6 +93,12 @@ export default {
                     itemAdded.Count = parseInt(this.itemQty);
                     try{
                         await CharacterService.postCharacterItem(char.CharacterId, itemAdded);
+                        let successPayload = {
+                            user: char.CharacterId,
+                            type: 'success',
+                            message: `You received ${this.itemQty} ${this.selectedItem.Name}.`
+                        };
+                        this.$logging.notify(successPayload);
                     }
                     catch(errorResponse){
                         console.log(`Failed to add item to char : ${char.CharacterId} error : ${errorResponse.bodyText}`);
@@ -107,7 +113,8 @@ export default {
                     characterId: char.CharacterId,
                     message: `You received ${this.itemQty} ${this.selectedItem.Name}.`
                 }
-                this.$socket.emit('notify', 'afsdaf');
+                this.$notify.success(successMsg);    
+                this.$socket.emit('updateParty');
             }
         }
     },
