@@ -13,15 +13,18 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex dm-initiative-view">
+            <div class="d-flex dm-initiative-view" v-if="initInfo.length > 0">
                 <div class="flex-column">
                     <div class="initiative">
                       <h3>
                           Initiative
                       </h3>
                         <div v-for="user in initInfo">
-                            <ul>{{user.init}} : {{user.user}}</ul>
+                            <ul>
+                                <h5>{{user.user}} :</h5>
+                                <input class="form-control" type="number" v-model="user.init"/></ul>
                         </div>
+                        <p><button class="btn btn-primary" @click="sortInits">Sort</button></p>
                     </div>
                 </div>
             </div>
@@ -51,7 +54,7 @@ export default {
     sockets: {
       init: function(data) {
         this.initInfo.push(data);
-        this.initInfo = _.orderBy(this.initInfo, ['init'], ['desc']);
+        sortInits();
       },
       resetInit: function() {
         this.clearInit();
@@ -74,6 +77,9 @@ export default {
         },
         clearInit() {
           this.initInfo = [];
+        },
+        sortInits(){
+            this.initInfo = _.orderBy(this.initInfo, ['init'], ['desc']);
         }
     },
     computed: {
