@@ -85,7 +85,7 @@
     <div class="equipment mainhand">
       <img  v-if="equipment.MainHand"
             class="equipped"
-            src="displayWeapon(equipment.MainHand.)"
+            src="~assets/items/stock.jpg"
             @contextmenu.prevent="$refs.ctxMenu.open($event, equipment.MainHand)"
             data-toggle="tooltip"
             data-placement="left"
