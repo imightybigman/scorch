@@ -6,8 +6,8 @@ import pprint
 
 pp = pprint.PrettyPrinter(indent=4)
 
-#dndApiUrl = "https://dnd-api.imightybigman.com/api/spells"
-dndApiUrl = "http://scorchapiv2-dev.us-east-1.elasticbeanstalk.com/api/spells"
+dndApiUrl = "https://dnd-api.imightybigman.com/api/spells"
+#dndApiUrl = "http://scorchapiv2-dev.us-east-1.elasticbeanstalk.com/api/spells"
 #dndApiUrl = "http://localhost:5000/api/spells"
 
 def handle_response(r):

@@ -79,7 +79,7 @@ export default {
                             .toPairs()
                             .map((s) => { return _.zipObject(['title', 'spells'], s); 
                             })
-                            .sortBy('level')
+                            .sortBy('level', 'asc')
                             .value();
             return grouped;
         },

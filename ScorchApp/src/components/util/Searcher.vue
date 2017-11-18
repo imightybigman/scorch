@@ -64,6 +64,11 @@ export default {
       }
     },
     props: ['searchData', 'limitPerPage', 'columnKeys'],
+    watch: {
+        searchTerm(val) {
+            this.currentPage = 1;
+        }
+    },
     methods: {
         selectRow(row){
             this.$emit('search-row-selected', row);
