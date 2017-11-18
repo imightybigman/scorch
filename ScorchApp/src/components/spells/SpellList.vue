@@ -4,8 +4,11 @@
         <h3 slot="header">Spell Detail</h3>
         <spell-readonly slot="body" :spell="selectedSpell"></spell-readonly>
     </modal>
-    <div v-for="(spells, index) in spellsGroupedByLevel" :key="index">
-        <accordian :header="spells.level">
+    <p>
+        <button class="btn btn-primary" @click="groupByLevel = !groupByLevel">{{ spellGroupDisplay }}</button>
+    </p>
+    <div v-for="(spells, index) in groupedSpells" :key="index">
+        <accordian :header="spells.title">
             <div slot="body">
                 <div v-for="(spell, index) in spells.spells" 
                     @click="spellClick(spell, $event)" 
@@ -33,7 +36,8 @@ export default {
     data() {
         return {
             showModal: false,
-            selectedSpell: undefined
+            selectedSpell: undefined, 
+            groupByLevel: true
         }
     },
     methods: {
@@ -60,6 +64,12 @@ export default {
         ])
     },
     computed: {
+        spellGroupDisplay() {
+            return this.groupByLevel ? 'Group by School' : 'Group by Level';
+        },
+        groupedSpells() {
+            return this.groupByLevel ? this.spellsGroupedByLevel : this.spellsGroupedBySchool;
+        },
         spellsGroupedByLevel() {
             let grouped = _.chain(this.spells)
                             .forEach((s) => {
@@ -67,7 +77,17 @@ export default {
                             })
                             .groupBy('LevelDisplay')
                             .toPairs()
-                            .map((s) => { return _.zipObject(['level', 'spells'], s); 
+                            .map((s) => { return _.zipObject(['title', 'spells'], s); 
+                            })
+                            .sortBy('level')
+                            .value();
+            return grouped;
+        },
+        spellsGroupedBySchool() {
+            let grouped = _.chain(this.spells)
+                            .groupBy('School')
+                            .toPairs()
+                            .map((s) => { return _.zipObject(['title', 'spells'], s); 
                             })
                             .sortBy('level')
                             .value();

@@ -6,8 +6,8 @@ import pprint
 
 pp = pprint.PrettyPrinter(indent=4)
 
-dndApiUrl = "https://dnd-api.imightybigman.com/api/spells"
-#dndApiUrl = "http://scorchapiv2-dev.us-east-1.elasticbeanstalk.com/api/spells"
+#dndApiUrl = "https://dnd-api.imightybigman.com/api/spells"
+dndApiUrl = "http://scorchapiv2-dev.us-east-1.elasticbeanstalk.com/api/spells"
 #dndApiUrl = "http://localhost:5000/api/spells"
 
 def handle_response(r):
@@ -117,5 +117,13 @@ def rawSpellGenerator():
 
         yield spellAttributes
 
+def importWarlockInvocations():
+    invocations = json.load(open('warlockInvocations.json'))
+    for invoc in invocations:
+        pp.pprint('Creating Invocation {0}'.format(invoc['Name']))        
+        r = requests.post(dndApiUrl, json=invoc)
+        handle_response(r)
+
 if __name__ == '__main__':
-    importSpells()
+    #importSpells()
+    importWarlockInvocations()
