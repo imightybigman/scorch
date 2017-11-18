@@ -93,6 +93,12 @@ export default {
                     itemAdded.Count = parseInt(this.itemQty);
                     try{
                         await CharacterService.postCharacterItem(char.CharacterId, itemAdded);
+                        let successPayload = {
+                            user: char.CharacterId,
+                            type: 'success',
+                            message: `You received ${this.itemQty} ${this.selectedItem.Name}.`
+                        };
+                        this.$logging.notify(successPayload);
                     }
                     catch(errorResponse){
                         console.log(`Failed to add item to char : ${char.CharacterId} error : ${errorResponse.bodyText}`);
@@ -103,11 +109,6 @@ export default {
             if(success && this.selectedChars.length > 0 && this.selectedItem.ItemId){
                 this.$notify.success(successMsg);    
                 this.$socket.emit('updateParty');
-                let successPayload = {
-                    characterId: char.CharacterId,
-                    message: `You received ${this.itemQty} ${this.selectedItem.Name}.`
-                }
-                this.$socket.emit('notify', 'afsdaf');
             }
         }
     },
