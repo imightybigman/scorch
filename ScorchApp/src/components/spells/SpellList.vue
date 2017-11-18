@@ -79,8 +79,9 @@ export default {
                             .toPairs()
                             .map((s) => { return _.zipObject(['title', 'spells'], s); 
                             })
-                            .sortBy('level', 'asc')
+                            .sortBy('title', 'asc')
                             .value();
+            console.log(grouped)
             return grouped;
         },
         spellsGroupedBySchool() {
@@ -89,7 +90,7 @@ export default {
                             .toPairs()
                             .map((s) => { return _.zipObject(['title', 'spells'], s); 
                             })
-                            .sortBy('level')
+                            .sortBy('title')
                             .value();
             return grouped;
         }
