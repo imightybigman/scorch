@@ -13,7 +13,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex dm-initiative-view" v-if="initInfo.length > 0">
+            <div class="d-flex dm-initiative-view">
                 <div class="flex-column">
                     <div class="initiative">
                       <h3>
@@ -24,7 +24,22 @@
                                 <h5>{{user.user}} :</h5>
                                 <input class="form-control" type="number" v-model="user.init"/></ul>
                         </div>
-                        <p><button class="btn btn-primary" @click="sortInits">Sort</button></p>
+                        <p v-if="initInfo.length > 0">
+                          <button class="btn btn-primary" @click="sortInits">Sort</button>
+                        </p>
+                        <p>
+                          <form>
+                            <label>
+                              Monster Name
+                            </label>
+                            <input class="form-control" type="text" v-model="newMonster.name">
+                            <label>
+                              Monster Init
+                            </label>
+                            <input class="form-control" type="number" v-model="newMonster.init">
+                            <button class="btn btn-success" @click="addMonster">Add Monster</button>
+                          </form>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -45,7 +60,8 @@ export default {
     data() {
         return {
             selectedChars: [],
-            initInfo: []
+            initInfo: [],
+            newMonster: []
         }
     },
     async created() {
@@ -54,7 +70,7 @@ export default {
     sockets: {
       init: function(data) {
         this.initInfo.push(data);
-        sortInits();
+        this.sortInits();
       },
       resetInit: function() {
         this.clearInit();
@@ -80,6 +96,11 @@ export default {
         },
         sortInits(){
             this.initInfo = _.orderBy(this.initInfo, ['init'], ['desc']);
+        },
+        addMonster(){
+          this.initInfo.push({user: this.newMonster.name, init: this.newMonster.init});
+          this.newMonster = [];
+          this.sortInits();
         }
     },
     computed: {
