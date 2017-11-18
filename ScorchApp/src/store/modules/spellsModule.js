@@ -39,7 +39,7 @@ const mutations = {
     [types.GET_SPELLS] (state, spells) {
         let organizedSpells = _.chain(spells)
             .forEach((s) => {
-                s['Class'] = s.Classes.join();
+                s['Class'] = s.Classes ? s.Classes.join() : '';
             })
             .sortBy(['Level'])
             .keyBy((s) => { return s.SpellId; })
@@ -47,7 +47,7 @@ const mutations = {
         state.spells = organizedSpells;
     },
     [types.GET_SPELL_DETAIL] (state, spell) {
-        spell['Class'] = spell.Classes.join();
+        spell['Class'] = spell.Classes ? spell.Classes.join() : '';
         state.spells = { ...state.spells, [spell.SpellId] : spell };
     }
 }

@@ -6,7 +6,6 @@
                     <label for="modify-health">Health : </label>
                     <div class="input-group">
                         <input type="number" class="form-control" id="modify-health" v-model="deltaHealth" placeholder="Hp Change" autocomplete="off"/>
-                        <span class="input-group-addon">Temp  <input class="tempHp" id="tempHp" type="checkbox" v-model="isTempHp" /></span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -30,7 +29,6 @@
 </template>
 
 <script>
-    import { CharacterService } from 'services'
 
 export default {
     name: 'dm-character-operator',
@@ -53,10 +51,7 @@ export default {
                 payload.characterId = char.CharacterId;
 
                 let newHealth = char.Hp + parseInt(this.deltaHealth);
-                if(!this.isTempHp)
-                    newHealth = newHealth > char.MaxHp ? char.MaxHp : newHealth;
 
-                newHealth = newHealth < 0 ? 0 : newHealth;
                 payload.body.Hp = newHealth;
                 if (parseInt(this.deltaHealth) !== 0) {
                     if (this.deltaHealth > 0 ) {
@@ -88,14 +83,11 @@ export default {
                     }
                 }
 
-                if(this.maxHealth > 0){
-                    payload.body.MaxHp = parseInt(this.maxHealth);
-                }
-
                 await this.$store.dispatch('updateCharacter', payload);
             };
-            this.$socket.emit('updateParty');
+            this.$logging.update();
             this.clearFields();
+            this.$emit('reset');
         },
         clearFields() {
             this.itemQty = 1;

@@ -6,7 +6,7 @@
                 </div>
                 <div class="middle-ops d-flex flex-column">
                     <div class="character-operations">
-                        <character-operator :character-list="selectedChars" :item="selectedItem"></character-operator>
+                        <character-operator v-on:reset="selectedChars = []" :character-list="selectedChars" :item="selectedItem"></character-operator>
                     </div>
                     <div v-if="selectedItem.ItemId" class="item-card">
                         <div  class ="border border-dark item-card-inner">
@@ -107,6 +107,12 @@ export default {
                 }
             }
             if(success && this.selectedChars.length > 0 && this.selectedItem.ItemId){
+                this.$notify.success(successMsg);
+                this.$logging.update();
+                let successPayload = {
+                    characterId: char.CharacterId,
+                    message: `You received ${this.itemQty} ${this.selectedItem.Name}.`
+                }
                 this.$notify.success(successMsg);    
                 this.$socket.emit('updateParty');
             }

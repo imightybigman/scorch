@@ -1,0 +1,199 @@
+[
+    {
+      "Name": "Agonizing Blast",
+      "Level": 0,
+      "Classes": ["Warlock"],
+      "Description": "When you cast Eldritch Blast, add your Charisma modifier to the damage it deals on a hit.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Armor of Shadows",
+      "Level": 0,
+      "Classes": ["Warlock"],
+      "Description": "You can cast Mage Armor on yourself at will, without expending a spell slot or material Components.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Ascendant Step",
+      "Level": 9,
+      "Classes": ["Warlock"],
+      "Description": "You can cast Levitate on yourself at will, without expending a spell slot or material Components.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Beast Speech",
+      "Level": 0,
+      "Classes": ["Warlock"],
+      "Description": "You can cast Speak with Animals at will, without expending a spell slot.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Beguiling Influence",
+      "Level": 0,
+      "Classes": ["Warlock"],
+      "Description": "You gain proficiency in the Deception and Persuasion skills.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Bewitching Whispers",
+      "Level": 7,
+      "Classes": ["Warlock"],
+      "Description": "You can cast Compulsion once using a warlock spell slot. You can’t do so again until you finish a Long Rest.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Book of Ancient Secrets",
+      "Level": 0,
+      "Classes": ["Warlock"],
+      "Description": "You can use your action to touch a willing humanoid and perceive through its senses until the end of your next turn. As long as the creature is on the same plane of existence as you, you can use your action on subsequent turns to maintain this connection, extending the Duration until the end of your next turn. While perceiving through the other creature’s senses, you benefit from any Special senses possessed by that creature, and you are Blinded and Deafened to your own surroundings",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Devil Sight",
+      "Level": 0,
+      "Classes": ["Warlock"],
+      "Description": "You can see normally in Darkness, both magical and nonmagical, to a distance of 120 feet.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Dreadful Word",
+      "Level": 7,
+      "Classes": ["Warlock"],
+      "Description": "You can cast Confusion once using a warlock spell slot. You can’t do so again until you finish a Long Rest.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Eldritch Sight",
+      "Level": 0,
+      "Classes": ["Warlock"],
+      "Description": "You can cast Detect Magic at will, without expending a spell slot.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Eldritch Spear",
+      "Level": 0,
+      "Classes": ["Warlock"],
+      "Description": "When you cast Eldritch Blast, its range is 300 feet.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Eyes of the Rune Keeper",
+      "Level": 0,
+      "Classes": ["Warlock"],
+      "Description": "You can read all writing.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Fiendish Vigor",
+      "Level": 0,
+      "Classes": ["Warlock"],
+      "Description": "You can cast False Life on yourself at will as a 1st-level spell, without expending a spell slot or material Components.",
+      "Classes": ["Warlock"],
+      "School": "Evocation"
+    },
+    {
+      "Name": "Gaze of Two Minds",
+      "Level": 0,
+      "Classes": ["Warlock"],
+      "Description": "You can use your action to touch a willing humanoid and perceive through its senses until the end of your next turn. As long as the creature is on the same plane of existence as you, you can use your action on subsequent turns to maintain this connection, extending the Duration until the end of your next turn. While perceiving through the other creature’s senses, you benefit from any Special senses possessed by that creature, and you are Blinded and Deafened to your own surroundings.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Mask of Many Faces",
+      "Level": 0,
+      "Classes": ["Warlock"],
+      "Description": "You can cast Disguise Self at will, without expending a spell slot.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Master of Myriad Forms",
+      "Level": 15,
+      "Classes": ["Warlock"],
+      "Description": "You can cast Alter Self at will, without expending a spell slot.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Minions of Chaos",
+      "Level": 9,
+      "Classes": ["Warlock"],
+      "Description": "You can cast Conjure Elemental once using a warlock spell slot. You can’t do so again until you finish a Long Rest.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Mire the Mind",
+      "Level": 5,
+      "Classes": ["Warlock"],
+      "Description": "You can cast slow once using a warlock spell slot. You can’t do so again until you finish a Long Rest.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Misty Visions",
+      "Level": 0,
+      "Classes": ["Warlock"],
+      "Description": "You can cast Silent Image at will, without expending a spell slot or material Components.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "One with Shadows",
+      "Level": 5,
+      "Classes": ["Warlock"],
+      "Description": "When you are in an area of dim light or Darkness, you can use your action to become Invisible until you move or take an action or a reaction.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Otherworldly Leap",
+      "Level": 9,
+      "Classes": ["Warlock"],
+      "Description": "You can cast jump on yourself at will, without expending a spell slot or material Components.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Repelling Blast",
+      "Level": 0,
+      "Classes": ["Warlock"],
+      "Description": "When you hit a creature with Eldritch Blast, you can push the creature up to 10 feet away from you in a straight line.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Sculptor of Flesh",
+      "Level": 7,
+      "Classes": ["Warlock"],
+      "Description": "You can cast Polymorph once using a warlock spell slot. You can’t do so again until you finish a Long Rest.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Sign of Ill Omen",
+      "Level": 5,
+      "Classes": ["Warlock"],
+      "Description": "You can cast Bestow Curse once using a warlock spell slot. You can’t do so again until you finish a Long Rest.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Thief of Five Fates",
+      "Level": 0,
+      "Classes": ["Warlock"],
+      "Description": "You can cast bane once using a warlock spell slot. You can’t do so again until you finish a Long Rest.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Visions of Distant Realms",
+      "Level": 15,
+      "Classes": ["Warlock"],
+      "Description": "You can cast Arcane Eye at will, without expending a spell slot.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Whispers of the Grave",
+      "Level": 9,
+      "Classes": ["Warlock"],
+      "Description": "You can cast Speak with Dead at will, without expending a spell slot.",
+      "School": "Evocation"
+    },
+    {
+      "Name": "Witch Sight",
+      "Level": 15,
+      "Classes": ["Warlock"],
+      "Description": "You can see the true form of any shapechanger or creature concealed by Illusion or Transmutation magic while the creature is within 30 feet of you and within line of sight.",
+      "School": "Evocation"
+    }
+  ]

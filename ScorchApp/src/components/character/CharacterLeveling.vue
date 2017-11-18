@@ -32,7 +32,7 @@
                             <span class="stat">{{ statValue }}</span>
                         </div>
                         <div class="stats-leveling-buttons">
-                            <button class="btn btn-danger" @click="decreaseStat(stat)" :disabled="statPointsAvailable == 2">-</button>                            
+                            <button class="btn btn-danger" @click="decreaseStat(stat)" :disabled="statPointsAvailable == 2">-</button>
                             <button class="btn btn-primary" @click="increaseStat(stat)" :disabled="statPointsAvailable == 0">+</button>
                         </div>
                     </div>
@@ -72,7 +72,7 @@ export default {
         return {
             showLevelingModal: false,
             increaseHpBaseValue: 0,
-            hpRolled: false, 
+            hpRolled: false,
             statPointsAvailable: 2
         }
     },
@@ -99,7 +99,7 @@ export default {
         },
         baseHitDice() {
             return this.increaseHpBaseValue || this.characterClass.HitDiceFlat;
-        }, 
+        },
         levelingEnabled() {
             let expRange = LevelService.getExpRange(this.character.Level)
             return this.character.Exp >= expRange.max;
@@ -134,10 +134,10 @@ export default {
                 }
             };
             await this.$store.dispatch('updateCharacter', payload);
-            this.$socket.emit('updateParty');
-            $("body").removeClass("modal-open")            
+            this.$logging.update();
+            $("body").removeClass("modal-open")
             this.showLevelingModal = false;
-        }, 
+        },
         close(){
             $("body").removeClass("modal-open")
             this.showLevelingModal = false
