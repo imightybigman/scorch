@@ -60,9 +60,9 @@ export default {
                 payload.body.Hp = newHealth;
                 if (parseInt(this.deltaHealth) !== 0) {
                     if (this.deltaHealth > 0 ) {
-                        // await this.$logging.notify(char.CharacterId, "You gained " + this.deltaHealth + " HP.");
+                        await this.$logging.notify({user: char.CharacterId, type: "success", message: "You gained " + this.deltaHealth + " HP."});
                     } else {
-                        // await this.$logging.notify(char.CharacterId, "You lost " + this.deltaHealth + " HP.")
+                        await this.$logging.notify({user: char.CharacterId, type: "warning", message: "You lost " + this.deltaHealth + " HP."});
                     }
                 }
 
@@ -71,9 +71,9 @@ export default {
                 payload.body.Exp = newExp;
                 if (parseInt(this.deltaExp) !== 0) {
                     if (this.deltaExp > 0 ) {
-                        // await this.$logging.notify(char.CharacterId, "You gained " + this.deltaExp + " experience.");
+                        await this.$logging.notify({user: char.CharacterId, type: "success", message: "You gained " + this.deltaExp + " experience."});
                     } else {
-                        // await this.$logging.notify(char.CharacterId, "You lost " + this.deltaExp + " experience.")
+                        await this.$logging.notify({user: char.CharacterId, type: "warning", message: "You lost " + this.deltaExp + " experience."});
                     }
                 }
 
@@ -82,9 +82,9 @@ export default {
                 payload.body.Gold = newGold;
                 if (parseInt(this.deltaGold) !== 0) {
                     if (this.deltaGold > 0 ) {
-                        // await this.$logging.notify(char.CharacterId, "You gained " + this.deltaGold + " gold.");
+                        await this.$logging.notify({user: char.CharacterId, type: "success", message: "You gained " + this.deltaGold + " gold."});
                     } else {
-                        // await this.$logging.notify(char.CharacterId, "You lost " + this.deltaGold + " gold.")
+                        await this.$logging.notify({user: char.CharacterId, type: "warning", message: "You lost " + this.deltaGold + " gold."});
                     }
                 }
 

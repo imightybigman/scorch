@@ -112,6 +112,17 @@ export default {
   sockets: {
     newLog: function(message) {
       this.logs.unshift({ message: message });
+    },
+    notify: function(data) {
+      if (this.characterId === data.user){
+        if (data.type == 'success') {
+          this.$notify.success(data.message);
+        } else if (data.type == 'warning') {
+          this.$notify.failure(data.message);
+        } else {
+          this.$notify.info(data.message);
+        }
+      }
     }
   },
   computed: {

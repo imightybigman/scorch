@@ -9,10 +9,11 @@ const Logging = {
       Vue.prototype.$socket.emit("dm", msg);
     };
     Vue.prototype.$logging.init = function (msg) {
-      console.log(msg);
       Vue.prototype.$socket.emit("init", msg);
     };
-
+    Vue.prototype.$logging.notify = function (msg) {
+      Vue.prototype.$socket.emit("notify", msg);
+    };
   }
 }
 
