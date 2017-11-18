@@ -1,5 +1,5 @@
 <template>
-<div class="character-stat-card d-flex card">
+<div class="character-stat-card card">
   <div class="card-body">
     <h5>Character Stats</h5>
     <div class="d-flex stats">
@@ -40,12 +40,13 @@ export default {
 @import "~styles/shared.scss";
 
 .character-stat-card {
-  flex: 1 0;
+  display: flex;
+  flex: 1 0 auto;
+  max-height: 120px;
 }
+
 .stats{
   padding-bottom: 1%;
 }
-.stat {
-  flex: 1;
-}
+
 </style>

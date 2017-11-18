@@ -1,5 +1,5 @@
 <template>
-<div class="accordian card">
+<div class="accordian card scrollbar">
     <div class="accordian-header-background" :role="id + '-role'" >
         <div class="accordian-header card-header" data-toggle="collapse" :data-target="'#' + id" aria-expanded="false" :aria-controls="id + '-controls'">
             <span class="header-text">{{ header }}</span>
@@ -29,9 +29,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~styles/shared.scss";
 
 .accordian {
     margin-bottom: 1%;
+    max-height: 600px;
+    overflow-y: scroll;
 }
 
 // .accordian {
