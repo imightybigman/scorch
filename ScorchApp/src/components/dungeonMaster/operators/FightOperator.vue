@@ -19,6 +19,7 @@
             </div>
             <button class="btn btn-warning" @click="apply">Submit</button>
         </form>
+        <button class="btn btn-primary" @click="resetInit()">Fight Over</button>
     </div>
 </template>
 
@@ -92,6 +93,9 @@ export default {
             this.deltaGold = 0;
             this.deltaExp = 0;
             this.deltaHealth = 0;
+        },
+        resetInit() {
+          this.$logging.resetInit();
         }
     }
 }
