@@ -123,7 +123,7 @@ namespace ScorchApiV2.Controllers
 
             var character = await GetCharacter(characterId);
             item.Count = itemCount;
-            character.Inventory.Add(item);
+            character.Inventory.Insert(0, item);
             var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
 
             await _characterTable.UpdateItemAsync(updateDocument);
