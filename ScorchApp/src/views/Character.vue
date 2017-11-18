@@ -9,10 +9,14 @@
     <div class="d-flex flex-row character-basic-info">
         <character-tile :character="character"></character-tile>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <character-stats-card slot="body" :stats="character.Stats" :level="character.Level" :characterClass="characterClass || {}"></character-stats-card>
 =======
         <character-stats-card :stats="character.Stats" :level="character.Level" :characterClass="characterClass || {}"></character-stats-card>                
 >>>>>>> dnd/dev
+=======
+        <character-stats-card slot="body" :stats="character.Stats" :level="character.Level" :characterClass="characterClass || {}"></character-stats-card>
+>>>>>>> db8122f3baf7819e32daedefa884d1b96d62805b
     </div>
     <div class="d-flex flex-row justify-content-between character-screen">
       <div class="d-flex flex-column character-details">
