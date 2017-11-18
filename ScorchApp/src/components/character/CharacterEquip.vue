@@ -1,6 +1,5 @@
 <template>
-<div class="character-equip">
-  <div class="card">
+  <div class="character-equip card">
     <img class="card-img-top" v-if="this.character.Sex == 'Male'" src="~assets/dnd-male.jpg" alt="Card image cap">
     <img class="card-img-top" v-else src="~assets/dnd-female.jpg" alt="Card image cap">
     <div class="equipment helm">
@@ -113,11 +112,9 @@
             :title="equipment.Quiver.Name"
             alt="Card image cap" />    
     </div>
-  </div>
-
     <context-menu id="context-menu" @ctx-open="onCtxOpen" ref="ctxMenu">
       <li class="ctx-item" @click="unequip($event, item)">Unequip</li>
-    </context-menu>
+    </context-menu> 
 </div>
 </template>
 
@@ -169,9 +166,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.character-equip {
+  background-color: white;
+  display: flex;
+  height: 80%;
+  width: 80% ;
+}
+
 .card-img-top {
-    max-height: 100%;
-    max-width: 100%; 
+    height: 100%;
+    width: 100% ;
 }
 
 .equipped {

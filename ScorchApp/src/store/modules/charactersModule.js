@@ -1,6 +1,5 @@
 import { CharacterService } from 'services'
-import sortBy from 'lodash/sortBy'
-import findIndex from 'lodash/findIndex'
+import _ from 'lodash'
 import * as types from '../mutation-types'
 import Vue from 'vue'
 
@@ -48,7 +47,7 @@ const getters = {
 const actions = {
     async getParty({ commit }) {
         let response = await CharacterService.getParty();
-        let myParty = sortBy(response.body, (c) => c.Firstname);
+        let myParty = _.sortBy(response.body, (c) => c.Firstname);
         commit(types.GET_PARTY, myParty);
     },
     async updateCharacter({ commit }, payload) {
@@ -57,11 +56,18 @@ const actions = {
             commit(types.PATCH_CHARACTER, payload);
         }
     },
-    async addSpell({ commit }, payload) {
-        let response = await CharacterService.putCharacterSpell(payload.characterId, payload.body);
+    async addSpellToCharacter({ commit }, payload) {
+        let response = await CharacterService.putCharacterSpell(payload.characterId, payload.body.SpellId);
         if(response.status === 200){
             payload.addedSpell = response.body;
-            commit(types.ADD_SPELL, payload);
+            commit(types.ADD_SPELL_CHARACTER, payload);
+        }
+    },
+    async deleteSpellFromCharacter({ commit }, payload) {
+        let response = await CharacterService.deleteCharacterSpell(payload.characterId, payload.spellId);
+        if(response.status === 200){
+            payload.addedSpell = response.body;
+            commit(types.DELETE_SPELL_CHARACTER, payload);
         }
     },
     async equipItem({ commit }, payload) {
@@ -102,7 +108,7 @@ const actions = {
     },
     async socket_getParty({ commit }, message) {
         let response = await CharacterService.getParty();
-        let myParty = sortBy(response.body, (c) => c.Firstname);
+        let myParty = _.sortBy(response.body, (c) => c.Firstname);
         commit(types.GET_PARTY, myParty);
     }
 }
@@ -126,7 +132,7 @@ const mutations = {
             }
         }
     },
-    [types.ADD_SPELL] (state, payload) {
+    [types.ADD_SPELL_CHARACTER] (state, payload) {
         let id = payload.characterId;
         let addedSpell = payload.addedSpell;
 
@@ -134,11 +140,24 @@ const mutations = {
             let ch = state.party[i];
             if(ch.CharacterId === id) {
                 ch.Spells.push(addedSpell);
-                state.party[i].Spells = sortBy(ch.Spells, (s) => s.Name);
+                state.party[i].Spells = _.sortBy(ch.Spells, (s) => s.Name);
                 break;
             }
         }
     },
+    [types.DELETE_SPELL_CHARACTER] (state, payload) {
+        let id = payload.characterId;
+        let spellId = payload.spellId;
+        for(let i = 0; i < state.party.length; i++) {
+            let ch = state.party[i];
+            if(ch.CharacterId === id) {
+                _.remove(ch.Spells, (s) => { s.SpellId === spellId});
+                let index = _.findIndex(ch.Spells,(s) => s.SpellId === spellId);
+                ch.Spells.splice(index, 1);
+                break;
+            }
+        }
+    }, 
     [types.EQUIP_ITEM] (state, payload) {
         let id = payload.characterId;
         let item = payload.item;
@@ -177,7 +196,7 @@ const mutations = {
                 if(equipment.Quiver) {
                     state.party[i].Equipment = { ...state.party[i].Equipment, Quiver : item };
                 }
-                let index = findIndex(state.party[i].Inventory,(i) => i.ItemId === item.ItemId);
+                let index = _.findIndex(state.party[i].Inventory,(i) => i.ItemId === item.ItemId);
                 state.party[i].Inventory.splice(index, 1, item);
                 break;
             }
@@ -189,8 +208,20 @@ const mutations = {
         for(let i = 0; i < state.party.length; i++) {
             let ch = state.party[i];
             if(ch.CharacterId === id) {
-                let index = findIndex(state.party[i].Inventory,(i) => i.ItemId === itemId);
+                let index = _.findIndex(state.party[i].Inventory,(i) => i.ItemId === itemId);
                 state.party[i].Gold += state.party[i].Inventory[i].Cost || 0;
+                state.party[i].Inventory.splice(index, 1);
+                break;
+            }
+        }
+    },
+    [types.DELETE_ITEM] (state, payload) {
+        let id = payload.characterId;
+        let itemId = payload.itemId;
+        for(let i = 0; i < state.party.length; i++) {
+            let ch = state.party[i];
+            if(ch.CharacterId === id) {
+                let index = _.findIndex(state.party[i].Inventory,(i) => i.ItemId === itemId);
                 state.party[i].Inventory.splice(index, 1);
                 break;
             }

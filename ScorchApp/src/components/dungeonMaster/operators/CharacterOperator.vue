@@ -23,10 +23,6 @@
                     <label for="modify-gp">Modify Gold : </label>
                     <input type="number" class="form-control" id="modify-gold" v-model="deltaGold" placeholder="Gold Change" autocomplete="off"/>
                 </div>
-                <div class="form-group">
-                    <label for="item-quantity">Items Quantity : </label>
-                    <input type="number" class="form-control" id="item-quantity" v-model="itemQty" placeholder="# Items" autocomplete="off"/>
-                </div>
             </div>
             <button class="btn btn-warning" @click="apply">Submit</button>
         </form>
@@ -43,7 +39,6 @@ export default {
             deltaHealth : 0,
             deltaExp : 0,
             deltaGold : 0,
-            itemQty: 1,
             maxHealth: 0,
             isTempHp: false
         }
@@ -77,12 +72,6 @@ export default {
                 }
 
                 await this.$store.dispatch('updateCharacter', payload);
-                if(this.item.ItemID && this.itemQty > 0){
-                    let itemAdded = {};
-                    itemAdded.ItemId = this.item.ItemId;
-                    itemAdded.Count = parseInt(this.itemQty);
-                    await CharacterService.postCharacterItem(char.CharacterId, itemAdded);
-                }
             };
             this.$socket.emit('updateParty');            
             this.clearFields();

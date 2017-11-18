@@ -48,7 +48,9 @@ export default {
 
 <style lang="scss" scoped>
 .character-tile {
-    padding: 1%;
+    flex: 1 0 auto;
+    box-sizing:border-box;
+    -webkit-box-sizing: border-box
 }
 
 .router-link-active {

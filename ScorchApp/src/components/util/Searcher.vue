@@ -5,7 +5,7 @@
                 <h4 class="searcher-header">Searcher</h4>
             </div>            
             <div class="input-group">
-                <input type="text" class="form-control" id="name" v-model="searchTerm" placeholder="Search" autocomplete="off" required="true"/>
+                <input type="text" class="form-control search-box" id="name" v-model="searchTerm" placeholder="Search" autocomplete="off" required="true"/>
             </div>
             <div class="search-results table-responsive">
                 <table id="search-results-table" class="table table-hover">
@@ -35,7 +35,7 @@
                 <li class="page-item clickable" v-for="(page, index) in pagesToShow" :key="index" v-on:click="currentPage = page" >
                     <a class="page-link" v-bind:class ="{activated : page == currentPage}" >{{page}}</a>
                 </li>
-                
+               
                 <li class="page-item clickable" v-on:click="currentPage = Math.min(currentPage+1, numPages)">
                     <a class="page-link" >
                         <span aria-hidden="true">&raquo;</span>
@@ -157,11 +157,8 @@ export default {
     
     .searcher {
         margin: 1%;
-        margin-top: 2%;
+        margin-top: 1%;
         padding: 1%;
-        border-radius: 10px;
-
-        border-style: solid;
     }
     .searcher-inner {
         padding: 1%;
@@ -174,9 +171,6 @@ export default {
         flex-direction:row;
         margin-bottom:0.5%;
     }
-    .filter-btn {
-        float: right;
-    }
     .searcher-header {
         flex:1;
     }
@@ -188,9 +182,6 @@ export default {
     }
     .activated {
         background-color: orange;
-    }
-    input{
-        background-color: #E8E8E8;
     }
     a{
         background-color: #E8E8E8;

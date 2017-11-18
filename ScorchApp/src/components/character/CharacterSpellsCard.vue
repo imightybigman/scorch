@@ -18,23 +18,17 @@
     <div slot="footer"></div>
   </modal>
   <div class="card spell-card card-width">
-    <div class="card-header" data-toggle="collapse" role="tab" id="character-spells">
-      <h5 class="mb-0" >
-        <a href="#spells" data-toggle="collapse" aria-expanded="false" aria-controls="spells">Spells/Cantrips</a>
-      </h5>
-    </div>
-    <div id="spells" class="collapse" role="tabpanel" aria-labelledby="character-spells" data-parent="#character-details">
       <div class="card-body">
+      <div class="list-group-item list-group-item-action">
+          <button class="spell-button btn btn-block btn-primary" @click="showSpellAddModal = true">Add Spell</button>
+        </div>
         <div v-for="(spell, index) in spells" @click="spellClick(spell)" :key="index" class="list-group-item list-group-item-action">
           <h6>{{ spell.Name }}</h6>
           <small v-if="spell.Damage">Damage: {{ spell.Damage }}</small>
           <small v-if="spell.DamageType">Damage Type: {{ spell.DamageType }}</small>
         </div>
-        <div class="list-group-item list-group-item-action">
-          <button class="btn btn-block btn-primary" @click="showSpellAddModal = true">+</button>
-        </div>
-      </div>
-    </div>
+
+            </div>
   </div>
 </div>
 
@@ -87,6 +81,11 @@ export default {
 
 <style lang="scss" scoped>
 @import "~styles/shared.scss";
+
+.spell-button {
+  width: 30%;
+  margin: 0 auto;
+}
 
 .spell-card {
 
