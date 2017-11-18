@@ -2,7 +2,7 @@
  <transition name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container">
+        <div class="modal-container scrollbar">
           
           <div class="modal-header">
             <slot name="header">
@@ -54,6 +54,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~styles/shared.scss';
+
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -80,9 +82,8 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;
-  max-height: 1000px;
-  overflow-y: scroll;
   color: black;
+  max-height: 800px;
 }
 
 .modal-header h3 {
