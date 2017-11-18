@@ -14,6 +14,9 @@ const Logging = {
     Vue.prototype.$logging.notify = function (msg) {
       Vue.prototype.$socket.emit("notify", msg);
     };
+    Vue.prototype.$logging.update = function () {
+      Vue.prototype.$socket.emit("updateParty");
+    };
   }
 }
 

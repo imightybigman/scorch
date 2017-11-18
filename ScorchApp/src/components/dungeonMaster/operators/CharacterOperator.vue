@@ -94,7 +94,7 @@ export default {
 
                 await this.$store.dispatch('updateCharacter', payload);
             };
-            this.$socket.emit('updateParty');
+            this.$logging.update();
             this.clearFields();
         },
         clearFields() {
