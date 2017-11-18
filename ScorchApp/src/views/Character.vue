@@ -65,7 +65,7 @@
   </div>
   <div class="d-flex flex-column character-other border">
     <character-leveling :character="character" :characterClass="characterClass"></character-leveling>
-    <dice-roller :name="name" :dex="getDexMod()" :id="getCharId()"></dice-roller>
+    <dice-roller :name="name" :dex="getDexMod()"></dice-roller>
     <inventory :characterId="character.CharacterId"></inventory>
   </div>
 </div>
@@ -97,6 +97,7 @@ export default {
   data() {
     return {
       user: '',
+      initReset: false,
       logs: [
 
       ]
@@ -147,10 +148,7 @@ export default {
     },
     getDexMod() {
         return AbilityModifierService.getAbilityModifier(this.character.Stats.Dexterity);
-    },
-    getCharId() {
-      return this.characterId;
-    },
+    }
   },
   watch: {
     async character(newCharacter) {

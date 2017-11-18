@@ -19,8 +19,8 @@
                       <h3>
                           Initiative
                       </h3>
-                        <div v-for="user in party">
-                            <ul>0 : {{user.Firstname}} {{user.Lastname}}</ul>
+                        <div v-for="user in initInfo">
+                            <ul>{{user.init}} : {{user.user}}</ul>
                         </div>
                     </div>
                 </div>
@@ -34,16 +34,28 @@
     import { CharacterTile } from 'components/character'
     import CharacterOperator from './operators/CharacterOperator.vue'
     import FightOperator from './operators/FightOperator'
+    import CharacterService from 'services/characterService'
+    import _ from 'lodash'
 
 export default {
     name : 'dm-fight-component',
     data() {
         return {
             selectedChars: [],
+            initInfo: []
         }
     },
     async created() {
       await this.$store.dispatch('getParty');
+    },
+    sockets: {
+      init: function(data) {
+        this.initInfo.push(data);
+        this.initInfo = _.orderBy(this.initInfo, ['init'], ['desc']);
+      },
+      resetInit: function() {
+        this.clearInit();
+      }
     },
     methods: {
         toggleCharacter(character) {
@@ -59,6 +71,9 @@ export default {
         },
         isCharacterSelected(character) {
             return !(this.selectedChars.find(char => char.CharacterId == character.CharacterId) == undefined);
+        },
+        clearInit() {
+          this.initInfo = [];
         }
     },
     computed: {
