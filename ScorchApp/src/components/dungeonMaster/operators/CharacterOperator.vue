@@ -93,17 +93,6 @@ export default {
                 }
 
                 await this.$store.dispatch('updateCharacter', payload);
-<<<<<<< Updated upstream
-=======
-                if(this.item.ItemId && this.itemQty > 0){
-                    let itemAdded = {};
-                    itemAdded.ItemId = this.item.ItemId;
-                    itemAdded.Count = parseInt(this.itemQty);
-                    await CharacterService.postCharacterItem(char.CharacterId, itemAdded);
-
-                    await Logging.notify(char.CharacterId, "You gained an item. Name: ");
-                }
->>>>>>> Stashed changes
             };
             this.$socket.emit('updateParty');
             this.clearFields();
