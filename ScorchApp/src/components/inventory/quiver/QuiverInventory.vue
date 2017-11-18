@@ -1,7 +1,7 @@
 <template>
 <div class="inventory-card">
   <quiver-detail :quiver="selectedQuiver" :showModal="showDetail" v-on:close="showDetail = false"></quiver-detail>
-    <div class="item-list">
+    <div class="item-list scrollbar">
       <div v-for="(quiver, index) in quivers" :key="index" class="d-flex flex-column list-item border">
         <div @click="quiverClick(quiver)">
           <item-card :item="quiver"></item-card>

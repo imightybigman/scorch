@@ -1,8 +1,8 @@
 <template>
 <div class="inventory-card">
   <accessory-detail :accessory="selectedAccessory" :showModal="showDetail" v-on:close="showDetail = false"></accessory-detail>
-  <div class="item-list">
-    <div v-for="(accessory, index) in accessories" :key="index" class="d-flex flex-column list-item border">
+  <div class="item-list scrollbar">
+    <div v-for="(accessory, index) in accessories" :key="index" class="d-flex flex-column  list-item border">
       <div @click="accessoryClick(accessory)">
         <item-card :item="accessory"></item-card>
       </div>
