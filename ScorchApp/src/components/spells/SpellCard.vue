@@ -70,8 +70,8 @@ export default {
                 body: this.selectedSpell
             };
             await this.addSpellToCharacter(payload);
+            this.$notify.success(`Spell '${this.selectedSpell.Name}' added to your list.`)
             this.successfulAdd = true;
-            this.$notify.success(`Spell '${spell.Name} added to your list.'`)
         },
         ...mapActions([
             'addSpellToCharacter'
