@@ -81,7 +81,6 @@ export default {
                             })
                             .sortBy('title', 'asc')
                             .value();
-            console.log(grouped)
             return grouped;
         },
         spellsGroupedBySchool() {
