@@ -49,6 +49,7 @@ export default {
                 spellId: spell.SpellId
             }
             await this.deleteSpellFromCharacter(payload);
+            this.$notify.success(`Spell '${spell.Name} deleted.'`)
         },
         close() {
             $("body").removeClass("modal-open");

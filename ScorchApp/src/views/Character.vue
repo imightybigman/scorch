@@ -199,6 +199,7 @@ export default {
 
     .character-screen {
       flex: 4 0 auto;
+      padding: 1% 0;
 
       .character-details {
         flex: 1 0;
@@ -222,6 +223,7 @@ export default {
       flex: 2 0 auto;
       height: 200px;
       overflow-y: scroll;
+      margin: 0 1%;
     }
   }
 
