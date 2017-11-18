@@ -42,11 +42,14 @@ export default {
 .character-stat-card {
   display: flex;
   flex: 1 0 auto;
-  max-height: 120px;
+  max-height: 117px;
 }
 
 .stats{
   padding-bottom: 1%;
 }
 
+.stat {
+    flex: 1 0;
+}
 </style>
