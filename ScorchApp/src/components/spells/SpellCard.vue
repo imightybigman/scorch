@@ -61,10 +61,6 @@ export default {
                 this.$notify.failure('You are not high level enough for this spell');
                 return;
             }
-            if(this.selectedSpell.Classes.indexOf(this.character.Class) == -1) {
-                this.$notify.failure("This spell can't be used by your class");
-                return;
-            }
             let payload = {
                 characterId : this.character.CharacterId,
                 body: this.selectedSpell
