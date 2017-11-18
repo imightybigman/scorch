@@ -81,7 +81,7 @@ export default {
         },
         async giveItem(){
             if(this.selectedChars.length === 0){
-                this.$warning('Please select at least one character.');
+                this.$notify.warning('Please select at least one character.');
             }
             let success = true;
             let nameList = this.selectedChars.map(char => {return char.Firstname + ' ' + char.Lastname}).join(', ');
