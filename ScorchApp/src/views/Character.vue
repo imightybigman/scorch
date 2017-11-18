@@ -1,6 +1,6 @@
 <template>
 <div class="character-view d-flex flex-wrap" v-if="character">
-  <div class="d-flex flex-column party-navigation border">
+  <div class="d-flex flex-column party-navigation border scrollbar">
     <div class="character-cards-container" v-for="(char, index) in party" @click="goTo(char.CharacterId)" :key="index">
       <character-tile :character="char"></character-tile>
     </div>
@@ -55,7 +55,7 @@
         </vue-tabs>
       </div>
     </div>
-    <div class="d-flex notes black-border">
+    <div class="d-flex notes black-border scrollbar">
       <ul>
         <li v-for="(log, index) in logs" class="list-unstyled" :key="index">
           {{ log.message }} <br />
@@ -172,6 +172,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~styles/shared.scss';
+
   .black-border {
     border: 1px solid black;
     box-sizing: border-box;
