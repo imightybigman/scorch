@@ -107,6 +107,12 @@ export default {
                 }
             }
             if(success && this.selectedChars.length > 0 && this.selectedItem.ItemId){
+                this.$notify.success(successMsg);
+                this.$logging.update();
+                let successPayload = {
+                    characterId: char.CharacterId,
+                    message: `You received ${this.itemQty} ${this.selectedItem.Name}.`
+                }
                 this.$notify.success(successMsg);    
                 this.$socket.emit('updateParty');
             }

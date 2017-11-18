@@ -15,7 +15,7 @@ import 'font-awesome/scss/font-awesome.scss'
 import 'rpg-awesome/scss/rpg-awesome.scss'
 import 'styles/styles.scss'
 
-Vue.use(VueSocketio, process.env.SOCKET_HOST);
+Vue.use(VueSocketio, process.env.SOCKET_HOST, store);
 Vue.use(VueResource);
 Vue.use(Notify);
 Vue.use(Logging);
