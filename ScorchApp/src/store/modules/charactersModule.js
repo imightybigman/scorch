@@ -53,7 +53,7 @@ const actions = {
     async updateCharacter({ commit }, payload) {
         let response = await CharacterService.patchCharacter(payload.characterId, payload.body);
         if(response.status === 200){
-            commit(types.PATCH_CHARACTER, payload);
+            await actions.getParty({ commit });
         }
     },
     async addSpellToCharacter({ commit }, payload) {
@@ -126,7 +126,7 @@ const mutations = {
             let ch = state.party[i];
             if(ch.CharacterId === id) {
                 for(let key in props) {
-                    ch[key] = props[key];
+                    state.party[i] = {...ch, [key]: props[key] };
                 }
             break;
             }

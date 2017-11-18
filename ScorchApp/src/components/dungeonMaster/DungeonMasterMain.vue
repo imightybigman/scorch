@@ -6,7 +6,7 @@
                 </div>
                 <div class="middle-ops d-flex flex-column">
                     <div class="character-operations">
-                        <character-operator :character-list="selectedChars" :item="selectedItem"></character-operator>
+                        <character-operator v-on:reset="selectedChars = []" :character-list="selectedChars" :item="selectedItem"></character-operator>
                     </div>
                     <div v-if="selectedItem.ItemId" class="item-card">
                         <div  class ="border border-dark item-card-inner">
