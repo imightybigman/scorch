@@ -1,12 +1,12 @@
 <template>
-<div class="accordian card scrollbar">
+<div class="accordian card">
     <div class="accordian-header-background" :role="id + '-role'" >
         <div class="accordian-header card-header" data-toggle="collapse" :data-target="'#' + id" aria-expanded="false" :aria-controls="id + '-controls'">
             <span class="header-text">{{ header }}</span>
         </div>
     </div>
     <div :id="id" class="accordian-body-container collapse" :role="id + '-panel'" :aria-labelledby="id + '-controls'" :data-parent="'#' + 'parent'">
-        <div class="accordian-body card-body">
+        <div class="accordian-body scrollbar card-body">
             <slot name="body">Default Body</slot>
         </div>
     </div>
@@ -33,6 +33,8 @@ export default {
 
 .accordian {
     margin-bottom: 1%;
+}
+.accordian-body {
     max-height: 600px;
     overflow-y: scroll;
 }

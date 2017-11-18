@@ -63,6 +63,7 @@ namespace ScorchApiV2.Controllers
                         Classes = spell.Classes,
                         Level = spell.Level,
                         Name = spell.Name,
+                        School = spell.School,
                         DamageType = spell.DamageType ?? "",
 
                     });

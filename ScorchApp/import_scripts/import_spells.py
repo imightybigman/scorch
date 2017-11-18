@@ -117,5 +117,13 @@ def rawSpellGenerator():
 
         yield spellAttributes
 
+def importWarlockInvocations():
+    invocations = json.load(open('warlockInvocations.json'))
+    for invoc in invocations:
+        pp.pprint('Creating Invocation {0}'.format(invoc['Name']))        
+        r = requests.post(dndApiUrl, json=invoc)
+        handle_response(r)
+
 if __name__ == '__main__':
-    importSpells()
+    #importSpells()
+    importWarlockInvocations()
