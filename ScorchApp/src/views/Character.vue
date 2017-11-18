@@ -8,7 +8,7 @@
   <div class="d-flex flex-column character-info border">
     <div class="d-flex flex-row character-basic-info">
         <character-tile :character="character"></character-tile>
-        <character-stats-card :stats="character.Stats" :level="character.Level" :characterClass="characterClass || {}"></character-stats-card>                
+        <character-stats-card :stats="character.Stats" :level="character.Level" :characterClass="characterClass || {}"></character-stats-card>
     </div>
     <div class="d-flex flex-row justify-content-between character-screen">
       <div class="d-flex flex-column character-details">
@@ -39,7 +39,7 @@
             </accordian>
             <accordian v-if="character.Class === 'Ranger'" :header="'Companion'">
               <companion slot="body" :companion="characterClass.Companion"></companion>
-            </accordian>            
+            </accordian>
         </div>
       </div>
       <div class="d-flex flex-column character-advanced-info">
@@ -50,7 +50,7 @@
           <v-tab title="Spells">
           <div class="d-flex flex-column spells card">
             <spell-card :character="character" :spells="character.Spells" :characterClass="characterClass || {}"></spell-card>
-          </div>   
+          </div>
           </v-tab>
         </vue-tabs>
       </div>
@@ -65,7 +65,7 @@
   </div>
   <div class="d-flex flex-column character-other border">
     <character-leveling :character="character" :characterClass="characterClass"></character-leveling>
-    <dice-roller :name="name" :dex="getDexMod()"></dice-roller>
+    <dice-roller :name="name" :dex="getDexMod()" :id="getCharId()"></dice-roller>
     <inventory :characterId="character.CharacterId"></inventory>
   </div>
 </div>
@@ -111,6 +111,17 @@ export default {
   sockets: {
     newLog: function(message) {
       this.logs.unshift({ message: message });
+    },
+    notify: function(data) {
+      if (this.characterId === data.user){
+        if (data.type == 'success') {
+          this.$notify.success(data.message);
+        } else if (data.type == 'warning') {
+          this.$notify.failure(data.message);
+        } else {
+          this.$notify.info(data.message);
+        }
+      }
     }
   },
   computed: {
@@ -136,6 +147,9 @@ export default {
     },
     getDexMod() {
         return AbilityModifierService.getAbilityModifier(this.character.Stats.Dexterity);
+    },
+    getCharId() {
+      return this.characterId;
     },
   },
   watch: {
@@ -199,6 +213,7 @@ export default {
 
     .character-screen {
       flex: 4 0 auto;
+      padding: 1% 0;
 
       .character-details {
         flex: 1 0;
@@ -222,6 +237,7 @@ export default {
       flex: 2 0 auto;
       height: 200px;
       overflow-y: scroll;
+      margin: 0 1%;
     }
   }
 
@@ -231,6 +247,5 @@ export default {
 
 .level-btn {
   color: white;
-}
-
+  }
 </style>

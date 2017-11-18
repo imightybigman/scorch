@@ -57,7 +57,7 @@ import sum from 'lodash/sum'
 
 export default {
     name: 'dice-roller',
-    props: ['name', 'dex'],
+    props: ['name', 'dex', 'id'],
     data() {
         return {
             showModal: false,
@@ -75,7 +75,7 @@ export default {
         showModal: function(newValue) {
           let total = sum(this.rolledValues);
           if (total !== 0){
-            this.logAction("Combining all of " + this.name + "'s rolls came up to " + total);
+            this.$logging.info("Combining all of " + this.name + "'s rolls came up to " + total);
           }
           this.clear();
         }
@@ -85,36 +85,37 @@ export default {
             let currentRoll = Math.floor(Math.random() * 4) + 1;
             this.rolledValues.push(currentRoll);
             this.rollD4Count++;
-            this.logAction(this.name + " rolled a D4 and got a " + currentRoll);
+            this.$logging.info(this.name + " rolled a D4 and got a " + currentRoll);
         },
         rollD6() {
               let currentRoll = Math.floor(Math.random() * 6) + 1
               this.rolledValues.push(currentRoll);
               this.rollD6Count++;
-              this.logAction(this.name + " rolled a D6 and got a " + currentRoll);
+              this.$logging.info(this.name + " rolled a D6 and got a " + currentRoll);
         },
         rollD8() {
             let currentRoll = Math.floor(Math.random() * 8) + 1
             this.rolledValues.push(currentRoll);
             this.rollD8Count++;
-            this.logAction(this.name + " rolled a D8 and got a " + currentRoll);
+            this.$logging.info(this.name + " rolled a D8 and got a " + currentRoll);
         },
         rollD10() {
             let currentRoll = Math.floor(Math.random() * 10) + 1
             this.rolledValues.push(currentRoll);
             this.rollD10Count++;
-            this.logAction(this.name + " rolled a D10 and got a " + currentRoll);        },
+            this.$logging.info(this.name + " rolled a D10 and got a " + currentRoll);        },
         rollD12() {
             let currentRoll = Math.floor(Math.random() * 12) + 1
             this.rolledValues.push(currentRoll);
             this.rollD12Count++;
-            this.logAction(this.name + " rolled a D12 and got a " + currentRoll);
+            this.$logging.info(this.name + " rolled a D12 and got a " + currentRoll);
               },
         rollD20() {
             let currentRoll = Math.floor(Math.random() * 20) + 1
             this.rolledValues.push(currentRoll);
             this.rollD20Count++;
-            this.logAction(this.name + " rolled a D20 and got a " + currentRoll);
+            this.$logging.info(this.name + " rolled a D20 and got a " + currentRoll);
+            console.log(this);
         },
         clear() {
             this.rolledValues = [];
@@ -125,16 +126,15 @@ export default {
             this.rollD12Count = 0;
             this.rollD20Count = 0;
         },
-        logAction(message) {
-          this.$socket.emit('newLog', message);
-        },
         close(){
             $("body").removeClass("modal-open");
             this.showModal = false;
         },
         rollInitiative() {
           let currentRoll = Math.floor(Math.random() * 20) + 1
-          this.logAction(this.name + " rolled for initiative (d20 + Dexterity modifier) and got a " + (currentRoll + this.dex));
+          this.$logging.info(this.name + " rolled for initiative (d20 + Dexterity modifier) and got a " + (currentRoll + this.dex));
+          this.$logging.dm({user: (currentRoll + this.dex)});
+
           this.initRolled = true;
         }
 

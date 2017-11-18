@@ -6,7 +6,7 @@ import NotificationAlert from './NotificationAlert'
 
 export {
     Modal,
-    Searcher,  
+    Searcher,
     DiceRoller,
     Accordian,
     NotificationAlert
