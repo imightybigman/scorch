@@ -31,7 +31,7 @@
             <h5>Properties</h5>
             <p v-for="(props, index) in quiver.Properties" :key="index">
                 {{ props }}
-            </p>
+            </p>  
         </div>
       </div>
 

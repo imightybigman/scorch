@@ -3,12 +3,13 @@
   <a class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex flex-row w-100 justify-content-between">
         <div class="d-flex flex-column icon align-items-center">
-            <small class="level">Lv. {{ this.character.Level }}</small>
+            <h5 class="level">Lv. {{ this.character.Level }}</h5>
             <img :class="classIcon" src="~assets/icons/class-icons.jpg">
       </div>
       <div class="d-flex flex-column character-stats">
         <div class="d-flex justify-content-between">
         <h5>{{ name }}</h5>
+        <span><b><i class="ra ra-gold-bar"/> {{gold}} GP</b></span>
         </div>
         <hp-bar :character="character"></hp-bar>
         <exp-bar :character="character"></exp-bar>
@@ -33,6 +34,9 @@ export default {
         },
         classIcon() {
             return this.character.Class.toLowerCase();
+        },
+        gold() {
+            return this.character.Gold;
         }
     }, 
     components: {
@@ -44,7 +48,9 @@ export default {
 
 <style lang="scss" scoped>
 .character-tile {
-    padding: 1%;
+    flex: 1 0 auto;
+    box-sizing:border-box;
+    -webkit-box-sizing: border-box
 }
 
 .router-link-active {
@@ -87,5 +93,12 @@ img {
 
 .paladin {
     object-position: -180px -60px;
+}
+
+.level {
+    font-weight: bolder;
+}
+.ra-gold-bar{
+    color:gold;
 }
 </style>

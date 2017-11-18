@@ -8,12 +8,16 @@ export default {
         return Vue.http.patch('character/' + id, props);
     },
     sellItem(id, itemId){
-        let endpoint = `character/${id}/inventory?itemId=${itemId}`;
+        let endpoint = `character/${id}/inventory/sell?itemId=${itemId}`;
         return Vue.http.delete(endpoint);
     },
-    putCharacterSpell(id, spell) {
-        let endpoint = `character/${id}/spells`;
-        return Vue.http.put(endpoint, spell)
+    putCharacterSpell(id, spellId) {
+        let endpoint = `character/${id}/spells?spellId=${spellId}`;
+        return Vue.http.put(endpoint)
+    },
+    deleteCharacterSpell(id, spellId) {
+        let endpoint = `character/${id}/spells?spellId=${spellId}`;
+        return Vue.http.delete(endpoint)
     },
     putCharacterItem(id, item) {
         let endpoint = `character/${id}/inventory`;
@@ -30,5 +34,9 @@ export default {
     unequipItem(id, slot){
         let endpoint = `character/${id}/equipment`;
         return Vue.http.delete(endpoint, { params: { slot: slot } });
+    },
+    deleteItem(id, itemId){
+      let endpoint = `character/${id}/inventory/delete?itemId=${itemId}`;
+      return Vue.http.delete(endpoint);
     }
 }

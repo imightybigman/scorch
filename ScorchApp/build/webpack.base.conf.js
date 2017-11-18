@@ -28,6 +28,7 @@ module.exports = {
       'services': path.resolve(__dirname, '../src/services'),
       'views': path.resolve(__dirname, '../src/views'),
       'store': path.resolve(__dirname, '../src/store'),
+      'plugins': path.resolve(__dirname, '../src/plugins'),
       'styles': path.resolve(__dirname, '../src/styles'),
       '@': resolve('src')
     }

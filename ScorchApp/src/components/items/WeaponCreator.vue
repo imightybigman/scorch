@@ -3,6 +3,9 @@
         <div class="alert alert-success success-notification" id='success-weapon-msg'>
             <strong>Success Weapon Added!</strong>
         </div>
+        <div class="alert alert-success success-notification" id='update-weapon-msg'>
+            <strong>Success Weapon Updated!</strong>
+        </div>
         <div class="alert alert-danger failure-notification" id="failure-weapon-msg">
             <strong>Error creating Item!</strong>
         </div>
@@ -110,6 +113,7 @@
                         </div>
                     </div>
                     <button class="btn btn-primary">Submit</button>
+                    <button class="btn btn-primary" @click="update()">Update</button>
                     <button class="btn btn-danger clear-button" type="button" v-on:click="clearFields()">Clear</button>
                 </form>
             </div>
@@ -135,14 +139,16 @@ export default {
             newStatModAmount: 0,
             shortRange : this.weapon.ShortRange || 0,
             longRange : this.weapon.LongRange || 0,
-            weight : this.weapon.Description || 0,
+            weight : this.weapon.Weight || 0,
             cost : this.weapon.Cost || 0,
             statModifiers: this.weapon.StatModifiers || [],
-            properties: this.weapon.Properties || []
+            properties: this.weapon.Properties || [],
+            itemId: this.weapon.ItemId || ''
         }
     },
     watch: {
       weapon: function () {
+        console.log(this.weapon);
         this.clearFields();
         this.newStatModStat = 'Strength',
         this.description = this.weapon.Description;
@@ -155,10 +161,11 @@ export default {
         this.newStatModAmount = 0;
         this.shortRange = this.weapon.ShortRange;
         this.longRange = this.weapon.LongRange;
-        this.weight = this.weapon.Description;
+        this.weight = this.weapon.Weight;
         this.cost = this.weapon.Cost;
         this.statModifiers = this.weapon.StatModifiers;
         this.properties = this.weapon.Properties;
+        this.itemId = this.weapon.ItemId;
       }
     },
     methods: {
@@ -236,6 +243,44 @@ export default {
                     $('#success-weapon-msg').fadeOut(5000);
                 });
             }
+        },
+        async update() {
+          let payload = {};
+          let body = {};
+          body.ItemClass = 'Weapon';
+          body.Name = this.name;
+          body.Cost = this.cost;
+          body.Slot = this.slot;
+          body.Weight = this.weight;
+          body.Damage = this.damage;
+          body.ItemType = this.itemType;
+          body.DamageType = this.damageType;
+          body.ShortRange = this.shortRange;
+          body.LongRange = this.longRange;
+          body.Properties = this.properties;
+          body.Description = this.description;
+          body.StatModifiers = this.statModifiers;
+          body.ItemId = this.itemId;
+
+          payload.body = body;
+          await this.$store.dispatch('updateInventory', payload);
+
+          if(this.$store.getters.error){
+              console.log("Encountered an error during item update : " + this.error);
+
+              $('#success-weapon-msg').fadeIn(0);
+              setTimeout(13000, () => {
+                  $('#success-weapon-msg').fadeOut(5000);
+              });
+          }
+          else{
+              this.clearFields();
+
+              $('#update-weapon-msg').fadeIn(0);
+              setTimeout(13000, () => {
+                  $('#success-weapon-msg').fadeOut(5000);
+              });
+          }
         },
         clearFields(){
             this.description = '';

@@ -154,15 +154,15 @@ namespace ScorchApiV2.Controllers
             await _characterTable.UpdateItemAsync(updateDocument);
         }
 
-
+         
         [HttpDelete("{characterId}")]
         public async Task DeleteCharacter(Guid characterId)
         {
             await _characterTable.DeleteItemAsync(characterId);
         }
 
-        [HttpDelete("{characterId}/inventory")]
-        public async Task DeleteItemFromInventory(Guid characterId, Guid itemId)
+        [HttpDelete("{characterId}/inventory/sell")]
+        public async Task SellItemFromInventory(Guid characterId, Guid itemId)
         {
             var character = await GetCharacter(characterId);
             var item = character.Inventory.Find(x => x.ItemId == itemId);
@@ -173,15 +173,27 @@ namespace ScorchApiV2.Controllers
             await _characterTable.UpdateItemAsync(updateDocument);
         }
 
+        [HttpDelete("{characterId}/inventory/delete")]
+        public async Task RemoveItemFromInventory(Guid characterId, Guid itemId)
+        {
+            var character = await GetCharacter(characterId);
+            character.Inventory.RemoveAll(x => x.ItemId == itemId);
+
+            var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
+            await _characterTable.UpdateItemAsync(updateDocument);
+        }
+
         [HttpPut("{characterId}/spells")]
-        public async Task<Spell> PutSpell(Guid characterId, [FromBody] Spell spell)
+        public async Task<Spell> PutSpell(Guid characterId, Guid spellId)
         {
             // if no item id was passed in , assume it is a new item
-            if (spell.SpellId == Guid.Empty)
+            if (spellId == Guid.Empty)
             {
-                var spellsController = new SpellsController(_appSettings);
-                spell = await spellsController.PostSpell(spell);
+                throw new MissingFieldException("Missing spell id parameter");
             }
+
+            var spellsController = new SpellsController(_appSettings);
+            var spell = await spellsController.GetSpell(spellId);
 
             var character = await GetCharacter(characterId);
             character.Spells.Add(spell);

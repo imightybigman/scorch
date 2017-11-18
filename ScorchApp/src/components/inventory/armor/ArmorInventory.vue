@@ -1,33 +1,25 @@
 <template>
-    <div class="card inventory-card">
-        <armor-detail :armor="selectedArmor" :showModal="showDetail" v-on:close="showDetail = false"></armor-detail>
-        <div class="card-header" role="tab" id="armor">
-            <h5 class="mb-0">
-            <a data-toggle="collapse" href="#armorInventory" aria-expanded="false" aria-controls="armorInventory">
-                Armors
-            </a>
-            </h5>
+<div class="inventory-card">
+  <armor-detail :armor="selectedArmor" :showModal="showDetail" v-on:close="showDetail = false"></armor-detail>
+    <div class="item-list scrollbar">
+      <div v-for="(armor, index) in armors" :key="index" class="d-flex flex-column list-item border">
+        <div @click="armorClick(armor)">
+          <item-card :item="armor"></item-card>
         </div>
-        <div id="armorInventory" class="collapse" role="tabpanel" aria-labelledby="armor" data-parent="#inventory">
-            <div class="card-body item-list">
-            <div v-for="(armor, index) in armors" 
-                    :key="index" 
-                    class="d-flex flex-column list-item border">
-                    <div @click="armorClick(armor)">
-                        <item-card :item="armor"></item-card>
-                    </div>
-                    <div>
-                        <button class="btn btn-primary" @click="equipArmor(armor)">
-                            Equip
-                        </button>
-                        <button class="btn btn-danger" @click="sellArmor(armor)">
-                            Sell
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <div>
+          <button class="btn btn-primary" @click="equipArmor(armor)">
+            Equip
+          </button>
+          <button class="btn btn-warning" @click="sellArmor(armor)">
+            Sell
+          </button>
+          <button class="btn btn-danger" @click="deleteArmor(armor)">
+            Delete
+          </button>
         </div>
+      </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -52,6 +44,9 @@ export default {
         },
         sellArmor(armor) {
             this.$emit('sell', armor);
+        },
+        deleteArmor(armor) {
+            this.$emit('delete', armor);
         }
     },
     components: {

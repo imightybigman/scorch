@@ -1,46 +1,62 @@
 <template>
 <div class="character-view d-flex flex-wrap" v-if="character">
-  <div class="d-flex flex-column party-navigation border">
+  <div class="d-flex flex-column party-navigation border scrollbar">
     <div class="character-cards-container" v-for="(char, index) in party" @click="goTo(char.CharacterId)" :key="index">
       <character-tile :character="char"></character-tile>
     </div>
   </div>
   <div class="d-flex flex-column character-info border">
-    <div class="d-flex flex-column character-basic-info">
-      <h4>
-        <strong>{{ name }}</strong>
-        <small>Lv. {{ character.Level }}</small>
-      </h4>
-      <div class="gold-counter"><img class="gold" src="~assets/icons/gold.png"/> {{ character.Gold }} </div>
-      <hp-bar :character="character"></hp-bar>
-      <exp-bar :character="character"></exp-bar>
+    <div class="d-flex flex-row character-basic-info">
+        <character-tile :character="character"></character-tile>
+        <character-stats-card :stats="character.Stats" :level="character.Level" :characterClass="characterClass || {}"></character-stats-card>                
     </div>
-    <div class="d-flex flex-row flex-wrap character-screen">
-      <div id="character-details" class="d-flex flex-column character-details">
-        <h4>Character Info</h4>
-        <character-stats-card :stats="character.Stats" :proficiency="character.Proficiency" :characterClass="characterClass" :level="character.Level"></character-stats-card>
-        <character-bio-card :character="character"></character-bio-card>
-        <character-skills-card :skills="character.Skills"></character-skills-card>
-        <character-spells-card :characterId="character.CharacterId" :spells="character.Spells"></character-spells-card>
+    <div class="d-flex flex-row justify-content-between character-screen">
+      <div class="d-flex flex-column character-details">
+        <accordian :header="'Bio'">
+          <character-bio-card slot="body" :character="character"></character-bio-card>
+        </accordian>
+        <accordian :header="'Skills'">
+          <character-skills-card slot="body" :skills="character.Skills"></character-skills-card>
+        </accordian>
         <div v-if="characterClass">
-            <spell-slots v-if="characterClass.SpellSlots" :level="character.Level" :spellSlots="characterClass.SpellSlots"></spell-slots>
-            <bonus-features :level="character.Level" :feature="characterClass.BonusFeatures" :displayName="characterClass.Name"></bonus-features>
-            <bonus-features v-if="character.Class === 'Fighter'" :level="character.Level" :feature="characterClass.MartialArchetype.Features" :displayName="characterClass.MartialArchetype.Name"></bonus-features>
-            <bonus-features v-if="character.Class === 'Paladin'" :level="character.Level" :feature="characterClass.SacredOath.Features" :displayName="characterClass.SacredOath.Name"></bonus-features>
-            <bonus-features v-if="character.Class === 'Bard'" :level="character.Level" :feature="characterClass.CollegeFeatures.Features" :displayName="characterClass.CollegeFeatures.Name"></bonus-features>
-            <bonus-features v-if="character.Class === 'Ranger'" :level="character.Level" :feature="characterClass.Archetype.Features" :displayName="characterClass.Archetype.Name"></bonus-features>
-            <bonus-features v-if="character.Class === 'Warlock'" :level="character.Level" :feature="characterClass.OtherworldyPatron.Features" :displayName="characterClass.OtherworldyPatron.Name"></bonus-features>
-            <companion v-if="character.Class === 'Ranger'" :companion="characterClass.Companion"></companion>
+            <accordian :header="characterClass.Name">
+              <bonus-features slot="body" :level="character.Level" :feature="characterClass.BonusFeatures"></bonus-features>
+            </accordian>
+            <accordian v-if="character.Class === 'Fighter'" :header="characterClass.MartialArchetype.Name">
+              <bonus-features slot="body" :level="character.Level" :feature="characterClass.MartialArchetype.Features"></bonus-features>
+            </accordian>
+            <accordian v-if="character.Class === 'Paladin'" :header="characterClass.SacredOath.Name">
+              <bonus-features slot="body" :level="character.Level" :feature="characterClass.SacredOath.Features"></bonus-features>
+            </accordian>
+            <accordian v-if="character.Class === 'Bard'" :header="characterClass.CollegeFeatures.Name">
+              <bonus-features slot="body" :level="character.Level" :feature="characterClass.CollegeFeatures.Features"></bonus-features>
+            </accordian>
+            <accordian v-if="character.Class === 'Ranger'" :header="characterClass.Archetype.Name">
+              <bonus-features slot="body" :level="character.Level" :feature="characterClass.Archetype.Features"></bonus-features>
+            </accordian>
+            <accordian v-if="character.Class === 'Warlock'" :header="characterClass.OtherworldyPatron.Name">
+              <bonus-features slot="body" :level="character.Level" :feature="characterClass.OtherworldyPatron.Features"></bonus-features>
+            </accordian>
+            <accordian v-if="character.Class === 'Ranger'" :header="'Companion'">
+              <companion slot="body" :companion="characterClass.Companion"></companion>
+            </accordian>            
         </div>
       </div>
-      <div class="d-flex flex-column character-equip">
-        <h4>Character Equip</h4>
-        <character-equip :character="character"></character-equip>
+      <div class="d-flex flex-column character-advanced-info">
+        <vue-tabs>
+          <v-tab title="Equip">
+            <character-equip :character="character"></character-equip>
+          </v-tab>
+          <v-tab title="Spells">
+          <div class="d-flex flex-column spells card">
+            <spell-card :character="character" :spells="character.Spells" :characterClass="characterClass || {}"></spell-card>
+          </div>   
+          </v-tab>
+        </vue-tabs>
       </div>
-
     </div>
-    <div class="d-flex notes black-border" style="overflow: scroll;">
-      <ul style="padding: 0;">
+    <div class="d-flex notes black-border scrollbar">
+      <ul>
         <li v-for="(log, index) in logs" class="list-unstyled" :key="index">
           {{ log.message }} <br />
         </li>
@@ -49,7 +65,7 @@
   </div>
   <div class="d-flex flex-column character-other border">
     <character-leveling :character="character" :characterClass="characterClass"></character-leveling>
-    <dice-roller :name="this.user"></dice-roller>
+    <dice-roller :name="name" :dex="getDexMod()"></dice-roller>
     <inventory :characterId="character.CharacterId"></inventory>
   </div>
 </div>
@@ -57,91 +73,107 @@
 
 <script>
 
-  import {  CharacterTile,
-            CharacterEquip,
-            CharacterStatsCard,
-            CharacterDetailCard,
-            CharacterSkillsCard,
-            CharacterSpellsCard,
-            CharacterBioCard,
-            CharacterLeveling,
-            ExpBar,
-            HpBar } from 'components/character'
+import {  CharacterTile,
+          CharacterEquip,
+          CharacterStatsCard,
+          CharacterDetailCard,
+          CharacterSkillsCard,
+          CharacterSpellsCard,
+          CharacterBioCard,
+          CharacterLeveling,
+          ExpBar,
+          HpBar } from 'components/character'
 
-  import { Inventory } from 'components/inventory'
-  import { DiceRoller, Modal } from 'components/util'
-  import { BonusFeatures, SpellSlots, Companion } from 'components/classFeatures'
-  export default {
-    name: 'character-view',
-    user: '',
-    data() {
-      return {
-        logs: [
+import { Inventory } from 'components/inventory'
+import { SpellInfo, SpellList, SpellCard } from 'components/spells'
+import { DiceRoller, Modal, Accordian } from 'components/util'
+import { BonusFeatures, SpellSlots, Companion } from 'components/classFeatures'
+import { AbilityModifierService } from 'services'
+import { VueTabs, VTab } from 'vue-nav-tabs'
+import 'vue-nav-tabs/themes/vue-tabs.css'
 
-        ]
-      }
-    },
-    async created() {
-      await this.$store.dispatch('getParty');
-      // we want to load each class when we need them cuz they are biiiiiiiggggggg
-      await this.$store.dispatch('loadClass', this.character.Class);
-    },
-    props: ['characterId'],
-    sockets: {
-      newLog: function(message) {
-        this.logs.unshift({ message: message });
-      }
-    },
-    computed: {
-      name() {
-          let firstName = this.character.Firstname || '';
-          let lastName = this.character.Lastname || '';
-          this.user = `${firstName} ${lastName}`;
-          return `${firstName} ${lastName}`;
-      },
-      party() {
-        return this.$store.getters.myParty;
-      },
-      character() {
-        return this.$store.getters.getCharacterById(this.characterId);
-      },
-      characterClass() {
-        return this.$store.getters.getClass(this.character.Class);
-      }
-    },
-    methods: {
-      goTo(characterId) {
-        this.$router.push('/character/' + characterId)
-      }
-    },
-    watch: {
-      async character(newCharacter) {
-        await this.$store.dispatch('loadClass', newCharacter.Class);
-      }
-    },
-    components: {
-      CharacterTile,
-      CharacterStatsCard,
-      CharacterDetailCard,
-      CharacterSkillsCard,
-      CharacterSpellsCard,
-      CharacterEquip,
-      CharacterBioCard,
-      CharacterLeveling,
-      ExpBar,
-      HpBar,
-      Inventory,
-      DiceRoller,
-      Modal,
-      BonusFeatures,
-      SpellSlots,
-      Companion
+export default {
+  name: 'character-view',
+  data() {
+    return {
+      user: '',
+      logs: [
+
+      ]
     }
+  },
+  async created() {
+    await this.$store.dispatch('getParty');
+    // we want to load each class when we need them cuz they are biiiiiiiggggggg
+    await this.$store.dispatch('loadClass', this.character.Class);
+  },
+  props: ['characterId'],
+  sockets: {
+    newLog: function(message) {
+      this.logs.unshift({ message: message });
+    }
+  },
+  computed: {
+    name() {
+        let firstName = this.character.Firstname || '';
+        let lastName = this.character.Lastname || '';
+        this.user = `${firstName} ${lastName}`;
+        return `${firstName} ${lastName}`;
+    },
+    party() {
+      return this.$store.getters.myParty;
+    },
+    character() {
+      return this.$store.getters.getCharacterById(this.characterId);
+    },
+    characterClass() {
+      return this.$store.getters.getClass(this.character.Class);
+    }
+  },
+  methods: {
+    goTo(characterId) {
+      this.$router.push('/character/' + characterId)
+    },
+    getDexMod() {
+        return AbilityModifierService.getAbilityModifier(this.character.Stats.Dexterity);
+    },
+  },
+  watch: {
+    async character(newCharacter) {
+      await this.$store.dispatch('loadClass', newCharacter.Class);
+    }
+  },
+  components: {
+    CharacterTile,
+    CharacterStatsCard,
+    CharacterDetailCard,
+    CharacterSkillsCard,
+    CharacterSpellsCard,
+    CharacterEquip,
+    CharacterBioCard,
+    CharacterLeveling,
+    ExpBar,
+    HpBar,
+    Inventory,
+    DiceRoller,
+    Modal,
+    Accordian,
+    BonusFeatures,
+    SpellSlots,
+    Companion,
+    VueTabs,
+    VTab,
+    SpellInfo,
+    SpellList,
+    SpellCard
   }
+}
 
 </script>
 
 <style lang="scss" scoped>
+@import '~styles/shared.scss';
+
   .black-border {
     border: 1px solid black;
     box-sizing: border-box;
@@ -153,35 +185,32 @@
 
   .party-navigation {
     padding: 1%;
-    flex: 1 0 auto;
+    flex: 1 1 auto;
     overflow-y: scroll;
 
     .character-cards-container {
       margin-bottom: 1%;
       border-radius: 10px;
     }
-
   }
 
   .character-info {
     flex: 2 0 auto;
 
     .character-screen {
-      flex: 1 0 auto;
-
-      >div {
-        margin: 1%;
-      }
+      flex: 4 0 auto;
 
       .character-details {
         flex: 1 0;
+        margin: 0 1%;
         > div {
           margin-bottom: 1%;
         }
       }
 
-      .character-equip {
-        flex: 1 0 auto;
+      .character-advanced-info {
+        flex: 2 0;
+        min-height: 600px;
       }
 
     }
@@ -190,24 +219,18 @@
       padding: 1% 1% 0 1%;
     }
     .notes {
-      flex: 1 0 auto;
+      flex: 2 0 auto;
       height: 200px;
+      overflow-y: scroll;
     }
   }
 
   .character-other {
-    flex: 4;
+    flex: 5;
   }
-
-.gold {
-  width: 2%;
-  height: 2%;
-}
-.gold-counter {
-  float: right;
-}
 
 .level-btn {
   color: white;
 }
+
 </style>

@@ -55,7 +55,7 @@
     <div class="card">
       <div class="card-header">{{ levelingEnabled ? 'Level +1' : 'Need More Exp' }} </div>
       <div class="card-body">
-        <button class="level-btn btn btn-warning" :class="{ pulse:levelingEnabled } ":disabled="!levelingEnabled" @click="showLevelingModal = true">Level Up</button>
+        <button class="level-btn btn btn-warning" :class="{ pulse:levelingEnabled } ":disabled="false" @click="showLevelingModal = true">Level Up</button>
       </div>
     </div>
     </div>
@@ -102,7 +102,7 @@ export default {
         }, 
         levelingEnabled() {
             let expRange = LevelService.getExpRange(this.character.Level)
-            return this.character.Exp > expRange.max;
+            return this.character.Exp >= expRange.max;
         },
         bonusFeature() {
             let level = `Level_${this.nextLevel}`;
