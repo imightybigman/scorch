@@ -32,7 +32,7 @@
 <script>
     import { CharacterService } from 'services'
 
-export default {    
+export default {
     name: 'dm-character-operator',
     data(){
         return {
@@ -51,29 +51,61 @@ export default {
                 let payload = {};
                 payload.body = {};
                 payload.characterId = char.CharacterId;
-                
+
                 let newHealth = char.Hp + parseInt(this.deltaHealth);
                 if(!this.isTempHp)
                     newHealth = newHealth > char.MaxHp ? char.MaxHp : newHealth;
 
                 newHealth = newHealth < 0 ? 0 : newHealth;
                 payload.body.Hp = newHealth;
+                if (parseInt(this.deltaHealth) !== 0) {
+                    if (this.deltaHealth > 0 ) {
+                        await Logging.notify(char.CharacterId, "You gained " + this.deltaHealth + " HP.");
+                    } else {
+                        await Logging.notify(char.CharacterId, "You lost " + this.deltaHealth + " HP.")
+                    }
+                }
 
                 let newExp = char.Exp + parseInt(this.deltaExp);
                 newExp = newExp < 0 ? 0 : newExp;
                 payload.body.Exp = newExp;
+                if (parseInt(this.deltaExp) !== 0) {
+                    if (this.deltaExp > 0 ) {
+                        await Logging.notify(char.CharacterId, "You gained " + this.deltaExp + " experience.");
+                    } else {
+                        await Logging.notify(char.CharacterId, "You lost " + this.deltaExp + " experience.")
+                    }
+                }
 
                 let newGold = char.Gold + parseInt(this.deltaGold);
                 newGold = newGold< 0 ? 0: newGold;
                 payload.body.Gold = newGold;
-                
+                if (parseInt(this.deltaGold) !== 0) {
+                    if (this.deltaGold > 0 ) {
+                        await Logging.notify(char.CharacterId, "You gained " + this.deltaGold + " gold.");
+                    } else {
+                        await Logging.notify(char.CharacterId, "You lost " + this.deltaGold + " gold.")
+                    }
+                }
+
                 if(this.maxHealth > 0){
                     payload.body.MaxHp = parseInt(this.maxHealth);
                 }
 
                 await this.$store.dispatch('updateCharacter', payload);
+<<<<<<< Updated upstream
+=======
+                if(this.item.ItemId && this.itemQty > 0){
+                    let itemAdded = {};
+                    itemAdded.ItemId = this.item.ItemId;
+                    itemAdded.Count = parseInt(this.itemQty);
+                    await CharacterService.postCharacterItem(char.CharacterId, itemAdded);
+
+                    await Logging.notify(char.CharacterId, "You gained an item. Name: ");
+                }
+>>>>>>> Stashed changes
             };
-            this.$socket.emit('updateParty');            
+            this.$socket.emit('updateParty');
             this.clearFields();
         },
         clearFields() {

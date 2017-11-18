@@ -54,10 +54,12 @@
 <script>
 import Modal from './Modal'
 import sum from 'lodash/sum'
+import { Log } from '../mixins/Log'
 
 export default {
     name: 'dice-roller',
     props: ['name', 'dex'],
+    mixins: [Log],
     data() {
         return {
             showModal: false,
@@ -114,7 +116,7 @@ export default {
             let currentRoll = Math.floor(Math.random() * 20) + 1
             this.rolledValues.push(currentRoll);
             this.rollD20Count++;
-            this.logAction(this.name + " rolled a D20 and got a " + currentRoll);
+            Log.playerLog(this.name + " rolled a D20 and got a " + currentRoll);
         },
         clear() {
             this.rolledValues = [];
@@ -124,9 +126,6 @@ export default {
             this.rollD10Count = 0;
             this.rollD12Count = 0;
             this.rollD20Count = 0;
-        },
-        logAction(message) {
-          this.$socket.emit('newLog', message);
         },
         close(){
             $("body").removeClass("modal-open");
