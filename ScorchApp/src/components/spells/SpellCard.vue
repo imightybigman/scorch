@@ -14,7 +14,7 @@
     <spell-info :characterClass="characterClass" :level="character.Level"></spell-info>
     <div class="spell-list">
         <h5>Spells</h5>
-        <spell-list :spells="spells"></spell-list>
+        <spell-list :characterId="character.CharacterId" :spells="spells"></spell-list>
     </div>
     <button class="btn btn-primary" @click="showSpellSearcher">Add Spell</button>
 </div>
