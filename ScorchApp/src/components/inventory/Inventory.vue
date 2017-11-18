@@ -1,5 +1,5 @@
 <template>
-<div class="card d-flex inventory">
+<div class="card d-flex inventory scrollbar">
   <div class="card-header">
     Inventory
   </div>
@@ -91,7 +91,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~styles/shared.scss';
+
 .inventory {
   flex: 1 0 auto;
+  max-height: 800px;
 }
 </style>

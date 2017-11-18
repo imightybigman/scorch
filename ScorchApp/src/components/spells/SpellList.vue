@@ -1,5 +1,9 @@
 <template>
 <div class="spell-list">
+    <modal v-if="showModal" v-on:close="close">
+        <h3 slot="header">Spell Detail</h3>
+        <spell-readonly slot="body" :spell="selectedSpell"></spell-readonly>
+    </modal>
     <div v-for="(spells, index) in spellsGroupedByLevel" :key="index">
         <accordian :header="spells.level">
             <div slot="body">
@@ -19,15 +23,24 @@
 <script>
 
 import _ from 'lodash'
-import { Accordian } from 'components/util'
+import SpellReadonly from './SpellReadonly'
+import { Accordian, Modal } from 'components/util'
 import { mapActions } from 'vuex'
 
 export default {
     name: 'spell-list',
     props: ['characterId', 'spells'],
+    data() {
+        return {
+            showModal: false,
+            selectedSpell: undefined
+        }
+    },
     methods: {
         spellClick(spell, $event){
             $event.stopPropagation();
+            this.selectedSpell = spell;
+            this.showModal = true;
         },
         async deleteSpell(spell, $event) {
             $event.stopPropagation();
@@ -36,6 +49,11 @@ export default {
                 spellId: spell.SpellId
             }
             await this.deleteSpellFromCharacter(payload);
+            this.$notify.success(`Spell '${spell.Name} deleted.'`)
+        },
+        close() {
+            $("body").removeClass("modal-open");
+            this.showModal = false;
         },
         ...mapActions([
             'deleteSpellFromCharacter'
@@ -57,7 +75,9 @@ export default {
         }
     },
     components: {
-        Accordian
+        Accordian,
+        Modal,
+        SpellReadonly
     }
 }
 </script>

@@ -102,7 +102,12 @@ export default {
             }
             if(success && this.selectedChars.length > 0 && this.selectedItem.ItemId){
                 this.$notify.success(successMsg);    
-                this.$socket.emit('updateParty'); 
+                this.$socket.emit('updateParty');
+                let successPayload = {
+                    characterId: char.CharacterId,
+                    message: `You received ${this.itemQty} ${this.selectedItem.Name}.`
+                }
+                this.$socket.emit('notify', 'afsdaf');
             }
         }
     },

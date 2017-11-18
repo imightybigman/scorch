@@ -58,11 +58,11 @@ export default {
                 return;
             }
             if(!(this.character.Level >= this.selectedSpell.Level)){
-                alert('You are not high level enough for this spell');
+                this.$notify.failure('You are not high level enough for this spell');
                 return;
             }
             if(this.selectedSpell.Classes.indexOf(this.character.Class) == -1) {
-                alert('This spell cant be used by your class');
+                this.$notify.failure("This spell can't be used by your class");
                 return;
             }
             let payload = {
@@ -71,6 +71,7 @@ export default {
             };
             await this.addSpellToCharacter(payload);
             this.successfulAdd = true;
+            this.$notify.success(`Spell '${spell.Name} added to your list.'`)
         },
         ...mapActions([
             'addSpellToCharacter'

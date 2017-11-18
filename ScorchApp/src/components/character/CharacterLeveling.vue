@@ -1,5 +1,5 @@
 <template>
-    <div class="character-leveling">
+    <div class="character-leveling" v-if="levelingEnabled">
     <modal v-if="showLevelingModal" v-on:close="close">
         <div slot="header"><h3>Level: <i class="fa fa-level-up"></i> {{ nextLevel }}</h3></div>
         <div slot="body">
@@ -53,9 +53,9 @@
         </div>
     </modal>
     <div class="card">
-      <div class="card-header">{{ levelingEnabled ? 'Level +1' : 'Need More Exp' }} </div>
+      <div class="card-header">Level Up</div>
       <div class="card-body">
-        <button class="level-btn btn btn-warning" :class="{ pulse:levelingEnabled } ":disabled="false" @click="showLevelingModal = true">Level Up</button>
+        <button class="level-btn btn btn-warning" :class="{ pulse:levelingEnabled }" @click="showLevelingModal = true">Level Up</button>
       </div>
     </div>
     </div>

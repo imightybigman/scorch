@@ -48,7 +48,7 @@ export default {
 
 <style lang="scss" scoped>
 .character-tile {
-    flex: 1 0;
+    flex: 1 0 auto;
     box-sizing:border-box;
     -webkit-box-sizing: border-box
 }

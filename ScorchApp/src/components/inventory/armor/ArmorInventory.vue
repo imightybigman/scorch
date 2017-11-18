@@ -1,7 +1,7 @@
 <template>
 <div class="inventory-card">
   <armor-detail :armor="selectedArmor" :showModal="showDetail" v-on:close="showDetail = false"></armor-detail>
-    <div class="item-list">
+    <div class="item-list scrollbar">
       <div v-for="(armor, index) in armors" :key="index" class="d-flex flex-column list-item border">
         <div @click="armorClick(armor)">
           <item-card :item="armor"></item-card>

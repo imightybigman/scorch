@@ -1,7 +1,7 @@
 <template>
     <div class="inventory-card">
     <weapon-detail :weapon="selectedWeapon" :showModal="showDetail" v-on:close="showDetail = false"></weapon-detail>
-        <div class="item-list">
+        <div class="item-list scrollbar">
             <div v-for="(weapon, index) in weapons"
                 :key="index"
                 class="d-flex flex-column list-item border">
