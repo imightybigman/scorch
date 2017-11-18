@@ -7,7 +7,7 @@
         class="equipped"
         src="~assets/items/helm.png"
         @contextmenu.prevent="$refs.ctxMenu.open($event, equipment.Helm)"
-        :title="equipment.Helm.Name"
+        :title="displayArmor(equipment.Helm)"
         alt="Card image cap" />
     </div>
     <div class="equipment necklace">
@@ -23,7 +23,7 @@
         class="equipped"
         src="~assets/items/chest.png"
         @contextmenu.prevent="$refs.ctxMenu.open($event, equipment.Chest)"
-        :title="displayAC(equipment.Chest.AC)"
+        :title="displayArmor(equipment.Chest)"
         alt="Card image cap" />
     </div>
     <div class="equipment gauntlets">
@@ -31,7 +31,7 @@
         class="equipped"
         src="~assets/items/gauntlets.png"
         @contextmenu.prevent="$refs.ctxMenu.open($event, equipment.Gauntlets)"
-        :title="equipment.Gauntlets.Name"
+        :title="displayArmor(equipment.Gauntlets)"
         alt="Card image cap" />
     </div>
     <div class="equipment legs">
@@ -39,7 +39,7 @@
         class="equipped"
         src="~assets/items/legs.png"
         @contextmenu.prevent="$refs.ctxMenu.open($event, equipment.Legs)"
-        :title="equipment.Legs.Name"
+        :title="displayArmor(equipment.Legs)"
         alt="Card image cap" />
     </div>
     <div class="equipment boots">
@@ -47,7 +47,7 @@
         class="equipped"
         src="~assets/items/boots.png"
         @contextmenu.prevent="$refs.ctxMenu.open($event, equipment.Boots)"
-        :title="equipment.Boots.Name"
+        :title="displayArmor(equipment.Boots)"
         alt="Card image cap" />
     </div>
     <div class="equipment leftring">
@@ -71,7 +71,7 @@
             class="equipped"
             src="~assets/items/sword.png"
             @contextmenu.prevent="$refs.ctxMenu.open($event, equipment.MainHand)"
-            :title="displayDamage(equipment.MainHand.Damage)"
+            :title="displayWeapon(equipment.MainHand)"
             alt="Card image cap" />
     </div>
     <div class="equipment offhand">
@@ -79,7 +79,7 @@
             class="equipped"
             src="~assets/items/shield.png"
             @contextmenu.prevent="$refs.ctxMenu.open($event, equipment.OffHand)"
-            :title="displayDamage(equipment.OffHand.Damage)"
+            :title="displayWeapon(equipment.OffHand)"
             alt="Card image cap" />
     </div>
     <div class="equipment quiver">
@@ -116,11 +116,14 @@ export default {
     onCtxOpen(locals) {
       this.item = locals
     },
-    displayDamage(damage) {
-      return `Damage: ${damage}`
+    displayWeapon(weapon) {
+      return `${weapon.Name}: ${weapon.Damage}`
     },
-    displayAC(ac) {
-      return `AC: ${ac}`
+    displayArmor(armor) {
+      if(armor.AC) {
+        return `${armor.Name}, AC: ${armor.AC}`
+      }
+      return armor.Name;   
     },
     async unequip($event, item) {
       let payload = {
