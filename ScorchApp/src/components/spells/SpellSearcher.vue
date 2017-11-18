@@ -19,8 +19,8 @@ export default {
     methods: {
         async spellSelected(spell) {
             await this.loadSpellDetails(spell.SpellId);
-            spell = this.getSpell(spell.SpellId);
-            this.$emit('spell-clicked', spell);
+            let spellDetails = this.getSpell(spell.SpellId);
+            this.$emit('spell-clicked', spellDetails);
         },
         ...mapActions([
             'loadSpellDetails'

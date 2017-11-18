@@ -1,6 +1,6 @@
 <template>
 <div class="character-view d-flex flex-wrap" v-if="character">
-  <div class="d-flex flex-column party-navigation border">
+  <div class="d-flex flex-column party-navigation border scrollbar">
     <div class="character-cards-container" v-for="(char, index) in party" @click="goTo(char.CharacterId)" :key="index">
       <character-tile :character="char"></character-tile>
     </div>
@@ -8,11 +8,10 @@
   <div class="d-flex flex-column character-info border">
     <div class="d-flex flex-row character-basic-info">
         <character-tile :character="character"></character-tile>
-        <character-stats-card slot="body" :stats="character.Stats" :level="character.Level" :characterClass="characterClass || {}"></character-stats-card>                
+        <character-stats-card :stats="character.Stats" :level="character.Level" :characterClass="characterClass || {}"></character-stats-card>                
     </div>
     <div class="d-flex flex-row justify-content-between character-screen">
       <div class="d-flex flex-column character-details">
-        <h4>Character Info</h4>
         <accordian :header="'Bio'">
           <character-bio-card slot="body" :character="character"></character-bio-card>
         </accordian>
@@ -56,7 +55,7 @@
         </vue-tabs>
       </div>
     </div>
-    <div class="d-flex notes black-border">
+    <div class="d-flex notes black-border scrollbar">
       <ul>
         <li v-for="(log, index) in logs" class="list-unstyled" :key="index">
           {{ log.message }} <br />
@@ -173,6 +172,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~styles/shared.scss';
+
   .black-border {
     border: 1px solid black;
     box-sizing: border-box;
@@ -201,6 +202,7 @@ export default {
 
       .character-details {
         flex: 1 0;
+        margin: 0 1%;
         > div {
           margin-bottom: 1%;
         }

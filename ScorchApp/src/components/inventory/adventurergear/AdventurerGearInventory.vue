@@ -1,7 +1,7 @@
 <template>
 <div class="d-flex inventory-card">
   <adventurer-gear-details :adventurergear="selectedAdvGear" :showModal="showDetail" v-on:close="showDetail = false"></adventurer-gear-details>
-    <div class="item-list">
+    <div class="item-list scrollbar">
       <div v-for="(adventurerGear, index) in adventurerGears" :key="index" class="d-flex flex-wrap flex-column list-item border">
         <div @click="adventurerGearClick(adventurerGear)">
           <item-card :item="adventurerGear"></item-card>

@@ -47,7 +47,7 @@ const mutations = {
         state.spells = organizedSpells;
     },
     [types.GET_SPELL_DETAIL] (state, spell) {
-        spell.Classes = spell.Classes.join();
+        spell['Class'] = spell.Classes.join();
         state.spells = { ...state.spells, [spell.SpellId] : spell };
     }
 }
