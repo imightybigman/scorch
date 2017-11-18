@@ -1,6 +1,6 @@
 <template>
-    <div>
-        Hp: 
+    <div class="d-flex hp-holder">
+        <span class="hp-header">HP</span> 
         <div class="progress">
           <div :class="progressBarType" 
                 role="progressbar" 
@@ -8,7 +8,7 @@
                 :style="progressWidth" 
                 aria-valuemin="0" 
                 aria-valuemax="100">
-                <span>{{currentHp}}</span>
+                <span class="hp-text">{{currentHp}}</span>
               </div>
         </div>
     </div>
@@ -44,6 +44,20 @@
 <style lang="scss" scoped>
 .progress {
     position: relative;
+    flex: 1;  
+}
+
+.hp-header{
+    margin-right: 5%;
+}
+
+.hp-text{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
+}
+
+.hp-holder{
+    align-items: center;
 }
 
 .progress span {

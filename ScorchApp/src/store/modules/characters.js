@@ -94,6 +94,12 @@ const actions = {
             commit(types.SOLD_ITEM, payload);
         }
     },
+    async deleteItem({commit}, payload) {
+      let response = await CharacterService.deleteItem(payload.characterId, payload.itemId);
+      if(response.status === 200){
+          commit(types.DELETE_ITEM, payload);
+      }
+    },
     async socket_getParty({ commit }, message) {
         let response = await CharacterService.getParty();
         let myParty = sortBy(response.body, (c) => c.Firstname);
@@ -116,7 +122,7 @@ const mutations = {
                 for(let key in props) {
                     ch[key] = props[key];
                 }
-            break;                
+            break;
             }
         }
     },
@@ -129,10 +135,10 @@ const mutations = {
             if(ch.CharacterId === id) {
                 ch.Spells.push(addedSpell);
                 state.party[i].Spells = sortBy(ch.Spells, (s) => s.Name);
-                break;                
+                break;
             }
         }
-    }, 
+    },
     [types.EQUIP_ITEM] (state, payload) {
         let id = payload.characterId;
         let item = payload.item;
@@ -145,18 +151,18 @@ const mutations = {
                 }
                 let equipment = state.party[i].Equipment;
                 state.party[i].Equipment = { ...state.party[i].Equipment, [slot] : item };
-                break;                
+                break;
             }
         }
     },
     [types.UNEQUIP_ITEM] (state, payload) {
         let id = payload.characterId;
-        let slot = (payload.slot == 'One-Handed' || payload.slot == 'Two-Handed') ? 'MainHand' : payload.slot;        
+        let slot = (payload.slot == 'One-Handed' || payload.slot == 'Two-Handed') ? 'MainHand' : payload.slot;
         for(let i = 0; i < state.party.length; i++) {
             let ch = state.party[i];
             if(ch.CharacterId === id) {
                 state.party[i].Equipment = { ...state.party[i].Equipment, [slot] : null };
-                break;                
+                break;
             }
         }
     },
@@ -173,7 +179,7 @@ const mutations = {
                 }
                 let index = findIndex(state.party[i].Inventory,(i) => i.ItemId === item.ItemId);
                 state.party[i].Inventory.splice(index, 1, item);
-                break;                
+                break;
             }
         }
     },
@@ -186,7 +192,7 @@ const mutations = {
                 let index = findIndex(state.party[i].Inventory,(i) => i.ItemId === itemId);
                 state.party[i].Gold += state.party[i].Inventory[i].Cost || 0;
                 state.party[i].Inventory.splice(index, 1);
-                break;                
+                break;
             }
         }
     }

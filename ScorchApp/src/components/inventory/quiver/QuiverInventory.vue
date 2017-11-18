@@ -10,8 +10,8 @@
     </div>
     <div id="quiverInventory" class="collapse" role="tabpanel" aria-labelledby="quiver" data-parent="#inventory">
         <div class="card-body item-list">
-        <div v-for="(quiver, index) in quivers" 
-                 :key="index" 
+        <div v-for="(quiver, index) in quivers"
+                 :key="index"
                     class="d-flex flex-column list-item border">
                 <div  @click="quiverClick(quiver)" >
                     <item-card :item="quiver"></item-card>
@@ -20,15 +20,18 @@
                     <button class="btn btn-primary" @click="equipQuiver(quiver)">
                         Equip
                     </button>
-                    <button class="btn btn-danger" @click="sellQuiver(quiver)">
+                    <button class="btn btn-warning" @click="sellQuiver(quiver)">
                         Sell
+                    </button>
+                    <button class="btn btn-danger" @click="deleteQuiver(quiver)">
+                      Delete
                     </button>
                 </div>
                 <div class="projectile-count d-flex flex-column">
                     <div class="projectiles d-flex" v-for="(count, projectile, index) in quiver.Projectiles" :key="index">
                         <strong>{{projectile}} : {{ getArrowCount(count) }}</strong>
                         <div class="d-flex flex-row ml-auto">
-                        <button class="projectile-mod btn btn-primary btn-sm" @click="decrementProjectile(count, quiver)"><i class="fa fa-minus"></i></button>                        
+                        <button class="projectile-mod btn btn-primary btn-sm" @click="decrementProjectile(count, quiver)"><i class="fa fa-minus"></i></button>
                         <button class="projectile-mod btn btn-primary btn-sm" @click="incrementProjectile(count, quiver)"><i class="fa fa-plus"></i></button>
                         <button class="projectile-mod btn btn-primary" @click="updateCount(quiver, $event)">Update Arrows</button>
                         </div>
@@ -63,7 +66,7 @@ export default {
             if(projectile.CurrentAmount >= projectile.MaxAmount) {
                 projectile.CurrentAmount = projectile.MaxAmount;
             }
-            
+
         },
         decrementProjectile(projectile) {
             projectile.CurrentAmount--;
@@ -80,6 +83,10 @@ export default {
         sellQuiver(quiver) {
 
             this.$emit('sell', quiver);
+        },
+        deleteQuiver(quiver) {
+
+            this.$emit('delete', quiver);
         },
         async updateCount(quiver, event) {
             if (event) {

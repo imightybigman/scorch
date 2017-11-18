@@ -2,7 +2,7 @@
     <div class="item-card">
         <div class="item-card-inner">
             <div class="d-flex">
-                <h4 class="item-card-header">{{item.Name ? item.Name : "Item Card"}} <span v-if="item.Count > 0">x {{item.Count}}</span></h4>
+                <h4 class="item-card-header">{{item.Name ? item.Name : "Item Card"}} <span v-if="item.Count > 1">x {{item.Count}}</span></h4>
                 <small>{{item.ItemClass}}</small>
             </div>
             <div class = "d-flex item-card-detail">

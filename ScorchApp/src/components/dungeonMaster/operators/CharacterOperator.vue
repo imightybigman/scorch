@@ -3,8 +3,15 @@
         <form>
             <div class = "d-flex">
                 <div class="form-group">
-                    <label for="modify-health">Modify Health : </label>
-                    <input type="number" class="form-control" id="modify-health" v-model="deltaHealth" placeholder="Hp Change" autocomplete="off"/>
+                    <label for="modify-health">Health : </label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="modify-health" v-model="deltaHealth" placeholder="Hp Change" autocomplete="off"/>
+                        <span class="input-group-addon">Temp  <input class="tempHp" id="tempHp" type="checkbox" v-model="isTempHp" /></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="modify-max-health">Max Health : </label>
+                    <input type="number" class="form-control" id="modify-max-health" v-model="maxHealth" placeholder="New Max Health" autocomplete="off"/>
                 </div>
                 <div class="form-group">
                     <label for="modify-exp">Modify Exp : </label>
@@ -21,7 +28,7 @@
                     <input type="number" class="form-control" id="item-quantity" v-model="itemQty" placeholder="# Items" autocomplete="off"/>
                 </div>
             </div>
-            <button class="btn btn-primary" @click="apply">Submit</button>
+            <button class="btn btn-warning" @click="apply">Submit</button>
         </form>
     </div>
 </template>
@@ -36,7 +43,9 @@ export default {
             deltaHealth : 0,
             deltaExp : 0,
             deltaGold : 0,
-            itemQty: 0
+            itemQty: 1,
+            maxHealth: 0,
+            isTempHp: false
         }
     },
     props: ['characterList', 'item'],
@@ -49,7 +58,9 @@ export default {
                 payload.characterId = char.CharacterId;
                 
                 let newHealth = char.Hp + parseInt(this.deltaHealth);
-                newHealth = newHealth > char.MaxHp ? char.MaxHp : newHealth;
+                if(!this.isTempHp)
+                    newHealth = newHealth > char.MaxHp ? char.MaxHp : newHealth;
+
                 newHealth = newHealth < 0 ? 0 : newHealth;
                 payload.body.Hp = newHealth;
 
@@ -61,8 +72,12 @@ export default {
                 newGold = newGold< 0 ? 0: newGold;
                 payload.body.Gold = newGold;
                 
+                if(this.maxHealth > 0){
+                    payload.body.MaxHp = parseInt(this.maxHealth);
+                }
+
                 await this.$store.dispatch('updateCharacter', payload);
-                if(this.item && this.itemQty > 0){
+                if(this.item.ItemID && this.itemQty > 0){
                     let itemAdded = {};
                     itemAdded.ItemId = this.item.ItemId;
                     itemAdded.Count = parseInt(this.itemQty);
@@ -73,7 +88,10 @@ export default {
             this.clearFields();
         },
         clearFields() {
-            this.itemQty = 0;
+            this.itemQty = 1;
+            this.deltaExp = 0;
+            this.deltaHealth = 0;
+            this.maxHealth = 0;
         }
     }
 }
@@ -88,5 +106,10 @@ export default {
         flex: 1;
         margin-right: 1%;
     }
-
+    input{
+        background-color: #E8E8E8;
+    }
+    .tempHp{
+        margin-left: 2%;
+    }
 </style>

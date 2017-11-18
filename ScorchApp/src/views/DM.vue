@@ -1,6 +1,6 @@
 <template>
     <div class="dm-view">
-        <vue-tabs>
+        <vue-tabs class="testtemp" activeTabColor="white">
             <v-tab title="Party">
                 <dungeon-master-main></dungeon-master-main>
             </v-tab>
@@ -14,16 +14,18 @@
             </v-tab>
 
             <v-tab title="Log">
-                This'll be the log... too many tabs?
+                <dungeon-master-logs></dungeon-master-logs>
             </v-tab>
-
+            <v-tab title="Fight">
+                <dungeon-master-fight></dungeon-master-fight>
+            </v-tab>
         </vue-tabs>
     </div>
 </template>
 
 <script>
 import { VueTabs, VTab } from 'vue-nav-tabs'
-import { DungeonMasterMain, DungeonMasterStory, DungeonMasterInventoryManager } from 'components/dungeonMaster'
+import { DungeonMasterMain, DungeonMasterStory, DungeonMasterLogs, DungeonMasterFight, DungeonMasterInventoryManager } from 'components/dungeonMaster'
 import 'vue-nav-tabs/themes/vue-tabs.css'
 
 export default {
@@ -33,7 +35,9 @@ export default {
         VTab,
         DungeonMasterMain,
         DungeonMasterStory,
-        DungeonMasterInventoryManager
+        DungeonMasterInventoryManager,
+        DungeonMasterLogs,
+        DungeonMasterFight
     }
 }
 </script>
@@ -42,5 +46,6 @@ export default {
 .dm-view {
     margin: 0 auto;
     width: 90%;
+    
 }
 </style>

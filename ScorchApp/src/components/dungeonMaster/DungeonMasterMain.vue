@@ -11,8 +11,10 @@
                     <div class="character-operations">
                         <character-operator :character-list="selectedChars" :item="selectedItem"></character-operator>
                     </div>
-                    <div class ="item-card border" >
-                        <item-card :item="selectedItem"></item-card>
+                    <div class="item-card">
+                        <div v-if="selectedItem.ItemId" class ="border border-dark item-card-inner" >
+                            <item-card :item="selectedItem"></item-card>
+                        </div>
                     </div>
                 </div>
                 <div class="item-searcher flex-column">
@@ -127,6 +129,8 @@ export default {
     }
     .item-card{
         flex: 1;
-        min-height: 75%;
+    }
+    .item-card-inner{
+        min-height: 95%;
     }
 </style>

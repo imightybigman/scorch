@@ -10,8 +10,8 @@
         </div>
         <div id="accessoryInventory" class="collapse" role="accessorytabpanel" aria-labelledby="accessory" data-parent="#inventory">
             <div class="card-body item-list">
-                <div v-for="(accessory, index) in accessories"  
-                    :key="index" 
+                <div v-for="(accessory, index) in accessories"
+                    :key="index"
                     class="d-flex flex-wrap flex-column list-item border">
                     <div @click="accessoryClick(accessory)">
                         <item-card :item="accessory"></item-card>
@@ -20,8 +20,11 @@
                         <button class="btn btn-primary dropdown-toggle" type="button" id="accessoryEquip" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Equip
                         </button>
-                        <button class="btn btn-danger" @click="sellAccessory(accessory)">
+                        <button class="btn btn-warning" @click="sellAccessory(accessory)">
                             Sell
+                        </button>
+                        <button class="btn btn-danger" @click="deleteAccessory(accessory)">
+                          Delete
                         </button>
                         <div class="dropdown-menu" aria-labelledby="accessoryEquip">
                             <a class="dropdown-item" @click="equipAccessory(accessory, 'Necklace')" v-if="accessory.Slot === 'Necklace'">Necklace</a>
@@ -48,7 +51,7 @@ export default {
             selectedAccessory: {},
             showDetail: false
         }
-    }, 
+    },
     props: ['accessories'],
     methods: {
         accessoryClick(accessory) {
@@ -61,6 +64,9 @@ export default {
         },
         sellAccessory(accessory){
             this.$emit('sell', accessory);
+        },
+        deleteAccessory(accessory){
+            this.$emit('delete', accessory);
         }
     },
     components: {
