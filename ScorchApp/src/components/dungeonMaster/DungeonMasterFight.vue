@@ -95,7 +95,7 @@ export default {
           this.initInfo = [];
         },
         sortInits(){
-            this.initInfo = _.orderBy(this.initInfo, ['init'], ['desc']);
+            this.initInfo = _.sortBy(this.initInfo, ['init']);
         },
         addMonster(){
           this.initInfo.push({user: this.newMonster.name, init: this.newMonster.init});

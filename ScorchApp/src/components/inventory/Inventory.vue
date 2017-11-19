@@ -18,7 +18,7 @@
         <quiver-inventory slot="body" @equip="equipItem" @delete="deleteItem" @sell="sellItem" :characterId="characterId" :quivers="quivers"></quiver-inventory>
       </accordian>
       <accordian :header="'Adventurer Gear'">
-        <adventurer-gear-inventory slot="body" @sell="sellItem" :adventurerGears="adventurerGears"></adventurer-gear-inventory>
+        <adventurer-gear-inventory slot="body" @sell="sellItem" @delete="deleteItem" :adventurerGears="adventurerGears"></adventurer-gear-inventory>
       </accordian>    
     </div>
   </div>
