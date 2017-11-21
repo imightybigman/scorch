@@ -65,6 +65,7 @@
   </div>
   <div class="d-flex flex-column character-other border">
     <character-leveling :character="character" :characterClass="characterClass"></character-leveling>
+    <character-store :character="character"></character-store>
     <dice-roller :name="name" :dex="getDexMod()"></dice-roller>
     <inventory :characterId="character.CharacterId"></inventory>
   </div>
@@ -81,6 +82,7 @@ import {  CharacterTile,
           CharacterSpellsCard,
           CharacterBioCard,
           CharacterLeveling,
+          CharacterStore,
           ExpBar,
           HpBar } from 'components/character'
 
@@ -164,6 +166,7 @@ export default {
     CharacterEquip,
     CharacterBioCard,
     CharacterLeveling,
+    CharacterStore,
     ExpBar,
     HpBar,
     Inventory,
