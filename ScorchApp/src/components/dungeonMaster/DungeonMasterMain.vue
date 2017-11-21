@@ -6,13 +6,14 @@
                 </div>
                 <div class="middle-ops d-flex flex-column">
                     <div class="character-operations">
-                                            
+
                     <p>
                         <button class="btn btn-warning" @click="rest">Rest</button>
+                        <button class="btn btn-warning" @click="shop">Open Shop</button>
                     </p>
 
                         <character-operator v-on:reset="selectedChars = []" :character-list="selectedChars" :item="selectedItem"></character-operator>
-                    </div>            
+                    </div>
 
                     <div v-if="selectedItem.ItemId" class="item-card">
                         <div  class ="border border-dark item-card-inner">
@@ -72,10 +73,13 @@ export default {
                 payload.characterId = char.CharacterId;
 
                 payload.body.Hp = char.MaxHp;
-       
+
                 await this.$store.dispatch('updateCharacter', payload);
             };
             this.$logging.update();
+        },
+        async shop() {
+            this.$logging.action({action: 'showShop'});
         },
         toggleCharacter(character) {
             var foundChar = this.selectedChars.find(char => char.CharacterId == character.CharacterId);
@@ -132,7 +136,7 @@ export default {
                     characterId: char.CharacterId,
                     message: `You received ${this.itemQty} ${this.selectedItem.Name}.`
                 }
-                this.$notify.success(successMsg);    
+                this.$notify.success(successMsg);
                 this.$socket.emit('updateParty');
             }
         }

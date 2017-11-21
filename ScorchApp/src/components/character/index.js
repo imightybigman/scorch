@@ -7,7 +7,7 @@ import CharacterSkillsCard from './CharacterSkillsCard'
 import CharacterSpellsCard from './CharacterSpellsCard'
 import CharacterBioCard from './CharacterBioCard'
 import CharacterLeveling from './CharacterLeveling'
-import CharacterStore from './CharacterStore'
+import CharacterShop from './CharacterShop'
 import ExpBar from './ExpBar'
 import HpBar from './HpBar'
 
@@ -23,5 +23,5 @@ export {
     ExpBar,
     HpBar,
     CharacterLeveling,
-    CharacterStore
+    CharacterShop
 }

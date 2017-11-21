@@ -1,6 +1,6 @@
 <template>
-    <div class="character-shop" >
-    <modal v-if="showStoreModal" v-on:close="close">
+    <div class="character-shop" v-if="showShop">
+    <modal v-if="showShopModal" v-on:close="close">
         <div slot="header"><h3>Shop</h3></div>
         <div slot="body">
             <div v-if="selectedItem.ItemId" class="item-card">
@@ -26,7 +26,7 @@
     <div class="card">
       <div class="card-header">Actions</div>
       <div class="card-body">
-        <button class="shop-btn btn btn-warning" @click="showStoreModal = true">Shop</button>
+        <button class="shop-btn btn btn-warning" @click="showShopModal = true">Shop</button>
       </div>
     </div>
     </div>
@@ -38,11 +38,12 @@ import { ItemCard } from 'components/items'
 import { ItemService, CharacterService } from 'services'
 
 export default {
-    name: 'character-store',
+    name: 'character-shop',
     props: ['character'],
     data() {
         return {
-            showStoreModal: false,
+            showShop: false,
+            showShopModal: false,
             selectedItem: {},
             columnKeys: ['Name', 'ItemClass', 'Cost', 'AC', 'Damage', 'Slot'],
             itemQty: 1
@@ -50,6 +51,14 @@ export default {
     },
     async created() {
       await this.$store.dispatch('getDisplayItems');
+    },
+    sockets: {
+      showShop: function() {
+        this.showShop = true;
+      },
+      closeShop: function() {
+        this.showShop = false;
+      }
     },
     computed: {
         searchItems() {
@@ -59,7 +68,7 @@ export default {
     methods: {
         close(){
             $("body").removeClass("modal-open");
-            this.showStoreModal = false;
+            this.showshopModal = false;
             this.selectedItem = {};
         },
         async searchItem(item){
@@ -107,63 +116,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.stats-leveling {
-    width: 50%;
-    margin-bottom: 1%;
-    .stats-leveling-buttons {
-        float: right;
-    }
-}
-
-.new-ability {
-    margin-bottom: 1%;
-}
-.modify-stats {
-    margin-bottom: 1%;
-}
-
-.hp-input {
-    width: 5%;
-    border-radius: 5px;
-    padding-left: 1%;
-}
-
-.pulse {
-  display: block;
-  cursor: pointer;
-  box-shadow: 0 0 0 #cca92c;
-  animation: pulse 1s infinite;
-}
-.pulse:hover {
-  animation: none;
-}
-
-@-webkit-keyframes pulse {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
-  }
-  70% {
-      -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
-  }
-  100% {
-      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
-  }
-}
-@keyframes pulse {
-  0% {
-    -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
-    box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
-  }
-  70% {
-      -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
-      box-shadow: 0 0 0 10px rgba(204,169,44, 0);
-  }
-  100% {
-      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
-      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
-  }
-}
 .purchase-btn {
+  margin-bottom: 2%;
   margin-left: auto;
+  margin-right: 2%;
+}
+.item-card {
+  margin-bottom: 4%;
 }
 </style>

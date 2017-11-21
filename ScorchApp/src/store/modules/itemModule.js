@@ -49,7 +49,23 @@ const actions = {
         } catch(errorResponse) {
             commit(types.API_ERROR, errorResponse.bodyText);
         }
-    }
+    },
+    async getPurchaseable({ commit }) {
+        let response = {};
+        try{
+            response = await ItemService.getPurchasable();
+            let displayItems = [];
+            let displayProps = ['ItemId','Name','ItemClass','Damage','AC','Cost', 'Slot'];
+
+            response.body.forEach(item => {
+                displayItems.push(pick(item, displayProps));
+            });
+
+            commit(types.GET_PURCHASE_ITEMS, displayItems);
+        } catch(errorResponse) {
+            commit(types.API_ERROR, errorResponse.bodyText);
+        }
+    },
 }
 
 // mutations
