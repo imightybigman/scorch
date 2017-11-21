@@ -1,5 +1,5 @@
 <template>
-<div class="d-flex inventory-card">
+<div class="inventory-card">
   <adventurer-gear-details :adventurergear="selectedAdvGear" :showModal="showDetail" v-on:close="showDetail = false"></adventurer-gear-details>
     <div class="item-list scrollbar">
       <div v-for="(adventurerGear, index) in adventurerGears" :key="index" class="d-flex flex-wrap flex-column list-item border">
@@ -7,12 +7,24 @@
           <item-card :item="adventurerGear"></item-card>
         </div>
         <div>
-          <button v-if="adventurerGear.Count <= 1" class="btn btn-success" @click="useAdventurerGear(adventurerGear, 1)">
+          <button v-if="adventurerGear.Count <= 1" class="btn btn-success" @click="useAdventurerGear(adventurerGear)">
             Use
           </button>
-          <button v-if="adventurerGear.Count > 1" class="btn btn-success" @click="useAdventurerGear(adventurerGear, 1)">
-            Use Multiple
+          <button v-if="adventurerGear.Count > 1" class="btn btn-success dropdown-toggle" type="button" id="multipleUse" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Use
           </button>
+          <div class="dropdown-menu item-use-dropdown" aria-labelledby="multipleUse">
+            <a class="input-group">
+              <span class="input-group-addon" id="item-count">
+                #
+              </span>
+              <input type="number" v-model="itemCount" class="form-control" placeholder="e.g. 1" aria-describedby="item-count">
+              <button class="btn btn-success" @click="useAdventurerGear(adventurerGear)">
+                Use
+              </button>
+            </a>
+          </div>
           <button class="btn btn-warning" @click="sellAdventurerGear(adventurerGear)">
             Sell
           </button>
@@ -34,7 +46,8 @@ export default {
     data() {
         return {
             selectedAdvGear: {},
-            showDetail: false
+            showDetail: false,
+            itemCount: 1
         }
     },
     props: ['adventurerGears'],
@@ -49,10 +62,17 @@ export default {
         deleteAdventurerGear(adventurerGear) {
           this.$emit('delete', adventurerGear);
         },
-        useAdventurerGear(adventurerGear, count) {
+        useAdventurerGear(adventurerGear) {
           // todo
           let adventurerGearCopy = adventurerGear;
-          this.$emit('update', adventurerGear);
+          adventurerGearCopy.Count -= this.itemCount;
+          if(adventurerGearCopy.Count < 0){
+            this.$emit('delete', adventurerGear);          
+          }
+          else {
+            this.$emit('update', adventurerGear);
+          }
+          this.itemCount = 1;
         }
     },
     components: {
@@ -65,4 +85,7 @@ export default {
 <style lang="scss" scoped>
 @import '~styles/shared.scss';
 
+.item-use-dropdown {
+  padding: 1%;
+}
 </style>
