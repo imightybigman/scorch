@@ -7,10 +7,16 @@
           <item-card :item="adventurerGear"></item-card>
         </div>
         <div>
+          <button v-if="adventurerGear.Count <= 1" class="btn btn-success" @click="useAdventurerGear(adventurerGear, 1)">
+            Use
+          </button>
+          <button v-if="adventurerGear.Count > 1" class="btn btn-success" @click="useAdventurerGear(adventurerGear, 1)">
+            Use Multiple
+          </button>
           <button class="btn btn-warning" @click="sellAdventurerGear(adventurerGear)">
             Sell
           </button>
-          <button class="btn btn-danger" @click="deleteAdventureGear(adventurerGear)">
+          <button class="btn btn-danger" @click="deleteAdventurerGear(adventurerGear)">
             Delete
           </button>
         </div>
@@ -40,9 +46,13 @@ export default {
         sellAdventurerGear(adventurerGear) {
             this.$emit('sell', adventurerGear);
         },
-        deleteAdventureGear(adventurerGear) {
+        deleteAdventurerGear(adventurerGear) {
           this.$emit('delete', adventurerGear);
-
+        },
+        useAdventurerGear(adventurerGear, count) {
+          // todo
+          let adventurerGearCopy = adventurerGear;
+          this.$emit('update', adventurerGear);
         }
     },
     components: {
