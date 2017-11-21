@@ -6,8 +6,14 @@
                 </div>
                 <div class="middle-ops d-flex flex-column">
                     <div class="character-operations">
+                                            
+                    <p>
+                        <button class="btn btn-warning" @click="rest">Rest</button>
+                    </p>
+
                         <character-operator v-on:reset="selectedChars = []" :character-list="selectedChars" :item="selectedItem"></character-operator>
-                    </div>
+                    </div>            
+
                     <div v-if="selectedItem.ItemId" class="item-card">
                         <div  class ="border border-dark item-card-inner">
                             <div class="item-card-detail">
@@ -58,6 +64,19 @@ export default {
       await this.$store.dispatch('getDisplayItems');
     },
     methods: {
+        async rest() {
+            for(let char of this.party)
+            {
+                let payload = {};
+                payload.body = {};
+                payload.characterId = char.CharacterId;
+
+                payload.body.Hp = char.MaxHp;
+       
+                await this.$store.dispatch('updateCharacter', payload);
+            };
+            this.$logging.update();
+        },
         toggleCharacter(character) {
             var foundChar = this.selectedChars.find(char => char.CharacterId == character.CharacterId);
 

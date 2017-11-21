@@ -10,7 +10,7 @@
           <button class="btn btn-warning" @click="sellAdventurerGear(adventurerGear)">
             Sell
           </button>
-          <button class="btn btn-danger" @click="deleteAdventureGear(adventurergear)">
+          <button class="btn btn-danger" @click="deleteAdventureGear(adventurerGear)">
             Delete
           </button>
         </div>
@@ -40,7 +40,7 @@ export default {
         sellAdventurerGear(adventurerGear) {
             this.$emit('sell', adventurerGear);
         },
-        deleteAdventureGear(adventureGear) {
+        deleteAdventureGear(adventurerGear) {
           this.$emit('delete', adventurerGear);
 
         }

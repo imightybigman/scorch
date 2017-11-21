@@ -19,9 +19,27 @@
                       <h3>
                           Initiative
                       </h3>
-                        <div v-for="user in party">
-                            <ul>0 : {{user.Firstname}} {{user.Lastname}}</ul>
+                        <div v-for="user in initInfo">
+                            <ul>
+                                <h5>{{user.user}} :</h5>
+                                <input class="form-control" type="number" v-model="user.init"/></ul>
                         </div>
+                        <p v-if="initInfo.length > 0">
+                          <button class="btn btn-primary" @click="sortInits">Sort</button>
+                        </p>
+                        <p>
+                          <form>
+                            <label>
+                              Monster Name
+                            </label>
+                            <input class="form-control" type="text" v-model="newMonster.name">
+                            <label>
+                              Monster Init
+                            </label>
+                            <input class="form-control" type="number" v-model="newMonster.init">
+                            <button class="btn btn-success" @click="addMonster">Add Monster</button>
+                          </form>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -34,16 +52,29 @@
     import { CharacterTile } from 'components/character'
     import CharacterOperator from './operators/CharacterOperator.vue'
     import FightOperator from './operators/FightOperator'
+    import CharacterService from 'services/characterService'
+    import _ from 'lodash'
 
 export default {
     name : 'dm-fight-component',
     data() {
         return {
             selectedChars: [],
+            initInfo: [],
+            newMonster: []
         }
     },
     async created() {
       await this.$store.dispatch('getParty');
+    },
+    sockets: {
+      init: function(data) {
+        this.initInfo.push(data);
+        this.sortInits();
+      },
+      resetInit: function() {
+        this.clearInit();
+      }
     },
     methods: {
         toggleCharacter(character) {
@@ -59,6 +90,17 @@ export default {
         },
         isCharacterSelected(character) {
             return !(this.selectedChars.find(char => char.CharacterId == character.CharacterId) == undefined);
+        },
+        clearInit() {
+          this.initInfo = [];
+        },
+        sortInits(){
+            this.initInfo = _.sortBy(this.initInfo, ['init']);
+        },
+        addMonster(){
+          this.initInfo.push({user: this.newMonster.name, init: this.newMonster.init});
+          this.newMonster = [];
+          this.sortInits();
         }
     },
     computed: {

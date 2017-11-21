@@ -17,6 +17,9 @@ const Logging = {
     Vue.prototype.$logging.update = function () {
       Vue.prototype.$socket.emit("updateParty");
     };
+    Vue.prototype.$logging.resetInit = function () {
+      Vue.prototype.$socket.emit("resetInit");
+    };
   }
 }
 
