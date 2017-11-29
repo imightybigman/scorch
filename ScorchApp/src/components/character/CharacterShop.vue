@@ -68,7 +68,7 @@ export default {
     methods: {
         close(){
             $("body").removeClass("modal-open");
-            this.showshopModal = false;
+            this.showShopModal = false;
             this.selectedItem = {};
         },
         async searchItem(item){
