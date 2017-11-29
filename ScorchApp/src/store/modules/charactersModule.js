@@ -71,16 +71,10 @@ const actions = {
         }
     },
     async equipItem({ commit }, payload) {
-        try {
-            let response = await CharacterService.equipItem(payload.characterId, payload.item);
-            if(response.status === 200) {
-                commit(types.EQUIP_ITEM, payload);
-            }
+        let response = await CharacterService.equipItem(payload.characterId, payload.item);
+        if(response.status === 200) {
+            commit(types.EQUIP_ITEM, payload);
         }
-        catch(ex){
-            console.error('EQUIP ERROR: ' + ex.body.error)
-        }
-
     },
     async updateItem({ commit }, payload) {
         let response = await CharacterService.putCharacterItem(payload.characterId, payload.item);

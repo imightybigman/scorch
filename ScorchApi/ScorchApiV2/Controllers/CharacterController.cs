@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2;
@@ -122,8 +123,18 @@ namespace ScorchApiV2.Controllers
             }
 
             var character = await GetCharacter(characterId);
-            item.Count = itemCount;
-            character.Inventory.Insert(0, item);
+            // If the item already exists, update the count
+            var itemIndex = character.Inventory.FindIndex(i => i.ItemId == item.ItemId);
+            if (itemIndex != -1)
+            {
+                character.Inventory[itemIndex].Count += itemCount;
+            }
+            else
+            {
+                item.Count = itemCount;
+                character.Inventory.Insert(0, item);
+            }
+
             var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
 
             await _characterTable.UpdateItemAsync(updateDocument);
