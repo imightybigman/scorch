@@ -7,9 +7,10 @@
                 <div class="middle-ops d-flex flex-column">
                     <div class="character-operations">
 
+                      <h3>Shop Status</h3>
+                      <toggle-button @change="toggleShopStatus" v-model="storeStatus" :value="false" :sync="true" :width="65" :labels="{checked: 'Open', unchecked: 'Closed'}" />
                     <p>
                         <button class="btn btn-warning" @click="rest">Rest</button>
-                        <button class="btn btn-warning" @click="shop">Open Shop</button>
                     </p>
 
                         <character-operator v-on:reset="selectedChars = []" :character-list="selectedChars" :item="selectedItem"></character-operator>
@@ -57,7 +58,8 @@ export default {
             selectedChars: [],
             selectedItem: {},
             columnKeys: ['Name', 'ItemClass', 'Cost', 'AC', 'Damage', 'Slot'],
-            itemQty: 1
+            itemQty: 1,
+            storeStatus: false
         }
     },
     async created() {
@@ -78,8 +80,18 @@ export default {
             };
             this.$logging.update();
         },
-        async shop() {
+        async openShop() {
             this.$logging.action({action: 'showShop'});
+        },
+        async closeShop() {
+          this.$logging.action({action: 'closeShop'});
+        },
+        toggleShopStatus() {
+          if (this.storeStatus) {
+            this.openShop();
+          } else {
+            this.closeShop();
+          }
         },
         toggleCharacter(character) {
             var foundChar = this.selectedChars.find(char => char.CharacterId == character.CharacterId);
