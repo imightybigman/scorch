@@ -138,7 +138,7 @@ export default {
         rollInitiative() {
           let currentRoll = Math.floor(Math.random() * 20) + 1
           this.$logging.info(this.name + " rolled for initiative (d20 + Dexterity modifier) and got a " + (currentRoll + this.dex));
-          this.$logging.init({user: this.name, init: (currentRoll + this.dex)});
+          this.$logging.init({user: this.name, init: (currentRoll + this.dex) * 1});
           this.reset = true;
         }
     },
