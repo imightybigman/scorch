@@ -74,22 +74,16 @@ export default {
             this.$emit('equip', quiver);
         },
         sellQuiver(quiver) {
-
             this.$emit('sell', quiver);
         },
         deleteQuiver(quiver) {
-
             this.$emit('delete', quiver);
         },
         async updateCount(quiver, event) {
             if (event) {
                 event.stopPropagation();
             }
-            let payload = {
-                characterId: this.characterId,
-                item: quiver
-            };
-            await this.$store.dispatch('updateItem', payload);
+            this.$emit('update', quiver);
         }
     },
     components : {
