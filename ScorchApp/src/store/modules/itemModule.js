@@ -50,7 +50,7 @@ const actions = {
             commit(types.API_ERROR, errorResponse.bodyText);
         }
     },
-    async getPurchaseable({ commit }) {
+    async getPurchasableItems({ commit }) {
         let response = {};
         try{
             response = await ItemService.getPurchasable();
@@ -78,6 +78,9 @@ const mutations = {
         state.error = error;
     },
     [types.GET_DISPLAY_ITEMS] (state, items) {
+        state.items = items;
+    },
+    [types.GET_PURCHASE_ITEMS] (state, items) {
         state.items = items;
     }
 }

@@ -50,7 +50,7 @@ export default {
         }
     },
     async created() {
-      await this.$store.dispatch('getDisplayItems');
+      await this.$store.dispatch('getPurchasableItems');
     },
     sockets: {
       showShop: function() {

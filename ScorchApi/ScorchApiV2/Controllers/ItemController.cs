@@ -46,6 +46,25 @@ namespace ScorchApiV2.Controllers
             return itemList;
         }
 
+        [HttpGet("purchase")]
+        public async Task<IList<Item>> GetPurchasable()
+        {
+            var scanFilter = new ScanFilter();
+            scanFilter.AddCondition("Purchasable", ScanOperator.Equal, "0");
+            var search = _itemTable.Scan(scanFilter);
+            var itemList = new List<Item>();
+            do
+            {
+                var documentList = await search.GetNextSetAsync();
+                foreach (var document in documentList)
+                {
+                    itemList.Add(ParseItem(document));
+                }
+            } while (!search.IsDone);
+
+            return itemList;
+        }
+
 
         [HttpGet("{itemId}")]
         public async Task<Item> GetItem(Guid itemId)
