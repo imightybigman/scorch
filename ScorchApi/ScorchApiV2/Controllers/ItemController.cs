@@ -50,7 +50,7 @@ namespace ScorchApiV2.Controllers
         public async Task<IList<Item>> GetPurchasable()
         {
             var scanFilter = new ScanFilter();
-            scanFilter.AddCondition("Purchasable", ScanOperator.Equal, "0");
+            scanFilter.AddCondition("Purchasable", ScanOperator.Equal, "1");
             var search = _itemTable.Scan(scanFilter);
             var itemList = new List<Item>();
             do
@@ -70,7 +70,7 @@ namespace ScorchApiV2.Controllers
         public async Task<Item> GetItem(Guid itemId)
         {
             var document = await _itemTable.GetItemAsync(itemId);
-            
+
             return document != null ? ParseItem(document) : null;
         }
 
