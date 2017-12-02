@@ -6,13 +6,15 @@
                 </div>
                 <div class="middle-ops d-flex flex-column">
                     <div class="character-operations">
-                                            
+
+                      <h3>Shop Status</h3>
+                      <toggle-button @change="toggleShopStatus" v-model="storeStatus" :value="false" :sync="true" :width="65" :labels="{checked: 'Open', unchecked: 'Closed'}" />
                     <p>
                         <button class="btn btn-warning" @click="rest">Rest</button>
                     </p>
 
                         <character-operator v-on:reset="selectedChars = []" :character-list="selectedChars" :item="selectedItem"></character-operator>
-                    </div>            
+                    </div>
 
                     <div v-if="selectedItem.ItemId" class="item-card">
                         <div  class ="border border-dark item-card-inner">
@@ -56,7 +58,8 @@ export default {
             selectedChars: [],
             selectedItem: {},
             columnKeys: ['Name', 'ItemClass', 'Cost', 'AC', 'Damage', 'Slot'],
-            itemQty: 1
+            itemQty: 1,
+            storeStatus: false
         }
     },
     async created() {
@@ -72,10 +75,23 @@ export default {
                 payload.characterId = char.CharacterId;
 
                 payload.body.Hp = char.MaxHp;
-       
+
                 await this.$store.dispatch('updateCharacter', payload);
             };
             this.$logging.update();
+        },
+        async openShop() {
+            this.$logging.action({action: 'showShop'});
+        },
+        async closeShop() {
+          this.$logging.action({action: 'closeShop'});
+        },
+        toggleShopStatus() {
+          if (this.storeStatus) {
+            this.openShop();
+          } else {
+            this.closeShop();
+          }
         },
         toggleCharacter(character) {
             var foundChar = this.selectedChars.find(char => char.CharacterId == character.CharacterId);
@@ -132,7 +148,7 @@ export default {
                     characterId: char.CharacterId,
                     message: `You received ${this.itemQty} ${this.selectedItem.Name}.`
                 }
-                this.$notify.success(successMsg);    
+                this.$notify.success(successMsg);
                 this.$socket.emit('updateParty');
             }
         }

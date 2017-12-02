@@ -4,6 +4,9 @@ export default {
     getItem() {
         return Vue.http.get('item');
     },
+    getPurchasable() {
+        return Vue.http.get('item/purchase');
+    },
     getItemById(id) {
         return Vue.http.get('item/' + id);
     },
