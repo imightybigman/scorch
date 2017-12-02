@@ -95,10 +95,10 @@ export default {
           this.initInfo = [];
         },
         sortInits(){
-            this.initInfo = _.sortBy(this.initInfo, ['init']);
+            this.initInfo = _.orderBy(this.initInfo, ['init'], ['desc']);
         },
         addMonster(){
-          this.initInfo.push({user: this.newMonster.name, init: this.newMonster.init});
+          this.initInfo.push({user: this.newMonster.name, init: this.newMonster.init * 1});
           this.newMonster = [];
           this.sortInits();
         }

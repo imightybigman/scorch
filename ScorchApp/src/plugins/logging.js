@@ -20,6 +20,9 @@ const Logging = {
     Vue.prototype.$logging.resetInit = function () {
       Vue.prototype.$socket.emit("resetInit");
     };
+    Vue.prototype.$logging.action = function (data) {
+      Vue.prototype.$socket.emit("action", data);
+    };
   }
 }
 
