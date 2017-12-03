@@ -178,8 +178,10 @@ namespace ScorchApiV2.Controllers
             var character = await GetCharacter(characterId);
             var item = character.Inventory.Find(x => x.ItemId == itemId);
             character.Inventory.RemoveAll(x => x.ItemId == itemId);
-            character.Gold += Convert.ToInt32(item.Cost);
-
+            var itemCost = Convert.ToInt32(item.Cost);
+            var devalue = itemCost * 0.15;
+            itemCost = itemCost - Convert.ToInt32(Math.Floor(devalue));
+            character.Gold += itemCost;
             var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
             await _characterTable.UpdateItemAsync(updateDocument);
         }
