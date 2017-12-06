@@ -7,8 +7,8 @@ export default {
     patchCharacter(id, props) {
         return Vue.http.patch('character/' + id, props);
     },
-    sellItem(id, itemId){
-        let endpoint = `character/${id}/inventory/sell?itemId=${itemId}`;
+    sellItem(id, itemId, count){
+        let endpoint = `character/${id}/inventory/sell?itemId=${itemId}&count=${count}`;
         return Vue.http.delete(endpoint);
     },
     putCharacterSpell(id, spellId) {

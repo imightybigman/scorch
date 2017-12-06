@@ -64,7 +64,7 @@ namespace ScorchApiV2.Controllers
         public async Task<Character> PostCharacter([FromBody]Character character)
         {
             character.CharacterId = Guid.NewGuid();
-            
+
             var document = Document.FromJson(JsonConvert.SerializeObject(character));
 
             await _characterTable.PutItemAsync(document);
@@ -87,7 +87,7 @@ namespace ScorchApiV2.Controllers
         public async Task PatchCharacter(Guid characterId, [FromBody]Dictionary<string, object> props)
         {
             var document = new Document{ ["CharacterId"] = characterId.ToString() };
-            foreach (var x in props) 
+            foreach (var x in props)
             {
                 if (x.Key == "Stats")
                 {
@@ -165,7 +165,7 @@ namespace ScorchApiV2.Controllers
             await _characterTable.UpdateItemAsync(updateDocument);
         }
 
-         
+
         [HttpDelete("{characterId}")]
         public async Task DeleteCharacter(Guid characterId)
         {
@@ -173,7 +173,7 @@ namespace ScorchApiV2.Controllers
         }
 
         [HttpDelete("{characterId}/inventory/sell")]
-        public async Task SellItemFromInventory(Guid characterId, Guid itemId)
+        public async Task SellItemFromInventory(Guid characterId, Guid itemId, Int count)
         {
             var character = await GetCharacter(characterId);
             var item = character.Inventory.Find(x => x.ItemId == itemId);
@@ -181,6 +181,7 @@ namespace ScorchApiV2.Controllers
             var itemCost = Convert.ToInt32(item.Cost);
             var devalue = itemCost * 0.15;
             itemCost = itemCost - Convert.ToInt32(Math.Floor(devalue));
+            itemCost = itemCost * count;
             character.Gold += itemCost;
             var updateDocument = Document.FromJson(JsonConvert.SerializeObject(character));
             await _characterTable.UpdateItemAsync(updateDocument);
