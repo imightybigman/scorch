@@ -89,7 +89,7 @@ const actions = {
         }
     },
     async sellItem({commit}, payload){
-        let response = await CharacterService.sellItem(payload.characterId, payload.itemId);
+        let response = await CharacterService.sellItem(payload.characterId, payload.itemId, payload.count);
         if(response.status === 200){
             commit(types.SOLD_ITEM, payload);
         }
@@ -151,7 +151,7 @@ const mutations = {
                 break;
             }
         }
-    }, 
+    },
     [types.EQUIP_ITEM] (state, payload) {
         let id = payload.characterId;
         let item = payload.item;
