@@ -173,7 +173,7 @@ namespace ScorchApiV2.Controllers
         }
 
         [HttpDelete("{characterId}/inventory/sell")]
-        public async Task SellItemFromInventory(Guid characterId, Guid itemId, Int count)
+        public async Task SellItemFromInventory(Guid characterId, Guid itemId, int count)
         {
             var character = await GetCharacter(characterId);
             var item = character.Inventory.Find(x => x.ItemId == itemId);
