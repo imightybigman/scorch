@@ -92,7 +92,7 @@ namespace ScorchApiV2.Controllers
             {
                 if (x.Key == "Stats")
                 {
-                    document[x.Key] = Document.FromJson(JsonConvert.SerializeObject((Stats)x.Value));
+                    document[x.Key] = Document.FromJson(JsonConvert.SerializeObject(x.Value));
                 }
                 else if (x.Key == "SpellSlots")
                 {
