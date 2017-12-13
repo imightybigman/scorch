@@ -8,6 +8,7 @@ using Amazon.DynamoDBv2.DocumentModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ScorchApiV2.ModelBinders;
 using ScorchApiV2.Models;
 using ScorchApiV2.Abstract;
@@ -91,7 +92,17 @@ namespace ScorchApiV2.Controllers
             {
                 if (x.Key == "Stats")
                 {
-                    document[x.Key] = Document.FromJson(JsonConvert.SerializeObject(x.Value));
+                    document[x.Key] = Document.FromJson(JsonConvert.SerializeObject((Stats)x.Value));
+                }
+                else if (x.Key == "SpellSlots")
+                {
+                    var spellSlots = JsonConvert.DeserializeObject<List<SpellSlot>>(x.Value.ToString());
+                    var listOfDynamoEntry = new List<DynamoDBEntry>();
+                    foreach(var spellSlot in spellSlots)
+                    {  
+                       listOfDynamoEntry.Add(Document.FromJson(JsonConvert.SerializeObject(spellSlot))); 
+                    }
+                    document[x.Key] = new DynamoDBList(listOfDynamoEntry);
                 }
                 else
                 {

@@ -73,8 +73,8 @@ export default {
                 let payload = {};
                 payload.body = {};
                 payload.characterId = char.CharacterId;
-
-                payload.body.Hp = char.MaxHp;
+                // Set their hp to the max hp
+                payload.body.Hp = char.Hp > char.MaxHp ? char.Hp : char.MaxHp;
 
                 await this.$store.dispatch('updateCharacter', payload);
             };

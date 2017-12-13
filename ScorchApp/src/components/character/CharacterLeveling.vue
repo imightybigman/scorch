@@ -102,7 +102,8 @@ export default {
         },
         levelingEnabled() {
             let expRange = LevelService.getExpRange(this.character.Level)
-            return this.character.Exp >= expRange.max;
+            //return this.character.Exp >= expRange.max;
+            return true;
         },
         bonusFeature() {
             let level = `Level_${this.nextLevel}`;
