@@ -77,7 +77,6 @@ export default {
                 payload.body.Hp = char.Hp > char.MaxHp ? char.Hp : char.MaxHp;
                 // Restore their spell slots
                 payload.body.SpellSlots = [];
-                console.log(char.SpellSlots);
                 for(let spellSlot of char.SpellSlots) {
                     let spellSlotPayload = {
                         Count: spellSlot.Count,
