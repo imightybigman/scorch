@@ -14,7 +14,7 @@ using Document = Amazon.DynamoDBv2.DocumentModel.Document;
 
 namespace ScorchApiServerless.Controllers
 {
-    [Route("api/class")]
+    [Route("api/[controller]")]
     public class ClassController : Controller
     {
         private static AmazonDynamoDBClient _client = new AmazonDynamoDBClient(RegionEndpoint.USEast1);
