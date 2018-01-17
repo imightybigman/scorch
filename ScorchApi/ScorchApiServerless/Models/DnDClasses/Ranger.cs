@@ -1,0 +1,15 @@
+﻿using System.Collections.Generic;
+using ScorchApiServerless.Abstract;
+
+namespace ScorchApiServerless.Models.DnDClasses
+{
+    public class Ranger : CharacterClass
+    {
+        public AdditionalFeature Archetype { get; set; }
+        public Dictionary<string, int> SpellsKnown { get; set; }
+        public Dictionary<string, List<SpellSlot>> SpellSlots { get; set; }
+        public Companion Companion { get; set; }
+
+        public Ranger() { }
+    }
+}
