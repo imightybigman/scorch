@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScorchApiV2", "ScorchApiV2\ScorchApiV2.csproj", "{9EB60F4C-5AEA-4835-A118-F24BD885973C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScorchApiV2", "ScorchApiV2\ScorchApiV2.csproj", "{9EB60F4C-5AEA-4835-A118-F24BD885973C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScorchApiServerless", "ScorchApiServerless\ScorchApiServerless.csproj", "{2C7399AB-28A0-4359-9672-39E819464543}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{9EB60F4C-5AEA-4835-A118-F24BD885973C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EB60F4C-5AEA-4835-A118-F24BD885973C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EB60F4C-5AEA-4835-A118-F24BD885973C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C7399AB-28A0-4359-9672-39E819464543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C7399AB-28A0-4359-9672-39E819464543}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C7399AB-28A0-4359-9672-39E819464543}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C7399AB-28A0-4359-9672-39E819464543}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3AE4D979-D9EB-4D38-96AD-C6E54D458911}
 	EndGlobalSection
 EndGlobal

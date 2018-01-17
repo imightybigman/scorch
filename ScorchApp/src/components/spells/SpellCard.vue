@@ -11,6 +11,8 @@
             </div>
         </div>
     </modal>
+    <spell-slots :spellSlots="character.SpellSlots" :level="character.Level" :characterId="character.CharacterId"></spell-slots>
+    <hr >
     <spell-info :characterClass="characterClass" :level="character.Level"></spell-info>
     <div class="spell-list">
         <h5>Spells</h5>
@@ -28,6 +30,7 @@ import SpellSearcher from './SpellSearcher'
 import SpellDetailCard from './SpellDetailCard'
 import SpellList from './SpellList'
 import SpellInfo from './SpellInfo'
+import SpellSlots from './SpellSlots'
 
 export default {
     name: 'spell-card',
@@ -78,7 +81,8 @@ export default {
         SpellSearcher,
         SpellDetailCard,
         SpellList,
-        SpellInfo
+        SpellInfo,
+        SpellSlots
     }
 }
 </script>

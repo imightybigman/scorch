@@ -87,9 +87,9 @@ import {  CharacterTile,
           HpBar } from 'components/character'
 
 import { Inventory } from 'components/inventory'
-import { SpellInfo, SpellList, SpellCard } from 'components/spells'
+import { SpellInfo, SpellList, SpellCard, SpellSlots } from 'components/spells'
 import { DiceRoller, Modal, Accordian } from 'components/util'
-import { BonusFeatures, SpellSlots, Companion } from 'components/classFeatures'
+import { BonusFeatures, Companion } from 'components/classFeatures'
 import { AbilityModifierService } from 'services'
 import { VueTabs, VTab } from 'vue-nav-tabs'
 import 'vue-nav-tabs/themes/vue-tabs.css'
@@ -180,7 +180,8 @@ export default {
     VTab,
     SpellInfo,
     SpellList,
-    SpellCard
+    SpellCard,
+    SpellSlots
   }
 }
 

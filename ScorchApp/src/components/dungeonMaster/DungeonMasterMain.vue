@@ -75,15 +75,17 @@ export default {
                 payload.characterId = char.CharacterId;
                 // Set their hp to the max hp
                 payload.body.Hp = char.Hp > char.MaxHp ? char.Hp : char.MaxHp;
-                // Restore their spell slots
-                payload.body.SpellSlots = [];
-                for(let spellSlot of char.SpellSlots) {
-                    let spellSlotPayload = {
-                        Count: spellSlot.Count,
-                        SpellLevel: spellSlot.SpellLevel,
-                        Available: spellSlot.Count
-                    };
-                    payload.body.SpellSlots.push(spellSlotPayload);
+                if(char.SpellSlots){
+                    // Restore their spell slots
+                    payload.body.SpellSlots = [];
+                    for(let spellSlot of char.SpellSlots) {
+                        let spellSlotPayload = {
+                            Count: spellSlot.Count,
+                            SpellLevel: spellSlot.SpellLevel,
+                            Available: spellSlot.Count
+                        };
+                        payload.body.SpellSlots.push(spellSlotPayload);
+                    }
                 }
                 await this.$store.dispatch('updateCharacter', payload);
             };

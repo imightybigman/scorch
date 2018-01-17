@@ -102,8 +102,7 @@ export default {
         },
         levelingEnabled() {
             let expRange = LevelService.getExpRange(this.character.Level)
-            //return this.character.Exp >= expRange.max;
-            return true;
+            return this.character.Exp >= expRange.max;
         },
         bonusFeature() {
             let level = `Level_${this.nextLevel}`;
@@ -134,6 +133,18 @@ export default {
                     Stats: this.character.Stats
                 }
             };
+            // Build spell slots if they have
+            if(this.characterClass.SpellSlots) {
+                payload.body.SpellSlots = [];
+                for(let slot of this.characterClass.SpellSlots['Level_' + this.nextLevel]) {
+                    payload.body.SpellSlots.push({
+                        Available: slot.Count, 
+                        Count: slot.Count,
+                        SpellLevel: slot.SpellLevel
+                    });
+                }   
+            }
+
             await this.$store.dispatch('updateCharacter', payload);
             this.$logging.update();
             $("body").removeClass("modal-open")
