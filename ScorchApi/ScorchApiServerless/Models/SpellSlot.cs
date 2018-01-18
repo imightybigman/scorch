@@ -1,4 +1,4 @@
-﻿namespace ScorchApiV2.Models
+﻿namespace ScorchApiServerless.Models
 {
     public class SpellSlot
     {

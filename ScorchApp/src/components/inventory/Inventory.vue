@@ -17,31 +17,31 @@
         <armor-inventory slot="body"
          @equip="equipItem"
          @delete="deleteItem"
-         @sell="sellItem" 
+         @sell="sellItem"
          :armors="armors"></armor-inventory>
       </accordian>
       <accordian :header="'Accessories'">
         <accessory-inventory slot="body"
          @equip="equipItem"
          @delete="deleteItem"
-         @sell="sellItem" 
+         @sell="sellItem"
          :accessories="accessories"></accessory-inventory>
       </accordian>
       <accordian :header="'Quivers'">
         <quiver-inventory slot="body"
          @equip="equipItem"
          @delete="deleteItem"
-         @sell="sellItem" 
+         @sell="sellItem"
          @update="updateItem"
          :characterId="characterId" :quivers="quivers"></quiver-inventory>
       </accordian>
       <accordian :header="'Adventurer Gear'">
         <adventurer-gear-inventory slot="body"
          @sell="sellItem"
-         @delete="deleteItem" 
+         @delete="deleteItem"
          @update="updateItem"
          :adventurerGears="adventurerGears"></adventurer-gear-inventory>
-      </accordian>    
+      </accordian>
     </div>
   </div>
 </div>
@@ -71,10 +71,10 @@ export default {
         return this.$store.getters.getCharacterQuivers(this.characterId);
       },
       adventurerGears() {
-        return this.$store.getters.getCharacterAdventurerGears(this.characterId);        
+        return this.$store.getters.getCharacterAdventurerGears(this.characterId);
       },
       accessories(){
-        return this.$store.getters.getCharacterAccessories(this.characterId);        
+        return this.$store.getters.getCharacterAccessories(this.characterId);
       }
     },
     methods: {
@@ -88,7 +88,8 @@ export default {
       async sellItem(item) {
         let sellPayload = {
           characterId: this.characterId,
-          itemId: item.ItemId
+          itemId: item.ItemId,
+          count: item.Count
         };
         await this.$store.dispatch('sellItem', sellPayload);
       },

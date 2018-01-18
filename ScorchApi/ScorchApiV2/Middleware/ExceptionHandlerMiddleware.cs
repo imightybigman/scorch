@@ -26,7 +26,7 @@ namespace ScorchApiV2.Middleware
                 context.Response.ContentType = "application/json; charset=utf-8";
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(new { error = ex.Message }));
+                await context.Response.WriteAsync(JsonConvert.SerializeObject(new { error = ex }));
             }
 
         }
