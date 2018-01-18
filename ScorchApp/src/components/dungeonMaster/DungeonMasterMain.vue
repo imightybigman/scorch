@@ -25,7 +25,7 @@
                                 <span class="item-qty-label">Quantity </span>
                                 <div class="input-group">
                                     <input type="number" class="form-control" id="item-quantity" v-model="itemQty" placeholder="# Items" autocomplete="off"/>
-                                    <button class="btn btn-warning" type="button" v-on:click="giveItem()">Give Item</button>
+                                    <button class="btn btn-warning" v-on:click="giveItem()">Give Item</button>
                                 </div>
                             </div>
                         </div>
