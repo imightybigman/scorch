@@ -25,7 +25,7 @@
                                 <span class="item-qty-label">Quantity </span>
                                 <div class="input-group">
                                     <input type="number" class="form-control" id="item-quantity" v-model="itemQty" placeholder="# Items" autocomplete="off"/>
-                                    <button class="btn btn-warning" type="button" v-on:click="giveItem()">Give Item</button>
+                                    <button class="btn btn-warning" v-on:click="giveItem()">Give Item</button>
                                 </div>
                             </div>
                         </div>
@@ -73,9 +73,20 @@ export default {
                 let payload = {};
                 payload.body = {};
                 payload.characterId = char.CharacterId;
-
-                payload.body.Hp = char.MaxHp;
-
+                // Set their hp to the max hp
+                payload.body.Hp = char.Hp > char.MaxHp ? char.Hp : char.MaxHp;
+                if(char.SpellSlots){
+                    // Restore their spell slots
+                    payload.body.SpellSlots = [];
+                    for(let spellSlot of char.SpellSlots) {
+                        let spellSlotPayload = {
+                            Count: spellSlot.Count,
+                            SpellLevel: spellSlot.SpellLevel,
+                            Available: spellSlot.Count
+                        };
+                        payload.body.SpellSlots.push(spellSlotPayload);
+                    }
+                }
                 await this.$store.dispatch('updateCharacter', payload);
             };
             this.$logging.update();

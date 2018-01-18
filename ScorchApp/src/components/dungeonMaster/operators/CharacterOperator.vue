@@ -1,30 +1,28 @@
 <template>
     <div class="dm-character-operator">
-        <form>
-            <div class = "d-flex">
-                <div class="form-group">
-                    <label for="modify-health">Health : </label>
-                    <div class="input-group">
-                        <input type="number" class="form-control" id="modify-health" v-model="deltaHealth" placeholder="Hp Change" autocomplete="off"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="modify-max-health">Max Health : </label>
-                    <input type="number" class="form-control" id="modify-max-health" v-model="maxHealth" placeholder="New Max Health" autocomplete="off"/>
-                </div>
-                <div class="form-group">
-                    <label for="modify-exp">Modify Exp : </label>
-                    <input type="number" class="form-control" id="modify-exp" v-model="deltaExp" placeholder="Exp Change" autocomplete="off"/>
+        <div class = "d-flex">
+            <div class="form-group">
+                <label for="modify-health">Health : </label>
+                <div class="input-group">
+                    <input type="number" class="form-control" id="modify-health" v-model="deltaHealth" placeholder="Hp Change" autocomplete="off"/>
                 </div>
             </div>
-            <div class = "d-flex">
-                <div class="form-group">
-                    <label for="modify-gp">Modify Gold : </label>
-                    <input type="number" class="form-control" id="modify-gold" v-model="deltaGold" placeholder="Gold Change" autocomplete="off"/>
-                </div>
+            <div class="form-group">
+                <label for="modify-max-health">Max Health : </label>
+                <input type="number" class="form-control" id="modify-max-health" v-model="maxHealth" placeholder="New Max Health" autocomplete="off"/>
             </div>
-            <button class="btn btn-warning" @click="apply">Submit</button>
-        </form>
+            <div class="form-group">
+                <label for="modify-exp">Modify Exp : </label>
+                <input type="number" class="form-control" id="modify-exp" v-model="deltaExp" placeholder="Exp Change" autocomplete="off"/>
+            </div>
+        </div>
+        <div class = "d-flex">
+            <div class="form-group">
+                <label for="modify-gp">Modify Gold : </label>
+                <input type="number" class="form-control" id="modify-gold" v-model="deltaGold" placeholder="Gold Change" autocomplete="off"/>
+            </div>
+        </div>
+        <button class="btn btn-warning" v-on:click="apply">Submit</button>
     </div>
 </template>
 

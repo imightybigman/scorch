@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ScorchApiV2.Abstract;
-using ScorchApiV2.Models.Items;
+using ScorchApiServerless.Abstract;
+using ScorchApiServerless.Models.Items;
 
-namespace ScorchApiV2.Models
+namespace ScorchApiServerless.Models
 {
     public class Character
     {

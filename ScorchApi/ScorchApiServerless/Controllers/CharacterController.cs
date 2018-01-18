@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2;
@@ -8,12 +7,11 @@ using Amazon.DynamoDBv2.DocumentModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using ScorchApiV2.ModelBinders;
-using ScorchApiV2.Models;
-using ScorchApiV2.Abstract;
+using ScorchApiServerless.Abstract;
+using ScorchApiServerless.ModelBinders;
+using ScorchApiServerless.Models;
 
-namespace ScorchApiV2.Controllers
+namespace ScorchApiServerless.Controllers
 {
     [Route("api/[controller]")]
     public class CharacterController : Controller
