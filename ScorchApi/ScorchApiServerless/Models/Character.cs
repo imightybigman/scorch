@@ -164,7 +164,9 @@ namespace ScorchApiServerless.Models
             {
                 Equipment.MainHand = weapon;
             }
-            else if(weapon.Slot == "OffHand") {
+            else if(weapon.Slot == "OffHand")
+            {
+                Equipment.Shield = null;
                 Equipment.OffHand = weapon;
             }
         }
@@ -193,6 +195,7 @@ namespace ScorchApiServerless.Models
             }
             else if (armor.Slot == "Shield")
             {
+                Equipment.OffHand = null;
                 Equipment.Shield = armor;
             }
         }
