@@ -88,6 +88,10 @@ namespace ScorchApiServerless.Models
             {
                 Equipment.Necklace = (Accessory)equipment;
             }
+            else if (Equipment.Shield != null && Equipment.Shield.ItemId == equipment.ItemId)
+            {
+                Equipment.Shield = (Armor)equipment;
+            }
         }
 
         public void Equip(Item equipment)
@@ -155,6 +159,10 @@ namespace ScorchApiServerless.Models
             if (slot == "Quiver")
             {
                 Equipment.Quiver = null;
+            }
+            if (slot == "Shield")
+            {
+                Equipment.Shield = null;
             }
         }
 
