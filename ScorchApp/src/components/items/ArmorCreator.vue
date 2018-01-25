@@ -39,6 +39,7 @@
                                 <option>Boots</option>
                                 <option>Helm</option>
                                 <option>Gloves</option>
+                                <option>Shield</option>                                
                             </select>
                         </div>
                     </div>

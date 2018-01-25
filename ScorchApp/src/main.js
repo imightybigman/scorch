@@ -24,7 +24,7 @@ Vue.use(Logging);
 Vue.use(ToggleButton);
 Vue.config.productionTip = false
 Vue.url.options.root = process.env.API_HOST;
-// Vue.url.options.root = 'http://localhost:5000/api';
+Vue.url.options.root = 'http://localhost:51358/api';
 
 /* eslint-disable no-new */
 new Vue({

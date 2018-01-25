@@ -191,6 +191,10 @@ namespace ScorchApiServerless.Models
             {
                 Equipment.Boots = armor;
             }
+            else if (armor.Slot == "Shield")
+            {
+                Equipment.Shield = armor;
+            }
         }
 
         private void EquipAccessory(Accessory accessory)
