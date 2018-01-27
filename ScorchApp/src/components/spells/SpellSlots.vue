@@ -3,10 +3,10 @@
   <h5>Spell Slots</h5>
   <div class="spell-slot" v-for="(slot, index) in computedSpellSlots" :key="index">
     <div class="slot-level">Level {{ slot.SpellLevel }}</div>
-    <div v-for="(usedSlots, usedIndex) in slot.usedSlots" :key="usedIndex">
+    <div v-for="usedSlots in slot.usedSlots">
       <i class="used ra ra-diamonds ra-2x"></i>
     </div>
-    <div v-for="(availableSlots, availableIndex) in slot.availableSlots" :key="availableIndex">
+    <div v-for="availableSlots in slot.availableSlots">
       <i class="available ra ra-diamonds ra-2x"></i>
     </div>
     <div class="spell-slot-btn-container">
@@ -46,7 +46,7 @@ export default {
     },
   },
   methods: {
-    useSpellSlot(index) {
+    async useSpellSlot(index) {
       this.spellSlots[index].useButtonDisabled = true;
       this.spellSlots[index].Available--;
       if(this.spellSlots[index].Available < 0) {
@@ -58,9 +58,9 @@ export default {
           SpellSlots : this.spellSlots
         }
       };
-      //await this.$store.dispatch('updateCharacter', payload);
+      await this.$store.dispatch('updateCharacter', payload);
     },
-    gainSpellSlot(index) {
+    async gainSpellSlot(index) {
       this.spellSlots[index].Available++;
       if(this.spellSlots[index].Available > this.spellSlots[index].Count) {
         this.spellSlots[index].Available = this.spellSlots[index].Count;
@@ -71,7 +71,7 @@ export default {
           SpellSlots : this.spellSlots
         }
       };
-      //await this.$store.dispatch('updateCharacter', payload);
+      await this.$store.dispatch('updateCharacter', payload);
     }
   }
 }
