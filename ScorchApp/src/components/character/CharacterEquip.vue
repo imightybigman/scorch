@@ -75,11 +75,17 @@
             alt="Card image cap" />
     </div>
     <div class="equipment offhand">
-      <img  v-if="equipment.OffHand"
+      <img v-if="equipment.OffHand"
             class="equipped"
             src="~assets/items/shield.png"
             @contextmenu.prevent="$refs.ctxMenu.open($event, equipment.OffHand)"
             :title="displayWeapon(equipment.OffHand)"
+            alt="Card image cap" />
+      <img v-if="equipment.Shield"
+            class="equipped"
+            src="~assets/items/shield.png"
+            @contextmenu.prevent="$refs.ctxMenu.open($event, equipment.Shield)"
+            :title="displayWeapon(equipment.Shield)"
             alt="Card image cap" />
     </div>
     <div class="equipment quiver">

@@ -6,11 +6,11 @@
           </div>
         </div>
         <div class="flex-row item-store">
-          <button class="createAdvGear" type="button" v-on:click="state='createAdventurerGear';selectedItem=''"></button>
-          <button class="createArmor" type="button" v-on:click="state='createArmor';selectedItem=''"></button>
-          <button class="createQuiver" type="button" v-on:click="state='createQuiver';selectedItem=''"></button>
-          <button class="createWeapon" type="button" v-on:click="state='createWeapon';selectedItem=''"></button>
-          <button class="createAccessory" type="button" v-on:click="state='createAccessory';selectedItem=''"></button>          
+          <button class="createAdvGear" type="button" @click="state='createAdventurerGear';selectedItem=''"></button>
+          <button class="createArmor" type="button" @click="state='createArmor';selectedItem=''"></button>
+          <button class="createQuiver" type="button" @click="state='createQuiver';selectedItem=''"></button>
+          <button class="createWeapon" type="button" @click="state='createWeapon';selectedItem=''"></button>
+          <button class="createAccessory" type="button" @click="state='createAccessory';selectedItem=''"></button>          
         </div>
         <div class="flex-column item-creator">
           <div>

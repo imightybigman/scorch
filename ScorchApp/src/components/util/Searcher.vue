@@ -11,7 +11,7 @@
                 <table id="search-results-table" class="table table-hover">
                     <thead>
                         <tr>
-                            <th v-for="(key, index) in objectKeys" :key="index" v-on:click="sortByForm(key)">
+                            <th v-for="(key, index) in objectKeys" :key="index" @click="sortByForm(key)">
                                 <i class="fa" v-bind:class = "{'fa-sort-desc' : (key == sortKey && sortDirection == 'desc'),
                                                                         'fa-sort-asc' : (key == sortKey && sortDirection == 'asc'),
                                                                         'fa-sort' : (key != sortKey)}" 
@@ -20,23 +20,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(row, srIndex) in searchResults.slice((currentPage-1) * limitPerPage, currentPage * limitPerPage)" :key="srIndex" v-on:click="selectRow(row)">
+                        <tr v-for="(row, srIndex) in searchResults.slice((currentPage-1) * limitPerPage, currentPage * limitPerPage)" :key="srIndex" @click="selectRow(row)">
                             <td v-for="(key, keyIndex) in objectKeys" :key="keyIndex">{{row[key]}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <ul class="pagination">
-                <li class="page-item clickable" v-on:click="currentPage = Math.max(currentPage-1, 1)">
+                <li class="page-item clickable" @click="currentPage = Math.max(currentPage-1, 1)">
                     <a class="page-link" >
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li class="page-item clickable" v-for="(page, index) in pagesToShow" :key="index" v-on:click="currentPage = page" >
+                <li class="page-item clickable" v-for="(page, index) in pagesToShow" :key="index" @click="currentPage = page" >
                     <a class="page-link" v-bind:class ="{activated : page == currentPage}" >{{page}}</a>
                 </li>
                
-                <li class="page-item clickable" v-on:click="currentPage = Math.min(currentPage+1, numPages)">
+                <li class="page-item clickable" @click="currentPage = Math.min(currentPage+1, numPages)">
                     <a class="page-link" >
                         <span aria-hidden="true">&raquo;</span>
                     </a>

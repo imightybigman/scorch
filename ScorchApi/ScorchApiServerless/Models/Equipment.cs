@@ -10,6 +10,7 @@ namespace ScorchApiServerless.Models
         public Armor Legs                   { get; set; }
         public Armor Gauntlets              { get; set; }
         public Armor Boots                  { get; set; }
+        public Armor Shield                 { get; set; }
         public Accessory LeftRing           { get; set; }
         public Accessory RightRing          { get; set; }
         public Weapon MainHand              { get; set; }

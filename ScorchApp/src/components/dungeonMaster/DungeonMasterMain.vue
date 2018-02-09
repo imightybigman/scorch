@@ -25,7 +25,7 @@
                                 <span class="item-qty-label">Quantity </span>
                                 <div class="input-group">
                                     <input type="number" class="form-control" id="item-quantity" v-model="itemQty" placeholder="# Items" autocomplete="off"/>
-                                    <button class="btn btn-warning" v-on:click="giveItem()">Give Item</button>
+                                    <button class="btn btn-warning" @click="giveItem()">Give Item</button>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +129,6 @@ export default {
             if(this.selectedChars.length === 0){
                 this.$notify.warning('Please select at least one character.');
             }
-            let success = true;
             let nameList = this.selectedChars.map(char => {return char.Firstname + ' ' + char.Lastname}).join(', ');
             let successMsg = `Successfully gave ${this.itemQty} ${this.selectedItem.Name} to ${nameList}`;
             for(let char of this.selectedChars){
@@ -137,7 +136,7 @@ export default {
                     let itemAdded = {};
                     itemAdded.ItemId = this.selectedItem.ItemId;
                     itemAdded.Count = parseInt(this.itemQty);
-                    try{
+                    try {
                         await CharacterService.postCharacterItem(char.CharacterId, itemAdded);
                         let successPayload = {
                             user: char.CharacterId,
@@ -145,22 +144,19 @@ export default {
                             message: `You received ${this.itemQty} ${this.selectedItem.Name}.`
                         };
                         this.$logging.notify(successPayload);
+                        this.$notify.success(successMsg);
+                        successPayload = {
+                            characterId: char.CharacterId,
+                            message: `You received ${this.itemQty} ${this.selectedItem.Name}.`
+                        }
+                        this.$notify.success(successMsg);
+                        this.$socket.emit('updateParty');
                     }
                     catch(errorResponse){
                         console.log(`Failed to add item to char : ${char.CharacterId} error : ${errorResponse.bodyText}`);
                         this.$notify.failure('Failed to give item to characters');
                     }
                 }
-            }
-            if(success && this.selectedChars.length > 0 && this.selectedItem.ItemId){
-                this.$notify.success(successMsg);
-                this.$logging.update();
-                let successPayload = {
-                    characterId: char.CharacterId,
-                    message: `You received ${this.itemQty} ${this.selectedItem.Name}.`
-                }
-                this.$notify.success(successMsg);
-                this.$socket.emit('updateParty');
             }
         }
     },

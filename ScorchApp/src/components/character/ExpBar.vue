@@ -23,12 +23,12 @@ export default {
     props: ['character'],
     computed: {
         progressWidth() {
-            let expRange = LevelService.getExpRange(this.character.Level)
-            return `width: ${this.character.Exp/expRange.max * 100}%`;
+            let expRange = LevelService.getExpRange(this.character.Level);
+            return `width: ${(this.character.Exp - expRange.min)/expRange.range * 100}%`;
         },
         currentExp() {
-            let expRange = LevelService.getExpRange(this.character.Level)
-            return `${this.character.Exp}/${expRange.max}`;
+            let expRange = LevelService.getExpRange(this.character.Level);
+            return `${this.character.Exp - expRange.min}/${expRange.range}`;
         },
     }
 }
