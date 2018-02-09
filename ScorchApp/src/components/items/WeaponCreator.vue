@@ -42,6 +42,7 @@
                             <select class="form-control" v-model="slot">
                                 <option>One-Handed</option>
                                 <option>Two-Handed</option>
+                                <option>OffHand</option>                                
                             </select>
                         </div>
                     </div>
@@ -85,8 +86,8 @@
                             </div>
                         </div>
                         <div class="input-group">
-                            <button class="btn btn-primary" type="button" v-on:click="addProp()"><b>+</b></button>
-                            <button class="btn btn-danger" type="button" v-on:click="removeProp()"><b>-</b></button>
+                            <button class="btn btn-primary" type="button" @click="addProp"><b>+</b></button>
+                            <button class="btn btn-danger" type="button" @click="removeProp"><b>-</b></button>
                             <input type="text" class="form-control" id="property-input" v-model="newProp" placeholder="Properties" autocomplete="off"/>
                         </div>
                     </div>
@@ -98,8 +99,8 @@
                             </div>
                         </div>
                         <div class="input-group">
-                            <button class="btn btn-primary " type="button" v-on:click="addStatMod()"><b>+</b></button>
-                            <button class="btn btn-danger" type="button" v-on:click="removeStatMod()"><b>-</b></button>
+                            <button class="btn btn-primary " type="button" @click="addStatMod"><b>+</b></button>
+                            <button class="btn btn-danger" type="button" @click="removeStatMod"><b>-</b></button>
                             <input type="number" class="form-control" id="stat-mod-input" v-model="newStatModAmount" placeholder="Stat Modifier" autocomplete="off"/>
                             <select class="form-control" v-model="newStatModStat">
                                 <option>Strength</option>
@@ -113,8 +114,8 @@
                         </div>
                     </div>
                     <button class="btn btn-primary">Submit</button>
-                    <button class="btn btn-primary" @click="update()">Update</button>
-                    <button class="btn btn-danger clear-button" type="button" v-on:click="clearFields()">Clear</button>
+                    <button class="btn btn-primary" @click="update">Update</button>
+                    <button class="btn btn-danger clear-button" type="button" @click="clearFields">Clear</button>
                 </form>
             </div>
         </div>

@@ -73,103 +73,123 @@ export default {
       case 1:
         return {
           min: 0,
-          max: 300
+          max: 300,
+          range: 300
         };
       case 2:
         return {
           min: 300,
-          max: 900
+          max: 900,
+          range: 600
         };
       case 3:
         return {
           min: 900,
-          max: 2700
+          max: 2700,
+          range: 1800
         };
       case 4:
         return {
           min: 2700,
-          max: 6500
+          max: 6500,
+          range: 3800
         };
       case 5:
         return {
           min: 6500,
-          max: 14000
+          max: 14000,
+          range: 7500
         };
       case 6:
         return {
           min: 14000,
-          max: 23000
+          max: 23000,
+          range: 9000
         };
       case 7:
         return {
           min: 23000,
-          max: 34000
+          max: 34000,
+          range: 11000
         };
       case 8:
         return {
           min: 34000,
-          max: 48000
+          max: 48000,
+          range: 14000
         };
       case 9:
         return {
           min: 48000,
-          max: 64000
+          max: 64000,
+          range: 16000
         };
       case 10:
         return {
           min: 64000,
-          max: 85000
+          max: 85000,
+          range: 21000
         };
       case 11:
         return {
           min: 85000,
-          max: 100000
+          max: 100000,
+          range: 15000
         };
       case 12:
         return {
           min: 100000,
-          max: 120000
+          max: 120000,
+          range: 20000
         };
       case 13:
         return {
           min: 120000,
-          max: 140000
+          max: 140000,
+          range: 20000
         };
       case 14:
         return {
           min: 140000,
-          max: 165000
+          max: 165000,
+          range: 25000
         };
       case 15:
         return {
           min: 165000,
-          max: 195000
+          max: 195000,
+          range: 30000
         };
       case 16:
         return {
           min: 195000,
-          max: 225000
+          max: 225000,
+          range: 30000
         };
       case 17:
         return {
           min: 225000,
-          max: 265000
+          max: 265000,
+          range: 40000
         };
 
       case 18:
         return {
           min: 265000,
-          max: 305000
+          max: 305000,
+          range: 40000
         };
       case 19:
         return {
           min: 305000,
-          max: 335000
+          max: 335000,
+          range: 30000
         };
       default:
         return {
           min: 0,
-          max: 0
+          max: 0,
+          range: 0  
         };
     }
   },

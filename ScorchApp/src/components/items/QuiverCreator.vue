@@ -48,8 +48,8 @@
                             </ul>
                         </div>
                         <div class="input-group">
-                            <button class="btn btn-primary add-remove-btn" type="button" v-on:click="addAmmo()"><b>+</b></button>
-                            <button class="btn btn-danger add-remove-btn" type="button" v-on:click="removeAmmo()"><b>-</b></button>
+                            <button class="btn btn-primary add-remove-btn" type="button" @click="addAmmo"><b>+</b></button>
+                            <button class="btn btn-danger add-remove-btn" type="button" @click="removeAmmo"><b>-</b></button>
                             <input type="number" class="form-control ammo-amt" id="ammo-input-amt" v-model="newAmmoMaxAmt" placeholder="Count" autocomplete="off"/>
                             <input type="text" class="form-control" id="ammo-input-type" v-model="newAmmoType" placeholder="Type" autocomplete="off"/>
                         </div>
@@ -62,13 +62,13 @@
                             </div>
                         </div>
                         <div class="input-group">
-                            <button class="btn btn-primary add-remove-btn" type="button" v-on:click="addProp()"><b>+</b></button>
-                            <button class="btn btn-danger add-remove-btn" type="button" v-on:click="removeProp()"><b>-</b></button>
+                            <button class="btn btn-primary add-remove-btn" type="button" @click="addProp"><b>+</b></button>
+                            <button class="btn btn-danger add-remove-btn" type="button" @click="removeProp"><b>-</b></button>
                             <input type="text" class="form-control" id="property-input" v-model="newProp" placeholder="Properties" autocomplete="off"/>
                         </div>
                     </div>
                     <button class="btn btn-primary">Submit</button>
-                    <button class="btn btn-danger clear-button" type="button" v-on:click="clearFields()">Clear</button>
+                    <button class="btn btn-danger clear-button" type="button" @click="clearFields">Clear</button>
                 </form>
             </div>
         </div>

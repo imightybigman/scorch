@@ -88,6 +88,10 @@ namespace ScorchApiServerless.Models
             {
                 Equipment.Necklace = (Accessory)equipment;
             }
+            else if (Equipment.Shield != null && Equipment.Shield.ItemId == equipment.ItemId)
+            {
+                Equipment.Shield = (Armor)equipment;
+            }
         }
 
         public void Equip(Item equipment)
@@ -156,6 +160,10 @@ namespace ScorchApiServerless.Models
             {
                 Equipment.Quiver = null;
             }
+            if (slot == "Shield")
+            {
+                Equipment.Shield = null;
+            }
         }
 
         private void EquipWeapon(Weapon weapon)
@@ -164,7 +172,9 @@ namespace ScorchApiServerless.Models
             {
                 Equipment.MainHand = weapon;
             }
-            else if(weapon.Slot == "OffHand") {
+            else if(weapon.Slot == "OffHand")
+            {
+                Equipment.Shield = null;
                 Equipment.OffHand = weapon;
             }
         }
@@ -190,6 +200,11 @@ namespace ScorchApiServerless.Models
             else if (armor.Slot == "Boots")
             {
                 Equipment.Boots = armor;
+            }
+            else if (armor.Slot == "Shield")
+            {
+                Equipment.OffHand = null;
+                Equipment.Shield = armor;
             }
         }
 

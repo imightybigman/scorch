@@ -22,7 +22,7 @@
                 <input type="number" class="form-control" id="modify-gold" v-model="deltaGold" placeholder="Gold Change" autocomplete="off"/>
             </div>
         </div>
-        <button class="btn btn-warning" v-on:click="apply">Submit</button>
+        <button class="btn btn-warning" @click="apply">Submit</button>
     </div>
 </template>
 
