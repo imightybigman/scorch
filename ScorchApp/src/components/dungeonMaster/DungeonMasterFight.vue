@@ -19,12 +19,12 @@
                       <h3>
                           Initiative
                       </h3>
+                      <hr>
                         <div v-for="user in initInfo">
-                            {{user.user}} --
-                                Init: <input class="form-control init-info" type="number" v-model="user.init"/>
-                                HP: <input class="form-control init-info" type="number" v-model="user.hp"/>
-
-
+                            <span class="init-user">{{user.user}}</span>
+                                <div class="init-right">HP: <input class="form-control init-info" type="number" v-model="user.hp" @change="update()"/></div>
+                                <div class="init-right">Init: <input class="form-control init-info" type="number" v-model="user.init" @change="update()"/></div>
+                                <hr>
                         </div>
                         <p v-if="initInfo.length > 0">
                           <button class="btn btn-primary" @click="sortInits">Sort</button>
@@ -46,8 +46,6 @@
                             <button class="btn btn-success" @click="addMonster">Add Monster</button>
                           </form>
                           <br/>
-                          <button class="btn btn-primary" @click="setCookie()">Save Fight</button>
-
                         </p>
                     </div>
                 </div>
@@ -86,6 +84,12 @@ export default {
         this.clearInit();
       }
     },
+    watch: {
+      initInfo(){
+        this.$cookies.remove('dm-fight');
+        this.$cookies.set('dm-fight', JSON.stringify(this.initInfo));
+      }
+    },
     methods: {
         toggleCharacter(character) {
             var foundChar = this.selectedChars.find(char => char.CharacterId == character.CharacterId);
@@ -113,7 +117,7 @@ export default {
           this.newMonster = [];
           this.sortInits();
         },
-        setCookie(){
+        update(val){
           this.$cookies.remove('dm-fight');
           this.$cookies.set('dm-fight', JSON.stringify(this.initInfo));
         }
@@ -187,5 +191,11 @@ export default {
     .init-info {
       width: 70px;
       display:inline;
+    }
+    .init-right{
+      float: right;
+    }
+    .init-user {
+      font-weight:bold;
     }
 </style>
