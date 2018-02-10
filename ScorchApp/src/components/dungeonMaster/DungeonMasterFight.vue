@@ -20,9 +20,11 @@
                           Initiative
                       </h3>
                         <div v-for="user in initInfo">
-                            <ul>
-                                <h5>{{user.user}} :</h5>
-                                <input class="form-control" type="number" v-model="user.init"/></ul>
+                            {{user.user}} --
+                                Init: <input class="form-control init-info" type="number" v-model="user.init"/>
+                                HP: <input class="form-control init-info" type="number" v-model="user.hp"/>
+
+
                         </div>
                         <p v-if="initInfo.length > 0">
                           <button class="btn btn-primary" @click="sortInits">Sort</button>
@@ -36,9 +38,16 @@
                             <label>
                               Monster Init
                             </label>
-                            <input class="form-control" type="number" v-model="newMonster.init">
+                            <input class="form-control init-info" type="number" v-model="newMonster.init">
+                            <label>
+                              Monster HP
+                            </label>
+                            <input class="form-control init-info" type="number" v-model="newMonster.hp">
                             <button class="btn btn-success" @click="addMonster">Add Monster</button>
                           </form>
+                          <br/>
+                          <button class="btn btn-primary" @click="setCookie()">Save Fight</button>
+
                         </p>
                     </div>
                 </div>
@@ -66,6 +75,7 @@ export default {
     },
     async created() {
       await this.$store.dispatch('getParty');
+      this.initInfo = JSON.parse(this.$cookies.get('dm-fight'));
     },
     sockets: {
       init: function(data) {
@@ -93,14 +103,19 @@ export default {
         },
         clearInit() {
           this.initInfo = [];
+          this.$cookies.remove('dm-fight');
         },
         sortInits(){
-            this.initInfo = _.orderBy(this.initInfo, ['init'], ['desc']);
+            this.initInfo = _.sortBy(this.initInfo, ['init'], ['desc']);
         },
         addMonster(){
-          this.initInfo.push({user: this.newMonster.name, init: this.newMonster.init * 1});
+          this.initInfo.push({user: this.newMonster.name, init: this.newMonster.init * 1, hp: this.newMonster.hp});
           this.newMonster = [];
           this.sortInits();
+        },
+        setCookie(){
+          this.$cookies.remove('dm-fight');
+          this.$cookies.set('dm-fight', JSON.stringify(this.initInfo));
         }
     },
     computed: {
@@ -137,6 +152,7 @@ export default {
         }
     }
     .dm-initiative-view {
+        flex-wrap: nowrap;
         flex: 2;
     }
     .dm-fight-view {
@@ -144,7 +160,7 @@ export default {
     }
     .character-operations {
         margin: 1%;
-        flex: 1;
+        flex: 0.5;
         border-radius: 10px;
     }
     .selected {
@@ -167,5 +183,9 @@ export default {
     }
     .item-card-inner{
         min-height: 75%;
+    }
+    .init-info {
+      width: 70px;
+      display:inline;
     }
 </style>

@@ -15,9 +15,10 @@ import 'font-awesome/scss/font-awesome.scss'
 import 'rpg-awesome/scss/rpg-awesome.scss'
 import 'styles/styles.scss'
 import ToggleButton from 'vue-js-toggle-button'
-
+import VueCookies from 'vue-cookies'
 
 Vue.use(VueSocketio, process.env.SOCKET_HOST, store);
+Vue.use(VueCookies);
 Vue.use(VueResource);
 Vue.use(Notify);
 Vue.use(Logging);
