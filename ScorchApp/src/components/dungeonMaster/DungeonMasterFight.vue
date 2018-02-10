@@ -117,7 +117,7 @@ export default {
           this.newMonster = [];
           this.sortInits();
         },
-        update(val){
+        update(){
           this.$cookies.remove('dm-fight');
           this.$cookies.set('dm-fight', JSON.stringify(this.initInfo));
         }
